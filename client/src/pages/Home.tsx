@@ -1,25 +1,40 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
-
-/**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
+/*
+ * HARRISON HEALTH GROUP — Home Page
+ * Assembles all sections in order.
+ * Design: Midnight Gradient Luxury
  */
-export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
 
+import Navbar from "@/components/sections/Navbar";
+import Hero from "@/components/sections/Hero";
+import CarrierMarquee from "@/components/sections/CarrierMarquee";
+import WhyUs from "@/components/sections/WhyUs";
+import Coverage from "@/components/sections/Coverage";
+import About from "@/components/sections/About";
+import Stats from "@/components/sections/Stats";
+import Team from "@/components/sections/Team";
+import Testimonials from "@/components/sections/Testimonials";
+import Contact from "@/components/sections/Contact";
+import Footer from "@/components/sections/Footer";
+import StickyCallButton from "@/components/StickyCallButton";
+
+export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
-      </main>
+    <div
+      className="min-h-screen"
+      style={{ background: "#08080E", color: "#ffffff" }}
+    >
+      <Navbar />
+      <Hero />
+      <CarrierMarquee />
+      <WhyUs />
+      <Coverage />
+      <About />
+      <Stats />
+      <Team />
+      <Testimonials />
+      <Contact />
+      <Footer />
+      <StickyCallButton />
     </div>
   );
 }
