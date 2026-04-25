@@ -208,7 +208,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
 
         {/* BACK */}
         <div
-          className="flip-card-back rounded-2xl p-7 flex flex-col"
+          className="flip-card-back rounded-2xl flex flex-col"
           style={{
             position: "absolute",
             inset: 0,
@@ -219,17 +219,20 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
+            padding: "20px 22px 18px",
+            overflow: "hidden",
           }}
         >
           {/* Name on back */}
-          <div className="mb-4">
+          <div style={{ marginBottom: "8px" }}>
             <h3
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
-                fontSize: "1.4rem",
+                fontSize: "1.25rem",
                 color: "#F8F5F0",
-                marginBottom: "0.2rem",
+                marginBottom: "2px",
+                lineHeight: 1.2,
               }}
             >
               {member.name}
@@ -237,9 +240,10 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "0.8rem",
+                fontSize: "0.73rem",
                 color: "#C9A84C",
                 fontWeight: 500,
+                lineHeight: 1.3,
               }}
             >
               {member.title}
@@ -251,48 +255,56 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             style={{
               height: 1,
               background: "linear-gradient(to right, rgba(201,168,76,0.35), transparent)",
-              marginBottom: "1rem",
+              marginBottom: "10px",
+              flexShrink: 0,
             }}
           />
 
-          {/* Bio */}
+          {/* Bio — clamped to 4 lines max */}
           <p
-            className="flex-1"
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "0.875rem",
+              fontSize: "0.78rem",
               color: "rgba(248,245,240,0.62)",
-              lineHeight: 1.7,
+              lineHeight: 1.55,
+              display: "-webkit-box",
+              WebkitLineClamp: 5,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+              marginBottom: "10px",
+              flexShrink: 0,
             }}
           >
             {member.bio}
           </p>
 
-          {/* Specialties */}
-          <div className="mt-4 mb-5">
+          {/* Specialties — compact inline row */}
+          <div style={{ marginBottom: "12px", flexShrink: 0 }}>
             <div
               style={{
                 fontFamily: "'DM Mono', monospace",
-                fontSize: "0.6rem",
+                fontSize: "0.55rem",
                 letterSpacing: "0.12em",
                 color: "rgba(201,168,76,0.45)",
                 textTransform: "uppercase",
-                marginBottom: "0.6rem",
+                marginBottom: "6px",
               }}
             >
               Specialties
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
               {member.specialties.map((s) => (
                 <span
                   key={s}
-                  className="px-2.5 py-1 rounded-full text-xs"
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
                     background: "rgba(201,168,76,0.08)",
-                    border: "1px solid rgba(201,168,76,0.20)",
+                    border: "1px solid rgba(201,168,76,0.22)",
                     color: "#C9A84C",
-                    fontSize: "0.72rem",
+                    fontSize: "0.65rem",
+                    padding: "3px 9px",
+                    borderRadius: "999px",
+                    whiteSpace: "nowrap",
                   }}
                 >
                   {s}

@@ -89,95 +89,100 @@ export default function Hero({ onQuoteClick }: HeroProps) {
           position: "absolute",
           top: 0,
           right: 0,
+          bottom: 0,
           width: "55%",          /* right 55% of the hero — clear of left text column */
-          height: "75%",
           y: logoY,
           pointerEvents: "none",
           overflow: "hidden",
           zIndex: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          paddingTop: "80px",     /* push below navbar */
         }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.6, ease: "easeOut" }}
       >
-        {/* Large ghosted "HH" monogram — two capital H letters, left taller, right slightly smaller & offset down, matching original logo */}
+        {/* HH Monogram + HARRISON HEALTH bar — grouped together, matching original logo layout */}
         <div
           style={{
-            position: "absolute",
-            inset: 0,
             display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "center",
-            paddingTop: "50px",   /* clear the navbar */
-          }}
-        >
-          {/* Left H — taller, primary */}
-          <span
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontWeight: 300,
-              fontSize: "clamp(200px, 26vw, 360px)",
-              lineHeight: 1,
-              color: "rgba(201,168,76,0.14)",
-              letterSpacing: "-0.06em",
-              userSelect: "none",
-              display: "block",
-              marginTop: 0,
-            }}
-          >
-            H
-          </span>
-          {/* Right H — slightly smaller, dropped down to create the staggered logo effect */}
-          <span
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontWeight: 300,
-              fontSize: "clamp(150px, 19vw, 270px)",
-              lineHeight: 1,
-              color: "rgba(201,168,76,0.10)",
-              letterSpacing: "-0.06em",
-              userSelect: "none",
-              display: "block",
-              marginTop: "clamp(40px, 5.5vw, 80px)",
-              marginLeft: "-0.18em",
-            }}
-          >
-            H
-          </span>
-        </div>
-
-        {/* "HARRISON HEALTH" charcoal bar — anchored to bottom of the monogram block */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: "12%",
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "clamp(220px, 32vw, 420px)",
-            background: "rgba(28,26,20,0.75)",
-            backdropFilter: "blur(3px)",
-            WebkitBackdropFilter: "blur(3px)",
-            border: "1px solid rgba(201,168,76,0.14)",
-            padding: "9px 28px",
-            display: "flex",
+            flexDirection: "column",
             alignItems: "center",
-            justifyContent: "center",
+            userSelect: "none",
           }}
         >
-          <span
+          {/* Two H letters side by side — left H higher (larger), right H lower (smaller) */}
+          <div
             style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontWeight: 400,
-              fontSize: "clamp(0.65rem, 1.2vw, 0.9rem)",
-              letterSpacing: "0.40em",
-              textTransform: "uppercase",
-              color: "rgba(201,168,76,0.65)",
-              userSelect: "none",
-              whiteSpace: "nowrap",
+              display: "flex",
+              alignItems: "flex-end",   /* baseline-align so right H sits lower */
+              lineHeight: 1,
+              gap: "clamp(6px, 1vw, 16px)",
             }}
           >
-            Harrison Health
-          </span>
+            {/* Left H — taller, sits higher because it's larger */}
+            <span
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 300,
+                fontSize: "clamp(150px, 18vw, 260px)",
+                lineHeight: 0.85,
+                color: "rgba(201,168,76,0.16)",
+                display: "block",
+                /* Push left H up by adding extra bottom margin so its baseline is higher */
+                marginBottom: "clamp(28px, 3.5vw, 55px)",
+              }}
+            >
+              H
+            </span>
+            {/* Right H — smaller, sits at the shared baseline (no extra margin) */}
+            <span
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 300,
+                fontSize: "clamp(110px, 14vw, 200px)",
+                lineHeight: 0.85,
+                color: "rgba(201,168,76,0.11)",
+                display: "block",
+                marginBottom: 0,
+              }}
+            >
+              H
+            </span>
+          </div>
+
+          {/* HARRISON HEALTH bar — directly below the letters, tight gap */}
+          <div
+            style={{
+              marginTop: "clamp(4px, 0.5vw, 10px)",
+              width: "100%",
+              background: "rgba(28,26,20,0.78)",
+              backdropFilter: "blur(3px)",
+              WebkitBackdropFilter: "blur(3px)",
+              border: "1px solid rgba(201,168,76,0.18)",
+              padding: "10px 28px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 400,
+                fontSize: "clamp(0.6rem, 1.1vw, 0.85rem)",
+                letterSpacing: "0.42em",
+                textTransform: "uppercase",
+                color: "rgba(201,168,76,0.70)",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Harrison Health
+            </span>
+          </div>
         </div>
       </motion.div>
 
