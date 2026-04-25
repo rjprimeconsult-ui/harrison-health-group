@@ -7,61 +7,63 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Phone, Star, ChevronRight, Camera } from "lucide-react";
+import { Phone, ChevronRight, Camera, Award } from "lucide-react";
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/motion/AnimationWrappers";
-
-const PLACEHOLDER_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663441385223/aeUWcF9B5vWVriiiqFVf4u/hhg-team-placeholder-NCsqqmdVHnUAp5G2cpA7VJ.webp";
 
 interface TeamMember {
   id: number;
   name: string;
   title: string;
+  npn?: string;
   bio: string;
   specialties: string[];
   phone: string;
   photoReady: boolean;
+  photoUrl?: string;
 }
 
 const teamMembers: TeamMember[] = [
   {
     id: 1,
-    name: "Team Member",
-    title: "Licensed Health Insurance Specialist",
-    bio: "A dedicated health insurance professional committed to finding the right coverage for every client. Specializes in ACA Marketplace plans and individual family coverage.",
-    specialties: ["ACA Marketplace", "Individual Plans", "Family Coverage"],
-    phone: "+18005551234",
+    name: "Shaquille Harrison",
+    title: "Founder & Licensed Health Insurance Specialist",
+    npn: "20611469",
+    bio: "Shaquille founded Harrison Health Group with a mission to make quality health insurance accessible and affordable for every family and business. His expertise spans ACA Marketplace, Group Benefits, and Medicare solutions across 31 states.",
+    specialties: ["ACA Marketplace", "Group Benefits", "Medicare"],
+    phone: "+19546000342",
     photoReady: false,
   },
   {
     id: 2,
-    name: "Team Member",
-    title: "Medicare & Senior Benefits Advisor",
-    bio: "Expert in Medicare Supplement and Medicare Advantage plans. Helps clients 65+ navigate their options with clarity and confidence.",
-    specialties: ["Medicare Supplement", "Medicare Advantage", "Senior Benefits"],
-    phone: "+18005551234",
+    name: "Rafael Perez",
+    title: "Licensed Health Insurance Specialist",
+    npn: "19153319",
+    bio: "With 10+ years helping families find affordable coverage, Rafael brings deep expertise in individual and family health plans. He specializes in navigating the ACA Marketplace to find the best value for every client's unique situation.",
+    specialties: ["Individual Plans", "Family Coverage", "ACA Marketplace"],
+    phone: "+19546000342",
     photoReady: false,
   },
   {
     id: 3,
     name: "Team Member",
-    title: "Group Benefits Consultant",
-    bio: "Specializes in employer-sponsored health benefits for small to mid-size businesses. Helps companies attract and retain talent with competitive benefits packages.",
-    specialties: ["Group Health", "Employer Benefits", "Business Plans"],
-    phone: "+18005551234",
+    title: "Medicare & Senior Benefits Advisor",
+    bio: "Our Medicare specialist helps clients 65+ navigate Medicare Supplement (Medigap) and Medicare Advantage plans. We ensure every senior finds the coverage that protects their health and retirement savings.",
+    specialties: ["Medicare Supplement", "Medicare Advantage", "Senior Benefits"],
+    phone: "+19546000342",
     photoReady: false,
   },
   {
     id: 4,
     name: "Team Member",
-    title: "Self-Employed & 1099 Specialist",
-    bio: "Dedicated to helping freelancers, contractors, and self-employed professionals find affordable, comprehensive health coverage that maximizes their tax advantages.",
-    specialties: ["1099 Plans", "Self-Employed", "Tax Optimization"],
-    phone: "+18005551234",
+    title: "Group Benefits Consultant",
+    bio: "Dedicated to helping small and mid-size businesses build competitive employee benefits packages. From 2-person startups to 500-employee companies, we design plans that attract talent and control costs.",
+    specialties: ["Group Health", "Employer Benefits", "Small Business"],
+    phone: "+19546000342",
     photoReady: false,
   },
 ];
 
-function FlipCard({ member }: { member: TeamMember }) {
+function FlipCard({ member, index: _index }: { member: TeamMember; index?: number }) {
   const [flipped, setFlipped] = useState(false);
 
   return (
@@ -82,8 +84,8 @@ function FlipCard({ member }: { member: TeamMember }) {
         <div
           className="flip-card-front rounded-2xl overflow-hidden"
           style={{
-            background: "rgba(139,92,246,0.06)",
-            border: "1px solid rgba(139,92,246,0.18)",
+            background: "rgba(28,28,28,0.90)",
+            border: "1px solid rgba(201,168,76,0.15)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
           }}
@@ -93,25 +95,19 @@ function FlipCard({ member }: { member: TeamMember }) {
             className="relative flex items-center justify-center"
             style={{
               height: 280,
-              background: "linear-gradient(135deg, #110D1E, #1A1033)",
+              background: "linear-gradient(135deg, #1C1C1C 0%, #2A2A2A 100%)",
               overflow: "hidden",
             }}
           >
             {member.photoReady ? (
               <img
-                src={PLACEHOLDER_IMG}
+                src={member.photoUrl ?? ""}
                 alt={member.name}
                 className="w-full h-full object-cover"
               />
             ) : (
               <>
-                {/* Placeholder silhouette */}
-                <img
-                  src={PLACEHOLDER_IMG}
-                  alt="Photo coming soon"
-                  className="w-full h-full object-cover"
-                  style={{ opacity: 0.7 }}
-                />
+                {/* Silhouette placeholder — no image needed */}
                 {/* "Photo Coming Soon" overlay */}
                 <div
                   className="absolute inset-0 flex flex-col items-center justify-end pb-5"
@@ -122,17 +118,17 @@ function FlipCard({ member }: { member: TeamMember }) {
                   <div
                     className="flex items-center gap-2 px-3 py-1.5 rounded-full"
                     style={{
-                      background: "rgba(139,92,246,0.20)",
-                      border: "1px solid rgba(139,92,246,0.35)",
+                    background: "rgba(201,168,76,0.10)",
+                    border: "1px solid rgba(201,168,76,0.25)",
                     }}
                   >
-                    <Camera size={11} style={{ color: "#A78BFA" }} />
+                    <Camera size={11} style={{ color: "#C9A84C" }} />
                     <span
                       style={{
                         fontFamily: "'DM Mono', monospace",
                         fontSize: "0.6rem",
                         letterSpacing: "0.12em",
-                        color: "#A78BFA",
+                        color: "rgba(201,168,76,0.80)",
                         textTransform: "uppercase",
                       }}
                     >
@@ -147,7 +143,7 @@ function FlipCard({ member }: { member: TeamMember }) {
             <div
               className="absolute bottom-0 left-0 right-0 h-16"
               style={{
-                background: "linear-gradient(to top, rgba(139,92,246,0.15), transparent)",
+                background: "linear-gradient(to top, rgba(28,28,28,0.80), transparent)",
               }}
             />
           </div>
@@ -159,7 +155,7 @@ function FlipCard({ member }: { member: TeamMember }) {
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "1.3rem",
-                color: "#ffffff",
+                color: "#F8F5F0",
                 marginBottom: "0.25rem",
                 lineHeight: 1.2,
               }}
@@ -170,7 +166,7 @@ function FlipCard({ member }: { member: TeamMember }) {
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "0.82rem",
-                color: "#A78BFA",
+                color: "#C9A84C",
                 fontWeight: 500,
                 marginBottom: "1rem",
               }}
@@ -185,13 +181,13 @@ function FlipCard({ member }: { member: TeamMember }) {
                   fontFamily: "'DM Mono', monospace",
                   fontSize: "0.62rem",
                   letterSpacing: "0.12em",
-                  color: "rgba(255,255,255,0.30)",
+                  color: "rgba(201,168,76,0.45)",
                   textTransform: "uppercase",
                 }}
               >
                 Hover to learn more
               </span>
-              <ChevronRight size={11} style={{ color: "rgba(255,255,255,0.30)" }} />
+              <ChevronRight size={11} style={{ color: "rgba(201,168,76,0.40)" }} />
             </div>
           </div>
         </div>
@@ -200,8 +196,8 @@ function FlipCard({ member }: { member: TeamMember }) {
         <div
           className="flip-card-back rounded-2xl p-7 flex flex-col"
           style={{
-            background: "linear-gradient(135deg, #1A1033, #110D1E)",
-            border: "1px solid rgba(139,92,246,0.30)",
+            background: "linear-gradient(135deg, #1C1C1C 0%, #222222 100%)",
+            border: "1px solid rgba(201,168,76,0.25)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
@@ -214,7 +210,7 @@ function FlipCard({ member }: { member: TeamMember }) {
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "1.4rem",
-                color: "#ffffff",
+                color: "#F8F5F0",
                 marginBottom: "0.2rem",
               }}
             >
@@ -224,7 +220,7 @@ function FlipCard({ member }: { member: TeamMember }) {
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "0.8rem",
-                color: "#A78BFA",
+                color: "#C9A84C",
                 fontWeight: 500,
               }}
             >
@@ -236,7 +232,7 @@ function FlipCard({ member }: { member: TeamMember }) {
           <div
             style={{
               height: 1,
-              background: "linear-gradient(to right, rgba(139,92,246,0.4), transparent)",
+              background: "linear-gradient(to right, rgba(201,168,76,0.35), transparent)",
               marginBottom: "1rem",
             }}
           />
@@ -247,7 +243,7 @@ function FlipCard({ member }: { member: TeamMember }) {
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: "0.875rem",
-              color: "rgba(255,255,255,0.65)",
+              color: "rgba(248,245,240,0.62)",
               lineHeight: 1.7,
             }}
           >
@@ -261,7 +257,7 @@ function FlipCard({ member }: { member: TeamMember }) {
                 fontFamily: "'DM Mono', monospace",
                 fontSize: "0.6rem",
                 letterSpacing: "0.12em",
-                color: "rgba(255,255,255,0.35)",
+                color: "rgba(201,168,76,0.45)",
                 textTransform: "uppercase",
                 marginBottom: "0.6rem",
               }}
@@ -275,9 +271,9 @@ function FlipCard({ member }: { member: TeamMember }) {
                   className="px-2.5 py-1 rounded-full text-xs"
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    background: "rgba(139,92,246,0.15)",
-                    border: "1px solid rgba(139,92,246,0.25)",
-                    color: "#A78BFA",
+                    background: "rgba(201,168,76,0.08)",
+                    border: "1px solid rgba(201,168,76,0.20)",
+                    color: "#C9A84C",
                     fontSize: "0.72rem",
                   }}
                 >
@@ -293,11 +289,11 @@ function FlipCard({ member }: { member: TeamMember }) {
             className="flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white"
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              background: "linear-gradient(135deg, #8B5CF6, #6D28D9)",
-              boxShadow: "0 0 20px rgba(139,92,246,0.35)",
+              background: "linear-gradient(135deg, #E2C97E, #C9A84C, #A8852D)",
+              color: "#0A0A0A",
               textDecoration: "none",
             }}
-            whileHover={{ scale: 1.03, boxShadow: "0 0 32px rgba(139,92,246,0.55)" }}
+            whileHover={{ scale: 1.03, boxShadow: "0 8px 24px rgba(201,168,76,0.30)" }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 420, damping: 22 }}
           >
@@ -315,7 +311,7 @@ export default function Team() {
     <section
       id="team"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#08080E" }}
+      style={{ background: "#111111" }}
     >
       {/* Ambient orbs */}
       <div
@@ -323,7 +319,7 @@ export default function Team() {
         style={{
           width: 600,
           height: 600,
-          background: "radial-gradient(circle, rgba(109,40,217,0.12) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%)",
           top: "20%",
           right: "-200px",
           animationDelay: "-8s",
@@ -334,33 +330,26 @@ export default function Team() {
         {/* Header */}
         <FadeUp>
           <div className="text-center mb-16">
-            <div className="section-label mb-4">Meet Our Team</div>
+            <div className="section-label mb-4">Our Team</div>
             <h2
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
-                color: "#ffffff",
+                color: "#F8F5F0",
                 lineHeight: 1.1,
                 marginBottom: "1rem",
               }}
             >
-              The Specialists Behind{" "}
-              <span
-                style={{
-                  background: "linear-gradient(135deg, #A78BFA, #8B5CF6)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                Your Coverage
+              Meet Your{" "}
+              <span className="gold-text">
+                Dedicated Advisors
               </span>
             </h2>
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(255,255,255,0.55)",
+                color: "rgba(248,245,240,0.55)",
                 fontSize: "1rem",
                 maxWidth: 480,
                 margin: "0 auto",
@@ -375,21 +364,21 @@ export default function Team() {
             <motion.div
               className="inline-flex items-center gap-2 mt-6 px-4 py-2 rounded-full"
               style={{
-                background: "rgba(139,92,246,0.08)",
-                border: "1px solid rgba(139,92,246,0.20)",
+              background: "rgba(201,168,76,0.07)",
+              border: "1px solid rgba(201,168,76,0.18)",
               }}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              <Camera size={13} style={{ color: "#A78BFA" }} />
+              <Camera size={13} style={{ color: "#C9A84C" }} />
               <span
                 style={{
                   fontFamily: "'DM Mono', monospace",
                   fontSize: "0.65rem",
                   letterSpacing: "0.12em",
-                  color: "rgba(167,139,250,0.80)",
+                  color: "rgba(201,168,76,0.70)",
                   textTransform: "uppercase",
                 }}
               >
@@ -403,7 +392,7 @@ export default function Team() {
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {teamMembers.map((member) => (
             <StaggerItem key={member.id}>
-              <FlipCard member={member} />
+              <FlipCard member={member} index={member.id} />
             </StaggerItem>
           ))}
         </StaggerContainer>

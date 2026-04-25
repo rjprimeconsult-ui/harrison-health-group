@@ -37,8 +37,8 @@ function CountUp({ target, suffix = "", prefix = "" }: { target: number; suffix?
 
 const stats = [
   { target: 20, suffix: "+", label: "Carrier Partners", description: "Top-rated national and regional insurers" },
-  { target: 50, suffix: "", prefix: "All ", label: "States Served", description: "Licensed to help clients nationwide" },
-  { target: 98, suffix: "%", label: "Client Satisfaction", description: "Based on post-enrollment surveys" },
+  { target: 31, suffix: "", prefix: "", label: "States Served", description: "Licensed to help clients nationwide" },
+  { target: 93, suffix: "%", prefix: "", label: "Client Satisfaction", description: "Based on post-enrollment surveys" },
   { target: 24, suffix: "hrs", label: "Avg. Enrollment", description: "From first call to active coverage" },
 ];
 
@@ -46,7 +46,7 @@ export default function Stats() {
   return (
     <section
       className="relative py-28 overflow-hidden"
-      style={{ background: "#0D0A1A" }}
+      style={{ background: "#0A0A0A" }}
     >
       {/* Background image */}
       <div className="absolute inset-0">
@@ -59,7 +59,7 @@ export default function Stats() {
         <div
           className="absolute inset-0"
           style={{
-            background: "linear-gradient(to bottom, #0D0A1A 0%, rgba(13,10,26,0.7) 50%, #0D0A1A 100%)",
+            background: "linear-gradient(to bottom, #0A0A0A 0%, rgba(10,10,10,0.7) 50%, #0A0A0A 100%)",
           }}
         />
       </div>
@@ -73,21 +73,14 @@ export default function Stats() {
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
-                color: "#ffffff",
-                lineHeight: 1.1,
-              }}
-            >
-              Results That{" "}
-              <span
-                style={{
-                  background: "linear-gradient(135deg, #A78BFA, #8B5CF6)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
+                  color: "#F8F5F0",
+                  lineHeight: 1.1,
                 }}
               >
-                Speak for Themselves
-              </span>
+                Results That{" "}
+                <span className="gold-text">
+                  Speak for Themselves
+                </span>
             </h2>
           </div>
         </FadeUp>
@@ -110,7 +103,7 @@ export default function Stats() {
                   fontSize: "clamp(3rem, 6vw, 4.5rem)",
                   lineHeight: 1,
                   marginBottom: "0.5rem",
-                  background: "linear-gradient(135deg, #ffffff, #A78BFA)",
+                  background: "linear-gradient(135deg, #E2C97E, #C9A84C, #A8852D)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -125,7 +118,7 @@ export default function Stats() {
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 600,
                   fontSize: "1rem",
-                  color: "#ffffff",
+                  color: "#F8F5F0",
                   marginBottom: "0.4rem",
                 }}
               >
@@ -150,7 +143,7 @@ export default function Stats() {
                 style={{
                   width: 40,
                   height: 2,
-                  background: "linear-gradient(to right, #8B5CF6, #A78BFA)",
+                  background: "linear-gradient(to right, transparent, #C9A84C, transparent)",
                   borderRadius: 1,
                 }}
                 initial={{ scaleX: 0 }}

@@ -1,20 +1,22 @@
 /*
  * HARRISON HEALTH GROUP — About Section
- * Two-column layout with consultation image and company story.
- * Design: Midnight Gradient Luxury
+ * Owner: Shaquille Harrison | Address: 1550 Sawgrass Corporate Pkwy
+ * Design: Charcoal & Gold Luxury
  */
 
 import { motion } from "framer-motion";
-import { ShieldCheck, Users, Award, TrendingUp } from "lucide-react";
+import { ShieldCheck, Users, Award, MapPin, Phone, Mail } from "lucide-react";
 import { FadeUp, SlideInLeft, SlideInRight } from "@/components/motion/AnimationWrappers";
+
+const LOGO_URL = "/manus-storage/hhg-logo_bff3908d.jpg";
 
 const ABOUT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663441385223/aeUWcF9B5vWVriiiqFVf4u/hhg-about-bg-PTMYQWofTNBAP75qwr9U8h.webp";
 
 const highlights = [
-  { icon: ShieldCheck, label: "Licensed in All 50 States" },
+  { icon: ShieldCheck, label: "Licensed in 31+ States" },
   { icon: Users, label: "Family-Owned & Operated" },
   { icon: Award, label: "A+ Carrier Relationships" },
-  { icon: TrendingUp, label: "Thousands of Families Served" },
+  { icon: MapPin, label: "1550 Sawgrass Corporate Pkwy" },
 ];
 
 export default function About() {
@@ -22,7 +24,7 @@ export default function About() {
     <section
       id="about"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#08080E" }}
+      style={{ background: "#0D0D0D" }}
     >
       {/* Ambient orb */}
       <div
@@ -30,7 +32,7 @@ export default function About() {
         style={{
           width: 500,
           height: 500,
-          background: "radial-gradient(circle, rgba(139,92,246,0.10) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%)",
           bottom: "-100px",
           left: "-100px",
           animationDelay: "-15s",
@@ -46,8 +48,8 @@ export default function About() {
               <div
                 className="relative rounded-2xl overflow-hidden"
                 style={{
-                  border: "1px solid rgba(139,92,246,0.20)",
-                  boxShadow: "0 32px 80px rgba(0,0,0,0.6), 0 0 60px rgba(139,92,246,0.10)",
+                  border: "1px solid rgba(201,168,76,0.18)",
+                  boxShadow: "0 32px 80px rgba(0,0,0,0.6)",
                 }}
               >
                 <img
@@ -73,14 +75,14 @@ export default function About() {
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={{ y: -4, boxShadow: "0 20px 50px rgba(139,92,246,0.25)" }}
+                whileHover={{ y: -4, boxShadow: "0 20px 50px rgba(201,168,76,0.15)" }}
               >
                 <div
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 700,
                     fontSize: "2.5rem",
-                    color: "#A78BFA",
+                    color: "#C9A84C",
                     lineHeight: 1,
                   }}
                 >
@@ -98,15 +100,22 @@ export default function About() {
                 </div>
               </motion.div>
 
-              {/* Purple accent border */}
-              <div
-                className="absolute -top-3 -left-3 w-24 h-24 rounded-tl-2xl"
+              {/* Logo badge */}
+              <motion.div
+                className="absolute -top-4 -left-4 rounded-xl overflow-hidden"
                 style={{
-                  border: "2px solid rgba(139,92,246,0.35)",
-                  borderRight: "none",
-                  borderBottom: "none",
+                  width: 52,
+                  height: 52,
+                  border: "2px solid rgba(201,168,76,0.30)",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.5)",
                 }}
-              />
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <img src={LOGO_URL} alt="HH" className="w-full h-full object-cover" />
+              </motion.div>
             </div>
           </SlideInLeft>
 
@@ -119,21 +128,14 @@ export default function About() {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontWeight: 700,
                   fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
-                  color: "#ffffff",
+                  color: "#F8F5F0",
                   lineHeight: 1.1,
                   marginBottom: "1.5rem",
                 }}
               >
                 Built on Trust,{" "}
-                <span
-                  style={{
-                    background: "linear-gradient(135deg, #A78BFA, #8B5CF6)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  Driven by Care
+                <span className="gold-text">
+                  Driven by Results
                 </span>
               </h2>
 
@@ -147,19 +149,19 @@ export default function About() {
                 }}
               >
                 <p style={{ marginBottom: "1rem" }}>
-                  Harrison Health Group was founded on a simple belief: every person deserves
-                  access to quality health coverage without the confusion, pressure, or hidden
-                  costs that too often come with it.
+                  Harrison Health Group was founded by Shaquille Harrison with a single
+                  mission: make quality health insurance accessible, understandable, and
+                  affordable for every family and business we serve.
                 </p>
                 <p style={{ marginBottom: "1rem" }}>
                   As an independent agency, we work exclusively for our clients — not the
-                  carriers. That independence means we can shop the entire market, compare
-                  every option, and recommend the plan that genuinely fits your needs and budget.
+                  carriers. That independence means we can shop 20+ top-rated carriers,
+                  compare every option, and recommend the plan that genuinely fits your needs.
                 </p>
                 <p>
-                  From individuals navigating the marketplace for the first time to business
-                  owners building benefits packages for their teams, we bring the same level
-                  of dedication and expertise to every client relationship.
+                  From individuals navigating the marketplace for the first time to small
+                  business owners building benefits packages for their teams, we bring the
+                  same level of dedication and expertise to every client relationship.
                 </p>
               </div>
 
@@ -177,11 +179,11 @@ export default function About() {
                     <div
                       className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
                       style={{
-                        background: "rgba(139,92,246,0.12)",
-                        border: "1px solid rgba(139,92,246,0.22)",
+                        background: "rgba(201,168,76,0.08)",
+                        border: "1px solid rgba(201,168,76,0.18)",
                       }}
                     >
-                      <item.icon size={16} style={{ color: "#A78BFA" }} />
+                      <item.icon size={16} style={{ color: "#C9A84C" }} />
                     </div>
                     <span
                       style={{

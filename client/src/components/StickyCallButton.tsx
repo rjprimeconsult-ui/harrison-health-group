@@ -20,7 +20,7 @@ export default function StickyCallButton() {
     <AnimatePresence>
       {visible && (
         <motion.a
-          href="tel:+18005551234"
+          href="tel:+19546000342"
           initial={{ opacity: 0, scale: 0.7, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.7, y: 20 }}
@@ -43,7 +43,7 @@ export default function StickyCallButton() {
             transition={{ duration: 2, repeat: Infinity }}
           />
           <Phone size={18} />
-          <span className="hidden sm:inline">(800) 555-1234</span>
+          <span className="hidden sm:inline">(954) 600-0342</span>
         </motion.a>
       )}
     </AnimatePresence>

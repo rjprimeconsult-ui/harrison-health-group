@@ -1,82 +1,92 @@
 /*
  * HARRISON HEALTH GROUP — Carrier Marquee
- * Infinite CSS scroll with carrier logos. Grayscale on default, full color on hover.
- * Design: Midnight Gradient Luxury
+ * Real carriers: UHC, BCBS, Cigna, Aetna, Ambetter, Molina, Oscar
+ * Design: Charcoal & Gold Luxury
  */
 
-import { FadeUp } from "@/components/motion/AnimationWrappers";
-
 const carriers = [
-  { name: "Blue Cross Blue Shield", abbr: "BCBS" },
-  { name: "Aetna", abbr: "Aetna" },
-  { name: "Cigna", abbr: "Cigna" },
-  { name: "UnitedHealthcare", abbr: "UHC" },
-  { name: "Humana", abbr: "Humana" },
-  { name: "Oscar Health", abbr: "Oscar" },
-  { name: "Ambetter", abbr: "Ambetter" },
-  { name: "Molina Healthcare", abbr: "Molina" },
-  { name: "Florida Blue", abbr: "FL Blue" },
-  { name: "Centene", abbr: "Centene" },
+  "United HealthCare",
+  "Blue Cross Blue Shield",
+  "Cigna",
+  "Aetna",
+  "Ambetter",
+  "Molina Healthcare",
+  "Oscar Health",
 ];
 
-function CarrierLogo({ name, abbr }: { name: string; abbr: string }) {
-  return (
-    <div
-      className="flex items-center justify-center px-8 py-4 rounded-xl mx-3 transition-all duration-300 group"
-      style={{
-        background: "rgba(139, 92, 246, 0.05)",
-        border: "1px solid rgba(139, 92, 246, 0.12)",
-        minWidth: 140,
-        cursor: "default",
-      }}
-      title={name}
-    >
-      <span
-        style={{
-          fontFamily: "'DM Sans', sans-serif",
-          fontWeight: 600,
-          fontSize: "0.9rem",
-          color: "rgba(255,255,255,0.45)",
-          letterSpacing: "0.02em",
-          transition: "color 0.3s ease",
-          whiteSpace: "nowrap",
-        }}
-        className="group-hover:!text-purple-400"
-      >
-        {abbr}
-      </span>
-    </div>
-  );
-}
+const allCarriers = [...carriers, ...carriers]; // doubled for seamless loop
 
 export default function CarrierMarquee() {
-  const doubled = [...carriers, ...carriers];
-
   return (
     <section
-      id="carriers"
-      className="py-16 overflow-hidden"
-      style={{ background: "#0D0A1A", borderTop: "1px solid rgba(139,92,246,0.10)", borderBottom: "1px solid rgba(139,92,246,0.10)" }}
+      style={{
+        background: "#111111",
+        borderTop: "1px solid rgba(201,168,76,0.10)",
+        borderBottom: "1px solid rgba(201,168,76,0.10)",
+        padding: "1.25rem 0",
+        overflow: "hidden",
+      }}
     >
-      <div className="container mb-8">
-        <FadeUp>
-          <div className="flex items-center justify-center gap-4">
-            <div style={{ width: 60, height: 1, background: "linear-gradient(to right, transparent, rgba(139,92,246,0.5))" }} />
-            <p
-              className="section-label text-center"
-              style={{ color: "rgba(255,255,255,0.40)" }}
-            >
-              Trusted Carrier Partners
-            </p>
-            <div style={{ width: 60, height: 1, background: "linear-gradient(to left, transparent, rgba(139,92,246,0.5))" }} />
-          </div>
-        </FadeUp>
+      {/* Label */}
+      <div className="text-center mb-3">
+        <span
+          style={{
+            fontFamily: "'DM Mono', monospace",
+            fontSize: "0.55rem",
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            color: "rgba(201,168,76,0.45)",
+          }}
+        >
+          Carrier Partners
+        </span>
       </div>
 
-      <div className="marquee-fade overflow-hidden">
+      {/* Marquee */}
+      <div className="relative overflow-hidden">
+        {/* Left fade */}
+        <div
+          className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+          style={{ background: "linear-gradient(to right, #111111, transparent)" }}
+        />
+        {/* Right fade */}
+        <div
+          className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+          style={{ background: "linear-gradient(to left, #111111, transparent)" }}
+        />
+
         <div className="marquee-track">
-          {doubled.map((carrier, i) => (
-            <CarrierLogo key={`${carrier.abbr}-${i}`} name={carrier.name} abbr={carrier.abbr} />
+          {allCarriers.map((carrier, i) => (
+            <div
+              key={i}
+              className="flex items-center gap-3 px-8"
+              style={{ whiteSpace: "nowrap" }}
+            >
+              {/* Gold diamond separator */}
+              {i > 0 && (
+                <span
+                  style={{
+                    color: "rgba(201,168,76,0.30)",
+                    fontSize: "0.5rem",
+                    marginRight: "-1rem",
+                  }}
+                >
+                  ◆
+                </span>
+              )}
+              <span
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 600,
+                  fontSize: "1.05rem",
+                  color: "rgba(248,245,240,0.50)",
+                  letterSpacing: "0.04em",
+                  transition: "color 0.2s",
+                }}
+              >
+                {carrier}
+              </span>
+            </div>
           ))}
         </div>
       </div>

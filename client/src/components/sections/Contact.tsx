@@ -12,9 +12,9 @@ const contactMethods = [
   {
     icon: Phone,
     label: "Call Us Directly",
-    value: "(800) 555-1234",
+    value: "(954) 600-0342",
     sub: "Mon–Fri, 8am–7pm EST",
-    href: "tel:+18005551234",
+    href: "tel:+19546000342",
   },
   {
     icon: Mail,
@@ -39,7 +39,9 @@ const contactMethods = [
   },
 ];
 
-export default function Contact() {
+interface ContactProps { onQuoteClick?: () => void; }
+
+export default function Contact({ onQuoteClick }: ContactProps) {
   return (
     <section
       id="contact"
@@ -159,11 +161,11 @@ export default function Contact() {
 
               <div className="flex flex-wrap gap-4 justify-center">
                 <AnimatedButton
-                  onClick={() => window.location.href = "tel:+18005551234"}
+                  onClick={() => onQuoteClick ? onQuoteClick() : (window.location.href = "tel:+19546000342")}
                   className="btn-primary text-base px-8 py-4"
                 >
                   <Phone size={18} />
-                  Call (800) 555-1234
+                  Call (954) 600-0342
                 </AnimatedButton>
                 <motion.a
                   href="mailto:info@harrisonhealthgroup.com"
@@ -236,11 +238,11 @@ export default function Contact() {
                   <div
                     className="w-10 h-10 rounded-lg flex items-center justify-center"
                     style={{
-                      background: "rgba(139,92,246,0.15)",
-                      border: "1px solid rgba(139,92,246,0.25)",
+                      background: "rgba(201,168,76,0.10)",
+                      border: "1px solid rgba(201,168,76,0.20)",
                     }}
                   >
-                    <method.icon size={18} style={{ color: "#A78BFA" }} />
+                    <method.icon size={18} style={{ color: "#C9A84C" }} />
                   </div>
                   <div>
                     <div
@@ -248,7 +250,7 @@ export default function Contact() {
                         fontFamily: "'DM Mono', monospace",
                         fontSize: "0.6rem",
                         letterSpacing: "0.12em",
-                        color: "rgba(255,255,255,0.35)",
+                        color: "rgba(201,168,76,0.50)",
                         textTransform: "uppercase",
                         marginBottom: "0.25rem",
                       }}
@@ -287,11 +289,11 @@ export default function Contact() {
                   <div
                     className="w-10 h-10 rounded-lg flex items-center justify-center"
                     style={{
-                      background: "rgba(139,92,246,0.15)",
-                      border: "1px solid rgba(139,92,246,0.25)",
+                      background: "rgba(201,168,76,0.10)",
+                      border: "1px solid rgba(201,168,76,0.20)",
                     }}
                   >
-                    <method.icon size={18} style={{ color: "#A78BFA" }} />
+                    <method.icon size={18} style={{ color: "#C9A84C" }} />
                   </div>
                   <div>
                     <div
@@ -299,7 +301,7 @@ export default function Contact() {
                         fontFamily: "'DM Mono', monospace",
                         fontSize: "0.6rem",
                         letterSpacing: "0.12em",
-                        color: "rgba(255,255,255,0.35)",
+                        color: "rgba(201,168,76,0.50)",
                         textTransform: "uppercase",
                         marginBottom: "0.25rem",
                       }}
@@ -311,17 +313,17 @@ export default function Contact() {
                         fontFamily: "'DM Sans', sans-serif",
                         fontWeight: 600,
                         fontSize: "0.85rem",
-                        color: "#ffffff",
-                        marginBottom: "0.2rem",
-                      }}
-                    >
-                      {method.value}
-                    </div>
-                    <div
-                      style={{
-                        fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "0.75rem",
-                        color: "rgba(255,255,255,0.40)",
+                      color: "#F8F5F0",
+                      marginBottom: "0.2rem",
+                    }}
+                  >
+                    {method.value}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: "0.75rem",
+                      color: "rgba(248,245,240,0.40)",
                       }}
                     >
                       {method.sub}

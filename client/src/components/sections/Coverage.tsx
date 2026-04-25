@@ -1,7 +1,7 @@
 /*
  * HARRISON HEALTH GROUP — Coverage Section
- * Plan comparison table: Without Us vs With Us, plus coverage type cards.
- * Design: Midnight Gradient Luxury
+ * Real coverage types from the form. Gold brand colors.
+ * Design: Charcoal & Gold Luxury
  */
 
 import { motion } from "framer-motion";
@@ -52,7 +52,9 @@ const coverageTypes = [
   },
 ];
 
-export default function Coverage() {
+interface CoverageProps { onQuoteClick?: () => void; }
+
+export default function Coverage({ onQuoteClick }: CoverageProps) {
   const scrollToContact = () => {
     const el = document.querySelector("#contact");
     if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -62,15 +64,15 @@ export default function Coverage() {
     <section
       id="coverage"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#0D0A1A" }}
+      style={{ background: "#111111" }}
     >
-      {/* Ambient orbs */}
+      {/* Ambient orb */}
       <div
         className="ambient-orb"
         style={{
           width: 500,
           height: 500,
-          background: "radial-gradient(circle, rgba(139,92,246,0.10) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%)",
           top: "-100px",
           right: "-100px",
           animationDelay: "-5s",
@@ -87,27 +89,18 @@ export default function Coverage() {
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
-                color: "#ffffff",
+                color: "#F8F5F0",
                 lineHeight: 1.1,
                 marginBottom: "1rem",
               }}
             >
               Plans for Every{" "}
-              <span
-                style={{
-                  background: "linear-gradient(135deg, #A78BFA, #8B5CF6)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                Stage of Life
-              </span>
+              <span className="gold-text">Stage of Life</span>
             </h2>
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(255,255,255,0.60)",
+                color: "rgba(248,245,240,0.55)",
                 fontSize: "1.05rem",
                 maxWidth: 500,
                 margin: "0 auto",
@@ -126,7 +119,7 @@ export default function Coverage() {
             <StaggerItem key={plan.title}>
               <motion.div
                 className="glass-card p-7 h-full relative overflow-hidden group"
-                whileHover={{ y: -4, boxShadow: "0 16px 48px rgba(139,92,246,0.20)" }}
+                whileHover={{ y: -4, boxShadow: "0 16px 48px rgba(0,0,0,0.5)" }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <div className="flex items-start justify-between mb-4">
@@ -135,21 +128,21 @@ export default function Coverage() {
                       fontFamily: "'Cormorant Garamond', serif",
                       fontWeight: 700,
                       fontSize: "1.3rem",
-                      color: "#ffffff",
+                      color: "#F8F5F0",
                       lineHeight: 1.2,
                     }}
                   >
                     {plan.title}
                   </h3>
                   <span
-                    className="shrink-0 ml-3 px-2 py-1 rounded-full text-xs font-medium"
+                    className="shrink-0 ml-3 px-2 py-1 rounded-full"
                     style={{
                       fontFamily: "'DM Mono', monospace",
-                      fontSize: "0.6rem",
+                      fontSize: "0.58rem",
                       letterSpacing: "0.1em",
-                      background: "rgba(139,92,246,0.15)",
-                      color: "#A78BFA",
-                      border: "1px solid rgba(139,92,246,0.25)",
+                      background: "rgba(201,168,76,0.10)",
+                      color: "#C9A84C",
+                      border: "1px solid rgba(201,168,76,0.22)",
                       whiteSpace: "nowrap",
                     }}
                   >
@@ -159,7 +152,7 @@ export default function Coverage() {
                 <p
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    color: "rgba(255,255,255,0.58)",
+                    color: "rgba(248,245,240,0.55)",
                     fontSize: "0.9rem",
                     lineHeight: 1.65,
                   }}
@@ -168,7 +161,7 @@ export default function Coverage() {
                 </p>
                 <div
                   className="absolute bottom-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: "linear-gradient(to right, #8B5CF6, #A78BFA, transparent)" }}
+                  style={{ background: "linear-gradient(to right, #C9A84C, transparent)" }}
                 />
               </motion.div>
             </StaggerItem>
@@ -185,7 +178,7 @@ export default function Coverage() {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontWeight: 700,
                   fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
-                  color: "#ffffff",
+                  color: "#F8F5F0",
                   lineHeight: 1.1,
                 }}
               >
@@ -197,38 +190,15 @@ export default function Coverage() {
               {/* Table Header */}
               <div
                 className="grid grid-cols-3 px-6 py-4"
-                style={{ borderBottom: "1px solid rgba(139,92,246,0.15)" }}
+                style={{ borderBottom: "1px solid rgba(201,168,76,0.12)" }}
               >
-                <div
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontWeight: 600,
-                    fontSize: "0.85rem",
-                    color: "rgba(255,255,255,0.50)",
-                  }}
-                >
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "rgba(248,245,240,0.45)" }}>
                   Feature
                 </div>
-                <div
-                  className="text-center"
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontWeight: 600,
-                    fontSize: "0.85rem",
-                    color: "rgba(255,255,255,0.40)",
-                  }}
-                >
+                <div className="text-center" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "rgba(248,245,240,0.35)" }}>
                   Without Us
                 </div>
-                <div
-                  className="text-center"
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontWeight: 700,
-                    fontSize: "0.85rem",
-                    color: "#A78BFA",
-                  }}
-                >
+                <div className="text-center" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.85rem", color: "#C9A84C" }}>
                   With Harrison HG
                 </div>
               </div>
@@ -239,21 +209,15 @@ export default function Coverage() {
                   key={row.label}
                   className="grid grid-cols-3 px-6 py-4 items-center"
                   style={{
-                    borderBottom: i < comparisonRows.length - 1 ? "1px solid rgba(139,92,246,0.08)" : "none",
-                    background: i % 2 === 0 ? "transparent" : "rgba(139,92,246,0.03)",
+                    borderBottom: i < comparisonRows.length - 1 ? "1px solid rgba(201,168,76,0.06)" : "none",
+                    background: i % 2 === 0 ? "transparent" : "rgba(201,168,76,0.02)",
                   }}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.06, duration: 0.4 }}
                 >
-                  <span
-                    style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      fontSize: "0.88rem",
-                      color: "rgba(255,255,255,0.75)",
-                    }}
-                  >
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "rgba(248,245,240,0.72)" }}>
                     {row.label}
                   </span>
                   <div className="flex justify-center">
@@ -275,7 +239,7 @@ export default function Coverage() {
             </div>
 
             <div className="text-center mt-8">
-              <AnimatedButton onClick={scrollToContact} className="btn-primary">
+              <AnimatedButton onClick={() => onQuoteClick ? onQuoteClick() : scrollToContact()} className="btn-primary">
                 Start Your Free Consultation
                 <ArrowRight size={16} />
               </AnimatedButton>

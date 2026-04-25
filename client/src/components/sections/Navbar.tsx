@@ -1,13 +1,15 @@
 /*
  * HARRISON HEALTH GROUP — Navbar
- * Transparent on load, dark glass on scroll. Logo + nav links + CTA.
- * Design: Midnight Gradient Luxury — purple accent, glass morphism
+ * Real HH monogram logo, gold accent, charcoal glass on scroll.
+ * Real phone: (954) 600-0342
  */
 
 import { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Menu, X, Phone, Shield } from "lucide-react";
+import { motion } from "framer-motion";
+import { Menu, X, Phone } from "lucide-react";
 import { AnimatedButton } from "@/components/motion/AnimationWrappers";
+
+const LOGO_URL = "/manus-storage/hhg-logo_8b865777.jpg";
 
 const navLinks = [
   { label: "Coverage", href: "#coverage" },
@@ -17,7 +19,9 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
-export default function Navbar() {
+interface NavbarProps { onQuoteClick?: () => void; }
+
+export default function Navbar({ onQuoteClick }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -39,11 +43,11 @@ export default function Navbar() {
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
         style={{
           background: scrolled
-            ? "rgba(8, 8, 14, 0.92)"
-            : "transparent",
-          backdropFilter: scrolled ? "blur(20px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(139, 92, 246, 0.15)" : "none",
+            ? "rgba(10, 10, 10, 0.95)"
+            : "rgba(10, 10, 10, 0.55)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+          borderBottom: scrolled ? "1px solid rgba(201, 168, 76, 0.18)" : "1px solid transparent",
         }}
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -54,28 +58,30 @@ export default function Navbar() {
             {/* Logo */}
             <motion.a
               href="#"
+              onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
               className="flex items-center gap-3 no-underline"
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
               <div
-                className="w-10 h-10 rounded-lg flex items-center justify-center"
-                style={{
-                  background: "linear-gradient(135deg, #8B5CF6, #6D28D9)",
-                  boxShadow: "0 0 20px rgba(139, 92, 246, 0.4)",
-                }}
+                className="rounded overflow-hidden"
+                style={{ width: 44, height: 44, flexShrink: 0, border: "1px solid rgba(201,168,76,0.25)" }}
               >
-                <Shield size={20} color="#fff" />
+                <img
+                  src={LOGO_URL}
+                  alt="Harrison Health Group"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
               </div>
               <div>
                 <div
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 700,
-                    fontSize: "1.2rem",
-                    color: "#ffffff",
+                    fontSize: "1.1rem",
+                    color: "#F8F5F0",
                     lineHeight: 1.1,
-                    letterSpacing: "-0.01em",
+                    letterSpacing: "0.02em",
                   }}
                 >
                   Harrison Health
@@ -83,10 +89,10 @@ export default function Navbar() {
                 <div
                   style={{
                     fontFamily: "'DM Mono', monospace",
-                    fontSize: "0.6rem",
-                    letterSpacing: "0.15em",
+                    fontSize: "0.52rem",
+                    letterSpacing: "0.22em",
                     textTransform: "uppercase",
-                    color: "#A78BFA",
+                    color: "#C9A84C",
                     lineHeight: 1,
                   }}
                 >
@@ -101,8 +107,10 @@ export default function Navbar() {
                 <motion.button
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className="text-sm font-medium text-white/75 hover:text-white transition-colors duration-200 bg-transparent border-none"
-                  style={{ fontFamily: "'DM Sans', sans-serif" }}
+                  className="text-sm font-medium transition-colors duration-200 bg-transparent border-none"
+                  style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(248,245,240,0.70)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#C9A84C")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(248,245,240,0.70)")}
                   whileHover={{ y: -1 }}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -116,18 +124,20 @@ export default function Navbar() {
             {/* CTA */}
             <div className="hidden lg:flex items-center gap-3">
               <motion.a
-                href="tel:+18005551234"
-                className="flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white transition-colors"
-                style={{ fontFamily: "'DM Sans', sans-serif" }}
+                href="tel:+19546000342"
+                className="flex items-center gap-2 text-sm font-medium transition-colors"
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(248,245,240,0.65)" }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#C9A84C")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(248,245,240,0.65)")}
               >
-                <Phone size={14} />
-                (800) 555-1234
+                <Phone size={14} style={{ color: "#C9A84C" }} />
+                (954) 600-0342
               </motion.a>
               <AnimatedButton
-                onClick={() => handleNavClick("#contact")}
+                onClick={() => onQuoteClick ? onQuoteClick() : handleNavClick("#contact")}
                 className="btn-primary text-sm"
               >
                 Get Free Quote
@@ -152,7 +162,7 @@ export default function Navbar() {
         initial={false}
         animate={mobileOpen ? { opacity: 1, pointerEvents: "auto" } : { opacity: 0, pointerEvents: "none" }}
         transition={{ duration: 0.25 }}
-        style={{ background: "rgba(8, 8, 14, 0.97)", backdropFilter: "blur(20px)" }}
+          style={{ background: "rgba(10, 10, 10, 0.98)", backdropFilter: "blur(20px)" }}
       >
         <div className="flex flex-col items-center justify-center h-full gap-8">
           {navLinks.map((link, i) => (
@@ -175,15 +185,15 @@ export default function Navbar() {
             className="flex flex-col items-center gap-4 mt-4"
           >
             <a
-              href="tel:+18005551234"
-              className="flex items-center gap-2 text-white/70 hover:text-white transition-colors"
-              style={{ fontFamily: "'DM Sans', sans-serif" }}
+              href="tel:+19546000342"
+              className="flex items-center gap-2 transition-colors"
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(248,245,240,0.70)" }}
             >
-              <Phone size={16} />
-              (800) 555-1234
+              <Phone size={16} style={{ color: "#C9A84C" }} />
+              (954) 600-0342
             </a>
             <button
-              onClick={() => handleNavClick("#contact")}
+              onClick={() => onQuoteClick ? onQuoteClick() : handleNavClick("#contact")}
               className="btn-primary"
             >
               Get Free Quote

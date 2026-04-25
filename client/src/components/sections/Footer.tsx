@@ -32,7 +32,7 @@ const footerLinks = {
 const complianceBlocks = [
   {
     title: "Licensing & Registration",
-    text: "Harrison Health Group is a licensed independent insurance agency. NPN: [PENDING]. Licensed to sell health insurance products in all 50 states. License numbers available upon request. Not affiliated with any government agency.",
+    text: "Harrison Health Group is a licensed independent insurance agency. NPN: 20611469 (Shaquille Harrison). Licensed to sell health insurance products in FL, TX, GA, NC, SC, and 26 additional states. License numbers available upon request. Not affiliated with any government agency.",
   },
   {
     title: "Not a Government Website",
@@ -64,7 +64,7 @@ const complianceBlocks = [
   },
   {
     title: "ADA Accessibility",
-    text: "Harrison Health Group is committed to ensuring digital accessibility for people with disabilities. We continually improve the user experience for everyone and apply relevant accessibility standards. If you experience barriers, please contact us at info@harrisonhealthgroup.com or (800) 555-1234.",
+    text: "Harrison Health Group is committed to ensuring digital accessibility for people with disabilities. We continually improve the user experience for everyone and apply relevant accessibility standards. If you experience barriers, please contact us at info@harrisonhealthgroup.com or (954) 600-0342.",
   },
 ];
 
@@ -75,7 +75,7 @@ export default function Footer() {
       <footer
         style={{
           background: "#050508",
-          borderTop: "1px solid rgba(139,92,246,0.15)",
+          borderTop: "1px solid rgba(201,168,76,0.08)",
         }}
       >
         <div className="container py-16">
@@ -86,11 +86,11 @@ export default function Footer() {
                 <div
                   className="w-10 h-10 rounded-lg flex items-center justify-center"
                   style={{
-                    background: "linear-gradient(135deg, #8B5CF6, #6D28D9)",
-                    boxShadow: "0 0 20px rgba(139,92,246,0.35)",
+          background: "linear-gradient(135deg, #E2C97E, #C9A84C, #A8852D)",
+                  boxShadow: "0 0 20px rgba(201,168,76,0.25)",
                   }}
                 >
-                  <Shield size={20} color="#fff" />
+                  <Shield size={20} color="#0A0A0A" />
                 </div>
                 <div>
                   <div
@@ -98,19 +98,19 @@ export default function Footer() {
                       fontFamily: "'Cormorant Garamond', serif",
                       fontWeight: 700,
                       fontSize: "1.1rem",
-                      color: "#ffffff",
-                      lineHeight: 1.1,
-                    }}
-                  >
-                    Harrison Health
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "'DM Mono', monospace",
-                      fontSize: "0.55rem",
-                      letterSpacing: "0.15em",
-                      textTransform: "uppercase",
-                      color: "#A78BFA",
+                  color: "#F8F5F0",
+                  lineHeight: 1.1,
+                }}
+              >
+                Harrison Health
+              </div>
+              <div
+                style={{
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: "0.55rem",
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  color: "#C9A84C",
                     }}
                   >
                     Group
@@ -121,7 +121,7 @@ export default function Footer() {
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.85rem",
-                  color: "rgba(255,255,255,0.45)",
+                  color: "rgba(248,245,240,0.45)",
                   lineHeight: 1.7,
                   marginBottom: "1.5rem",
                 }}
@@ -131,19 +131,19 @@ export default function Footer() {
               </p>
               <div className="flex flex-col gap-2">
                 <a
-                  href="tel:+18005551234"
+                  href="tel:+19546000342"
                   className="flex items-center gap-2 text-sm text-white/50 hover:text-white/80 transition-colors no-underline"
                   style={{ fontFamily: "'DM Sans', sans-serif" }}
                 >
-                  <Phone size={13} style={{ color: "#A78BFA" }} />
-                  (800) 555-1234
+                  <Phone size={13} style={{ color: "#C9A84C" }} />
+                  (954) 600-0342
                 </a>
                 <a
                   href="mailto:info@harrisonhealthgroup.com"
                   className="flex items-center gap-2 text-sm text-white/50 hover:text-white/80 transition-colors no-underline"
                   style={{ fontFamily: "'DM Sans', sans-serif" }}
                 >
-                  <Mail size={13} style={{ color: "#A78BFA" }} />
+                  <Mail size={13} style={{ color: "#C9A84C" }} />
                   info@harrisonhealthgroup.com
                 </a>
               </div>
@@ -158,8 +158,8 @@ export default function Footer() {
                     fontSize: "0.62rem",
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                    color: "#A78BFA",
-                    marginBottom: "1rem",
+                  color: "#C9A84C",
+                  marginBottom: "1rem",
                   }}
                 >
                   {category}
@@ -190,7 +190,7 @@ export default function Footer() {
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "0.78rem",
-                color: "rgba(255,255,255,0.30)",
+                color: "rgba(248,245,240,0.30)",
               }}
             >
               © {new Date().getFullYear()} Harrison Health Group. All rights reserved.
@@ -201,7 +201,7 @@ export default function Footer() {
                 href="https://nipr.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 text-xs text-white/30 hover:text-purple-400 transition-colors no-underline"
+                className="flex items-center gap-1 text-xs text-white/30 hover:text-yellow-400 transition-colors no-underline"
                 style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.1em" }}
               >
                 Verify License
@@ -216,7 +216,7 @@ export default function Footer() {
       <div
         style={{
           background: "#030305",
-          borderTop: "1px solid rgba(139,92,246,0.08)",
+          borderTop: "1px solid rgba(201,168,76,0.12)",
         }}
       >
         <div className="container py-10">
@@ -227,7 +227,7 @@ export default function Footer() {
                 fontSize: "0.6rem",
                 letterSpacing: "0.15em",
                 textTransform: "uppercase",
-                color: "rgba(139,92,246,0.50)",
+                color: "rgba(201,168,76,0.45)",
                 marginBottom: "1.5rem",
               }}
             >
@@ -244,7 +244,7 @@ export default function Footer() {
                       fontFamily: "'DM Sans', sans-serif",
                       fontWeight: 600,
                       fontSize: "0.72rem",
-                      color: "rgba(255,255,255,0.40)",
+                      color: "rgba(248,245,240,0.40)",
                       marginBottom: "0.4rem",
                       textTransform: "uppercase",
                       letterSpacing: "0.05em",
@@ -256,7 +256,7 @@ export default function Footer() {
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.72rem",
-                      color: "rgba(255,255,255,0.22)",
+                      color: "rgba(248,245,240,0.22)",
                       lineHeight: 1.65,
                     }}
                   >

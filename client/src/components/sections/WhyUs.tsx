@@ -1,7 +1,7 @@
 /*
  * HARRISON HEALTH GROUP — Why Us Section
  * 3-column benefit cards with stagger animation and glass morphism.
- * Design: Midnight Gradient Luxury
+ * Design: Charcoal & Gold Luxury
  */
 
 import { motion } from "framer-motion";
@@ -43,18 +43,20 @@ const benefits = [
   },
   {
     icon: Globe,
-    title: "Nationwide Coverage",
+    title: "31 States Served",
     description:
-      "We serve clients in all 50 states. Whether you're an individual, family, or business, we have solutions wherever you are.",
+      "We serve clients across FL, TX, GA, NC, SC, IN, OH, MD, MI and 22 more states. Wherever you are, we have you covered.",
   },
 ];
 
-export default function WhyUs() {
+interface WhyUsProps { onQuoteClick?: () => void; }
+
+export default function WhyUs({ onQuoteClick }: WhyUsProps) {
   return (
     <section
       id="why-us"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#08080E" }}
+      style={{ background: "#0A0A0A" }}
     >
       {/* Ambient orb */}
       <div
@@ -62,7 +64,7 @@ export default function WhyUs() {
         style={{
           width: 600,
           height: 600,
-          background: "radial-gradient(circle, rgba(109,40,217,0.12) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%)",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
@@ -80,27 +82,18 @@ export default function WhyUs() {
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
-                color: "#ffffff",
+                color: "#F8F5F0",
                 lineHeight: 1.1,
                 marginBottom: "1rem",
               }}
             >
               The Difference Is{" "}
-              <span
-                style={{
-                  background: "linear-gradient(135deg, #A78BFA, #8B5CF6)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                Personal
-              </span>
+              <span className="gold-text">Personal</span>
             </h2>
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(255,255,255,0.60)",
+                color: "rgba(248,245,240,0.55)",
                 fontSize: "1.05rem",
                 maxWidth: 520,
                 margin: "0 auto",
@@ -121,18 +114,18 @@ export default function WhyUs() {
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
                   style={{
-                    background: "linear-gradient(135deg, rgba(139,92,246,0.25), rgba(109,40,217,0.15))",
-                    border: "1px solid rgba(139,92,246,0.25)",
+                    background: "rgba(201,168,76,0.10)",
+                    border: "1px solid rgba(201,168,76,0.20)",
                   }}
                 >
-                  <benefit.icon size={22} style={{ color: "#A78BFA" }} />
+                  <benefit.icon size={22} style={{ color: "#C9A84C" }} />
                 </div>
                 <h3
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 700,
                     fontSize: "1.35rem",
-                    color: "#ffffff",
+                    color: "#F8F5F0",
                     marginBottom: "0.75rem",
                     lineHeight: 1.2,
                   }}
@@ -142,19 +135,19 @@ export default function WhyUs() {
                 <p
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    color: "rgba(255,255,255,0.60)",
+                    color: "rgba(248,245,240,0.55)",
                     fontSize: "0.92rem",
                     lineHeight: 1.7,
                   }}
                 >
                   {benefit.description}
                 </p>
-                {/* Purple accent line */}
+                {/* Gold accent line */}
                 <motion.div
                   className="mt-6"
                   style={{
                     height: 2,
-                    background: "linear-gradient(to right, #8B5CF6, transparent)",
+                    background: "linear-gradient(to right, #C9A84C, transparent)",
                     borderRadius: 1,
                   }}
                   initial={{ scaleX: 0, originX: 0 }}

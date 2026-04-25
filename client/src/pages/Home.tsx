@@ -1,9 +1,10 @@
 /*
  * HARRISON HEALTH GROUP — Home Page
- * Assembles all sections in order.
- * Design: Midnight Gradient Luxury
+ * Assembles all sections in order. Manages QuoteModal state globally.
+ * Design: Charcoal & Gold Luxury
  */
 
+import { useState } from "react";
 import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";
 import CarrierMarquee from "@/components/sections/CarrierMarquee";
@@ -16,25 +17,29 @@ import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import StickyCallButton from "@/components/StickyCallButton";
+import QuoteModal from "@/components/QuoteModal";
 
 export default function Home() {
+  const [quoteOpen, setQuoteOpen] = useState(false);
+
   return (
     <div
       className="min-h-screen"
-      style={{ background: "#08080E", color: "#ffffff" }}
+      style={{ background: "#0A0A0A", color: "#F8F5F0" }}
     >
-      <Navbar />
-      <Hero />
+      <Navbar onQuoteClick={() => setQuoteOpen(true)} />
+      <Hero onQuoteClick={() => setQuoteOpen(true)} />
       <CarrierMarquee />
-      <WhyUs />
-      <Coverage />
+      <WhyUs onQuoteClick={() => setQuoteOpen(true)} />
+      <Coverage onQuoteClick={() => setQuoteOpen(true)} />
       <About />
       <Stats />
       <Team />
       <Testimonials />
-      <Contact />
+      <Contact onQuoteClick={() => setQuoteOpen(true)} />
       <Footer />
       <StickyCallButton />
+      <QuoteModal isOpen={quoteOpen} onClose={() => setQuoteOpen(false)} />
     </div>
   );
 }
