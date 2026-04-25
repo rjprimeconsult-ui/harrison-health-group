@@ -10,24 +10,22 @@ import { motion } from "framer-motion";
 import { FadeUp } from "@/components/motion/AnimationWrappers";
 import { STATE_PATHS, STATE_CENTROIDS } from "./usMapData";
 
-// States Harrison Health Group is licensed in — exactly matching the provided reference map
-// GREEN states from the image: MT, WY, ND, SD, NE, MN, IA, WI, MI, IL, IN, OH,
-//   KS, MO, KY, WV, OK, AR, TN, NC, SC, TX, LA, MS, AL, GA, FL,
-//   NM, CO, NV, UT, AZ, ID, VA, PA
-// NOT licensed: WA, OR, CA, AK, HI, NY, VT, ME, NH, MA, CT, RI, NJ, DE, MD, MT(check)
+// States Harrison Health Group is licensed in — confirmed by client
+// Removed: AZ, ID, ND, MN, PA
+// Added: MD
 const LICENSED_STATES = new Set([
-  // Northwest / Mountain
-  "ID", "MT", "WY", "NV", "UT", "CO", "AZ", "NM",
+  // Mountain / West
+  "MT", "WY", "NV", "UT", "CO", "NM",
   // Plains / Midwest
-  "ND", "SD", "NE", "KS", "MN", "IA", "MO",
+  "SD", "NE", "KS", "IA", "MO",
   // Great Lakes / Ohio Valley
   "WI", "MI", "IL", "IN", "OH", "KY", "WV",
   // South Central
   "OK", "TX", "AR", "LA",
   // Southeast
   "TN", "MS", "AL", "GA", "FL", "SC", "NC",
-  // Mid-Atlantic
-  "VA", "PA",
+  // Mid-Atlantic / South
+  "VA", "MD",
 ]);
 
 const STATE_NAMES: Record<string, string> = {
