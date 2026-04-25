@@ -100,48 +100,49 @@ export default function Hero({ onQuoteClick }: HeroProps) {
         animate={{ opacity: 1 }}
         transition={{ duration: 1.6, ease: "easeOut" }}
       >
-        {/* Large ghosted "Hh" monogram — two serif letters side by side, centered in this column */}
+        {/* Large ghosted "HH" monogram — two capital H letters, left taller, right slightly smaller & offset down, matching original logo */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             display: "flex",
-            alignItems: "center",
+            alignItems: "flex-start",
             justifyContent: "center",
-            gap: "0.02em",
-            paddingTop: "60px",   /* clear the navbar */
+            paddingTop: "50px",   /* clear the navbar */
           }}
         >
-          {/* Capital H */}
+          {/* Left H — taller, primary */}
           <span
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 300,
-              fontSize: "clamp(180px, 22vw, 320px)",
+              fontSize: "clamp(200px, 26vw, 360px)",
               lineHeight: 1,
-              color: "rgba(201,168,76,0.13)",
-              letterSpacing: "-0.04em",
+              color: "rgba(201,168,76,0.14)",
+              letterSpacing: "-0.06em",
               userSelect: "none",
               display: "block",
+              marginTop: 0,
             }}
           >
             H
           </span>
-          {/* Lowercase h — slightly smaller, dropped down */}
+          {/* Right H — slightly smaller, dropped down to create the staggered logo effect */}
           <span
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 300,
-              fontSize: "clamp(130px, 16vw, 230px)",
+              fontSize: "clamp(150px, 19vw, 270px)",
               lineHeight: 1,
               color: "rgba(201,168,76,0.10)",
-              letterSpacing: "-0.04em",
+              letterSpacing: "-0.06em",
               userSelect: "none",
               display: "block",
-              marginTop: "clamp(30px, 4vw, 65px)",
+              marginTop: "clamp(40px, 5.5vw, 80px)",
+              marginLeft: "-0.18em",
             }}
           >
-            h
+            H
           </span>
         </div>
 
