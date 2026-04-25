@@ -8,8 +8,6 @@ import { motion } from "framer-motion";
 import { ShieldCheck, Users, Award, MapPin, Phone, Mail } from "lucide-react";
 import { FadeUp, SlideInLeft, SlideInRight } from "@/components/motion/AnimationWrappers";
 
-const LOGO_URL = "/manus-storage/hhg-logo_bff3908d.jpg";
-
 const ABOUT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663441385223/aeUWcF9B5vWVriiiqFVf4u/hhg-about-bg-PTMYQWofTNBAP75qwr9U8h.webp";
 
 const highlights = [
@@ -58,11 +56,19 @@ export default function About() {
                   className="w-full object-cover"
                   style={{ height: 480 }}
                 />
-                {/* Overlay gradient */}
+                {/* Warm amber-charcoal color grade overlay */}
                 <div
                   className="absolute inset-0"
                   style={{
-                    background: "linear-gradient(to top, rgba(8,8,14,0.5) 0%, transparent 60%)",
+                    background: "linear-gradient(160deg, rgba(40,25,5,0.45) 0%, rgba(8,8,14,0.30) 40%, rgba(8,8,14,0.65) 100%)",
+                    mixBlendMode: "multiply",
+                  }}
+                />
+                {/* Bottom fade */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: "linear-gradient(to top, rgba(8,8,14,0.60) 0%, transparent 55%)",
                   }}
                 />
               </div>
@@ -100,22 +106,20 @@ export default function About() {
                 </div>
               </motion.div>
 
-              {/* Logo badge */}
-              <motion.div
-                className="absolute -top-4 -left-4 rounded-xl overflow-hidden"
+              {/* Gold accent line — top-left corner decoration instead of logo badge */}
+              <div
                 style={{
-                  width: 52,
-                  height: 52,
-                  border: "2px solid rgba(201,168,76,0.30)",
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.5)",
+                  position: "absolute",
+                  top: -2,
+                  left: -2,
+                  width: 48,
+                  height: 48,
+                  borderTop: "2px solid #C9A84C",
+                  borderLeft: "2px solid #C9A84C",
+                  borderTopLeftRadius: 12,
+                  pointerEvents: "none",
                 }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-              >
-                <img src={LOGO_URL} alt="HH" className="w-full h-full object-cover" />
-              </motion.div>
+              />
             </div>
           </SlideInLeft>
 

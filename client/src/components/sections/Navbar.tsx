@@ -59,19 +59,37 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
             <motion.a
               href="#"
               onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-              className="flex items-center gap-3 no-underline"
+              className="flex items-center gap-4 no-underline"
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
+              {/* Monogram mark — two stacked letters in gold, no white box */}
               <div
-                className="rounded overflow-hidden"
-                style={{ width: 44, height: 44, flexShrink: 0, border: "1px solid rgba(201,168,76,0.25)" }}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: 42,
+                  height: 42,
+                  flexShrink: 0,
+                  background: "rgba(201,168,76,0.08)",
+                  border: "1px solid rgba(201,168,76,0.30)",
+                  borderRadius: 6,
+                }}
               >
-                <img
-                  src={LOGO_URL}
-                  alt="Harrison Health Group"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
+                <span
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontWeight: 700,
+                    fontSize: "1.35rem",
+                    color: "#C9A84C",
+                    lineHeight: 1,
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  HH
+                </span>
               </div>
               <div>
                 <div

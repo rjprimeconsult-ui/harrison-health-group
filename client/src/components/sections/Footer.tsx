@@ -13,15 +13,15 @@ const footerLinks = {
   Coverage: [
     "Individual & Family",
     "Group & Business",
-    "Medicare Solutions",
+    "Short-Term Plans",
     "Dental & Vision",
     "Life Insurance",
     "Self-Employed Plans",
   ],
   Company: ["About Us", "Our Team", "Testimonials", "Careers", "Blog"],
   Resources: [
-    "ACA Enrollment Guide",
-    "Medicare Explained",
+    "Private vs. Marketplace",
+    "Group Benefits Guide",
     "1099 Insurance Tips",
     "Plan Comparison",
     "FAQ",
@@ -36,7 +36,7 @@ const complianceBlocks = [
   },
   {
     title: "Not a Government Website",
-    text: "This website is not operated by, affiliated with, or endorsed by the federal government, any state government, Medicare, Medicaid, or the Health Insurance Marketplace. We are an independent private insurance agency.",
+    text: "This website is not operated by, affiliated with, or endorsed by the federal government or any state government. We are an independent private insurance agency. We do not offer Medicare or Medicaid products.",
   },
   {
     title: "TCPA & Communications Consent",

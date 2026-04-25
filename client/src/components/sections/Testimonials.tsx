@@ -15,7 +15,7 @@ const testimonials = [
       "Rafael helped me find a plan that saved my family $400/month. Highly recommend! The process was seamless and they truly had our best interest at heart.",
     name: "Maria G.",
     location: "Florida",
-    coverage: "ACA Family Plan",
+    coverage: "Family Health Plan",
   },
   {
     stars: 5,
@@ -23,7 +23,7 @@ const testimonials = [
       "I was completely lost navigating the health insurance marketplace. Harrison Health Group made it simple and found me a plan with better coverage for less money.",
     name: "James T.",
     location: "Texas",
-    coverage: "Individual Marketplace Plan",
+    coverage: "Individual Health Plan",
   },
   {
     stars: 5,
@@ -36,10 +36,10 @@ const testimonials = [
   {
     stars: 5,
     quote:
-      "Shaquille walked me through every Medicare option with patience and expertise. I felt confident in my decision and saved significantly on my premium.",
+      "Shaquille walked me through every private plan option with patience and expertise. I felt confident in my decision and saved significantly on my monthly premium.",
     name: "David R.",
     location: "North Carolina",
-    coverage: "Medicare Advantage",
+    coverage: "Private PPO Plan",
   },
   {
     stars: 5,

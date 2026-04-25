@@ -28,8 +28,8 @@ const teamMembers: TeamMember[] = [
     name: "Shaquille Harrison",
     title: "Founder & Licensed Health Insurance Specialist",
     npn: "20611469",
-    bio: "Shaquille founded Harrison Health Group with a mission to make quality health insurance accessible and affordable for every family and business. His expertise spans ACA Marketplace, Group Benefits, and Medicare solutions across 31 states.",
-    specialties: ["ACA Marketplace", "Group Benefits", "Medicare"],
+    bio: "Shaquille founded Harrison Health Group with a mission to make quality health insurance accessible and affordable for every family and business. His expertise spans individual, family, and group health plans across 31 states.",
+    specialties: ["Individual & Family", "Group Benefits", "Life Insurance"],
     phone: "+19546000342",
     photoReady: false,
   },
@@ -38,17 +38,17 @@ const teamMembers: TeamMember[] = [
     name: "Rafael Perez",
     title: "Licensed Health Insurance Specialist",
     npn: "19153319",
-    bio: "With 10+ years helping families find affordable coverage, Rafael brings deep expertise in individual and family health plans. He specializes in navigating the ACA Marketplace to find the best value for every client's unique situation.",
-    specialties: ["Individual Plans", "Family Coverage", "ACA Marketplace"],
+    bio: "With 10+ years helping families find affordable coverage, Rafael brings deep expertise in individual and family health plans. He specializes in comparing private carrier options to find the best value for every client's unique situation.",
+    specialties: ["Individual Plans", "Family Coverage", "Private Health Plans"],
     phone: "+19546000342",
     photoReady: false,
   },
   {
     id: 3,
     name: "Team Member",
-    title: "Medicare & Senior Benefits Advisor",
-    bio: "Our Medicare specialist helps clients 65+ navigate Medicare Supplement (Medigap) and Medicare Advantage plans. We ensure every senior finds the coverage that protects their health and retirement savings.",
-    specialties: ["Medicare Supplement", "Medicare Advantage", "Senior Benefits"],
+    title: "Licensed Health Insurance Specialist",
+    bio: "Dedicated to helping individuals and families find the right private health coverage. From short-term plans to comprehensive PPO options, we ensure every client gets the protection they need at a price they can afford.",
+    specialties: ["Private Health Plans", "Short-Term Coverage", "Dental & Vision"],
     phone: "+19546000342",
     photoReady: false,
   },
@@ -68,22 +68,36 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
 
   return (
     <div
-      className="flip-card relative cursor-pointer"
-      style={{ perspective: "1200px", height: 480 }}
+      className="flip-card-wrapper cursor-pointer"
+      style={{
+        perspective: "1200px",
+        height: 480,
+        position: "relative",
+      }}
       onClick={() => setFlipped((f) => !f)}
       onMouseEnter={() => setFlipped(true)}
       onMouseLeave={() => setFlipped(false)}
     >
       <motion.div
-        className="flip-card-inner w-full h-full"
+        className="flip-card-inner"
         animate={{ rotateY: flipped ? 180 : 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        style={{ transformStyle: "preserve-3d", position: "relative", width: "100%", height: "100%" }}
+        style={{
+          transformStyle: "preserve-3d",
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+        }}
       >
         {/* FRONT */}
         <div
           className="flip-card-front rounded-2xl overflow-hidden"
           style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
             background: "rgba(28,28,28,0.90)",
             border: "1px solid rgba(201,168,76,0.15)",
             backfaceVisibility: "hidden",
@@ -196,6 +210,10 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
         <div
           className="flip-card-back rounded-2xl p-7 flex flex-col"
           style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
             background: "linear-gradient(135deg, #1C1C1C 0%, #222222 100%)",
             border: "1px solid rgba(201,168,76,0.25)",
             backfaceVisibility: "hidden",

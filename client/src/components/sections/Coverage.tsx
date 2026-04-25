@@ -22,22 +22,22 @@ const comparisonRows = [
 const coverageTypes = [
   {
     title: "Individual & Family",
-    description: "ACA Marketplace plans, short-term coverage, and supplemental options tailored to your household.",
+    description: "Private health plans, short-term coverage, and supplemental options tailored to your household — at no cost to you.",
     tag: "Most Popular",
   },
   {
     title: "Group & Business",
-    description: "Employer-sponsored health benefits for teams of 2 to 500. Attract and retain top talent.",
+    description: "Employer-sponsored health benefits for teams of 2 to 500. Attract and retain top talent with competitive packages.",
     tag: "Businesses",
   },
   {
-    title: "Medicare Solutions",
-    description: "Medicare Supplement (Medigap) and Medicare Advantage plans for those 65+ or with qualifying disabilities.",
-    tag: "Seniors",
+    title: "Short-Term Plans",
+    description: "Flexible short-term health coverage for gaps between jobs, waiting periods, or life transitions. Fast approval.",
+    tag: "Flexible",
   },
   {
     title: "Dental & Vision",
-    description: "Standalone dental and vision plans that pair with any health coverage. Preventive care included.",
+    description: "Standalone dental and vision plans that pair with any health coverage. Preventive care and major services included.",
     tag: "Add-On",
   },
   {
@@ -47,7 +47,7 @@ const coverageTypes = [
   },
   {
     title: "Self-Employed / 1099",
-    description: "Specialized plans for freelancers and independent contractors. Maximize deductions, minimize costs.",
+    description: "Specialized plans for freelancers and independent contractors. Maximize deductions, minimize out-of-pocket costs.",
     tag: "Contractors",
   },
 ];
@@ -107,7 +107,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                 lineHeight: 1.7,
               }}
             >
-              From individual coverage to Medicare and group benefits —
+              From individual coverage to group benefits and life insurance —
               we have the right solution for every situation.
             </p>
           </div>
