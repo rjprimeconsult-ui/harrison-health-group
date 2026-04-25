@@ -63,7 +63,7 @@ const US_STATES = [
 
 const COVERAGE_TYPES = [
   "Individual Plan","Family Plan","Self-Employed / 1099","Small Business Group",
-  "Medicare / Medicare Advantage","Dental & Vision Only","Short-Term Coverage","Not Sure — Need Guidance",
+  "Dental & Vision Only","Supplemental Coverage","Private vs. Marketplace","Not Sure — Need Guidance",
 ];
 
 const BUDGET_RANGES = [

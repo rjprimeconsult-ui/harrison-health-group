@@ -22,7 +22,7 @@ const comparisonRows = [
 const coverageTypes = [
   {
     title: "Individual & Family",
-    description: "Private health plans, short-term coverage, and supplemental options tailored to your household — at no cost to you.",
+    description: "Private health plans tailored to your household — we shop 20+ carriers to find the best fit at the lowest cost, at no charge to you.",
     tag: "Most Popular",
   },
   {
@@ -31,24 +31,24 @@ const coverageTypes = [
     tag: "Businesses",
   },
   {
-    title: "Short-Term Plans",
-    description: "Flexible short-term health coverage for gaps between jobs, waiting periods, or life transitions. Fast approval.",
-    tag: "Flexible",
-  },
-  {
     title: "Dental & Vision",
     description: "Standalone dental and vision plans that pair with any health coverage. Preventive care and major services included.",
     tag: "Add-On",
   },
   {
-    title: "Life Insurance",
-    description: "Term and whole life policies to protect your family's financial future at every stage of life.",
-    tag: "Protection",
-  },
-  {
     title: "Self-Employed / 1099",
     description: "Specialized plans for freelancers and independent contractors. Maximize deductions, minimize out-of-pocket costs.",
     tag: "Contractors",
+  },
+  {
+    title: "Private vs. Marketplace",
+    description: "Confused by the ACA Marketplace? We help you compare private carrier options side-by-side so you choose the plan that truly fits.",
+    tag: "Compare",
+  },
+  {
+    title: "Supplemental Coverage",
+    description: "Critical illness, accident, and hospital indemnity plans that fill the gaps your primary health plan leaves behind.",
+    tag: "Gap Coverage",
   },
 ];
 
@@ -107,7 +107,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                 lineHeight: 1.7,
               }}
             >
-              From individual coverage to group benefits and life insurance —
+              From individual and family plans to group benefits and supplemental coverage —
               we have the right solution for every situation.
             </p>
           </div>

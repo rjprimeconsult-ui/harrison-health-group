@@ -13,10 +13,10 @@ const footerLinks = {
   Coverage: [
     "Individual & Family",
     "Group & Business",
-    "Short-Term Plans",
     "Dental & Vision",
-    "Life Insurance",
     "Self-Employed Plans",
+    "Supplemental Coverage",
+    "Private vs. Marketplace",
   ],
   Company: ["About Us", "Our Team", "Testimonials", "Careers", "Blog"],
   Resources: [

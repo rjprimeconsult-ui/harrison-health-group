@@ -33,8 +33,8 @@ const contactMethods = [
   {
     icon: MapPin,
     label: "Serving",
-    value: "All 50 States",
-    sub: "Licensed nationwide",
+    value: "45 States & Growing",
+    sub: "Licensed across the US",
     href: null,
   },
 ];
@@ -232,8 +232,8 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                 <motion.a
                   href={method.href}
                   className="glass-card p-5 flex flex-col gap-3 no-underline block"
-                  whileHover={{ y: -4, boxShadow: "0 16px 40px rgba(139,92,246,0.18)" }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  whileHover={{ y: -8, boxShadow: "0 20px 48px rgba(109,40,217,0.45), 0 0 0 1px rgba(139,92,246,0.30)" }}
+                  transition={{ type: "spring", stiffness: 320, damping: 18 }}
                 >
                   <div
                     className="w-10 h-10 rounded-lg flex items-center justify-center"
