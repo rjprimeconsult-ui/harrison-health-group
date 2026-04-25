@@ -1,34 +1,34 @@
 /*
- * HARRISON HEALTH GROUP — Licensed States Interactive Map
- * SVG-based US map showing licensed states in gold, unlicensed in dark charcoal.
- * Hover tooltip shows state name + "Licensed" or "Not Available".
- * Design: Midnight Gradient Luxury — charcoal + gold palette
+ * HARRISON HEALTH GROUP — Licensed States Map
+ * Design: Charcoal & Gold Luxury
+ * Uses real Albers Equal-Area Conic projected SVG paths for accurate US geography.
+ * Licensed states highlighted in gold; unlicensed in dark charcoal.
  */
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { FadeUp } from "@/components/motion/AnimationWrappers";
+import { STATE_PATHS, STATE_CENTROIDS } from "./usMapData";
 
-// Licensed states from the provided map image
+// States Harrison Health Group is licensed in (from provided map)
 const LICENSED_STATES = new Set([
-  "MT","ND","SD","MN","WI","MI","WY","NE","IA","IL","IN","OH",
-  "NY","VT","ME","NV","UT","CO","KS","MO","KY","WV","VA","PA",
-  "NJ","AZ","NM","OK","AR","TN","NC","SC","TX","LA","MS","AL",
-  "GA","FL","ID","MD","DE","CT","RI","MA","NH",
+  "MT","ND","SD","MN","WI","MI","WY","NE","IA","IL","IN","OH","NY","VT","ME",
+  "NV","UT","CO","KS","MO","KY","WV","VA","PA","NJ","CT","RI","MA","NH",
+  "AZ","NM","OK","AR","TN","NC","SC","TX","LA","MS","AL","GA","FL",
+  "ID","DE","MD"
 ]);
 
-// Full state name map
 const STATE_NAMES: Record<string, string> = {
-  AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",
-  CO:"Colorado",CT:"Connecticut",DE:"Delaware",FL:"Florida",GA:"Georgia",
-  HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",IA:"Iowa",
-  KS:"Kansas",KY:"Kentucky",LA:"Louisiana",ME:"Maine",MD:"Maryland",
-  MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",MS:"Mississippi",MO:"Missouri",
-  MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",NJ:"New Jersey",
-  NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",OH:"Ohio",
-  OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",SC:"South Carolina",
-  SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VT:"Vermont",
-  VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming",
+  AL:"Alabama", AK:"Alaska", AZ:"Arizona", AR:"Arkansas", CA:"California",
+  CO:"Colorado", CT:"Connecticut", DE:"Delaware", FL:"Florida", GA:"Georgia",
+  HI:"Hawaii", ID:"Idaho", IL:"Illinois", IN:"Indiana", IA:"Iowa",
+  KS:"Kansas", KY:"Kentucky", LA:"Louisiana", ME:"Maine", MD:"Maryland",
+  MA:"Massachusetts", MI:"Michigan", MN:"Minnesota", MS:"Mississippi", MO:"Missouri",
+  MT:"Montana", NE:"Nebraska", NV:"Nevada", NH:"New Hampshire", NJ:"New Jersey",
+  NM:"New Mexico", NY:"New York", NC:"North Carolina", ND:"North Dakota", OH:"Ohio",
+  OK:"Oklahoma", OR:"Oregon", PA:"Pennsylvania", RI:"Rhode Island", SC:"South Carolina",
+  SD:"South Dakota", TN:"Tennessee", TX:"Texas", UT:"Utah", VT:"Vermont",
+  VA:"Virginia", WA:"Washington", WV:"West Virginia", WI:"Wisconsin", WY:"Wyoming",
 };
 
 interface TooltipState {
@@ -37,469 +37,234 @@ interface TooltipState {
   y: number;
 }
 
-// SVG path data for each US state (simplified but accurate proportional map)
-const STATE_PATHS: Record<string, string> = {
-  AL: "M 520 340 L 530 340 L 535 390 L 525 395 L 515 390 L 515 345 Z",
-  AK: "M 60 420 L 120 420 L 130 450 L 100 470 L 60 460 L 50 440 Z",
-  AZ: "M 155 295 L 200 295 L 205 360 L 155 370 L 140 355 L 140 310 Z",
-  AR: "M 480 305 L 530 305 L 530 340 L 480 340 L 470 325 Z",
-  CA: "M 95 220 L 140 210 L 155 295 L 140 355 L 95 330 L 80 280 Z",
-  CO: "M 215 255 L 295 255 L 295 300 L 215 300 Z",
-  CT: "M 660 190 L 675 190 L 675 205 L 660 208 Z",
-  DE: "M 645 215 L 655 215 L 655 235 L 645 235 Z",
-  FL: "M 520 395 L 565 395 L 590 410 L 590 440 L 555 460 L 530 450 L 520 430 Z",
-  GA: "M 535 340 L 575 340 L 580 390 L 555 400 L 535 395 Z",
-  HI: "M 200 470 L 260 470 L 260 490 L 200 490 Z",
-  ID: "M 155 155 L 195 155 L 200 215 L 175 230 L 155 215 Z",
-  IL: "M 490 230 L 515 230 L 520 295 L 495 300 L 480 285 Z",
-  IN: "M 515 230 L 540 230 L 540 285 L 520 295 Z",
-  IA: "M 430 210 L 490 210 L 490 250 L 430 255 Z",
-  KS: "M 340 275 L 430 275 L 430 315 L 340 315 Z",
-  KY: "M 520 285 L 590 280 L 595 305 L 520 310 Z",
-  LA: "M 460 370 L 510 370 L 520 395 L 490 410 L 460 400 Z",
-  ME: "M 680 130 L 710 125 L 715 165 L 685 170 Z",
-  MD: "M 620 230 L 655 225 L 658 245 L 625 248 Z",
-  MA: "M 655 175 L 695 170 L 698 190 L 660 192 Z",
-  MI: "M 520 175 L 565 170 L 570 210 L 540 220 L 520 210 Z",
-  MN: "M 415 145 L 470 140 L 475 210 L 430 215 L 415 200 Z",
-  MS: "M 490 340 L 520 340 L 520 395 L 490 395 L 480 370 Z",
-  MO: "M 430 255 L 495 255 L 495 305 L 430 310 Z",
-  MT: "M 195 130 L 310 125 L 315 185 L 200 190 Z",
-  NE: "M 330 230 L 430 225 L 430 270 L 330 275 Z",
-  NV: "M 130 210 L 165 205 L 175 270 L 155 295 L 120 285 Z",
-  NH: "M 660 155 L 675 152 L 678 190 L 660 190 Z",
-  NJ: "M 645 200 L 660 198 L 662 225 L 645 228 Z",
-  NM: "M 205 300 L 265 300 L 265 365 L 205 365 Z",
-  NY: "M 600 165 L 655 158 L 660 200 L 625 205 L 600 195 Z",
-  NC: "M 575 295 L 645 285 L 648 310 L 580 315 Z",
-  ND: "M 315 145 L 415 140 L 418 185 L 315 190 Z",
-  OH: "M 540 225 L 580 220 L 585 270 L 545 275 Z",
-  OK: "M 330 315 L 430 310 L 435 350 L 330 355 Z",
-  OR: "M 100 155 L 160 150 L 165 205 L 130 215 L 100 200 Z",
-  PA: "M 580 195 L 645 190 L 648 225 L 582 230 Z",
-  RI: "M 675 190 L 685 188 L 686 202 L 675 204 Z",
-  SC: "M 575 310 L 615 305 L 620 335 L 580 340 Z",
-  SD: "M 315 185 L 415 180 L 418 225 L 315 230 Z",
-  TN: "M 490 305 L 580 298 L 582 325 L 490 330 Z",
-  TX: "M 265 320 L 430 315 L 440 390 L 380 430 L 310 420 L 265 380 Z",
-  UT: "M 175 230 L 215 225 L 220 295 L 180 300 Z",
-  VT: "M 645 155 L 660 152 L 662 190 L 648 192 Z",
-  VA: "M 580 260 L 645 252 L 650 285 L 582 290 Z",
-  WA: "M 100 115 L 165 108 L 168 155 L 102 158 Z",
-  WV: "M 575 245 L 610 240 L 615 275 L 578 280 Z",
-  WI: "M 460 165 L 510 160 L 515 215 L 462 220 Z",
-  WY: "M 200 190 L 310 185 L 315 240 L 200 245 Z",
-};
-
-// Label positions for state abbreviations
-const STATE_LABELS: Record<string, [number, number]> = {
-  AL:[522,368],AK:[85,445],AZ:[170,330],AR:[500,322],CA:[112,275],
-  CO:[255,278],CT:[667,198],DE:[650,225],FL:[550,425],GA:[555,368],
-  HI:[230,480],ID:[175,192],IL:[500,263],IN:[527,258],IA:[460,232],
-  KS:[385,295],KY:[557,292],LA:[488,385],ME:[695,148],MD:[638,237],
-  MA:[677,180],MI:[545,192],MN:[445,178],MS:[500,368],MO:[462,282],
-  MT:[255,158],NE:[380,250],NV:[148,248],NH:[668,172],NJ:[652,212],
-  NM:[235,332],NY:[628,182],NC:[610,300],ND:[365,163],OH:[562,248],
-  OK:[382,332],OR:[130,178],PA:[612,208],RI:[680,196],SC:[597,322],
-  SD:[365,205],TN:[535,312],TX:[352,372],UT:[198,262],VT:[652,172],
-  VA:[612,272],WA:[132,132],WV:[592,258],WI:[487,188],WY:[257,215],
-};
-
 export default function LicensedStatesMap() {
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
-  const [hoveredState, setHoveredState] = useState<string | null>(null);
-
-  const licensedCount = LICENSED_STATES.size;
+  const [svgRect, setSvgRect] = useState<DOMRect | null>(null);
 
   const handleMouseEnter = (abbr: string, e: React.MouseEvent<SVGPathElement>) => {
-    const rect = (e.currentTarget.closest("svg") as SVGSVGElement).getBoundingClientRect();
-    const svgX = e.clientX - rect.left;
-    const svgY = e.clientY - rect.top;
-    setTooltip({ abbr, x: svgX, y: svgY });
-    setHoveredState(abbr);
-  };
-
-  const handleMouseMove = (abbr: string, e: React.MouseEvent<SVGPathElement>) => {
-    const rect = (e.currentTarget.closest("svg") as SVGSVGElement).getBoundingClientRect();
-    const svgX = e.clientX - rect.left;
-    const svgY = e.clientY - rect.top;
+    const svg = e.currentTarget.ownerSVGElement as SVGSVGElement;
+    const rect = svg.getBoundingClientRect();
+    setSvgRect(rect);
+    const svgX = ((e.clientX - rect.left) / rect.width) * 100;
+    const svgY = ((e.clientY - rect.top) / rect.height) * 100;
     setTooltip({ abbr, x: svgX, y: svgY });
   };
 
-  const handleMouseLeave = () => {
-    setTooltip(null);
-    setHoveredState(null);
-  };
+  const handleMouseLeave = () => setTooltip(null);
 
-  const isLicensed = (abbr: string) => LICENSED_STATES.has(abbr);
+  const licensedCount = LICENSED_STATES.size;
 
   return (
     <section
       id="licensed-states"
-      className="py-24 relative overflow-hidden"
-      style={{ background: "#0D0D0D" }}
+      style={{ background: "#0A0A0A", padding: "100px 0 80px" }}
     >
-      {/* Ambient gold orb */}
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          width: 600,
-          height: 600,
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%)",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      />
-
-      <div className="container relative z-10">
-        {/* Header */}
+      <div className="container">
         <FadeUp>
-          <div className="text-center mb-12">
-            <div
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <span
               style={{
-                fontFamily: "'DM Mono', monospace",
-                fontSize: "0.65rem",
-                letterSpacing: "0.22em",
-                color: "rgba(201,168,76,0.60)",
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: "0.7rem",
+                letterSpacing: "0.3em",
                 textTransform: "uppercase",
-                marginBottom: "1rem",
+                color: "rgba(201,168,76,0.7)",
+                display: "block",
+                marginBottom: "12px",
               }}
             >
               Service Area
-            </div>
+            </span>
             <h2
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
-                fontSize: "clamp(2rem, 5vw, 3.4rem)",
+                fontSize: "clamp(2rem, 4vw, 3rem)",
                 color: "#F8F5F0",
-                lineHeight: 1.1,
-                marginBottom: "0.75rem",
+                marginBottom: "12px",
               }}
             >
               Licensed in{" "}
-              <span
-                style={{
-                  background: "linear-gradient(135deg, #E2C97E, #C9A84C)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                {licensedCount} States
-              </span>
+              <span style={{ color: "#C9A84C" }}>{licensedCount} States</span>
             </h2>
-            <p
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(248,245,240,0.50)",
-                fontSize: "1rem",
-                maxWidth: 480,
-                margin: "0 auto",
-                lineHeight: 1.7,
-              }}
-            >
-              Hover over any state to see if we serve your area. Highlighted states are where Harrison Health Group is actively licensed.
+            <p style={{ color: "rgba(248,245,240,0.55)", fontSize: "0.95rem", maxWidth: "520px", margin: "0 auto" }}>
+              Hover over any state to see if we serve your area. Gold states are where Harrison Health Group is actively licensed.
             </p>
           </div>
         </FadeUp>
 
-        {/* Map Container */}
         <FadeUp delay={0.2}>
           <div
-            className="relative mx-auto rounded-2xl overflow-hidden"
             style={{
-              maxWidth: 820,
-              background: "rgba(18,18,18,0.80)",
-              border: "1px solid rgba(201,168,76,0.12)",
-              boxShadow: "0 24px 80px rgba(0,0,0,0.50)",
-              padding: "2rem 1.5rem",
+              background: "rgba(20,18,14,0.8)",
+              border: "1px solid rgba(201,168,76,0.15)",
+              borderRadius: "12px",
+              padding: "24px",
+              position: "relative",
             }}
           >
             {/* Legend */}
-            <div className="flex items-center justify-center gap-6 mb-6">
-              <div className="flex items-center gap-2">
-                <div
-                  style={{
-                    width: 14,
-                    height: 14,
-                    borderRadius: 3,
-                    background: "linear-gradient(135deg, #C9A84C, #A8852D)",
-                  }}
-                />
-                <span
-                  style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: "0.62rem",
-                    letterSpacing: "0.1em",
-                    color: "rgba(201,168,76,0.80)",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Licensed
-                </span>
+            <div style={{ display: "flex", gap: "24px", marginBottom: "16px", justifyContent: "center" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <div style={{ width: 14, height: 14, borderRadius: 3, background: "#C9A84C" }} />
+                <span style={{ color: "rgba(248,245,240,0.7)", fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>Licensed</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div
-                  style={{
-                    width: 14,
-                    height: 14,
-                    borderRadius: 3,
-                    background: "#2A2A2A",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                  }}
-                />
-                <span
-                  style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: "0.62rem",
-                    letterSpacing: "0.1em",
-                    color: "rgba(248,245,240,0.30)",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Not Available
-                </span>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <div style={{ width: 14, height: 14, borderRadius: 3, background: "rgba(248,245,240,0.12)" }} />
+                <span style={{ color: "rgba(248,245,240,0.7)", fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>Not Available</span>
               </div>
             </div>
 
             {/* SVG Map */}
-            <div className="relative" style={{ userSelect: "none" }}>
+            <div style={{ position: "relative", width: "100%", paddingBottom: "62.5%" }}>
               <svg
-                viewBox="0 0 780 500"
-                style={{ width: "100%", height: "auto", display: "block" }}
-                aria-label="US Licensed States Map"
+                viewBox="0 0 960 600"
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  overflow: "visible",
+                }}
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <defs>
-                  <filter id="glow-gold">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                    <feMerge>
-                      <feMergeNode in="coloredBlur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                  <linearGradient id="gold-fill" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#E2C97E" />
-                    <stop offset="100%" stopColor="#A8852D" />
-                  </linearGradient>
-                  <linearGradient id="gold-hover" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#F0D98A" />
-                    <stop offset="100%" stopColor="#C9A84C" />
-                  </linearGradient>
-                </defs>
-
-                {Object.entries(STATE_PATHS).map(([abbr, path]) => {
-                  const licensed = isLicensed(abbr);
-                  const hovered = hoveredState === abbr;
-                  const [lx, ly] = STATE_LABELS[abbr] || [0, 0];
-
+                {/* Render all state paths */}
+                {Object.entries(STATE_PATHS).map(([abbr, d]) => {
+                  const licensed = LICENSED_STATES.has(abbr);
+                  const isHovered = tooltip?.abbr === abbr;
                   return (
-                    <g key={abbr}>
-                      <path
-                        d={path}
-                        fill={
-                          hovered && licensed
-                            ? "url(#gold-hover)"
-                            : licensed
-                            ? "url(#gold-fill)"
-                            : hovered
-                            ? "#3A3A3A"
-                            : "#222222"
-                        }
-                        stroke={licensed ? "rgba(201,168,76,0.35)" : "rgba(255,255,255,0.06)"}
-                        strokeWidth={hovered ? 1.5 : 0.8}
-                        filter={hovered && licensed ? "url(#glow-gold)" : undefined}
-                        style={{
-                          cursor: "pointer",
-                          transition: "fill 0.2s ease",
-                        }}
-                        onMouseEnter={(e) => handleMouseEnter(abbr, e)}
-                        onMouseMove={(e) => handleMouseMove(abbr, e)}
-                        onMouseLeave={handleMouseLeave}
-                      />
-                      {/* State abbreviation label */}
-                      <text
-                        x={lx}
-                        y={ly}
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                        style={{
-                          fontFamily: "'DM Mono', monospace",
-                          fontSize: "7px",
-                          fontWeight: 600,
-                          fill: licensed
-                            ? hovered ? "#0A0A0A" : "rgba(10,10,10,0.85)"
-                            : "rgba(255,255,255,0.20)",
-                          pointerEvents: "none",
-                          letterSpacing: "0.04em",
-                        }}
-                      >
-                        {abbr}
-                      </text>
-                    </g>
+                    <path
+                      key={abbr}
+                      d={d}
+                      fill={
+                        licensed
+                          ? isHovered ? "#E8C46A" : "#C9A84C"
+                          : isHovered ? "rgba(248,245,240,0.22)" : "rgba(248,245,240,0.10)"
+                      }
+                      stroke="rgba(10,10,10,0.8)"
+                      strokeWidth={0.6}
+                      style={{
+                        cursor: "pointer",
+                        transition: "fill 0.15s ease",
+                        filter: isHovered && licensed
+                          ? "drop-shadow(0 0 4px rgba(201,168,76,0.6))"
+                          : "none",
+                      }}
+                      onMouseEnter={(e) => handleMouseEnter(abbr, e)}
+                      onMouseLeave={handleMouseLeave}
+                    />
+                  );
+                })}
+
+                {/* State abbreviation labels */}
+                {Object.entries(STATE_CENTROIDS).map(([abbr, [cx, cy]]) => {
+                  const licensed = LICENSED_STATES.has(abbr);
+                  // Skip tiny states that are too small for labels
+                  const skipLabel = ["RI", "CT", "DE", "DC", "NJ", "MD"].includes(abbr);
+                  if (skipLabel) return null;
+                  return (
+                    <text
+                      key={`label-${abbr}`}
+                      x={cx}
+                      y={cy}
+                      textAnchor="middle"
+                      dominantBaseline="middle"
+                      fontSize={abbr === "AK" || abbr === "HI" ? "9" : "8"}
+                      fontFamily="'Cormorant Garamond', serif"
+                      fontWeight="700"
+                      fill={licensed ? "rgba(10,10,10,0.9)" : "rgba(248,245,240,0.5)"}
+                      style={{ pointerEvents: "none", userSelect: "none" }}
+                    >
+                      {abbr}
+                    </text>
                   );
                 })}
               </svg>
 
               {/* Tooltip */}
-              <AnimatePresence>
-                {tooltip && (
-                  <motion.div
-                    key={tooltip.abbr}
-                    initial={{ opacity: 0, y: 6, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 4, scale: 0.95 }}
-                    transition={{ duration: 0.15 }}
-                    style={{
-                      position: "absolute",
-                      left: tooltip.x + 12,
-                      top: tooltip.y - 36,
-                      pointerEvents: "none",
-                      zIndex: 50,
-                    }}
-                  >
-                    <div
-                      style={{
-                        background: isLicensed(tooltip.abbr)
-                          ? "linear-gradient(135deg, rgba(201,168,76,0.95), rgba(168,133,45,0.95))"
-                          : "rgba(30,30,30,0.95)",
-                        border: isLicensed(tooltip.abbr)
-                          ? "1px solid rgba(201,168,76,0.50)"
-                          : "1px solid rgba(255,255,255,0.10)",
-                        borderRadius: 8,
-                        padding: "6px 12px",
-                        boxShadow: isLicensed(tooltip.abbr)
-                          ? "0 8px 24px rgba(201,168,76,0.30)"
-                          : "0 8px 24px rgba(0,0,0,0.50)",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontFamily: "'DM Sans', sans-serif",
-                          fontWeight: 700,
-                          fontSize: "0.78rem",
-                          color: isLicensed(tooltip.abbr) ? "#0A0A0A" : "#F8F5F0",
-                          marginBottom: "1px",
-                        }}
-                      >
-                        {STATE_NAMES[tooltip.abbr] || tooltip.abbr}
-                      </div>
-                      <div
-                        style={{
-                          fontFamily: "'DM Mono', monospace",
-                          fontSize: "0.58rem",
-                          letterSpacing: "0.1em",
-                          textTransform: "uppercase",
-                          color: isLicensed(tooltip.abbr)
-                            ? "rgba(10,10,10,0.70)"
-                            : "rgba(248,245,240,0.45)",
-                        }}
-                      >
-                        {isLicensed(tooltip.abbr) ? "✓ Licensed" : "Not Available"}
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {tooltip && (
+                <motion.div
+                  key={tooltip.abbr}
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.12 }}
+                  style={{
+                    position: "absolute",
+                    left: `${Math.min(tooltip.x + 2, 80)}%`,
+                    top: `${Math.max(tooltip.y - 12, 2)}%`,
+                    background: "rgba(20,18,14,0.97)",
+                    border: `1px solid ${LICENSED_STATES.has(tooltip.abbr) ? "rgba(201,168,76,0.6)" : "rgba(248,245,240,0.15)"}`,
+                    borderRadius: "6px",
+                    padding: "6px 12px",
+                    pointerEvents: "none",
+                    zIndex: 20,
+                    whiteSpace: "nowrap",
+                    boxShadow: LICENSED_STATES.has(tooltip.abbr)
+                      ? "0 4px 20px rgba(201,168,76,0.2)"
+                      : "0 4px 12px rgba(0,0,0,0.4)",
+                  }}
+                >
+                  <div style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontWeight: 600,
+                    fontSize: "0.9rem",
+                    color: "#F8F5F0",
+                  }}>
+                    {STATE_NAMES[tooltip.abbr] ?? tooltip.abbr}
+                  </div>
+                  <div style={{
+                    fontSize: "0.72rem",
+                    color: LICENSED_STATES.has(tooltip.abbr) ? "#C9A84C" : "rgba(248,245,240,0.45)",
+                    marginTop: "2px",
+                  }}>
+                    {LICENSED_STATES.has(tooltip.abbr) ? "✓ Licensed & Serving" : "✗ Not Available"}
+                  </div>
+                </motion.div>
+              )}
             </div>
 
-            {/* Bottom stat bar */}
+            {/* Stats bar */}
             <div
-              className="flex items-center justify-center gap-8 mt-6 pt-5"
-              style={{ borderTop: "1px solid rgba(201,168,76,0.10)" }}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                borderTop: "1px solid rgba(201,168,76,0.15)",
+                marginTop: "20px",
+              }}
             >
-              <div className="text-center">
+              {[
+                { value: `${licensedCount}`, label: "States Licensed" },
+                { value: "20+", label: "Carrier Partners" },
+                { value: "$0", label: "Cost to You" },
+              ].map((stat, i) => (
                 <div
+                  key={stat.label}
                   style={{
+                    padding: "16px",
+                    textAlign: "center",
+                    borderRight: i < 2 ? "1px solid rgba(201,168,76,0.10)" : "none",
+                  }}
+                >
+                  <div style={{
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 700,
                     fontSize: "2rem",
                     color: "#C9A84C",
                     lineHeight: 1,
-                  }}
-                >
-                  {licensedCount}
-                </div>
-                <div
-                  style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: "0.58rem",
-                    letterSpacing: "0.12em",
-                    color: "rgba(248,245,240,0.35)",
+                  }}>
+                    {stat.value}
+                  </div>
+                  <div style={{
+                    fontSize: "0.65rem",
+                    letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                    marginTop: "0.25rem",
-                  }}
-                >
-                  States Licensed
+                    color: "rgba(248,245,240,0.45)",
+                    marginTop: "4px",
+                  }}>
+                    {stat.label}
+                  </div>
                 </div>
-              </div>
-              <div
-                style={{
-                  width: 1,
-                  height: 36,
-                  background: "rgba(201,168,76,0.15)",
-                }}
-              />
-              <div className="text-center">
-                <div
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontWeight: 700,
-                    fontSize: "2rem",
-                    color: "#C9A84C",
-                    lineHeight: 1,
-                  }}
-                >
-                  20+
-                </div>
-                <div
-                  style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: "0.58rem",
-                    letterSpacing: "0.12em",
-                    color: "rgba(248,245,240,0.35)",
-                    textTransform: "uppercase",
-                    marginTop: "0.25rem",
-                  }}
-                >
-                  Carrier Partners
-                </div>
-              </div>
-              <div
-                style={{
-                  width: 1,
-                  height: 36,
-                  background: "rgba(201,168,76,0.15)",
-                }}
-              />
-              <div className="text-center">
-                <div
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontWeight: 700,
-                    fontSize: "2rem",
-                    color: "#C9A84C",
-                    lineHeight: 1,
-                  }}
-                >
-                  $0
-                </div>
-                <div
-                  style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: "0.58rem",
-                    letterSpacing: "0.12em",
-                    color: "rgba(248,245,240,0.35)",
-                    textTransform: "uppercase",
-                    marginTop: "0.25rem",
-                  }}
-                >
-                  Cost to You
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </FadeUp>
