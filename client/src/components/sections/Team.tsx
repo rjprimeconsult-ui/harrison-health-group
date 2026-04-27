@@ -67,23 +67,46 @@ const teamMembers: TeamMember[] = [
 
 function FlipCard({ member, index: _index }: { member: TeamMember; index?: number }) {
   const [flipped, setFlipped] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
   return (
-    <div
+    <motion.div
       className="flip-card-wrapper cursor-pointer"
       style={{
-        perspective: "1200px",
+        perspective: "1400px",
         height: 520,
         position: "relative",
+        zIndex: hovered ? 10 : 1,
       }}
+      animate={{
+        y: hovered ? -10 : 0,
+        scale: hovered ? 1.025 : 1,
+      }}
+      transition={{ type: "spring", stiffness: 320, damping: 26 }}
       onClick={() => setFlipped((f) => !f)}
-      onMouseEnter={() => setFlipped(true)}
-      onMouseLeave={() => setFlipped(false)}
+      onMouseEnter={() => { setFlipped(true); setHovered(true); }}
+      onMouseLeave={() => { setFlipped(false); setHovered(false); }}
     >
+      {/* Outer glow ring — animates on hover */}
+      <motion.div
+        style={{
+          position: "absolute",
+          inset: -1,
+          borderRadius: "1rem",
+          pointerEvents: "none",
+          zIndex: 20,
+        }}
+        animate={{
+          boxShadow: hovered
+            ? "0 0 0 1.5px rgba(201,168,76,0.65), 0 20px 56px rgba(201,168,76,0.20), 0 6px 20px rgba(0,0,0,0.60)"
+            : "0 0 0 1px rgba(201,168,76,0.10), 0 4px 16px rgba(0,0,0,0.28)",
+        }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
+      />
       <motion.div
         className="flip-card-inner"
         animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ type: "spring", stiffness: 220, damping: 28 }}
         style={{
           transformStyle: "preserve-3d",
           position: "absolute",
@@ -116,9 +139,11 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             }}
           >
             {member.photoReady ? (
-              <img
+              <motion.img
                 src={member.photoUrl ?? ""}
                 alt={member.name}
+                animate={{ scale: hovered ? 1.07 : 1 }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                 style={{
                   width: "100%",
                   height: "100%",
@@ -221,7 +246,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             inset: 0,
             width: "100%",
             height: "100%",
-            background: "linear-gradient(135deg, #1C1C1C 0%, #222222 100%)",
+            background: "linear-gradient(145deg, #1E1E1E 0%, #252520 60%, #1A1A15 100%)",
             border: "1px solid rgba(201,168,76,0.25)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -231,6 +256,18 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             overflowX: "hidden",
           }}
         >
+          {/* Shimmer accent line at top of back face */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: "8%",
+              right: "8%",
+              height: 1,
+              background: "linear-gradient(to right, transparent, rgba(201,168,76,0.60), transparent)",
+              borderRadius: 1,
+            }}
+          />
           {/* Name on back */}
           <div style={{ marginBottom: "8px" }}>
             <h3
@@ -336,7 +373,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
           </motion.a>
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
 
