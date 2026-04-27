@@ -26,31 +26,33 @@ const teamMembers: TeamMember[] = [
   {
     id: 1,
     name: "Shaquille Harrison",
-    title: "Founder & Licensed Health Insurance Specialist",
+    title: "Senior Health Advisor & Founder",
     npn: "20611469",
     bio: "Shaquille founded Harrison Health Group with a mission to make quality health insurance accessible and affordable for every family and business. His expertise spans individual, family, and group health plans across 31 states.",
     specialties: ["Individual & Family", "Group Benefits", "Supplemental Coverage"],
     phone: "+19546000342",
-    photoReady: false,
+    photoReady: true,
+    photoUrl: "/manus-storage/shaquille_processed_7c0a1ce6.png",
   },
   {
     id: 2,
-    name: "Rafael Perez",
-    title: "Licensed Health Insurance Specialist",
-    npn: "19153319",
-    bio: "With 10+ years helping families find affordable coverage, Rafael brings deep expertise in individual and family health plans. He specializes in comparing private carrier options to find the best value for every client's unique situation.",
+    name: "Chevaur Harrison",
+    title: "Licensed Health Advisor",
+    bio: "Chevaur brings a client-first approach to every consultation, helping families navigate the complex world of health insurance with clarity and confidence. Dedicated to finding the right plan at the right price for every client.",
     specialties: ["Individual Plans", "Family Coverage", "Private Health Plans"],
     phone: "+19546000342",
-    photoReady: false,
+    photoReady: true,
+    photoUrl: "/manus-storage/chevaur_processed_4c228628.png",
   },
   {
     id: 3,
-    name: "Team Member",
-    title: "Licensed Health Insurance Specialist",
-    bio: "Dedicated to helping individuals and families find the right private health coverage. From comprehensive PPO options to supplemental plans, we ensure every client gets the protection they need at a price they can afford.",
+    name: "Walter Joseph",
+    title: "Licensed Advisor",
+    bio: "Walter is dedicated to helping individuals and families find the right private health coverage. From comprehensive PPO options to supplemental plans, he ensures every client gets the protection they need at a price they can afford.",
     specialties: ["Private Health Plans", "Supplemental Coverage", "Dental & Vision"],
     phone: "+19546000342",
-    photoReady: false,
+    photoReady: true,
+    photoUrl: "/manus-storage/walter_processed_010e9ec2.png",
   },
   {
     id: 4,
@@ -117,7 +119,12 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
               <img
                 src={member.photoUrl ?? ""}
                 alt={member.name}
-                className="w-full h-full object-cover"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "top center",
+                }}
               />
             ) : (
               <>
@@ -390,31 +397,6 @@ export default function Team() {
               unique situation. Hover any card to learn more.
             </p>
 
-            {/* Photo notice */}
-            <motion.div
-              className="inline-flex items-center gap-2 mt-6 px-4 py-2 rounded-full"
-              style={{
-              background: "rgba(201,168,76,0.07)",
-              border: "1px solid rgba(201,168,76,0.18)",
-              }}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
-              <Camera size={13} style={{ color: "#C9A84C" }} />
-              <span
-                style={{
-                  fontFamily: "'DM Mono', monospace",
-                  fontSize: "0.65rem",
-                  letterSpacing: "0.12em",
-                  color: "rgba(201,168,76,0.70)",
-                  textTransform: "uppercase",
-                }}
-              >
-                Professional headshots coming soon
-              </span>
-            </motion.div>
           </div>
         </FadeUp>
 
