@@ -73,7 +73,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
       className="flip-card-wrapper cursor-pointer"
       style={{
         perspective: "1200px",
-        height: 480,
+        height: 520,
         position: "relative",
       }}
       onClick={() => setFlipped((f) => !f)}
@@ -226,8 +226,9 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
-            padding: "20px 22px 18px",
-            overflow: "hidden",
+            padding: "20px 22px 20px",
+            overflowY: "auto",
+            overflowX: "hidden",
           }}
         >
           {/* Name on back */}
@@ -267,18 +268,14 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             }}
           />
 
-          {/* Bio — clamped to 4 lines max */}
+          {/* Bio — full text, no clamp */}
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: "0.78rem",
-              color: "rgba(248,245,240,0.62)",
-              lineHeight: 1.55,
-              display: "-webkit-box",
-              WebkitLineClamp: 5,
-              WebkitBoxOrient: "vertical",
-              overflow: "hidden",
-              marginBottom: "10px",
+              color: "rgba(248,245,240,0.72)",
+              lineHeight: 1.6,
+              marginBottom: "12px",
               flexShrink: 0,
             }}
           >

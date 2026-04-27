@@ -33,7 +33,7 @@ const contactMethods = [
   {
     icon: MapPin,
     label: "Serving",
-    value: "45 States & Growing",
+    value: "31 States & Growing",
     sub: "Licensed across the US",
     href: null,
   },
