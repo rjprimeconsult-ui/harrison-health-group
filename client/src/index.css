@@ -1,9 +1,9 @@
 /*
  * HARRISON HEALTH GROUP — Global Design System
- * Design: "Charcoal & Gold Luxury" — inspired by the HH monogram logo
- * Palette: Deep Charcoal (#1C1C1C), Rich Gold (#C9A84C), Warm White (#F8F5F0), Pure Black (#0A0A0A)
+ * Design: "Midnight Purple" — bold, modern, trustworthy
+ * Palette: Pure Black (#0A0A0A), Deep Purple (#7C3AED), Vivid Purple (#A855F7), White (#FFFFFF), Off-White (#F0EEFF)
  * Typography: Cormorant Garamond (display) + DM Sans (body) + DM Mono (labels)
- * Philosophy: Sophisticated, authoritative, warm — like a premium financial advisor's office
+ * Philosophy: Authoritative, modern, premium — like a cutting-edge healthcare tech brand
  */
 
 @import "tailwindcss";
@@ -52,82 +52,82 @@
 
 /* ─── Brand Tokens ─────────────────────────────────────────── */
 :root {
-  /* Core palette */
+  /* Core palette — Midnight Purple */
   --hhg-black:       #0A0A0A;
-  --hhg-charcoal:    #1C1C1C;
-  --hhg-charcoal-2:  #2A2A2A;
-  --hhg-charcoal-3:  #333333;
-  --hhg-gold:        #C9A84C;
-  --hhg-gold-light:  #E2C97E;
-  --hhg-gold-dark:   #A8852D;
-  --hhg-white:       #F8F5F0;
-  --hhg-white-2:     #EEEBE5;
-  --hhg-muted:       rgba(248,245,240,0.55);
+  --hhg-charcoal:    #12101A;
+  --hhg-charcoal-2:  #1C1828;
+  --hhg-charcoal-3:  #261F38;
+  --hhg-gold:        #A855F7;
+  --hhg-gold-light:  #C084FC;
+  --hhg-gold-dark:   #7C3AED;
+  --hhg-white:       #FFFFFF;
+  --hhg-white-2:     #F0EEFF;
+  --hhg-muted:       rgba(240,238,255,0.55);
 
-  /* Tailwind/shadcn tokens mapped to brand */
+  /* Tailwind/shadcn tokens mapped to Midnight Purple brand */
   --radius: 0.5rem;
-  --background: oklch(0.09 0 0);
-  --foreground: oklch(0.97 0.005 80);
-  --card: oklch(0.13 0.002 80);
-  --card-foreground: oklch(0.97 0.005 80);
-  --popover: oklch(0.13 0.002 80);
-  --popover-foreground: oklch(0.97 0.005 80);
-  --primary: oklch(0.72 0.10 75);
-  --primary-foreground: oklch(0.09 0 0);
-  --secondary: oklch(0.18 0.002 80);
-  --secondary-foreground: oklch(0.85 0.005 80);
-  --muted: oklch(0.20 0.002 80);
-  --muted-foreground: oklch(0.60 0.008 80);
-  --accent: oklch(0.72 0.10 75);
-  --accent-foreground: oklch(0.09 0 0);
+  --background: oklch(0.07 0.015 290);
+  --foreground: oklch(0.98 0.005 290);
+  --card: oklch(0.11 0.020 290);
+  --card-foreground: oklch(0.98 0.005 290);
+  --popover: oklch(0.11 0.020 290);
+  --popover-foreground: oklch(0.98 0.005 290);
+  --primary: oklch(0.65 0.25 295);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.16 0.025 290);
+  --secondary-foreground: oklch(0.90 0.010 290);
+  --muted: oklch(0.18 0.020 290);
+  --muted-foreground: oklch(0.62 0.015 290);
+  --accent: oklch(0.65 0.25 295);
+  --accent-foreground: oklch(0.98 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.72 0.10 75);
-  --chart-1: oklch(0.72 0.10 75);
-  --chart-2: oklch(0.65 0.08 75);
-  --chart-3: oklch(0.55 0.06 75);
-  --chart-4: oklch(0.45 0.05 75);
-  --chart-5: oklch(0.35 0.04 75);
-  --sidebar: oklch(0.13 0.002 80);
-  --sidebar-foreground: oklch(0.97 0.005 80);
-  --sidebar-primary: oklch(0.72 0.10 75);
-  --sidebar-primary-foreground: oklch(0.09 0 0);
-  --sidebar-accent: oklch(0.20 0.002 80);
-  --sidebar-accent-foreground: oklch(0.97 0.005 80);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.72 0.10 75);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.65 0.25 295);
+  --chart-1: oklch(0.65 0.25 295);
+  --chart-2: oklch(0.58 0.22 295);
+  --chart-3: oklch(0.50 0.18 295);
+  --chart-4: oklch(0.42 0.15 295);
+  --chart-5: oklch(0.35 0.12 295);
+  --sidebar: oklch(0.11 0.020 290);
+  --sidebar-foreground: oklch(0.98 0.005 290);
+  --sidebar-primary: oklch(0.65 0.25 295);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.18 0.020 290);
+  --sidebar-accent-foreground: oklch(0.98 0.005 290);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.65 0.25 295);
 }
 
 .dark {
-  --background: oklch(0.09 0 0);
-  --foreground: oklch(0.97 0.005 80);
-  --card: oklch(0.13 0.002 80);
-  --card-foreground: oklch(0.97 0.005 80);
-  --popover: oklch(0.13 0.002 80);
-  --popover-foreground: oklch(0.97 0.005 80);
-  --primary: oklch(0.72 0.10 75);
-  --primary-foreground: oklch(0.09 0 0);
-  --secondary: oklch(0.18 0.002 80);
-  --secondary-foreground: oklch(0.85 0.005 80);
-  --muted: oklch(0.20 0.002 80);
-  --muted-foreground: oklch(0.60 0.008 80);
-  --accent: oklch(0.72 0.10 75);
-  --accent-foreground: oklch(0.09 0 0);
+  --background: oklch(0.07 0.015 290);
+  --foreground: oklch(0.98 0.005 290);
+  --card: oklch(0.11 0.020 290);
+  --card-foreground: oklch(0.98 0.005 290);
+  --popover: oklch(0.11 0.020 290);
+  --popover-foreground: oklch(0.98 0.005 290);
+  --primary: oklch(0.65 0.25 295);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.16 0.025 290);
+  --secondary-foreground: oklch(0.90 0.010 290);
+  --muted: oklch(0.18 0.020 290);
+  --muted-foreground: oklch(0.62 0.015 290);
+  --accent: oklch(0.65 0.25 295);
+  --accent-foreground: oklch(0.98 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.72 0.10 75);
-  --sidebar: oklch(0.13 0.002 80);
-  --sidebar-foreground: oklch(0.97 0.005 80);
-  --sidebar-primary: oklch(0.72 0.10 75);
-  --sidebar-primary-foreground: oklch(0.09 0 0);
-  --sidebar-accent: oklch(0.20 0.002 80);
-  --sidebar-accent-foreground: oklch(0.97 0.005 80);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.72 0.10 75);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.65 0.25 295);
+  --sidebar: oklch(0.11 0.020 290);
+  --sidebar-foreground: oklch(0.98 0.005 290);
+  --sidebar-primary: oklch(0.65 0.25 295);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.18 0.020 290);
+  --sidebar-accent-foreground: oklch(0.98 0.005 290);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.65 0.25 295);
 }
 
 @layer base {
@@ -136,7 +136,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-color: var(--hhg-black);
+    background-color: #08060F;
     color: var(--hhg-white);
   }
   button:not(:disabled),
@@ -255,9 +255,9 @@
   }
   .marquee-track:hover { animation-play-state: paused; }
 
-  /* ─── Gold Gradient Text ─────────────────────────────────── */
+  /* ─── Purple Gradient Text ─────────────────────────────── */
   .gold-text {
-    background: linear-gradient(135deg, var(--hhg-gold-light), var(--hhg-gold), var(--hhg-gold-dark));
+    background: linear-gradient(135deg, #C084FC, #A855F7, #7C3AED);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

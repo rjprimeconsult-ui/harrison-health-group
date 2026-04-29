@@ -56,7 +56,7 @@ export default function WhyUs({ onQuoteClick }: WhyUsProps) {
     <section
       id="why-us"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#0A0A0A" }}
+      style={{ background: "#08060F" }}
     >
       {/* Ambient orb */}
       <div
@@ -64,7 +64,7 @@ export default function WhyUs({ onQuoteClick }: WhyUsProps) {
         style={{
           width: 600,
           height: 600,
-          background: "radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(168,85,247,0.07) 0%, transparent 70%)",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
@@ -82,7 +82,7 @@ export default function WhyUs({ onQuoteClick }: WhyUsProps) {
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
-                color: "#F8F5F0",
+                color: "#FFFFFF",
                 lineHeight: 1.1,
                 marginBottom: "1rem",
               }}
@@ -93,7 +93,7 @@ export default function WhyUs({ onQuoteClick }: WhyUsProps) {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(248,245,240,0.55)",
+                color: "rgba(240,238,255,0.55)",
                 fontSize: "1.05rem",
                 maxWidth: 520,
                 margin: "0 auto",
@@ -114,18 +114,18 @@ export default function WhyUs({ onQuoteClick }: WhyUsProps) {
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
                   style={{
-                    background: "rgba(201,168,76,0.10)",
-                    border: "1px solid rgba(201,168,76,0.20)",
+                    background: "rgba(168,85,247,0.10)",
+                    border: "1px solid rgba(168,85,247,0.20)",
                   }}
                 >
-                  <benefit.icon size={22} style={{ color: "#C9A84C" }} />
+                  <benefit.icon size={22} style={{ color: "#A855F7" }} />
                 </div>
                 <h3
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 700,
                     fontSize: "1.35rem",
-                    color: "#F8F5F0",
+                    color: "#FFFFFF",
                     marginBottom: "0.75rem",
                     lineHeight: 1.2,
                   }}
@@ -135,7 +135,7 @@ export default function WhyUs({ onQuoteClick }: WhyUsProps) {
                 <p
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    color: "rgba(248,245,240,0.55)",
+                    color: "rgba(240,238,255,0.55)",
                     fontSize: "0.92rem",
                     lineHeight: 1.7,
                   }}
@@ -147,7 +147,7 @@ export default function WhyUs({ onQuoteClick }: WhyUsProps) {
                   className="mt-6"
                   style={{
                     height: 2,
-                    background: "linear-gradient(to right, #C9A84C, transparent)",
+                    background: "linear-gradient(to right, #A855F7, transparent)",
                     borderRadius: 1,
                   }}
                   initial={{ scaleX: 0, originX: 0 }}

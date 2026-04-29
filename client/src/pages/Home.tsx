@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <div
       className="min-h-screen"
-      style={{ background: "#0A0A0A", color: "#F8F5F0" }}
+      style={{ background: "#08060F", color: "#FFFFFF" }}
     >
       <Navbar onQuoteClick={() => setQuoteOpen(true)} />
       <Hero onQuoteClick={() => setQuoteOpen(true)} />

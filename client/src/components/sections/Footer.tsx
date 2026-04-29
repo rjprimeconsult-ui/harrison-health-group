@@ -74,8 +74,8 @@ export default function Footer() {
       {/* Main Footer */}
       <footer
         style={{
-          background: "#050508",
-          borderTop: "1px solid rgba(201,168,76,0.08)",
+          background: "#06040E",
+          borderTop: "1px solid rgba(168,85,247,0.08)",
         }}
       >
         <div className="container py-16">
@@ -86,11 +86,11 @@ export default function Footer() {
                 <div
                   className="w-10 h-10 rounded-lg flex items-center justify-center"
                   style={{
-          background: "linear-gradient(135deg, #E2C97E, #C9A84C, #A8852D)",
-                  boxShadow: "0 0 20px rgba(201,168,76,0.25)",
+          background: "linear-gradient(135deg, #C084FC, #A855F7, #7C3AED)",
+                  boxShadow: "0 0 20px rgba(168,85,247,0.25)",
                   }}
                 >
-                  <Shield size={20} color="#0A0A0A" />
+                  <Shield size={20} color="#08060F" />
                 </div>
                 <div>
                   <div
@@ -98,7 +98,7 @@ export default function Footer() {
                       fontFamily: "'Cormorant Garamond', serif",
                       fontWeight: 700,
                       fontSize: "1.1rem",
-                  color: "#F8F5F0",
+                  color: "#FFFFFF",
                   lineHeight: 1.1,
                 }}
               >
@@ -110,7 +110,7 @@ export default function Footer() {
                   fontSize: "0.55rem",
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
-                  color: "#C9A84C",
+                  color: "#A855F7",
                     }}
                   >
                     Group
@@ -121,7 +121,7 @@ export default function Footer() {
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.85rem",
-                  color: "rgba(248,245,240,0.45)",
+                  color: "rgba(240,238,255,0.45)",
                   lineHeight: 1.7,
                   marginBottom: "1.5rem",
                 }}
@@ -135,7 +135,7 @@ export default function Footer() {
                   className="flex items-center gap-2 text-sm text-white/50 hover:text-white/80 transition-colors no-underline"
                   style={{ fontFamily: "'DM Sans', sans-serif" }}
                 >
-                  <Phone size={13} style={{ color: "#C9A84C" }} />
+                  <Phone size={13} style={{ color: "#A855F7" }} />
                   (954) 600-0342
                 </a>
                 <a
@@ -143,7 +143,7 @@ export default function Footer() {
                   className="flex items-center gap-2 text-sm text-white/50 hover:text-white/80 transition-colors no-underline"
                   style={{ fontFamily: "'DM Sans', sans-serif" }}
                 >
-                  <Mail size={13} style={{ color: "#C9A84C" }} />
+                  <Mail size={13} style={{ color: "#A855F7" }} />
                   info@harrisonhealthgroup.com
                 </a>
               </div>
@@ -158,7 +158,7 @@ export default function Footer() {
                     fontSize: "0.62rem",
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                  color: "#C9A84C",
+                  color: "#A855F7",
                   marginBottom: "1rem",
                   }}
                 >
@@ -190,7 +190,7 @@ export default function Footer() {
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "0.78rem",
-                color: "rgba(248,245,240,0.30)",
+                color: "rgba(240,238,255,0.30)",
               }}
             >
               © {new Date().getFullYear()} Harrison Health Group. All rights reserved.
@@ -215,8 +215,8 @@ export default function Footer() {
       {/* Compliance Footer */}
       <div
         style={{
-          background: "#030305",
-          borderTop: "1px solid rgba(201,168,76,0.12)",
+          background: "#04030A",
+          borderTop: "1px solid rgba(168,85,247,0.12)",
         }}
       >
         <div className="container py-10">
@@ -227,7 +227,7 @@ export default function Footer() {
                 fontSize: "0.6rem",
                 letterSpacing: "0.15em",
                 textTransform: "uppercase",
-                color: "rgba(201,168,76,0.45)",
+                color: "rgba(168,85,247,0.45)",
                 marginBottom: "1.5rem",
               }}
             >
@@ -244,7 +244,7 @@ export default function Footer() {
                       fontFamily: "'DM Sans', sans-serif",
                       fontWeight: 600,
                       fontSize: "0.72rem",
-                      color: "rgba(248,245,240,0.40)",
+                      color: "rgba(240,238,255,0.40)",
                       marginBottom: "0.4rem",
                       textTransform: "uppercase",
                       letterSpacing: "0.05em",
@@ -256,7 +256,7 @@ export default function Footer() {
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.72rem",
-                      color: "rgba(248,245,240,0.22)",
+                      color: "rgba(240,238,255,0.22)",
                       lineHeight: 1.65,
                     }}
                   >

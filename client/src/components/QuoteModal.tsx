@@ -86,12 +86,12 @@ function StepBar({ step, total }: { step: number; total: number }) {
             className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 transition-all duration-300"
             style={{
               background: i < step
-                ? "linear-gradient(135deg, #E2C97E, #C9A84C)"
+                ? "linear-gradient(135deg, #C084FC, #A855F7)"
                 : i === step
-                ? "linear-gradient(135deg, #E2C97E, #C9A84C)"
+                ? "linear-gradient(135deg, #C084FC, #A855F7)"
                 : "rgba(255,255,255,0.08)",
-              color: i <= step ? "#0A0A0A" : "rgba(248,245,240,0.35)",
-              boxShadow: i === step ? "0 0 16px rgba(201,168,76,0.40)" : "none",
+              color: i <= step ? "#08060F" : "rgba(240,238,255,0.35)",
+              boxShadow: i === step ? "0 0 16px rgba(168,85,247,0.40)" : "none",
             }}
           >
             {i < step ? <Check size={13} /> : i + 1}
@@ -101,7 +101,7 @@ function StepBar({ step, total }: { step: number; total: number }) {
               className="h-px flex-1 transition-all duration-500"
               style={{
                 background: i < step
-                  ? "linear-gradient(90deg, #C9A84C, rgba(201,168,76,0.3))"
+                  ? "linear-gradient(90deg, #A855F7, rgba(168,85,247,0.3))"
                   : "rgba(255,255,255,0.08)",
               }}
             />
@@ -123,12 +123,12 @@ function Field({
           fontFamily: "'DM Sans', sans-serif",
           fontSize: "0.78rem",
           fontWeight: 600,
-          color: "rgba(248,245,240,0.70)",
+          color: "rgba(240,238,255,0.70)",
           letterSpacing: "0.02em",
         }}
       >
         {label}
-        {required && <span style={{ color: "#C9A84C", marginLeft: 3 }}>*</span>}
+        {required && <span style={{ color: "#A855F7", marginLeft: 3 }}>*</span>}
       </label>
       {children}
     </div>
@@ -140,8 +140,8 @@ const inputStyle: React.CSSProperties = {
   padding: "0.65rem 0.9rem",
   borderRadius: 8,
   background: "rgba(255,255,255,0.05)",
-  border: "1px solid rgba(201,168,76,0.18)",
-  color: "#F8F5F0",
+  border: "1px solid rgba(168,85,247,0.18)",
+  color: "#FFFFFF",
   fontFamily: "'DM Sans', sans-serif",
   fontSize: "0.9rem",
   outline: "none",
@@ -160,8 +160,8 @@ function TextInput({
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
       style={inputStyle}
-      onFocus={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.55)")}
-      onBlur={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.18)")}
+      onFocus={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.55)")}
+      onBlur={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.18)")}
     />
   );
 }
@@ -176,14 +176,14 @@ function SelectInput({
       value={value}
       onChange={(e) => onChange(e.target.value)}
       style={{ ...inputStyle, appearance: "none" }}
-      onFocus={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.55)")}
-      onBlur={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.18)")}
+      onFocus={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.55)")}
+      onBlur={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.18)")}
     >
-      <option value="" disabled style={{ background: "#1C1C1C" }}>
+      <option value="" disabled style={{ background: "#12101A" }}>
         {placeholder || "Select…"}
       </option>
       {options.map((o) => (
-        <option key={o} value={o} style={{ background: "#1C1C1C" }}>
+        <option key={o} value={o} style={{ background: "#12101A" }}>
           {o}
         </option>
       ))}
@@ -205,8 +205,8 @@ function PhoneInput({ value, onChange }: { value: string; onChange: (v: string) 
       onChange={(e) => onChange(format(e.target.value))}
       placeholder="(954) 000-0000"
       style={inputStyle}
-      onFocus={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.55)")}
-      onBlur={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.18)")}
+      onFocus={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.55)")}
+      onBlur={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.18)")}
     />
   );
 }
@@ -294,8 +294,8 @@ function Step3({ data, set }: { data: FormData; set: (k: keyof FormData, v: stri
             placeholder="Any specific needs, questions, or details we should know…"
             rows={3}
             style={{ ...inputStyle, resize: "vertical" }}
-            onFocus={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.55)")}
-            onBlur={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.18)")}
+            onFocus={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.55)")}
+            onBlur={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.18)")}
           />
         </Field>
       </div>
@@ -306,9 +306,9 @@ function Step3({ data, set }: { data: FormData; set: (k: keyof FormData, v: stri
 function ReviewRow({ label, value }: { label: string; value: string }) {
   if (!value) return null;
   return (
-    <div className="flex justify-between gap-4 py-2" style={{ borderBottom: "1px solid rgba(201,168,76,0.08)" }}>
-      <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.68rem", color: "rgba(201,168,76,0.60)", letterSpacing: "0.08em", textTransform: "uppercase" }}>{label}</span>
-      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#F8F5F0", textAlign: "right" }}>{value}</span>
+    <div className="flex justify-between gap-4 py-2" style={{ borderBottom: "1px solid rgba(168,85,247,0.08)" }}>
+      <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.68rem", color: "rgba(168,85,247,0.60)", letterSpacing: "0.08em", textTransform: "uppercase" }}>{label}</span>
+      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#FFFFFF", textAlign: "right" }}>{value}</span>
     </div>
   );
 }
@@ -316,7 +316,7 @@ function ReviewRow({ label, value }: { label: string; value: string }) {
 function Step4Review({ data }: { data: FormData }) {
   return (
     <div className="flex flex-col gap-1">
-      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "rgba(248,245,240,0.55)", marginBottom: "1rem", lineHeight: 1.6 }}>
+      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "rgba(240,238,255,0.55)", marginBottom: "1rem", lineHeight: 1.6 }}>
         Please review your information before submitting. A licensed advisor from Harrison Health Group will contact you within 1 business day.
       </p>
       <ReviewRow label="Name" value={`${data.firstName} ${data.lastName}`} />
@@ -499,9 +499,9 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
             <motion.div
               className="relative w-full max-w-xl max-h-[92vh] overflow-y-auto rounded-2xl"
               style={{
-                background: "linear-gradient(145deg, #1A1A1A, #111111)",
-                border: "1px solid rgba(201,168,76,0.20)",
-                boxShadow: "0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(201,168,76,0.08)",
+                background: "linear-gradient(145deg, #1A1A1A, #0E0B18)",
+                border: "1px solid rgba(168,85,247,0.20)",
+                boxShadow: "0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(168,85,247,0.08)",
               }}
               initial={{ scale: 0.92, y: 30, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
@@ -516,7 +516,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                 style={{
                   background: "rgba(255,255,255,0.06)",
                   border: "1px solid rgba(255,255,255,0.10)",
-                  color: "rgba(248,245,240,0.60)",
+                  color: "rgba(240,238,255,0.60)",
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.12)")}
                 onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
@@ -530,14 +530,14 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                   <div
                     className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
                     style={{
-                      background: "linear-gradient(135deg, #E2C97E, #C9A84C)",
-                      boxShadow: "0 0 20px rgba(201,168,76,0.30)",
+                      background: "linear-gradient(135deg, #C084FC, #A855F7)",
+                      boxShadow: "0 0 20px rgba(168,85,247,0.30)",
                     }}
                   >
                     {submitted ? (
-                      <Check size={18} color="#0A0A0A" />
+                      <Check size={18} color="#08060F" />
                     ) : (
-                      <CurrentIcon size={18} color="#0A0A0A" />
+                      <CurrentIcon size={18} color="#08060F" />
                     )}
                   </div>
                   <div>
@@ -546,7 +546,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         fontFamily: "'Cormorant Garamond', serif",
                         fontWeight: 700,
                         fontSize: "1.5rem",
-                        color: "#F8F5F0",
+                        color: "#FFFFFF",
                         lineHeight: 1.1,
                       }}
                     >
@@ -556,7 +556,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
                         fontSize: "0.8rem",
-                        color: "rgba(248,245,240,0.45)",
+                        color: "rgba(240,238,255,0.45)",
                       }}
                     >
                       {submitted
@@ -576,18 +576,18 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                     <div
                       className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
                       style={{
-                        background: "linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.08))",
-                        border: "2px solid rgba(201,168,76,0.35)",
+                        background: "linear-gradient(135deg, rgba(168,85,247,0.15), rgba(168,85,247,0.08))",
+                        border: "2px solid rgba(168,85,247,0.35)",
                       }}
                     >
-                      <Check size={36} style={{ color: "#C9A84C" }} />
+                      <Check size={36} style={{ color: "#A855F7" }} />
                     </div>
                     <h4
                       style={{
                         fontFamily: "'Cormorant Garamond', serif",
                         fontWeight: 700,
                         fontSize: "1.8rem",
-                        color: "#F8F5F0",
+                        color: "#FFFFFF",
                         marginBottom: "0.75rem",
                       }}
                     >
@@ -597,27 +597,27 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
                         fontSize: "0.9rem",
-                        color: "rgba(248,245,240,0.60)",
+                        color: "rgba(240,238,255,0.60)",
                         lineHeight: 1.7,
                         maxWidth: 360,
                         margin: "0 auto 2rem",
                       }}
                     >
                       Your quote request has been received. A licensed advisor from Harrison Health Group
-                      will contact you at <strong style={{ color: "#F8F5F0" }}>{data.phone}</strong> within
+                      will contact you at <strong style={{ color: "#FFFFFF" }}>{data.phone}</strong> within
                       1 business day.
                     </p>
                     <p
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
                         fontSize: "0.82rem",
-                        color: "rgba(248,245,240,0.40)",
+                        color: "rgba(240,238,255,0.40)",
                       }}
                     >
                       Need immediate assistance?{" "}
                       <a
                         href="tel:+19546000342"
-                        style={{ color: "#C9A84C", textDecoration: "none" }}
+                        style={{ color: "#A855F7", textDecoration: "none" }}
                       >
                         Call (954) 600-0342
                       </a>
@@ -678,7 +678,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                     </AnimatePresence>
 
                     {/* Navigation */}
-                    <div className="flex items-center justify-between mt-6 pt-5" style={{ borderTop: "1px solid rgba(201,168,76,0.10)" }}>
+                    <div className="flex items-center justify-between mt-6 pt-5" style={{ borderTop: "1px solid rgba(168,85,247,0.10)" }}>
                       <button
                         onClick={back}
                         disabled={step === 0}
@@ -687,7 +687,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                           fontFamily: "'DM Sans', sans-serif",
                           background: step === 0 ? "transparent" : "rgba(255,255,255,0.05)",
                           border: "1px solid rgba(255,255,255,0.08)",
-                          color: step === 0 ? "rgba(248,245,240,0.20)" : "rgba(248,245,240,0.60)",
+                          color: step === 0 ? "rgba(240,238,255,0.20)" : "rgba(240,238,255,0.60)",
                           cursor: step === 0 ? "not-allowed" : "pointer",
                         }}
                       >
@@ -699,7 +699,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         style={{
                           fontFamily: "'DM Mono', monospace",
                           fontSize: "0.62rem",
-                          color: "rgba(201,168,76,0.50)",
+                          color: "rgba(168,85,247,0.50)",
                           letterSpacing: "0.1em",
                         }}
                       >
@@ -742,7 +742,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
                         fontSize: "0.68rem",
-                        color: "rgba(248,245,240,0.25)",
+                        color: "rgba(240,238,255,0.25)",
                         lineHeight: 1.5,
                       }}
                     >

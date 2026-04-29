@@ -46,7 +46,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
     <section
       id="contact"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#08080E" }}
+      style={{ background: "#08060F" }}
     >
       {/* Ambient orbs */}
       <div
@@ -238,11 +238,11 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                   <div
                     className="w-10 h-10 rounded-lg flex items-center justify-center"
                     style={{
-                      background: "rgba(201,168,76,0.10)",
-                      border: "1px solid rgba(201,168,76,0.20)",
+                      background: "rgba(168,85,247,0.10)",
+                      border: "1px solid rgba(168,85,247,0.20)",
                     }}
                   >
-                    <method.icon size={18} style={{ color: "#C9A84C" }} />
+                    <method.icon size={18} style={{ color: "#A855F7" }} />
                   </div>
                   <div>
                     <div
@@ -250,7 +250,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                         fontFamily: "'DM Mono', monospace",
                         fontSize: "0.6rem",
                         letterSpacing: "0.12em",
-                        color: "rgba(201,168,76,0.50)",
+                        color: "rgba(168,85,247,0.50)",
                         textTransform: "uppercase",
                         marginBottom: "0.25rem",
                       }}
@@ -289,11 +289,11 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                   <div
                     className="w-10 h-10 rounded-lg flex items-center justify-center"
                     style={{
-                      background: "rgba(201,168,76,0.10)",
-                      border: "1px solid rgba(201,168,76,0.20)",
+                      background: "rgba(168,85,247,0.10)",
+                      border: "1px solid rgba(168,85,247,0.20)",
                     }}
                   >
-                    <method.icon size={18} style={{ color: "#C9A84C" }} />
+                    <method.icon size={18} style={{ color: "#A855F7" }} />
                   </div>
                   <div>
                     <div
@@ -301,7 +301,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                         fontFamily: "'DM Mono', monospace",
                         fontSize: "0.6rem",
                         letterSpacing: "0.12em",
-                        color: "rgba(201,168,76,0.50)",
+                        color: "rgba(168,85,247,0.50)",
                         textTransform: "uppercase",
                         marginBottom: "0.25rem",
                       }}
@@ -313,7 +313,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                         fontFamily: "'DM Sans', sans-serif",
                         fontWeight: 600,
                         fontSize: "0.85rem",
-                      color: "#F8F5F0",
+                      color: "#FFFFFF",
                       marginBottom: "0.2rem",
                     }}
                   >
@@ -323,7 +323,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.75rem",
-                      color: "rgba(248,245,240,0.40)",
+                      color: "rgba(240,238,255,0.40)",
                       }}
                     >
                       {method.sub}

@@ -22,7 +22,7 @@ export default function About() {
     <section
       id="about"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#0D0D0D" }}
+      style={{ background: "#08060F" }}
     >
       {/* Ambient orb */}
       <div
@@ -30,7 +30,7 @@ export default function About() {
         style={{
           width: 500,
           height: 500,
-          background: "radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%)",
           bottom: "-100px",
           left: "-100px",
           animationDelay: "-15s",
@@ -46,7 +46,7 @@ export default function About() {
               <div
                 className="relative rounded-2xl overflow-hidden"
                 style={{
-                  border: "1px solid rgba(201,168,76,0.18)",
+                  border: "1px solid rgba(168,85,247,0.18)",
                   boxShadow: "0 32px 80px rgba(0,0,0,0.6)",
                 }}
               >
@@ -56,11 +56,11 @@ export default function About() {
                   className="w-full object-cover"
                   style={{ height: 480 }}
                 />
-                {/* Warm amber-charcoal color grade overlay */}
+                {/* Deep purple color grade overlay */}
                 <div
                   className="absolute inset-0"
                   style={{
-                    background: "linear-gradient(160deg, rgba(40,25,5,0.45) 0%, rgba(8,8,14,0.30) 40%, rgba(8,8,14,0.65) 100%)",
+                    background: "linear-gradient(160deg, rgba(80,30,120,0.40) 0%, rgba(8,6,15,0.25) 40%, rgba(8,6,15,0.60) 100%)",
                     mixBlendMode: "multiply",
                   }}
                 />
@@ -81,14 +81,14 @@ export default function About() {
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={{ y: -4, boxShadow: "0 20px 50px rgba(201,168,76,0.15)" }}
+                whileHover={{ y: -4, boxShadow: "0 20px 50px rgba(168,85,247,0.15)" }}
               >
                 <div
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 700,
                     fontSize: "2.5rem",
-                    color: "#C9A84C",
+                    color: "#A855F7",
                     lineHeight: 1,
                   }}
                 >
@@ -106,7 +106,7 @@ export default function About() {
                 </div>
               </motion.div>
 
-              {/* Gold accent line — top-left corner decoration instead of logo badge */}
+              {/* Purple accent line — top-left corner decoration */}
               <div
                 style={{
                   position: "absolute",
@@ -114,8 +114,8 @@ export default function About() {
                   left: -2,
                   width: 48,
                   height: 48,
-                  borderTop: "2px solid #C9A84C",
-                  borderLeft: "2px solid #C9A84C",
+                  borderTop: "2px solid #A855F7",
+                  borderLeft: "2px solid #A855F7",
                   borderTopLeftRadius: 12,
                   pointerEvents: "none",
                 }}
@@ -132,7 +132,7 @@ export default function About() {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontWeight: 700,
                   fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
-                  color: "#F8F5F0",
+                  color: "#FFFFFF",
                   lineHeight: 1.1,
                   marginBottom: "1.5rem",
                 }}
@@ -183,11 +183,11 @@ export default function About() {
                     <div
                       className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
                       style={{
-                        background: "rgba(201,168,76,0.08)",
-                        border: "1px solid rgba(201,168,76,0.18)",
+                        background: "rgba(168,85,247,0.08)",
+                        border: "1px solid rgba(168,85,247,0.18)",
                       }}
                     >
-                      <item.icon size={16} style={{ color: "#C9A84C" }} />
+                      <item.icon size={16} style={{ color: "#A855F7" }} />
                     </div>
                     <span
                       style={{

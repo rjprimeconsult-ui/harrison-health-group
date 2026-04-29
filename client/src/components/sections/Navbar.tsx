@@ -73,8 +73,8 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
                   width: 42,
                   height: 42,
                   flexShrink: 0,
-                  background: "rgba(201,168,76,0.08)",
-                  border: "1px solid rgba(201,168,76,0.30)",
+                  background: "rgba(168,85,247,0.08)",
+                  border: "1px solid rgba(168,85,247,0.30)",
                   borderRadius: 6,
                 }}
               >
@@ -83,7 +83,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 700,
                     fontSize: "1.35rem",
-                    color: "#C9A84C",
+                    color: "#A855F7",
                     lineHeight: 1,
                     letterSpacing: "-0.02em",
                   }}
@@ -97,7 +97,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 700,
                     fontSize: "1.1rem",
-                    color: "#F8F5F0",
+                    color: "#FFFFFF",
                     lineHeight: 1.1,
                     letterSpacing: "0.02em",
                   }}
@@ -110,7 +110,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
                     fontSize: "0.52rem",
                     letterSpacing: "0.22em",
                     textTransform: "uppercase",
-                    color: "#C9A84C",
+                    color: "#A855F7",
                     lineHeight: 1,
                   }}
                 >
@@ -126,9 +126,9 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
                   className="text-sm font-medium transition-colors duration-200 bg-transparent border-none"
-                  style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(248,245,240,0.70)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#C9A84C")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(248,245,240,0.70)")}
+                  style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(240,238,255,0.70)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#A855F7")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,238,255,0.70)")}
                   whileHover={{ y: -1 }}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -144,14 +144,14 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
               <motion.a
                 href="tel:+19546000342"
                 className="flex items-center gap-2 text-sm font-medium transition-colors"
-                style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(248,245,240,0.65)" }}
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(240,238,255,0.65)" }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#C9A84C")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(248,245,240,0.65)")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#A855F7")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,238,255,0.65)")}
               >
-                <Phone size={14} style={{ color: "#C9A84C" }} />
+                <Phone size={14} style={{ color: "#A855F7" }} />
                 (954) 600-0342
               </motion.a>
               <AnimatedButton
@@ -205,9 +205,9 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
             <a
               href="tel:+19546000342"
               className="flex items-center gap-2 transition-colors"
-              style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(248,245,240,0.70)" }}
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(240,238,255,0.70)" }}
             >
-              <Phone size={16} style={{ color: "#C9A84C" }} />
+              <Phone size={16} style={{ color: "#A855F7" }} />
               (954) 600-0342
             </a>
             <button

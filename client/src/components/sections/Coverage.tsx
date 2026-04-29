@@ -64,7 +64,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
     <section
       id="coverage"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#111111" }}
+      style={{ background: "#0E0B18" }}
     >
       {/* Ambient orb */}
       <div
@@ -72,7 +72,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
         style={{
           width: 500,
           height: 500,
-          background: "radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(168,85,247,0.07) 0%, transparent 70%)",
           top: "-100px",
           right: "-100px",
           animationDelay: "-5s",
@@ -89,7 +89,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
-                color: "#F8F5F0",
+                color: "#FFFFFF",
                 lineHeight: 1.1,
                 marginBottom: "1rem",
               }}
@@ -100,7 +100,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(248,245,240,0.55)",
+                color: "rgba(240,238,255,0.55)",
                 fontSize: "1.05rem",
                 maxWidth: 500,
                 margin: "0 auto",
@@ -128,7 +128,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                       fontFamily: "'Cormorant Garamond', serif",
                       fontWeight: 700,
                       fontSize: "1.3rem",
-                      color: "#F8F5F0",
+                      color: "#FFFFFF",
                       lineHeight: 1.2,
                     }}
                   >
@@ -140,9 +140,9 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                       fontFamily: "'DM Mono', monospace",
                       fontSize: "0.58rem",
                       letterSpacing: "0.1em",
-                      background: "rgba(201,168,76,0.10)",
-                      color: "#C9A84C",
-                      border: "1px solid rgba(201,168,76,0.22)",
+                      background: "rgba(168,85,247,0.10)",
+                      color: "#A855F7",
+                      border: "1px solid rgba(168,85,247,0.22)",
                       whiteSpace: "nowrap",
                     }}
                   >
@@ -152,7 +152,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                 <p
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    color: "rgba(248,245,240,0.55)",
+                    color: "rgba(240,238,255,0.55)",
                     fontSize: "0.9rem",
                     lineHeight: 1.65,
                   }}
@@ -161,7 +161,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                 </p>
                 <div
                   className="absolute bottom-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: "linear-gradient(to right, #C9A84C, transparent)" }}
+                  style={{ background: "linear-gradient(to right, #A855F7, transparent)" }}
                 />
               </motion.div>
             </StaggerItem>
@@ -178,7 +178,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontWeight: 700,
                   fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
-                  color: "#F8F5F0",
+                  color: "#FFFFFF",
                   lineHeight: 1.1,
                 }}
               >
@@ -190,15 +190,15 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
               {/* Table Header */}
               <div
                 className="grid grid-cols-3 px-6 py-4"
-                style={{ borderBottom: "1px solid rgba(201,168,76,0.12)" }}
+                style={{ borderBottom: "1px solid rgba(168,85,247,0.12)" }}
               >
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "rgba(248,245,240,0.45)" }}>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "rgba(240,238,255,0.45)" }}>
                   Feature
                 </div>
-                <div className="text-center" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "rgba(248,245,240,0.35)" }}>
+                <div className="text-center" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "rgba(240,238,255,0.35)" }}>
                   Without Us
                 </div>
-                <div className="text-center" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.85rem", color: "#C9A84C" }}>
+                <div className="text-center" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.85rem", color: "#A855F7" }}>
                   With Harrison HG
                 </div>
               </div>
@@ -209,15 +209,15 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                   key={row.label}
                   className="grid grid-cols-3 px-6 py-4 items-center"
                   style={{
-                    borderBottom: i < comparisonRows.length - 1 ? "1px solid rgba(201,168,76,0.06)" : "none",
-                    background: i % 2 === 0 ? "transparent" : "rgba(201,168,76,0.02)",
+                    borderBottom: i < comparisonRows.length - 1 ? "1px solid rgba(168,85,247,0.06)" : "none",
+                    background: i % 2 === 0 ? "transparent" : "rgba(168,85,247,0.02)",
                   }}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.06, duration: 0.4 }}
                 >
-                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "rgba(248,245,240,0.72)" }}>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "rgba(240,238,255,0.72)" }}>
                     {row.label}
                   </span>
                   <div className="flex justify-center">

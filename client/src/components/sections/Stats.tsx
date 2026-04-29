@@ -46,7 +46,7 @@ export default function Stats() {
   return (
     <section
       className="relative py-28 overflow-hidden"
-      style={{ background: "#0A0A0A" }}
+      style={{ background: "#08060F" }}
     >
       {/* Background image */}
       <div className="absolute inset-0">
@@ -59,7 +59,7 @@ export default function Stats() {
         <div
           className="absolute inset-0"
           style={{
-            background: "linear-gradient(to bottom, #0A0A0A 0%, rgba(10,10,10,0.7) 50%, #0A0A0A 100%)",
+            background: "linear-gradient(to bottom, #08060F 0%, rgba(10,10,10,0.7) 50%, #08060F 100%)",
           }}
         />
       </div>
@@ -73,7 +73,7 @@ export default function Stats() {
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
-                  color: "#F8F5F0",
+                  color: "#FFFFFF",
                   lineHeight: 1.1,
                 }}
               >
@@ -103,7 +103,7 @@ export default function Stats() {
                   fontSize: "clamp(3rem, 6vw, 4.5rem)",
                   lineHeight: 1,
                   marginBottom: "0.5rem",
-                  background: "linear-gradient(135deg, #E2C97E, #C9A84C, #A8852D)",
+                  background: "linear-gradient(135deg, #C084FC, #A855F7, #7C3AED)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -118,7 +118,7 @@ export default function Stats() {
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 600,
                   fontSize: "1rem",
-                  color: "#F8F5F0",
+                  color: "#FFFFFF",
                   marginBottom: "0.4rem",
                 }}
               >
@@ -143,7 +143,7 @@ export default function Stats() {
                 style={{
                   width: 40,
                   height: 2,
-                  background: "linear-gradient(to right, transparent, #C9A84C, transparent)",
+                  background: "linear-gradient(to right, transparent, #A855F7, transparent)",
                   borderRadius: 1,
                 }}
                 initial={{ scaleX: 0 }}

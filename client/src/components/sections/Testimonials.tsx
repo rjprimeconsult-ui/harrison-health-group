@@ -63,7 +63,7 @@ function StarRating({ count }: { count: number }) {
   return (
     <div className="flex gap-1">
       {Array.from({ length: count }).map((_, i) => (
-        <Star key={i} size={14} fill="#C9A84C" style={{ color: "#C9A84C" }} />
+        <Star key={i} size={14} fill="#A855F7" style={{ color: "#A855F7" }} />
       ))}
     </div>
   );
@@ -74,7 +74,7 @@ export default function Testimonials() {
     <section
       id="testimonials"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#0A0A0A" }}
+      style={{ background: "#08060F" }}
     >
       {/* Ambient orbs */}
       <div
@@ -82,7 +82,7 @@ export default function Testimonials() {
         style={{
           width: 500,
           height: 500,
-          background: "radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(168,85,247,0.07) 0%, transparent 70%)",
           top: "-100px",
           left: "30%",
           animationDelay: "-25s",
@@ -99,7 +99,7 @@ export default function Testimonials() {
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
-                color: "#F8F5F0",
+                color: "#FFFFFF",
                 lineHeight: 1.1,
                 marginBottom: "1rem",
               }}
@@ -112,7 +112,7 @@ export default function Testimonials() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(248,245,240,0.55)",
+                color: "rgba(240,238,255,0.55)",
                 fontSize: "1rem",
                 maxWidth: 460,
                 margin: "0 auto",
@@ -131,14 +131,14 @@ export default function Testimonials() {
             <StaggerItem key={i}>
               <motion.div
                 className="glass-card p-7 h-full flex flex-col relative overflow-hidden"
-                whileHover={{ y: -5, boxShadow: "0 20px 60px rgba(201,168,76,0.12)" }}
+                whileHover={{ y: -5, boxShadow: "0 20px 60px rgba(168,85,247,0.12)" }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 {/* Quote icon */}
                 <Quote
                   size={32}
                   style={{
-                    color: "rgba(201,168,76,0.25)",
+                    color: "rgba(168,85,247,0.25)",
                     marginBottom: "1rem",
                   }}
                 />
@@ -154,7 +154,7 @@ export default function Testimonials() {
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: "0.9rem",
-                    color: "rgba(248,245,240,0.72)",
+                    color: "rgba(240,238,255,0.72)",
                     lineHeight: 1.75,
                     fontStyle: "italic",
                     marginBottom: "1.5rem",
@@ -171,7 +171,7 @@ export default function Testimonials() {
                         fontFamily: "'DM Sans', sans-serif",
                         fontWeight: 600,
                         fontSize: "0.9rem",
-                        color: "#F8F5F0",
+                        color: "#FFFFFF",
                       }}
                     >
                       {t.name}
@@ -180,7 +180,7 @@ export default function Testimonials() {
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
                         fontSize: "0.78rem",
-                        color: "rgba(248,245,240,0.40)",
+                        color: "rgba(240,238,255,0.40)",
                       }}
                     >
                       {t.location}
@@ -192,9 +192,9 @@ export default function Testimonials() {
                       fontFamily: "'DM Mono', monospace",
                       fontSize: "0.6rem",
                       letterSpacing: "0.08em",
-                      background: "rgba(201,168,76,0.08)",
-                      border: "1px solid rgba(201,168,76,0.18)",
-                      color: "#C9A84C",
+                      background: "rgba(168,85,247,0.08)",
+                      border: "1px solid rgba(168,85,247,0.18)",
+                      color: "#A855F7",
                     }}
                   >
                     {t.coverage}
@@ -205,7 +205,7 @@ export default function Testimonials() {
                 <div
                   className="absolute bottom-0 left-0 right-0 h-0.5"
                   style={{
-                    background: "linear-gradient(to right, #C9A84C, transparent)",
+                    background: "linear-gradient(to right, #A855F7, transparent)",
                     opacity: 0.4,
                   }}
                 />

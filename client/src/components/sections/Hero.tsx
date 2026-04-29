@@ -38,7 +38,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
     <section
       ref={ref}
       className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ background: "#0A0A0A" }}
+      style={{ background: "#08060F" }}
     >
       {/* Parallax background image */}
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
@@ -58,7 +58,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
         {/* Bottom fade */}
         <div
           className="absolute bottom-0 left-0 right-0 h-40"
-          style={{ background: "linear-gradient(to top, #0A0A0A, transparent)" }}
+          style={{ background: "linear-gradient(to top, #08060F, transparent)" }}
         />
       </motion.div>
 
@@ -68,7 +68,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
         style={{
           width: 600,
           height: 600,
-          background: "radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(168,85,247,0.07) 0%, transparent 70%)",
           top: "10%",
           left: "-120px",
           pointerEvents: "none",
@@ -130,7 +130,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 fontWeight: 300,
                 fontSize: "clamp(150px, 18vw, 260px)",
                 lineHeight: 0.85,
-                color: "rgba(201,168,76,0.16)",
+                color: "rgba(168,85,247,0.16)",
                 display: "block",
                 /* Push left H up by adding extra bottom margin so its baseline is higher */
                 marginBottom: "clamp(28px, 3.5vw, 55px)",
@@ -145,7 +145,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 fontWeight: 300,
                 fontSize: "clamp(110px, 14vw, 200px)",
                 lineHeight: 0.85,
-                color: "rgba(201,168,76,0.11)",
+                color: "rgba(168,85,247,0.11)",
                 display: "block",
                 marginBottom: 0,
               }}
@@ -162,7 +162,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
               background: "rgba(28,26,20,0.78)",
               backdropFilter: "blur(3px)",
               WebkitBackdropFilter: "blur(3px)",
-              border: "1px solid rgba(201,168,76,0.18)",
+              border: "1px solid rgba(168,85,247,0.18)",
               padding: "10px 28px",
               display: "flex",
               alignItems: "center",
@@ -176,7 +176,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 fontSize: "clamp(0.6rem, 1.1vw, 0.85rem)",
                 letterSpacing: "0.42em",
                 textTransform: "uppercase",
-                color: "rgba(201,168,76,0.70)",
+                color: "rgba(168,85,247,0.70)",
                 whiteSpace: "nowrap",
               }}
             >
@@ -207,8 +207,8 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 justifyContent: "center",
                 width: 30,
                 height: 30,
-                background: "rgba(201,168,76,0.10)",
-                border: "1px solid rgba(201,168,76,0.30)",
+                background: "rgba(168,85,247,0.10)",
+                border: "1px solid rgba(168,85,247,0.30)",
                 borderRadius: 4,
                 flexShrink: 0,
               }}
@@ -218,7 +218,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontWeight: 700,
                   fontSize: "0.85rem",
-                  color: "#C9A84C",
+                  color: "#A855F7",
                   lineHeight: 1,
                   letterSpacing: "-0.02em",
                 }}
@@ -232,7 +232,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 fontSize: "0.62rem",
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "#C9A84C",
+                color: "#A855F7",
               }}
             >
               Harrison Health Group · NPN 20611469
@@ -245,7 +245,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 700,
               fontSize: "clamp(3rem, 7vw, 5.5rem)",
-              color: "#F8F5F0",
+              color: "#FFFFFF",
               lineHeight: 1.0,
               marginBottom: "1.5rem",
             }}
@@ -256,7 +256,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
             Health Insurance{" "}
             <span
               style={{
-                background: "linear-gradient(135deg, #E2C97E, #C9A84C, #A8852D)",
+                background: "linear-gradient(135deg, #C084FC, #A855F7, #7C3AED)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -272,7 +272,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: "clamp(1rem, 2vw, 1.15rem)",
-              color: "rgba(248,245,240,0.70)",
+              color: "rgba(240,238,255,0.70)",
               lineHeight: 1.75,
               maxWidth: 520,
               marginBottom: "2.5rem",
@@ -304,15 +304,15 @@ export default function Hero({ onQuoteClick }: HeroProps) {
               className="flex items-center gap-2 px-7 py-4 rounded-md text-base font-semibold no-underline transition-all duration-300"
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                background: "rgba(201,168,76,0.08)",
-                border: "1px solid rgba(201,168,76,0.30)",
-                color: "#F8F5F0",
+                background: "rgba(168,85,247,0.08)",
+                border: "1px solid rgba(168,85,247,0.30)",
+                color: "#FFFFFF",
               }}
-              whileHover={{ background: "rgba(201,168,76,0.15)", borderColor: "rgba(201,168,76,0.55)", scale: 1.02 }}
+              whileHover={{ background: "rgba(168,85,247,0.15)", borderColor: "rgba(168,85,247,0.55)", scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 22 }}
             >
-              <Phone size={17} style={{ color: "#C9A84C" }} />
+              <Phone size={17} style={{ color: "#A855F7" }} />
               Speak to an Advisor
             </motion.a>
           </motion.div>
@@ -329,16 +329,16 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 key={badge.label}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-full"
                 style={{
-                  background: "rgba(201,168,76,0.07)",
-                  border: "1px solid rgba(201,168,76,0.18)",
+                  background: "rgba(168,85,247,0.07)",
+                  border: "1px solid rgba(168,85,247,0.18)",
                 }}
               >
-                <badge.icon size={12} style={{ color: "#C9A84C" }} />
+                <badge.icon size={12} style={{ color: "#A855F7" }} />
                 <span
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: "0.75rem",
-                    color: "rgba(248,245,240,0.70)",
+                    color: "rgba(240,238,255,0.70)",
                     fontWeight: 500,
                   }}
                 >
@@ -367,7 +367,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
             fontSize: "0.55rem",
             letterSpacing: "0.2em",
             textTransform: "uppercase",
-            color: "rgba(201,168,76,0.60)",
+            color: "rgba(168,85,247,0.60)",
           }}
         >
           Explore
@@ -375,7 +375,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          style={{ color: "rgba(201,168,76,0.60)" }}
+          style={{ color: "rgba(168,85,247,0.60)" }}
         >
           ↓
         </motion.div>
