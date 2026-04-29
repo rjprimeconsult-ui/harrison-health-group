@@ -38,29 +38,9 @@ export default function Hero({ onQuoteClick }: HeroProps) {
     <section
       ref={ref}
       className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #FFFFFF 0%, #FAF8F3 50%, #F5F0E8 100%)" }}
+      style={{ background: "#FFFFFF" }}
     >
-      {/* Subtle geometric background pattern */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: "radial-gradient(circle at 20% 50%, rgba(201,168,76,0.06) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(201,168,76,0.04) 0%, transparent 40%)",
-          pointerEvents: "none",
-        }}
-      />
-
-      {/* Gold ambient glow */}
-      <div
-        className="ambient-orb"
-        style={{
-          width: 600,
-          height: 600,
-          background: "radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 70%)",
-          top: "10%",
-          left: "-120px",
-          pointerEvents: "none",
-        }}
-      />
+      {/* Pure white background — no tint overlays */}
 
       {/* ─────────────────────────────────────────────────────────────
           WATERMARK LOGO TREATMENT
@@ -195,8 +175,8 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 justifyContent: "center",
                 width: 30,
                 height: 30,
-                background: "rgba(201,168,76,0.10)",
-                border: "1px solid rgba(201,168,76,0.30)",
+                background: "#FFFFFF",
+                border: "1.5px solid #0A0A0A",
                 borderRadius: 4,
                 flexShrink: 0,
               }}
@@ -206,7 +186,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontWeight: 700,
                   fontSize: "0.85rem",
-                  color: "#C9A84C",
+                  color: "#0A0A0A",
                   lineHeight: 1,
                   letterSpacing: "-0.02em",
                 }}

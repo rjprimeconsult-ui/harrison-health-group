@@ -68,7 +68,7 @@ export default function About() {
                 <div
                   className="absolute inset-0"
                   style={{
-                    background: "linear-gradient(to top, rgba(250,248,243,0.70) 0%, transparent 55%)",
+                    background: "linear-gradient(to top, rgba(255,255,255,0.70) 0%, transparent 55%)",
                   }}
                 />
               </div>

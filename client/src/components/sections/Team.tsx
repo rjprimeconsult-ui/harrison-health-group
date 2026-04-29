@@ -98,8 +98,8 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
         }}
         animate={{
           boxShadow: hovered
-            ? "0 0 0 1.5px rgba(201,168,76,0.65), 0 20px 56px rgba(201,168,76,0.20), 0 6px 20px rgba(0,0,0,0.60)"
-            : "0 0 0 1px rgba(201,168,76,0.10), 0 4px 16px rgba(0,0,0,0.28)",
+            ? "0 0 0 2px #0A0A0A, 0 20px 48px rgba(0,0,0,0.14), 0 6px 20px rgba(201,168,76,0.18)"
+            : "0 0 0 1.5px rgba(10,10,10,0.15), 0 4px 20px rgba(0,0,0,0.08)",
         }}
         transition={{ duration: 0.35, ease: "easeOut" }}
       />
@@ -134,7 +134,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             className="relative flex items-center justify-center"
             style={{
               height: 280,
-              background: "linear-gradient(135deg, #F5F0E8 0%, #F0EAD6 100%)",
+              background: "#FFFFFF",
               overflow: "hidden",
             }}
           >
@@ -158,7 +158,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
                 <div
                   className="absolute inset-0 flex flex-col items-center justify-end pb-5"
                   style={{
-                    background: "linear-gradient(to top, rgba(250,248,243,0.90) 0%, transparent 60%)",
+                    background: "linear-gradient(to top, rgba(255,255,255,0.90) 0%, transparent 60%)",
                   }}
                 >
                   <div
@@ -246,7 +246,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             inset: 0,
             width: "100%",
             height: "100%",
-            background: "linear-gradient(145deg, #FAFAFA 0%, #F0EAD6 60%, #FAF8F3 100%)",
+            background: "#FFFFFF",
             border: "1px solid rgba(201,168,76,0.25)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -382,7 +382,7 @@ export default function Team() {
     <section
       id="team"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#FAF8F3" }}
+      style={{ background: "#FFFFFF" }}
     >
       {/* Ambient orbs */}
       <div

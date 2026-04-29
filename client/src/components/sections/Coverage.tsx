@@ -64,7 +64,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
     <section
       id="coverage"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#FAF8F3" }}
+      style={{ background: "#FFFFFF" }}
     >
       {/* Ambient orb */}
       <div

@@ -1,7 +1,7 @@
 /*
  * HARRISON HEALTH GROUP — Global Design System
  * Design: "White Prestige" — clean, premium, trustworthy
- * Palette: Pure White (#FFFFFF), Off-White (#FAF8F3), Black (#0A0A0A),
+ * Palette: Pure White (#FFFFFF), Off-White (#FFFFFF), Black (#0A0A0A),
  *          Gold (#C9A84C), Gold Light (#E2C97E), Gold Dark (#A8852D)
  * Typography: Cormorant Garamond (display) + DM Sans (body) + DM Mono (labels)
  * Philosophy: Light, authoritative, premium — like a top-tier financial advisory firm
@@ -65,8 +65,8 @@
   --hhg-gold-light:  #E2C97E;
   --hhg-gold-dark:   #A8852D;
   --hhg-white:       #FFFFFF;
-  --hhg-white-2:     #FAF8F3;
-  --hhg-white-3:     #F5F0E8;
+  --hhg-white-2:     #FFFFFF;
+  --hhg-white-3:     #FFFFFF;
   --hhg-muted:       rgba(10,10,10,0.50);
 
   /* Tailwind/shadcn tokens mapped to White Prestige brand */

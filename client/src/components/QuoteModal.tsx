@@ -179,11 +179,11 @@ function SelectInput({
       onFocus={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.55)")}
       onBlur={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.18)")}
     >
-      <option value="" disabled style={{ background: "#F5F0E8" }}>
+      <option value="" disabled style={{ background: "#FFFFFF" }}>
         {placeholder || "Select…"}
       </option>
       {options.map((o) => (
-        <option key={o} value={o} style={{ background: "#F5F0E8" }}>
+        <option key={o} value={o} style={{ background: "#FFFFFF" }}>
           {o}
         </option>
       ))}
@@ -499,7 +499,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
             <motion.div
               className="relative w-full max-w-xl max-h-[92vh] overflow-y-auto rounded-2xl"
               style={{
-                background: "linear-gradient(145deg, #1A1A1A, #FAF8F3)",
+                background: "linear-gradient(145deg, #1A1A1A, #FFFFFF)",
                 border: "1px solid rgba(201,168,76,0.20)",
                 boxShadow: "0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(201,168,76,0.08)",
               }}

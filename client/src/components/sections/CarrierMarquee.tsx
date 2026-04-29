@@ -20,7 +20,7 @@ export default function CarrierMarquee() {
   return (
     <section
       style={{
-        background: "#FAF8F3",
+        background: "#FFFFFF",
         borderTop: "1px solid rgba(201,168,76,0.10)",
         borderBottom: "1px solid rgba(201,168,76,0.10)",
         padding: "1.25rem 0",
@@ -47,12 +47,12 @@ export default function CarrierMarquee() {
         {/* Left fade */}
         <div
           className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to right, #FAF8F3, transparent)" }}
+          style={{ background: "linear-gradient(to right, #FFFFFF, transparent)" }}
         />
         {/* Right fade */}
         <div
           className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to left, #FAF8F3, transparent)" }}
+          style={{ background: "linear-gradient(to left, #FFFFFF, transparent)" }}
         />
 
         <div className="marquee-track">

@@ -75,9 +75,9 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
                   height: 42,
                   flexShrink: 0,
                   background: "#FFFFFF",
-                  border: "1.5px solid #C9A84C",
+                  border: "2px solid #0A0A0A",
                   borderRadius: 6,
-                  boxShadow: "0 2px 8px rgba(201,168,76,0.20)",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
                 }}
               >
                 <span
@@ -85,7 +85,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 700,
                     fontSize: "1.35rem",
-                    color: "#A8852D",
+                    color: "#0A0A0A",
                     lineHeight: 1,
                     letterSpacing: "-0.02em",
                   }}

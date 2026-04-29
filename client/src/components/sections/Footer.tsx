@@ -74,7 +74,7 @@ export default function Footer() {
       {/* Main Footer */}
       <footer
         style={{
-          background: "#FAF8F3",
+          background: "#FFFFFF",
           borderTop: "1px solid rgba(201,168,76,0.08)",
         }}
       >
@@ -215,7 +215,7 @@ export default function Footer() {
       {/* Compliance Footer */}
       <div
         style={{
-          background: "#FAF8F3",
+          background: "#FFFFFF",
           borderTop: "1px solid rgba(201,168,76,0.12)",
         }}
       >
