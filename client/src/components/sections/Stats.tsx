@@ -103,7 +103,7 @@ export default function Stats() {
                   fontSize: "clamp(3rem, 6vw, 4.5rem)",
                   lineHeight: 1,
                   marginBottom: "0.5rem",
-                  background: "linear-gradient(135deg, #C084FC, #A855F7, #7C3AED)",
+                  background: "linear-gradient(135deg, #E2C97E, #C9A84C, #A8852D)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -130,7 +130,7 @@ export default function Stats() {
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.8rem",
-                  color: "rgba(255,255,255,0.45)",
+                  color: "rgba(10,10,10,0.55)",
                   lineHeight: 1.5,
                 }}
               >
@@ -143,7 +143,7 @@ export default function Stats() {
                 style={{
                   width: 40,
                   height: 2,
-                  background: "linear-gradient(to right, transparent, #A855F7, transparent)",
+                  background: "linear-gradient(to right, transparent, #C9A84C, transparent)",
                   borderRadius: 1,
                 }}
                 initial={{ scaleX: 0 }}

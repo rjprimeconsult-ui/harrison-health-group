@@ -98,8 +98,8 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
         }}
         animate={{
           boxShadow: hovered
-            ? "0 0 0 1.5px rgba(168,85,247,0.65), 0 20px 56px rgba(168,85,247,0.20), 0 6px 20px rgba(0,0,0,0.60)"
-            : "0 0 0 1px rgba(168,85,247,0.10), 0 4px 16px rgba(0,0,0,0.28)",
+            ? "0 0 0 1.5px rgba(201,168,76,0.65), 0 20px 56px rgba(201,168,76,0.20), 0 6px 20px rgba(0,0,0,0.60)"
+            : "0 0 0 1px rgba(201,168,76,0.10), 0 4px 16px rgba(0,0,0,0.28)",
         }}
         transition={{ duration: 0.35, ease: "easeOut" }}
       />
@@ -124,7 +124,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             width: "100%",
             height: "100%",
             background: "rgba(255,255,255,0.95)",
-            border: "1px solid rgba(168,85,247,0.15)",
+            border: "1px solid rgba(201,168,76,0.15)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
           }}
@@ -134,7 +134,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             className="relative flex items-center justify-center"
             style={{
               height: 280,
-              background: "linear-gradient(135deg, #F0EEFF 0%, #EDE9FF 100%)",
+              background: "linear-gradient(135deg, #F5F0E8 0%, #F0EAD6 100%)",
               overflow: "hidden",
             }}
           >
@@ -158,23 +158,23 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
                 <div
                   className="absolute inset-0 flex flex-col items-center justify-end pb-5"
                   style={{
-                    background: "linear-gradient(to top, rgba(248,247,255,0.90) 0%, transparent 60%)",
+                    background: "linear-gradient(to top, rgba(250,248,243,0.90) 0%, transparent 60%)",
                   }}
                 >
                   <div
                     className="flex items-center gap-2 px-3 py-1.5 rounded-full"
                     style={{
-                    background: "rgba(168,85,247,0.10)",
-                    border: "1px solid rgba(168,85,247,0.25)",
+                    background: "rgba(201,168,76,0.10)",
+                    border: "1px solid rgba(201,168,76,0.25)",
                     }}
                   >
-                    <Camera size={11} style={{ color: "#A855F7" }} />
+                    <Camera size={11} style={{ color: "#C9A84C" }} />
                     <span
                       style={{
                         fontFamily: "'DM Mono', monospace",
                         fontSize: "0.6rem",
                         letterSpacing: "0.12em",
-                        color: "rgba(168,85,247,0.80)",
+                        color: "rgba(201,168,76,0.80)",
                         textTransform: "uppercase",
                       }}
                     >
@@ -212,7 +212,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "0.82rem",
-                color: "#A855F7",
+                color: "#C9A84C",
                 fontWeight: 500,
                 marginBottom: "1rem",
               }}
@@ -227,13 +227,13 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
                   fontFamily: "'DM Mono', monospace",
                   fontSize: "0.62rem",
                   letterSpacing: "0.12em",
-                  color: "rgba(168,85,247,0.45)",
+                  color: "rgba(201,168,76,0.45)",
                   textTransform: "uppercase",
                 }}
               >
                 Hover to learn more
               </span>
-              <ChevronRight size={11} style={{ color: "rgba(168,85,247,0.40)" }} />
+              <ChevronRight size={11} style={{ color: "rgba(201,168,76,0.40)" }} />
             </div>
           </div>
         </div>
@@ -246,8 +246,8 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             inset: 0,
             width: "100%",
             height: "100%",
-            background: "linear-gradient(145deg, #FAFAFA 0%, #EDE9FF 60%, #F5F3FF 100%)",
-            border: "1px solid rgba(168,85,247,0.25)",
+            background: "linear-gradient(145deg, #FAFAFA 0%, #F0EAD6 60%, #FAF8F3 100%)",
+            border: "1px solid rgba(201,168,76,0.25)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
@@ -264,7 +264,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
               left: "8%",
               right: "8%",
               height: 1,
-              background: "linear-gradient(to right, transparent, rgba(168,85,247,0.60), transparent)",
+              background: "linear-gradient(to right, transparent, rgba(201,168,76,0.60), transparent)",
               borderRadius: 1,
             }}
           />
@@ -286,7 +286,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "0.73rem",
-                color: "#A855F7",
+                color: "#C9A84C",
                 fontWeight: 500,
                 lineHeight: 1.3,
               }}
@@ -299,7 +299,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
           <div
             style={{
               height: 1,
-              background: "linear-gradient(to right, rgba(168,85,247,0.35), transparent)",
+              background: "linear-gradient(to right, rgba(201,168,76,0.35), transparent)",
               marginBottom: "10px",
               flexShrink: 0,
             }}
@@ -326,7 +326,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
                 fontFamily: "'DM Mono', monospace",
                 fontSize: "0.55rem",
                 letterSpacing: "0.12em",
-                color: "rgba(168,85,247,0.45)",
+                color: "rgba(201,168,76,0.45)",
                 textTransform: "uppercase",
                 marginBottom: "6px",
               }}
@@ -339,9 +339,9 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
                   key={s}
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    background: "rgba(168,85,247,0.08)",
-                    border: "1px solid rgba(168,85,247,0.22)",
-                    color: "#A855F7",
+                    background: "rgba(201,168,76,0.08)",
+                    border: "1px solid rgba(201,168,76,0.22)",
+                    color: "#C9A84C",
                     fontSize: "0.65rem",
                     padding: "3px 9px",
                     borderRadius: "999px",
@@ -360,11 +360,11 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             className="flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white"
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              background: "linear-gradient(135deg, #C084FC, #A855F7, #7C3AED)",
+              background: "linear-gradient(135deg, #E2C97E, #C9A84C, #A8852D)",
               color: "#0A0A0A",
               textDecoration: "none",
             }}
-            whileHover={{ scale: 1.03, boxShadow: "0 8px 24px rgba(168,85,247,0.30)" }}
+            whileHover={{ scale: 1.03, boxShadow: "0 8px 24px rgba(201,168,76,0.30)" }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 420, damping: 22 }}
           >
@@ -382,7 +382,7 @@ export default function Team() {
     <section
       id="team"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#F8F7FF" }}
+      style={{ background: "#FAF8F3" }}
     >
       {/* Ambient orbs */}
       <div
@@ -390,7 +390,7 @@ export default function Team() {
         style={{
           width: 600,
           height: 600,
-          background: "radial-gradient(circle, rgba(168,85,247,0.06) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%)",
           top: "20%",
           right: "-200px",
           animationDelay: "-8s",

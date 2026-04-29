@@ -1,8 +1,8 @@
 /*
  * HARRISON HEALTH GROUP — Global Design System
  * Design: "White Prestige" — clean, premium, trustworthy
- * Palette: Pure White (#FFFFFF), Off-White (#F8F7FF), Black (#0A0A0A),
- *          Deep Purple (#7C3AED), Vivid Purple (#A855F7), Gold Detail (#C9A84C)
+ * Palette: Pure White (#FFFFFF), Off-White (#FAF8F3), Black (#0A0A0A),
+ *          Gold (#C9A84C), Gold Light (#E2C97E), Gold Dark (#A8852D)
  * Typography: Cormorant Garamond (display) + DM Sans (body) + DM Mono (labels)
  * Philosophy: Light, authoritative, premium — like a top-tier financial advisory firm
  */
@@ -55,54 +55,54 @@
 :root {
   /* Core palette — White Prestige */
   --hhg-black:       #0A0A0A;
-  --hhg-charcoal:    #1A1A2E;
-  --hhg-charcoal-2:  #2D2B3D;
-  --hhg-charcoal-3:  #3D3A52;
-  --hhg-purple:      #A855F7;
-  --hhg-purple-dark: #7C3AED;
-  --hhg-purple-light:#C084FC;
+  --hhg-charcoal:    #1A1A1A;
+  --hhg-charcoal-2:  #2D2D2D;
+  --hhg-charcoal-3:  #3D3D3D;
+  --hhg-purple:      #C9A84C;
+  --hhg-purple-dark: #A8852D;
+  --hhg-purple-light:#E2C97E;
   --hhg-gold:        #C9A84C;
   --hhg-gold-light:  #E2C97E;
   --hhg-gold-dark:   #A8852D;
   --hhg-white:       #FFFFFF;
-  --hhg-white-2:     #F8F7FF;
-  --hhg-white-3:     #F0EEFF;
+  --hhg-white-2:     #FAF8F3;
+  --hhg-white-3:     #F5F0E8;
   --hhg-muted:       rgba(10,10,10,0.50);
 
   /* Tailwind/shadcn tokens mapped to White Prestige brand */
   --radius: 0.5rem;
-  --background: oklch(0.99 0.003 290);
-  --foreground: oklch(0.08 0.010 290);
+  --background: oklch(0.99 0.002 85);
+  --foreground: oklch(0.08 0.005 85);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.08 0.010 290);
+  --card-foreground: oklch(0.08 0.005 85);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.08 0.010 290);
-  --primary: oklch(0.55 0.25 295);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.96 0.008 290);
-  --secondary-foreground: oklch(0.15 0.010 290);
-  --muted: oklch(0.95 0.008 290);
-  --muted-foreground: oklch(0.45 0.015 290);
-  --accent: oklch(0.55 0.25 295);
-  --accent-foreground: oklch(0.99 0 0);
+  --popover-foreground: oklch(0.08 0.005 85);
+  --primary: oklch(0.68 0.12 75);
+  --primary-foreground: oklch(0.08 0.005 85);
+  --secondary: oklch(0.97 0.005 85);
+  --secondary-foreground: oklch(0.15 0.005 85);
+  --muted: oklch(0.96 0.005 85);
+  --muted-foreground: oklch(0.45 0.010 85);
+  --accent: oklch(0.68 0.12 75);
+  --accent-foreground: oklch(0.08 0.005 85);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.08 0.010 290 / 12%);
-  --input: oklch(0.08 0.010 290 / 10%);
-  --ring: oklch(0.55 0.25 295);
-  --chart-1: oklch(0.55 0.25 295);
-  --chart-2: oklch(0.65 0.22 295);
-  --chart-3: oklch(0.72 0.18 295);
-  --chart-4: oklch(0.78 0.15 295);
-  --chart-5: oklch(0.84 0.10 295);
-  --sidebar: oklch(0.97 0.005 290);
-  --sidebar-foreground: oklch(0.08 0.010 290);
-  --sidebar-primary: oklch(0.55 0.25 295);
-  --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.95 0.008 290);
-  --sidebar-accent-foreground: oklch(0.08 0.010 290);
-  --sidebar-border: oklch(0.08 0.010 290 / 12%);
-  --sidebar-ring: oklch(0.55 0.25 295);
+  --border: oklch(0.08 0.005 85 / 12%);
+  --input: oklch(0.08 0.005 85 / 10%);
+  --ring: oklch(0.68 0.12 75);
+  --chart-1: oklch(0.68 0.12 75);
+  --chart-2: oklch(0.72 0.10 75);
+  --chart-3: oklch(0.76 0.08 75);
+  --chart-4: oklch(0.80 0.06 75);
+  --chart-5: oklch(0.84 0.04 75);
+  --sidebar: oklch(0.97 0.003 85);
+  --sidebar-foreground: oklch(0.08 0.005 85);
+  --sidebar-primary: oklch(0.68 0.12 75);
+  --sidebar-primary-foreground: oklch(0.08 0.005 85);
+  --sidebar-accent: oklch(0.96 0.005 85);
+  --sidebar-accent-foreground: oklch(0.08 0.005 85);
+  --sidebar-border: oklch(0.08 0.005 85 / 12%);
+  --sidebar-ring: oklch(0.68 0.12 75);
 }
 
 .dark {
@@ -186,7 +186,7 @@
   /* ─── Glass Card (light) ─────────────────────────────────── */
   .glass-card {
     background: rgba(255, 255, 255, 0.85);
-    border: 1px solid rgba(168, 85, 247, 0.15);
+    border: 1px solid rgba(201, 168, 76, 0.20);
     border-radius: 12px;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -194,8 +194,8 @@
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
   .glass-card:hover {
-    border-color: rgba(168, 85, 247, 0.35);
-    box-shadow: 0 12px 40px rgba(168, 85, 247, 0.12), 0 0 0 1px rgba(201,168,76,0.12);
+    border-color: rgba(201, 168, 76, 0.50);
+    box-shadow: 0 12px 40px rgba(201,168,76,0.12), 0 0 0 1px rgba(201,168,76,0.18);
   }
 
   /* ─── Section Label ──────────────────────────────────────── */
@@ -204,7 +204,7 @@
     font-size: 0.62rem;
     letter-spacing: 0.20em;
     text-transform: uppercase;
-    color: var(--hhg-purple);
+    color: var(--hhg-gold);
     display: inline-block;
   }
 
@@ -220,20 +220,21 @@
     font-size: 0.9rem;
     letter-spacing: 0.04em;
     color: #FFFFFF;
-    background: linear-gradient(135deg, var(--hhg-purple-light), var(--hhg-purple), var(--hhg-purple-dark));
-    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.30);
+    background: linear-gradient(135deg, #E2C97E, #C9A84C, #A8852D);
+    box-shadow: 0 4px 20px rgba(201,168,76,0.35);
     border: none;
     cursor: pointer;
     transition: all 0.2s ease;
     text-decoration: none;
+    color: #0A0A0A;
   }
   .btn-primary:hover {
-    box-shadow: 0 8px 32px rgba(168, 85, 247, 0.50);
+    box-shadow: 0 8px 32px rgba(201,168,76,0.55);
     transform: translateY(-1px);
   }
 
   /* ─── Comparison Table ───────────────────────────────────── */
-  .check-yes { color: var(--hhg-purple); }
+  .check-yes { color: var(--hhg-gold); }
   .check-no  { color: rgba(10, 10, 10, 0.25); }
 
   /* ─── Ambient Orb ────────────────────────────────────────── */
@@ -261,10 +262,10 @@
   }
   .marquee-track:hover { animation-play-state: paused; }
 
-  /* ─── Purple + Gold Gradient Text ───────────────────────── */
-  /* Used for headline accents — purple body with gold shimmer */
+  /* ─── Gold Gradient Text ────────────────────────────────── */
+  /* Used for headline accents — pure gold shimmer */
   .gold-text {
-    background: linear-gradient(135deg, #A855F7 0%, #7C3AED 40%, #C9A84C 70%, #E2C97E 100%);
+    background: linear-gradient(135deg, #C9A84C 0%, #E2C97E 40%, #C9A84C 70%, #A8852D 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

@@ -30,7 +30,7 @@ export default function About() {
         style={{
           width: 500,
           height: 500,
-          background: "radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%)",
           bottom: "-100px",
           left: "-100px",
           animationDelay: "-15s",
@@ -46,7 +46,7 @@ export default function About() {
               <div
                 className="relative rounded-2xl overflow-hidden"
                 style={{
-                  border: "1px solid rgba(168,85,247,0.18)",
+                  border: "1px solid rgba(201,168,76,0.18)",
                   boxShadow: "0 32px 80px rgba(0,0,0,0.08)",
                 }}
               >
@@ -56,11 +56,11 @@ export default function About() {
                   className="w-full object-cover"
                   style={{ height: 480 }}
                 />
-                {/* Deep purple color grade overlay */}
+                {/* Warm gold color grade overlay */}
                 <div
                   className="absolute inset-0"
                   style={{
-                    background: "linear-gradient(160deg, rgba(168,85,247,0.15) 0%, rgba(248,247,255,0.08) 40%, rgba(248,247,255,0.25) 100%)",
+                    background: "linear-gradient(160deg, rgba(201,168,76,0.15) 0%, rgba(248,247,255,0.08) 40%, rgba(248,247,255,0.25) 100%)",
                     mixBlendMode: "multiply",
                   }}
                 />
@@ -68,7 +68,7 @@ export default function About() {
                 <div
                   className="absolute inset-0"
                   style={{
-                    background: "linear-gradient(to top, rgba(248,247,255,0.70) 0%, transparent 55%)",
+                    background: "linear-gradient(to top, rgba(250,248,243,0.70) 0%, transparent 55%)",
                   }}
                 />
               </div>
@@ -81,14 +81,14 @@ export default function About() {
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={{ y: -4, boxShadow: "0 20px 50px rgba(168,85,247,0.15)" }}
+                whileHover={{ y: -4, boxShadow: "0 20px 50px rgba(201,168,76,0.15)" }}
               >
                 <div
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 700,
                     fontSize: "2.5rem",
-                    color: "#A855F7",
+                    color: "#C9A84C",
                     lineHeight: 1,
                   }}
                 >
@@ -114,8 +114,8 @@ export default function About() {
                   left: -2,
                   width: 48,
                   height: 48,
-                  borderTop: "2px solid #A855F7",
-                  borderLeft: "2px solid #A855F7",
+                  borderTop: "2px solid #C9A84C",
+                  borderLeft: "2px solid #C9A84C",
                   borderTopLeftRadius: 12,
                   pointerEvents: "none",
                 }}
@@ -183,11 +183,11 @@ export default function About() {
                     <div
                       className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
                       style={{
-                        background: "rgba(168,85,247,0.08)",
-                        border: "1px solid rgba(168,85,247,0.18)",
+                        background: "rgba(201,168,76,0.08)",
+                        border: "1px solid rgba(201,168,76,0.18)",
                       }}
                     >
-                      <item.icon size={16} style={{ color: "#A855F7" }} />
+                      <item.icon size={16} style={{ color: "#C9A84C" }} />
                     </div>
                     <span
                       style={{

@@ -64,7 +64,7 @@ export default function WhyUs({ onQuoteClick }: WhyUsProps) {
         style={{
           width: 600,
           height: 600,
-          background: "radial-gradient(circle, rgba(168,85,247,0.07) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%)",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
@@ -114,11 +114,11 @@ export default function WhyUs({ onQuoteClick }: WhyUsProps) {
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
                   style={{
-                    background: "rgba(168,85,247,0.10)",
-                    border: "1px solid rgba(168,85,247,0.20)",
+                    background: "rgba(201,168,76,0.10)",
+                    border: "1px solid rgba(201,168,76,0.20)",
                   }}
                 >
-                  <benefit.icon size={22} style={{ color: "#A855F7" }} />
+                  <benefit.icon size={22} style={{ color: "#C9A84C" }} />
                 </div>
                 <h3
                   style={{
@@ -147,7 +147,7 @@ export default function WhyUs({ onQuoteClick }: WhyUsProps) {
                   className="mt-6"
                   style={{
                     height: 2,
-                    background: "linear-gradient(to right, #A855F7, transparent)",
+                    background: "linear-gradient(to right, #C9A84C, transparent)",
                     borderRadius: 1,
                   }}
                   initial={{ scaleX: 0, originX: 0 }}

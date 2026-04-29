@@ -74,8 +74,8 @@ export default function Footer() {
       {/* Main Footer */}
       <footer
         style={{
-          background: "#F8F7FF",
-          borderTop: "1px solid rgba(168,85,247,0.08)",
+          background: "#FAF8F3",
+          borderTop: "1px solid rgba(201,168,76,0.08)",
         }}
       >
         <div className="container py-16">
@@ -86,8 +86,8 @@ export default function Footer() {
                 <div
                   className="w-10 h-10 rounded-lg flex items-center justify-center"
                   style={{
-          background: "linear-gradient(135deg, #C084FC, #A855F7, #7C3AED)",
-                  boxShadow: "0 0 20px rgba(168,85,247,0.25)",
+          background: "linear-gradient(135deg, #E2C97E, #C9A84C, #A8852D)",
+                  boxShadow: "0 0 20px rgba(201,168,76,0.25)",
                   }}
                 >
                   <Shield size={20} color="#FFFFFF" />
@@ -110,7 +110,7 @@ export default function Footer() {
                   fontSize: "0.55rem",
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
-                  color: "#A855F7",
+                  color: "#C9A84C",
                     }}
                   >
                     Group
@@ -135,7 +135,7 @@ export default function Footer() {
                   className="flex items-center gap-2 text-sm transition-colors no-underline"
                   style={{ color: "rgba(10,10,10,0.55)", fontFamily: "'DM Sans', sans-serif" }}
                 >
-                  <Phone size={13} style={{ color: "#A855F7" }} />
+                  <Phone size={13} style={{ color: "#C9A84C" }} />
                   (954) 600-0342
                 </a>
                 <a
@@ -143,7 +143,7 @@ export default function Footer() {
                   className="flex items-center gap-2 text-sm transition-colors no-underline"
                   style={{ color: "rgba(10,10,10,0.55)", fontFamily: "'DM Sans', sans-serif" }}
                 >
-                  <Mail size={13} style={{ color: "#A855F7" }} />
+                  <Mail size={13} style={{ color: "#C9A84C" }} />
                   info@harrisonhealthgroup.com
                 </a>
               </div>
@@ -158,7 +158,7 @@ export default function Footer() {
                     fontSize: "0.62rem",
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                  color: "#A855F7",
+                  color: "#C9A84C",
                   marginBottom: "1rem",
                   }}
                 >
@@ -184,7 +184,7 @@ export default function Footer() {
           {/* Bottom bar */}
           <div
             className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8"
-            style={{ borderTop: "1px solid rgba(139,92,246,0.10)" }}
+            style={{ borderTop: "1px solid rgba(201,168,76,0.10)" }}
           >
             <p
               style={{
@@ -215,8 +215,8 @@ export default function Footer() {
       {/* Compliance Footer */}
       <div
         style={{
-          background: "#F8F7FF",
-          borderTop: "1px solid rgba(168,85,247,0.12)",
+          background: "#FAF8F3",
+          borderTop: "1px solid rgba(201,168,76,0.12)",
         }}
       >
         <div className="container py-10">
@@ -227,7 +227,7 @@ export default function Footer() {
                 fontSize: "0.6rem",
                 letterSpacing: "0.15em",
                 textTransform: "uppercase",
-                color: "rgba(168,85,247,0.45)",
+                color: "rgba(201,168,76,0.45)",
                 marginBottom: "1.5rem",
               }}
             >

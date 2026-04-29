@@ -54,7 +54,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
         style={{
           width: 700,
           height: 700,
-          background: "radial-gradient(circle, rgba(109,40,217,0.18) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(139,105,20,0.18) 0%, transparent 70%)",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
@@ -80,7 +80,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
               Your Coverage Journey{" "}
               <span
                 style={{
-                  background: "linear-gradient(135deg, #A78BFA, #8B5CF6)",
+                  background: "linear-gradient(135deg, #E2C97E, #C9A84C)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -110,15 +110,15 @@ export default function Contact({ onQuoteClick }: ContactProps) {
           <div
             className="max-w-4xl mx-auto rounded-2xl p-10 md:p-14 mb-12 relative overflow-hidden"
             style={{
-              background: "linear-gradient(135deg, rgba(139,92,246,0.12), rgba(109,40,217,0.08))",
-              border: "1px solid rgba(139,92,246,0.25)",
+              background: "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(139,105,20,0.08))",
+              border: "1px solid rgba(201,168,76,0.25)",
             }}
           >
             {/* Decorative corner */}
             <div
               className="absolute top-0 right-0 w-64 h-64 rounded-bl-full"
               style={{
-                background: "radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%)",
+                background: "radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%)",
               }}
             />
 
@@ -126,8 +126,8 @@ export default function Contact({ onQuoteClick }: ContactProps) {
               <div
                 className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6"
                 style={{
-                  background: "linear-gradient(135deg, #8B5CF6, #6D28D9)",
-                  boxShadow: "0 0 32px rgba(139,92,246,0.40)",
+                  background: "linear-gradient(135deg, #C9A84C, #8B6914)",
+                  boxShadow: "0 0 32px rgba(201,168,76,0.40)",
                 }}
               >
                 <Shield size={28} color="#fff" />
@@ -172,13 +172,13 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                   className="flex items-center gap-2 px-8 py-4 rounded-lg text-base font-semibold text-white transition-all duration-300"
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    background: "rgba(139,92,246,0.08)",
-                    border: "1px solid rgba(139,92,246,0.25)",
+                    background: "rgba(201,168,76,0.08)",
+                    border: "1px solid rgba(201,168,76,0.25)",
                     textDecoration: "none",
                   }}
                   whileHover={{
-                    background: "rgba(139,92,246,0.15)",
-                    borderColor: "rgba(139,92,246,0.5)",
+                    background: "rgba(201,168,76,0.15)",
+                    borderColor: "rgba(201,168,76,0.5)",
                     scale: 1.02,
                   }}
                   whileTap={{ scale: 0.98 }}
@@ -194,8 +194,8 @@ export default function Contact({ onQuoteClick }: ContactProps) {
               <motion.div
                 className="mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full"
                 style={{
-                  background: "rgba(139,92,246,0.06)",
-                  border: "1px solid rgba(139,92,246,0.15)",
+                  background: "rgba(201,168,76,0.06)",
+                  border: "1px solid rgba(201,168,76,0.15)",
                 }}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -207,7 +207,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                     fontFamily: "'DM Mono', monospace",
                     fontSize: "0.62rem",
                     letterSpacing: "0.12em",
-                    color: "rgba(167,139,250,0.65)",
+                    color: "rgba(226,201,126,0.65)",
                     textTransform: "uppercase",
                   }}
                 >
@@ -232,17 +232,17 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                 <motion.a
                   href={method.href}
                   className="glass-card p-5 flex flex-col gap-3 no-underline block"
-                  whileHover={{ y: -8, boxShadow: "0 20px 48px rgba(109,40,217,0.45), 0 0 0 1px rgba(139,92,246,0.30)" }}
+                  whileHover={{ y: -8, boxShadow: "0 20px 48px rgba(139,105,20,0.45), 0 0 0 1px rgba(201,168,76,0.30)" }}
                   transition={{ type: "spring", stiffness: 320, damping: 18 }}
                 >
                   <div
                     className="w-10 h-10 rounded-lg flex items-center justify-center"
                     style={{
-                      background: "rgba(168,85,247,0.10)",
-                      border: "1px solid rgba(168,85,247,0.20)",
+                      background: "rgba(201,168,76,0.10)",
+                      border: "1px solid rgba(201,168,76,0.20)",
                     }}
                   >
-                    <method.icon size={18} style={{ color: "#A855F7" }} />
+                    <method.icon size={18} style={{ color: "#C9A84C" }} />
                   </div>
                   <div>
                     <div
@@ -250,7 +250,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                         fontFamily: "'DM Mono', monospace",
                         fontSize: "0.6rem",
                         letterSpacing: "0.12em",
-                        color: "rgba(168,85,247,0.50)",
+                        color: "rgba(201,168,76,0.50)",
                         textTransform: "uppercase",
                         marginBottom: "0.25rem",
                       }}
@@ -289,11 +289,11 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                   <div
                     className="w-10 h-10 rounded-lg flex items-center justify-center"
                     style={{
-                      background: "rgba(168,85,247,0.10)",
-                      border: "1px solid rgba(168,85,247,0.20)",
+                      background: "rgba(201,168,76,0.10)",
+                      border: "1px solid rgba(201,168,76,0.20)",
                     }}
                   >
-                    <method.icon size={18} style={{ color: "#A855F7" }} />
+                    <method.icon size={18} style={{ color: "#C9A84C" }} />
                   </div>
                   <div>
                     <div
@@ -301,7 +301,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                         fontFamily: "'DM Mono', monospace",
                         fontSize: "0.6rem",
                         letterSpacing: "0.12em",
-                        color: "rgba(168,85,247,0.50)",
+                        color: "rgba(201,168,76,0.50)",
                         textTransform: "uppercase",
                         marginBottom: "0.25rem",
                       }}

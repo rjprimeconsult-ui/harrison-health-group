@@ -64,7 +64,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
     <section
       id="coverage"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#F8F7FF" }}
+      style={{ background: "#FAF8F3" }}
     >
       {/* Ambient orb */}
       <div
@@ -72,7 +72,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
         style={{
           width: 500,
           height: 500,
-          background: "radial-gradient(circle, rgba(168,85,247,0.07) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%)",
           top: "-100px",
           right: "-100px",
           animationDelay: "-5s",
@@ -140,9 +140,9 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                       fontFamily: "'DM Mono', monospace",
                       fontSize: "0.58rem",
                       letterSpacing: "0.1em",
-                      background: "rgba(168,85,247,0.10)",
-                      color: "#A855F7",
-                      border: "1px solid rgba(168,85,247,0.22)",
+                      background: "rgba(201,168,76,0.10)",
+                      color: "#C9A84C",
+                      border: "1px solid rgba(201,168,76,0.22)",
                       whiteSpace: "nowrap",
                     }}
                   >
@@ -161,7 +161,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                 </p>
                 <div
                   className="absolute bottom-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: "linear-gradient(to right, #A855F7, transparent)" }}
+                  style={{ background: "linear-gradient(to right, #C9A84C, transparent)" }}
                 />
               </motion.div>
             </StaggerItem>
@@ -190,7 +190,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
               {/* Table Header */}
               <div
                 className="grid grid-cols-3 px-6 py-4"
-                style={{ borderBottom: "1px solid rgba(168,85,247,0.12)" }}
+                style={{ borderBottom: "1px solid rgba(201,168,76,0.12)" }}
               >
                 <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "rgba(10,10,10,0.42)" }}>
                   Feature
@@ -198,7 +198,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                 <div className="text-center" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "rgba(10,10,10,0.33)" }}>
                   Without Us
                 </div>
-                <div className="text-center" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.85rem", color: "#A855F7" }}>
+                <div className="text-center" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.85rem", color: "#C9A84C" }}>
                   With Harrison HG
                 </div>
               </div>
@@ -209,8 +209,8 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                   key={row.label}
                   className="grid grid-cols-3 px-6 py-4 items-center"
                   style={{
-                    borderBottom: i < comparisonRows.length - 1 ? "1px solid rgba(168,85,247,0.06)" : "none",
-                    background: i % 2 === 0 ? "transparent" : "rgba(168,85,247,0.02)",
+                    borderBottom: i < comparisonRows.length - 1 ? "1px solid rgba(201,168,76,0.06)" : "none",
+                    background: i % 2 === 0 ? "transparent" : "rgba(201,168,76,0.02)",
                   }}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}

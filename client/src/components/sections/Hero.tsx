@@ -38,13 +38,13 @@ export default function Hero({ onQuoteClick }: HeroProps) {
     <section
       ref={ref}
       className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #FFFFFF 0%, #F8F7FF 50%, #F0EEFF 100%)" }}
+      style={{ background: "linear-gradient(135deg, #FFFFFF 0%, #FAF8F3 50%, #F5F0E8 100%)" }}
     >
       {/* Subtle geometric background pattern */}
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: "radial-gradient(circle at 20% 50%, rgba(168,85,247,0.06) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(201,168,76,0.04) 0%, transparent 40%)",
+          backgroundImage: "radial-gradient(circle at 20% 50%, rgba(201,168,76,0.06) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(201,168,76,0.04) 0%, transparent 40%)",
           pointerEvents: "none",
         }}
       />
@@ -55,7 +55,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
         style={{
           width: 600,
           height: 600,
-          background: "radial-gradient(circle, rgba(168,85,247,0.10) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 70%)",
           top: "10%",
           left: "-120px",
           pointerEvents: "none",
@@ -117,7 +117,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 fontWeight: 300,
                 fontSize: "clamp(150px, 18vw, 260px)",
                 lineHeight: 0.85,
-                color: "rgba(124,58,237,0.10)",
+                color: "rgba(168,133,45,0.10)",
                 display: "block",
                 /* Push left H up by adding extra bottom margin so its baseline is higher */
                 marginBottom: "clamp(28px, 3.5vw, 55px)",
@@ -132,7 +132,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 fontWeight: 300,
                 fontSize: "clamp(110px, 14vw, 200px)",
                 lineHeight: 0.85,
-                color: "rgba(124,58,237,0.07)",
+                color: "rgba(168,133,45,0.07)",
                 display: "block",
                 marginBottom: 0,
               }}
@@ -164,7 +164,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 fontSize: "clamp(0.6rem, 1.1vw, 0.85rem)",
                 letterSpacing: "0.42em",
                 textTransform: "uppercase",
-                color: "rgba(124,58,237,0.75)",
+                color: "rgba(168,133,45,0.75)",
                 whiteSpace: "nowrap",
               }}
             >
@@ -195,8 +195,8 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 justifyContent: "center",
                 width: 30,
                 height: 30,
-                background: "rgba(168,85,247,0.10)",
-                border: "1px solid rgba(168,85,247,0.30)",
+                background: "rgba(201,168,76,0.10)",
+                border: "1px solid rgba(201,168,76,0.30)",
                 borderRadius: 4,
                 flexShrink: 0,
               }}
@@ -206,7 +206,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontWeight: 700,
                   fontSize: "0.85rem",
-                  color: "#A855F7",
+                  color: "#C9A84C",
                   lineHeight: 1,
                   letterSpacing: "-0.02em",
                 }}
@@ -220,7 +220,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 fontSize: "0.62rem",
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "#A855F7",
+                color: "#C9A84C",
               }}
             >
               Harrison Health Group · NPN 20611469
@@ -244,7 +244,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
             Health Insurance{" "}
             <span
               style={{
-                background: "linear-gradient(135deg, #C084FC, #A855F7, #7C3AED)",
+                background: "linear-gradient(135deg, #E2C97E, #C9A84C, #A8852D)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -292,15 +292,15 @@ export default function Hero({ onQuoteClick }: HeroProps) {
               className="flex items-center gap-2 px-7 py-4 rounded-md text-base font-semibold no-underline transition-all duration-300"
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                background: "rgba(168,85,247,0.07)",
-                border: "1px solid rgba(168,85,247,0.30)",
+                background: "rgba(201,168,76,0.07)",
+                border: "1px solid rgba(201,168,76,0.30)",
                 color: "#0A0A0A",
               }}
-              whileHover={{ background: "rgba(168,85,247,0.15)", borderColor: "rgba(168,85,247,0.55)", scale: 1.02 }}
+              whileHover={{ background: "rgba(201,168,76,0.15)", borderColor: "rgba(201,168,76,0.55)", scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 22 }}
             >
-              <Phone size={17} style={{ color: "#A855F7" }} />
+              <Phone size={17} style={{ color: "#C9A84C" }} />
               Speak to an Advisor
             </motion.a>
           </motion.div>
@@ -317,11 +317,11 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 key={badge.label}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-full"
                 style={{
-                  background: "rgba(168,85,247,0.07)",
-                  border: "1px solid rgba(168,85,247,0.18)",
+                  background: "rgba(201,168,76,0.07)",
+                  border: "1px solid rgba(201,168,76,0.18)",
                 }}
               >
-                <badge.icon size={12} style={{ color: "#A855F7" }} />
+                <badge.icon size={12} style={{ color: "#C9A84C" }} />
                 <span
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
@@ -355,7 +355,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
             fontSize: "0.55rem",
             letterSpacing: "0.2em",
             textTransform: "uppercase",
-            color: "rgba(124,58,237,0.55)",
+            color: "rgba(168,133,45,0.55)",
           }}
         >
           Explore
@@ -363,7 +363,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          style={{ color: "rgba(124,58,237,0.55)" }}
+          style={{ color: "rgba(168,133,45,0.55)" }}
         >
           ↓
         </motion.div>

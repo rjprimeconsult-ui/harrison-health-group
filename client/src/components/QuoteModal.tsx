@@ -86,12 +86,12 @@ function StepBar({ step, total }: { step: number; total: number }) {
             className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 transition-all duration-300"
             style={{
               background: i < step
-                ? "linear-gradient(135deg, #C084FC, #A855F7)"
+                ? "linear-gradient(135deg, #E2C97E, #C9A84C)"
                 : i === step
-                ? "linear-gradient(135deg, #C084FC, #A855F7)"
+                ? "linear-gradient(135deg, #E2C97E, #C9A84C)"
                 : "rgba(10,10,10,0.06)",
               color: i <= step ? "#FFFFFF" : "rgba(240,238,255,0.35)",
-              boxShadow: i === step ? "0 0 16px rgba(168,85,247,0.40)" : "none",
+              boxShadow: i === step ? "0 0 16px rgba(201,168,76,0.40)" : "none",
             }}
           >
             {i < step ? <Check size={13} /> : i + 1}
@@ -101,7 +101,7 @@ function StepBar({ step, total }: { step: number; total: number }) {
               className="h-px flex-1 transition-all duration-500"
               style={{
                 background: i < step
-                  ? "linear-gradient(90deg, #A855F7, rgba(168,85,247,0.3))"
+                  ? "linear-gradient(90deg, #C9A84C, rgba(201,168,76,0.3))"
                   : "rgba(10,10,10,0.06)",
               }}
             />
@@ -128,7 +128,7 @@ function Field({
         }}
       >
         {label}
-        {required && <span style={{ color: "#A855F7", marginLeft: 3 }}>*</span>}
+        {required && <span style={{ color: "#C9A84C", marginLeft: 3 }}>*</span>}
       </label>
       {children}
     </div>
@@ -140,7 +140,7 @@ const inputStyle: React.CSSProperties = {
   padding: "0.65rem 0.9rem",
   borderRadius: 8,
   background: "rgba(10,10,10,0.04)",
-  border: "1px solid rgba(168,85,247,0.18)",
+  border: "1px solid rgba(201,168,76,0.18)",
   color: "#0A0A0A",
   fontFamily: "'DM Sans', sans-serif",
   fontSize: "0.9rem",
@@ -160,8 +160,8 @@ function TextInput({
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
       style={inputStyle}
-      onFocus={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.55)")}
-      onBlur={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.18)")}
+      onFocus={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.55)")}
+      onBlur={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.18)")}
     />
   );
 }
@@ -176,14 +176,14 @@ function SelectInput({
       value={value}
       onChange={(e) => onChange(e.target.value)}
       style={{ ...inputStyle, appearance: "none" }}
-      onFocus={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.55)")}
-      onBlur={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.18)")}
+      onFocus={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.55)")}
+      onBlur={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.18)")}
     >
-      <option value="" disabled style={{ background: "#F0EEFF" }}>
+      <option value="" disabled style={{ background: "#F5F0E8" }}>
         {placeholder || "Select…"}
       </option>
       {options.map((o) => (
-        <option key={o} value={o} style={{ background: "#F0EEFF" }}>
+        <option key={o} value={o} style={{ background: "#F5F0E8" }}>
           {o}
         </option>
       ))}
@@ -205,8 +205,8 @@ function PhoneInput({ value, onChange }: { value: string; onChange: (v: string) 
       onChange={(e) => onChange(format(e.target.value))}
       placeholder="(954) 000-0000"
       style={inputStyle}
-      onFocus={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.55)")}
-      onBlur={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.18)")}
+      onFocus={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.55)")}
+      onBlur={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.18)")}
     />
   );
 }
@@ -294,8 +294,8 @@ function Step3({ data, set }: { data: FormData; set: (k: keyof FormData, v: stri
             placeholder="Any specific needs, questions, or details we should know…"
             rows={3}
             style={{ ...inputStyle, resize: "vertical" }}
-            onFocus={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.55)")}
-            onBlur={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.18)")}
+            onFocus={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.55)")}
+            onBlur={(e) => (e.target.style.borderColor = "rgba(201,168,76,0.18)")}
           />
         </Field>
       </div>
@@ -306,8 +306,8 @@ function Step3({ data, set }: { data: FormData; set: (k: keyof FormData, v: stri
 function ReviewRow({ label, value }: { label: string; value: string }) {
   if (!value) return null;
   return (
-    <div className="flex justify-between gap-4 py-2" style={{ borderBottom: "1px solid rgba(168,85,247,0.08)" }}>
-      <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.68rem", color: "rgba(168,85,247,0.60)", letterSpacing: "0.08em", textTransform: "uppercase" }}>{label}</span>
+    <div className="flex justify-between gap-4 py-2" style={{ borderBottom: "1px solid rgba(201,168,76,0.08)" }}>
+      <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.68rem", color: "rgba(201,168,76,0.60)", letterSpacing: "0.08em", textTransform: "uppercase" }}>{label}</span>
       <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#0A0A0A", textAlign: "right" }}>{value}</span>
     </div>
   );
@@ -499,9 +499,9 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
             <motion.div
               className="relative w-full max-w-xl max-h-[92vh] overflow-y-auto rounded-2xl"
               style={{
-                background: "linear-gradient(145deg, #1A1A1A, #F8F7FF)",
-                border: "1px solid rgba(168,85,247,0.20)",
-                boxShadow: "0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(168,85,247,0.08)",
+                background: "linear-gradient(145deg, #1A1A1A, #FAF8F3)",
+                border: "1px solid rgba(201,168,76,0.20)",
+                boxShadow: "0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(201,168,76,0.08)",
               }}
               initial={{ scale: 0.92, y: 30, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
@@ -530,8 +530,8 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                   <div
                     className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
                     style={{
-                      background: "linear-gradient(135deg, #C084FC, #A855F7)",
-                      boxShadow: "0 0 20px rgba(168,85,247,0.30)",
+                      background: "linear-gradient(135deg, #E2C97E, #C9A84C)",
+                      boxShadow: "0 0 20px rgba(201,168,76,0.30)",
                     }}
                   >
                     {submitted ? (
@@ -576,11 +576,11 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                     <div
                       className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
                       style={{
-                        background: "linear-gradient(135deg, rgba(168,85,247,0.15), rgba(168,85,247,0.08))",
-                        border: "2px solid rgba(168,85,247,0.35)",
+                        background: "linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.08))",
+                        border: "2px solid rgba(201,168,76,0.35)",
                       }}
                     >
-                      <Check size={36} style={{ color: "#A855F7" }} />
+                      <Check size={36} style={{ color: "#C9A84C" }} />
                     </div>
                     <h4
                       style={{
@@ -617,7 +617,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       Need immediate assistance?{" "}
                       <a
                         href="tel:+19546000342"
-                        style={{ color: "#A855F7", textDecoration: "none" }}
+                        style={{ color: "#C9A84C", textDecoration: "none" }}
                       >
                         Call (954) 600-0342
                       </a>
@@ -678,7 +678,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                     </AnimatePresence>
 
                     {/* Navigation */}
-                    <div className="flex items-center justify-between mt-6 pt-5" style={{ borderTop: "1px solid rgba(168,85,247,0.10)" }}>
+                    <div className="flex items-center justify-between mt-6 pt-5" style={{ borderTop: "1px solid rgba(201,168,76,0.10)" }}>
                       <button
                         onClick={back}
                         disabled={step === 0}
@@ -699,7 +699,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         style={{
                           fontFamily: "'DM Mono', monospace",
                           fontSize: "0.62rem",
-                          color: "rgba(168,85,247,0.50)",
+                          color: "rgba(201,168,76,0.50)",
                           letterSpacing: "0.1em",
                         }}
                       >

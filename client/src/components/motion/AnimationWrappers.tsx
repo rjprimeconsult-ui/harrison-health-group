@@ -175,7 +175,7 @@ export const HoverCard = ({
     className={className}
     whileHover={{
       y: -6,
-      boxShadow: "0 20px 60px rgba(139, 92, 246, 0.25)",
+      boxShadow: "0 20px 60px rgba(201, 168, 76, 0.25)",
     }}
     transition={{ type: "spring", stiffness: 300, damping: 20 }}
   >

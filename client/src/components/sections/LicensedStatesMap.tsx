@@ -78,7 +78,7 @@ export default function LicensedStatesMap() {
                 fontSize: "0.7rem",
                 letterSpacing: "0.3em",
                 textTransform: "uppercase",
-                color: "rgba(168,85,247,0.7)",
+                color: "rgba(201,168,76,0.7)",
                 display: "block",
                 marginBottom: "12px",
               }}
@@ -95,7 +95,7 @@ export default function LicensedStatesMap() {
               }}
             >
               Licensed in{" "}
-              <span style={{ color: "#A855F7" }}>{licensedCount} States</span>
+              <span style={{ color: "#C9A84C" }}>{licensedCount} States</span>
             </h2>
             <p style={{ color: "rgba(10,10,10,0.50)", fontSize: "0.95rem", maxWidth: "520px", margin: "0 auto" }}>
               Hover over any state to see if we serve your area. Purple states are where Harrison Health Group is actively licensed.
@@ -107,7 +107,7 @@ export default function LicensedStatesMap() {
           <div
             style={{
               background: "rgba(255,255,255,0.90)",
-              border: "1px solid rgba(168,85,247,0.20)",
+              border: "1px solid rgba(201,168,76,0.20)",
               boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
               borderRadius: "12px",
               padding: "24px",
@@ -117,7 +117,7 @@ export default function LicensedStatesMap() {
             {/* Legend */}
             <div style={{ display: "flex", gap: "24px", marginBottom: "16px", justifyContent: "center" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <div style={{ width: 14, height: 14, borderRadius: 3, background: "#A855F7" }} />
+                <div style={{ width: 14, height: 14, borderRadius: 3, background: "#C9A84C" }} />
                 <span style={{ color: "rgba(10,10,10,0.65)", fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>Licensed</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
@@ -149,7 +149,7 @@ export default function LicensedStatesMap() {
                       d={d}
                       fill={
                         licensed
-                          ? isHovered ? "#C084FC" : "#A855F7"
+                          ? isHovered ? "#E2C97E" : "#C9A84C"
                           : isHovered ? "rgba(10,10,10,0.14)" : "rgba(10,10,10,0.08)"
                       }
                       stroke="rgba(255,255,255,0.90)"
@@ -158,7 +158,7 @@ export default function LicensedStatesMap() {
                         cursor: "pointer",
                         transition: "fill 0.15s ease",
                         filter: isHovered && licensed
-                          ? "drop-shadow(0 0 4px rgba(168,85,247,0.6))"
+                          ? "drop-shadow(0 0 4px rgba(201,168,76,0.6))"
                           : "none",
                       }}
                       onMouseEnter={(e) => handleMouseEnter(abbr, e)}
@@ -204,9 +204,9 @@ export default function LicensedStatesMap() {
                     left: `${Math.min(tooltip.x + 2, 80)}%`,
                     top: `${Math.max(tooltip.y - 12, 2)}%`,
                     background: "rgba(255,255,255,0.97)",
-                    border: `1px solid ${LICENSED_STATES.has(tooltip.abbr) ? "rgba(168,85,247,0.5)" : "rgba(10,10,10,0.12)"}`,
+                    border: `1px solid ${LICENSED_STATES.has(tooltip.abbr) ? "rgba(201,168,76,0.5)" : "rgba(10,10,10,0.12)"}`,
                     boxShadow: LICENSED_STATES.has(tooltip.abbr)
-                      ? "0 4px 20px rgba(168,85,247,0.18)"
+                      ? "0 4px 20px rgba(201,168,76,0.18)"
                       : "0 4px 12px rgba(0,0,0,0.08)",
                     borderRadius: "6px",
                     padding: "6px 12px",
@@ -225,7 +225,7 @@ export default function LicensedStatesMap() {
                   </div>
                   <div style={{
                     fontSize: "0.72rem",
-                    color: LICENSED_STATES.has(tooltip.abbr) ? "#7C3AED" : "rgba(10,10,10,0.40)",
+                    color: LICENSED_STATES.has(tooltip.abbr) ? "#A8852D" : "rgba(10,10,10,0.40)",
                     marginTop: "2px",
                   }}>
                     {LICENSED_STATES.has(tooltip.abbr) ? "✓ Licensed & Serving" : "✗ Not Available"}
@@ -239,7 +239,7 @@ export default function LicensedStatesMap() {
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(3, 1fr)",
-                borderTop: "1px solid rgba(168,85,247,0.15)",
+                borderTop: "1px solid rgba(201,168,76,0.15)",
                 marginTop: "20px",
               }}
             >
@@ -253,14 +253,14 @@ export default function LicensedStatesMap() {
                   style={{
                     padding: "16px",
                     textAlign: "center",
-                    borderRight: i < 2 ? "1px solid rgba(168,85,247,0.10)" : "none",
+                    borderRight: i < 2 ? "1px solid rgba(201,168,76,0.10)" : "none",
                   }}
                 >
                   <div style={{
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 700,
                     fontSize: "2rem",
-                    color: "#A855F7",
+                    color: "#C9A84C",
                     lineHeight: 1,
                   }}>
                     {stat.value}

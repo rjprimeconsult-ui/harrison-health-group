@@ -1,6 +1,6 @@
 /*
  * HARRISON HEALTH GROUP — Navbar
- * White Prestige design: white bg, black text, purple accents, gold border detail
+ * White Prestige design: white bg, black text, gold accents
  * Real phone: (954) 600-0342
  */
 
@@ -47,7 +47,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
           WebkitBackdropFilter: "blur(16px)",
           borderBottom: scrolled
             ? "1px solid rgba(201,168,76,0.30)"
-            : "1px solid rgba(168,85,247,0.12)",
+            : "1px solid rgba(201,168,76,0.12)",
           boxShadow: scrolled ? "0 2px 24px rgba(0,0,0,0.08)" : "none",
         }}
         initial={{ y: -80, opacity: 0 }}
@@ -64,7 +64,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
-              {/* HH monogram — white box, purple letters, gold border */}
+              {/* HH monogram — white box, black letters, gold border */}
               <div
                 style={{
                   display: "flex",
@@ -85,7 +85,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 700,
                     fontSize: "1.35rem",
-                    color: "#7C3AED",
+                    color: "#A8852D",
                     lineHeight: 1,
                     letterSpacing: "-0.02em",
                   }}
@@ -129,7 +129,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
                   onClick={() => handleNavClick(link.href)}
                   className="text-sm font-medium transition-colors duration-200 bg-transparent border-none"
                   style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(10,10,10,0.65)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#7C3AED")}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#A8852D")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(10,10,10,0.65)")}
                   whileHover={{ y: -1 }}
                   initial={{ opacity: 0, y: -10 }}
@@ -150,7 +150,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#7C3AED")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#A8852D")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(10,10,10,0.60)")}
               >
                 <Phone size={14} style={{ color: "#C9A84C" }} />
@@ -192,7 +192,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
               onClick={() => handleNavClick(link.href)}
               className="text-2xl font-medium transition-colors bg-transparent border-none"
               style={{ fontFamily: "'Cormorant Garamond', serif", color: "rgba(10,10,10,0.75)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#7C3AED")}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#A8852D")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(10,10,10,0.75)")}
               initial={{ opacity: 0, y: 20 }}
               animate={mobileOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
