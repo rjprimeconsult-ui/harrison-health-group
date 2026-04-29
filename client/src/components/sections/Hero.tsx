@@ -97,7 +97,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 fontWeight: 300,
                 fontSize: "clamp(150px, 18vw, 260px)",
                 lineHeight: 0.85,
-                color: "rgba(10,10,10,0.10)",
+                color: "#0A0A0A",
                 display: "block",
                 /* Push left H up by adding extra bottom margin so its baseline is higher */
                 marginBottom: "clamp(28px, 3.5vw, 55px)",
@@ -112,7 +112,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 fontWeight: 300,
                 fontSize: "clamp(110px, 14vw, 200px)",
                 lineHeight: 0.85,
-                color: "rgba(10,10,10,0.07)",
+                color: "#0A0A0A",
                 display: "block",
                 marginBottom: 0,
               }}
