@@ -144,7 +144,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 fontSize: "clamp(0.6rem, 1.1vw, 0.85rem)",
                 letterSpacing: "0.42em",
                 textTransform: "uppercase",
-                color: "rgba(10,10,10,0.75)",
+                color: "#0A0A0A",
                 whiteSpace: "nowrap",
               }}
             >
@@ -240,7 +240,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: "clamp(1rem, 2vw, 1.15rem)",
-                color: "rgba(10,10,10,0.65)",
+                color: "#0A0A0A",
               lineHeight: 1.75,
               maxWidth: 520,
               marginBottom: "2.5rem",
@@ -306,7 +306,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: "0.75rem",
-                color: "rgba(10,10,10,0.65)",
+                color: "#0A0A0A",
                 fontWeight: 500,
                   }}
                 >
@@ -335,7 +335,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
             fontSize: "0.55rem",
             letterSpacing: "0.2em",
             textTransform: "uppercase",
-            color: "rgba(168,133,45,0.55)",
+            color: "#C9A84C",
           }}
         >
           Explore
@@ -343,7 +343,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          style={{ color: "rgba(168,133,45,0.55)" }}
+          style={{ color: "#C9A84C" }}
         >
           ↓
         </motion.div>

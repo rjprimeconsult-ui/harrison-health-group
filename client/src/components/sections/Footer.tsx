@@ -121,7 +121,7 @@ export default function Footer() {
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.85rem",
-                  color: "rgba(10,10,10,0.45)",
+                  color: "#0A0A0A",
                   lineHeight: 1.7,
                   marginBottom: "1.5rem",
                 }}
@@ -133,7 +133,7 @@ export default function Footer() {
                 <a
                   href="tel:+19546000342"
                   className="flex items-center gap-2 text-sm transition-colors no-underline"
-                  style={{ color: "rgba(10,10,10,0.55)", fontFamily: "'DM Sans', sans-serif" }}
+                  style={{ color: "#0A0A0A", fontFamily: "'DM Sans', sans-serif" }}
                 >
                   <Phone size={13} style={{ color: "#C9A84C" }} />
                   (954) 600-0342
@@ -141,7 +141,7 @@ export default function Footer() {
                 <a
                   href="mailto:info@harrisonhealthgroup.com"
                   className="flex items-center gap-2 text-sm transition-colors no-underline"
-                  style={{ color: "rgba(10,10,10,0.55)", fontFamily: "'DM Sans', sans-serif" }}
+                  style={{ color: "#0A0A0A", fontFamily: "'DM Sans', sans-serif" }}
                 >
                   <Mail size={13} style={{ color: "#C9A84C" }} />
                   info@harrisonhealthgroup.com
@@ -170,7 +170,7 @@ export default function Footer() {
                       <a
                         href="#"
                         className="text-sm transition-colors no-underline"
-                        style={{ color: "rgba(10,10,10,0.50)", fontFamily: "'DM Sans', sans-serif" }}
+                        style={{ color: "#0A0A0A", fontFamily: "'DM Sans', sans-serif" }}
                       >
                         {link}
                       </a>
@@ -190,7 +190,7 @@ export default function Footer() {
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "0.78rem",
-                color: "rgba(10,10,10,0.35)",
+                color: "#333333",
               }}
             >
               © {new Date().getFullYear()} Harrison Health Group. All rights reserved.
@@ -202,7 +202,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1 text-xs transition-colors no-underline"
-                style={{ color: "rgba(10,10,10,0.35)", fontFamily: "'DM Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.1em" }}
+                style={{ color: "#333333", fontFamily: "'DM Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.1em" }}
               >
                 Verify License
                 <ExternalLink size={10} />
@@ -244,7 +244,7 @@ export default function Footer() {
                       fontFamily: "'DM Sans', sans-serif",
                       fontWeight: 600,
                       fontSize: "0.72rem",
-                      color: "rgba(10,10,10,0.40)",
+                      color: "#0A0A0A",
                       marginBottom: "0.4rem",
                       textTransform: "uppercase",
                       letterSpacing: "0.05em",
@@ -256,7 +256,7 @@ export default function Footer() {
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.72rem",
-                      color: "rgba(10,10,10,0.12)",
+                      color: "#666666",
                       lineHeight: 1.65,
                     }}
                   >

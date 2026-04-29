@@ -128,9 +128,9 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
                   className="text-sm font-medium transition-colors duration-200 bg-transparent border-none"
-                  style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(10,10,10,0.65)" }}
+                  style={{ fontFamily: "'DM Sans', sans-serif", color: "#0A0A0A" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#A8852D")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(10,10,10,0.65)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "#0A0A0A")}
                   whileHover={{ y: -1 }}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -146,12 +146,12 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
               <motion.a
                 href="tel:+19546000342"
                 className="flex items-center gap-2 text-sm font-medium transition-colors"
-                style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(10,10,10,0.60)" }}
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "#0A0A0A" }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#A8852D")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(10,10,10,0.60)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#0A0A0A")}
               >
                 <Phone size={14} style={{ color: "#C9A84C" }} />
                 (954) 600-0342
@@ -191,9 +191,9 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
               key={link.href}
               onClick={() => handleNavClick(link.href)}
               className="text-2xl font-medium transition-colors bg-transparent border-none"
-              style={{ fontFamily: "'Cormorant Garamond', serif", color: "rgba(10,10,10,0.75)" }}
+              style={{ fontFamily: "'Cormorant Garamond', serif", color: "#0A0A0A" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#A8852D")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(10,10,10,0.75)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#0A0A0A")}
               initial={{ opacity: 0, y: 20 }}
               animate={mobileOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: i * 0.07 }}
@@ -210,7 +210,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
             <a
               href="tel:+19546000342"
               className="flex items-center gap-2 transition-colors"
-              style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(10,10,10,0.65)" }}
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "#0A0A0A" }}
             >
               <Phone size={16} style={{ color: "#C9A84C" }} />
               (954) 600-0342

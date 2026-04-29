@@ -93,7 +93,7 @@ export default function WhyUs({ onQuoteClick }: WhyUsProps) {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(10,10,10,0.50)",
+                color: "#0A0A0A",
                 fontSize: "1.05rem",
                 maxWidth: 520,
                 margin: "0 auto",
@@ -135,7 +135,7 @@ export default function WhyUs({ onQuoteClick }: WhyUsProps) {
                 <p
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    color: "rgba(10,10,10,0.50)",
+                    color: "#0A0A0A",
                     fontSize: "0.92rem",
                     lineHeight: 1.7,
                   }}

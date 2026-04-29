@@ -97,7 +97,7 @@ export default function LicensedStatesMap() {
               Licensed in{" "}
               <span style={{ color: "#C9A84C" }}>{licensedCount} States</span>
             </h2>
-            <p style={{ color: "rgba(10,10,10,0.50)", fontSize: "0.95rem", maxWidth: "520px", margin: "0 auto" }}>
+            <p style={{ color: "#0A0A0A", fontSize: "0.95rem", maxWidth: "520px", margin: "0 auto" }}>
               Hover over any state to see if we serve your area. Purple states are where Harrison Health Group is actively licensed.
             </p>
           </div>
@@ -118,11 +118,11 @@ export default function LicensedStatesMap() {
             <div style={{ display: "flex", gap: "24px", marginBottom: "16px", justifyContent: "center" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <div style={{ width: 14, height: 14, borderRadius: 3, background: "#C9A84C" }} />
-                <span style={{ color: "rgba(10,10,10,0.65)", fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>Licensed</span>
+                <span style={{ color: "#0A0A0A", fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>Licensed</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <div style={{ width: 14, height: 14, borderRadius: 3, background: "rgba(10,10,10,0.10)" }} />
-                <span style={{ color: "rgba(10,10,10,0.50)", fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>Not Available</span>
+                <span style={{ color: "#0A0A0A", fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>Not Available</span>
               </div>
             </div>
 
@@ -269,7 +269,7 @@ export default function LicensedStatesMap() {
                     fontSize: "0.65rem",
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                    color: "rgba(10,10,10,0.42)",
+                    color: "#0A0A0A",
                     marginTop: "4px",
                   }}>
                     {stat.label}

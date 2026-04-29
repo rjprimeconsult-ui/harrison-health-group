@@ -67,7 +67,7 @@
   --hhg-white:       #FFFFFF;
   --hhg-white-2:     #FFFFFF;
   --hhg-white-3:     #FFFFFF;
-  --hhg-muted:       rgba(10,10,10,0.50);
+  --hhg-muted:       #0A0A0A;
 
   /* Tailwind/shadcn tokens mapped to White Prestige brand */
   --radius: 0.5rem;
@@ -82,7 +82,7 @@
   --secondary: oklch(0.97 0.005 85);
   --secondary-foreground: oklch(0.15 0.005 85);
   --muted: oklch(0.96 0.005 85);
-  --muted-foreground: oklch(0.45 0.010 85);
+  --muted-foreground: oklch(0.15 0.005 85);
   --accent: oklch(0.68 0.12 75);
   --accent-foreground: oklch(0.08 0.005 85);
   --destructive: oklch(0.577 0.245 27.325);

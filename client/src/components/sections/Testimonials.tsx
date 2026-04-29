@@ -112,7 +112,7 @@ export default function Testimonials() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(10,10,10,0.50)",
+                color: "#0A0A0A",
                 fontSize: "1rem",
                 maxWidth: 460,
                 margin: "0 auto",
@@ -138,7 +138,7 @@ export default function Testimonials() {
                 <Quote
                   size={32}
                   style={{
-                    color: "rgba(201,168,76,0.25)",
+                    color: "#0A0A0A",
                     marginBottom: "1rem",
                   }}
                 />
@@ -154,7 +154,7 @@ export default function Testimonials() {
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: "0.9rem",
-                    color: "rgba(240,238,255,0.72)",
+                    color: "#0A0A0A",
                     lineHeight: 1.75,
                     fontStyle: "italic",
                     marginBottom: "1.5rem",
@@ -180,7 +180,7 @@ export default function Testimonials() {
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
                         fontSize: "0.78rem",
-                        color: "rgba(10,10,10,0.38)",
+                        color: "#333333",
                       }}
                     >
                       {t.location}
@@ -192,9 +192,9 @@ export default function Testimonials() {
                       fontFamily: "'DM Mono', monospace",
                       fontSize: "0.6rem",
                       letterSpacing: "0.08em",
-                      background: "rgba(201,168,76,0.08)",
-                      border: "1px solid rgba(201,168,76,0.18)",
-                      color: "#C9A84C",
+                      background: "rgba(201,168,76,0.10)",
+                      border: "1px solid #C9A84C",
+                      color: "#0A0A0A",
                     }}
                   >
                     {t.coverage}
@@ -206,7 +206,7 @@ export default function Testimonials() {
                   className="absolute bottom-0 left-0 right-0 h-0.5"
                   style={{
                     background: "linear-gradient(to right, #C9A84C, transparent)",
-                    opacity: 0.4,
+                    opacity: 0.8,
                   }}
                 />
               </motion.div>

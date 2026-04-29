@@ -310,7 +310,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: "0.78rem",
-              color: "rgba(10,10,10,0.65)",
+              color: "#0A0A0A",
               lineHeight: 1.6,
               marginBottom: "12px",
               flexShrink: 0,
@@ -420,7 +420,7 @@ export default function Team() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(10,10,10,0.50)",
+                color: "#0A0A0A",
                 fontSize: "1rem",
                 maxWidth: 480,
                 margin: "0 auto",

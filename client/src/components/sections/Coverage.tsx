@@ -100,7 +100,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(10,10,10,0.50)",
+                color: "#0A0A0A",
                 fontSize: "1.05rem",
                 maxWidth: 500,
                 margin: "0 auto",
@@ -152,7 +152,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                 <p
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    color: "rgba(10,10,10,0.50)",
+                    color: "#0A0A0A",
                     fontSize: "0.9rem",
                     lineHeight: 1.65,
                   }}
@@ -192,10 +192,10 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                 className="grid grid-cols-3 px-6 py-4"
                 style={{ borderBottom: "1px solid rgba(201,168,76,0.12)" }}
               >
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "rgba(10,10,10,0.42)" }}>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "#0A0A0A" }}>
                   Feature
                 </div>
-                <div className="text-center" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "rgba(10,10,10,0.33)" }}>
+                <div className="text-center" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "#333333" }}>
                   Without Us
                 </div>
                 <div className="text-center" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.85rem", color: "#C9A84C" }}>
@@ -217,7 +217,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.06, duration: 0.4 }}
                 >
-                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "rgba(240,238,255,0.72)" }}>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "#0A0A0A" }}>
                     {row.label}
                   </span>
                   <div className="flex justify-center">

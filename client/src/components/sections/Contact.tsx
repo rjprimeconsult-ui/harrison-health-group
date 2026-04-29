@@ -92,7 +92,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(10,10,10,0.55)",
+                color: "#0A0A0A",
                 fontSize: "1.05rem",
                 maxWidth: 500,
                 margin: "0 auto",
@@ -148,7 +148,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  color: "rgba(10,10,10,0.55)",
+                  color: "#0A0A0A",
                   fontSize: "1rem",
                   maxWidth: 420,
                   margin: "0 auto 2rem",
@@ -273,7 +273,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
                         fontSize: "0.75rem",
-                        color: "rgba(10,10,10,0.38)",
+                        color: "#333333",
                       }}
                     >
                       {method.sub}
@@ -323,7 +323,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.75rem",
-                      color: "rgba(10,10,10,0.38)",
+                      color: "#333333",
                       }}
                     >
                       {method.sub}

@@ -130,7 +130,7 @@ export default function Stats() {
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.8rem",
-                  color: "rgba(10,10,10,0.55)",
+                  color: "#0A0A0A",
                   lineHeight: 1.5,
                 }}
               >

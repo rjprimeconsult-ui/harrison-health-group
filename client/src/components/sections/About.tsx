@@ -98,7 +98,7 @@ export default function About() {
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: "0.82rem",
-                    color: "rgba(10,10,10,0.55)",
+                    color: "#0A0A0A",
                     marginTop: 4,
                   }}
                 >
@@ -146,7 +146,7 @@ export default function About() {
               <div
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  color: "rgba(10,10,10,0.60)",
+                  color: "#0A0A0A",
                   fontSize: "1rem",
                   lineHeight: 1.8,
                   marginBottom: "2rem",
@@ -193,7 +193,7 @@ export default function About() {
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
                         fontSize: "0.85rem",
-                        color: "rgba(10,10,10,0.65)",
+                        color: "#0A0A0A",
                         fontWeight: 500,
                       }}
                     >

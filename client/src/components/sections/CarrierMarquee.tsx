@@ -79,7 +79,7 @@ export default function CarrierMarquee() {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontWeight: 600,
                   fontSize: "1.05rem",
-                  color: "rgba(10,10,10,0.45)",
+                  color: "#0A0A0A",
                   letterSpacing: "0.04em",
                   transition: "color 0.2s",
                 }}
