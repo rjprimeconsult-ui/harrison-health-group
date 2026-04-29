@@ -97,7 +97,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 fontWeight: 300,
                 fontSize: "clamp(150px, 18vw, 260px)",
                 lineHeight: 0.85,
-                color: "rgba(168,133,45,0.10)",
+                color: "rgba(10,10,10,0.10)",
                 display: "block",
                 /* Push left H up by adding extra bottom margin so its baseline is higher */
                 marginBottom: "clamp(28px, 3.5vw, 55px)",
@@ -112,7 +112,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 fontWeight: 300,
                 fontSize: "clamp(110px, 14vw, 200px)",
                 lineHeight: 0.85,
-                color: "rgba(168,133,45,0.07)",
+                color: "rgba(10,10,10,0.07)",
                 display: "block",
                 marginBottom: 0,
               }}
@@ -126,11 +126,11 @@ export default function Hero({ onQuoteClick }: HeroProps) {
             style={{
               marginTop: "clamp(4px, 0.5vw, 10px)",
               width: "100%",
-            background: "rgba(255,255,255,0.80)",
+            background: "rgba(255,255,255,0.90)",
             backdropFilter: "blur(8px)",
             WebkitBackdropFilter: "blur(8px)",
-            border: "1px solid rgba(201,168,76,0.35)",
-            boxShadow: "0 2px 12px rgba(201,168,76,0.12)",
+            border: "1.5px solid rgba(10,10,10,0.55)",
+            boxShadow: "0 2px 10px rgba(0,0,0,0.08)",
               padding: "10px 28px",
               display: "flex",
               alignItems: "center",
@@ -140,11 +140,11 @@ export default function Hero({ onQuoteClick }: HeroProps) {
             <span
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                fontWeight: 400,
+                fontWeight: 500,
                 fontSize: "clamp(0.6rem, 1.1vw, 0.85rem)",
                 letterSpacing: "0.42em",
                 textTransform: "uppercase",
-                color: "rgba(168,133,45,0.75)",
+                color: "rgba(10,10,10,0.75)",
                 whiteSpace: "nowrap",
               }}
             >
