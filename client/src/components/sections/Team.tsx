@@ -123,7 +123,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             inset: 0,
             width: "100%",
             height: "100%",
-            background: "rgba(28,28,28,0.90)",
+            background: "rgba(255,255,255,0.95)",
             border: "1px solid rgba(168,85,247,0.15)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -134,7 +134,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             className="relative flex items-center justify-center"
             style={{
               height: 280,
-              background: "linear-gradient(135deg, #12101A 0%, #1C1828 100%)",
+              background: "linear-gradient(135deg, #F0EEFF 0%, #EDE9FF 100%)",
               overflow: "hidden",
             }}
           >
@@ -158,7 +158,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
                 <div
                   className="absolute inset-0 flex flex-col items-center justify-end pb-5"
                   style={{
-                    background: "linear-gradient(to top, rgba(8,8,14,0.85) 0%, transparent 60%)",
+                    background: "linear-gradient(to top, rgba(248,247,255,0.90) 0%, transparent 60%)",
                   }}
                 >
                   <div
@@ -189,7 +189,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             <div
               className="absolute bottom-0 left-0 right-0 h-16"
               style={{
-                background: "linear-gradient(to top, rgba(28,28,28,0.80), transparent)",
+                background: "linear-gradient(to top, rgba(255,255,255,0.85), transparent)",
               }}
             />
           </div>
@@ -201,7 +201,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "1.3rem",
-                color: "#FFFFFF",
+                color: "#0A0A0A",
                 marginBottom: "0.25rem",
                 lineHeight: 1.2,
               }}
@@ -246,7 +246,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             inset: 0,
             width: "100%",
             height: "100%",
-            background: "linear-gradient(145deg, #14111F 0%, #1E1A2E 60%, #130F22 100%)",
+            background: "linear-gradient(145deg, #FAFAFA 0%, #EDE9FF 60%, #F5F3FF 100%)",
             border: "1px solid rgba(168,85,247,0.25)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -275,7 +275,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "1.25rem",
-                color: "#FFFFFF",
+                color: "#0A0A0A",
                 marginBottom: "2px",
                 lineHeight: 1.2,
               }}
@@ -310,7 +310,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: "0.78rem",
-              color: "rgba(240,238,255,0.72)",
+              color: "rgba(10,10,10,0.65)",
               lineHeight: 1.6,
               marginBottom: "12px",
               flexShrink: 0,
@@ -361,7 +361,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             style={{
               fontFamily: "'DM Sans', sans-serif",
               background: "linear-gradient(135deg, #C084FC, #A855F7, #7C3AED)",
-              color: "#08060F",
+              color: "#0A0A0A",
               textDecoration: "none",
             }}
             whileHover={{ scale: 1.03, boxShadow: "0 8px 24px rgba(168,85,247,0.30)" }}
@@ -382,7 +382,7 @@ export default function Team() {
     <section
       id="team"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#0E0B18" }}
+      style={{ background: "#F8F7FF" }}
     >
       {/* Ambient orbs */}
       <div
@@ -407,7 +407,7 @@ export default function Team() {
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
-                color: "#FFFFFF",
+                color: "#0A0A0A",
                 lineHeight: 1.1,
                 marginBottom: "1rem",
               }}
@@ -420,7 +420,7 @@ export default function Team() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(240,238,255,0.55)",
+                color: "rgba(10,10,10,0.50)",
                 fontSize: "1rem",
                 maxWidth: 480,
                 margin: "0 auto",

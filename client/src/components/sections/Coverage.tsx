@@ -64,7 +64,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
     <section
       id="coverage"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#0E0B18" }}
+      style={{ background: "#F8F7FF" }}
     >
       {/* Ambient orb */}
       <div
@@ -89,7 +89,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
-                color: "#FFFFFF",
+                color: "#0A0A0A",
                 lineHeight: 1.1,
                 marginBottom: "1rem",
               }}
@@ -100,7 +100,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(240,238,255,0.55)",
+                color: "rgba(10,10,10,0.50)",
                 fontSize: "1.05rem",
                 maxWidth: 500,
                 margin: "0 auto",
@@ -119,7 +119,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
             <StaggerItem key={plan.title}>
               <motion.div
                 className="glass-card p-7 h-full relative overflow-hidden group"
-                whileHover={{ y: -4, boxShadow: "0 16px 48px rgba(0,0,0,0.5)" }}
+                whileHover={{ y: -4, boxShadow: "0 16px 48px rgba(0,0,0,0.07)" }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <div className="flex items-start justify-between mb-4">
@@ -128,7 +128,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                       fontFamily: "'Cormorant Garamond', serif",
                       fontWeight: 700,
                       fontSize: "1.3rem",
-                      color: "#FFFFFF",
+                      color: "#0A0A0A",
                       lineHeight: 1.2,
                     }}
                   >
@@ -152,7 +152,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                 <p
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    color: "rgba(240,238,255,0.55)",
+                    color: "rgba(10,10,10,0.50)",
                     fontSize: "0.9rem",
                     lineHeight: 1.65,
                   }}
@@ -178,7 +178,7 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontWeight: 700,
                   fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
-                  color: "#FFFFFF",
+                  color: "#0A0A0A",
                   lineHeight: 1.1,
                 }}
               >
@@ -192,10 +192,10 @@ export default function Coverage({ onQuoteClick }: CoverageProps) {
                 className="grid grid-cols-3 px-6 py-4"
                 style={{ borderBottom: "1px solid rgba(168,85,247,0.12)" }}
               >
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "rgba(240,238,255,0.45)" }}>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "rgba(10,10,10,0.42)" }}>
                   Feature
                 </div>
-                <div className="text-center" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "rgba(240,238,255,0.35)" }}>
+                <div className="text-center" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.85rem", color: "rgba(10,10,10,0.33)" }}>
                   Without Us
                 </div>
                 <div className="text-center" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "0.85rem", color: "#A855F7" }}>

@@ -1,9 +1,10 @@
 /*
  * HARRISON HEALTH GROUP — Global Design System
- * Design: "Midnight Purple" — bold, modern, trustworthy
- * Palette: Pure Black (#0A0A0A), Deep Purple (#7C3AED), Vivid Purple (#A855F7), White (#FFFFFF), Off-White (#F0EEFF)
+ * Design: "White Prestige" — clean, premium, trustworthy
+ * Palette: Pure White (#FFFFFF), Off-White (#F8F7FF), Black (#0A0A0A),
+ *          Deep Purple (#7C3AED), Vivid Purple (#A855F7), Gold Detail (#C9A84C)
  * Typography: Cormorant Garamond (display) + DM Sans (body) + DM Mono (labels)
- * Philosophy: Authoritative, modern, premium — like a cutting-edge healthcare tech brand
+ * Philosophy: Light, authoritative, premium — like a top-tier financial advisory firm
  */
 
 @import "tailwindcss";
@@ -52,52 +53,56 @@
 
 /* ─── Brand Tokens ─────────────────────────────────────────── */
 :root {
-  /* Core palette — Midnight Purple */
+  /* Core palette — White Prestige */
   --hhg-black:       #0A0A0A;
-  --hhg-charcoal:    #12101A;
-  --hhg-charcoal-2:  #1C1828;
-  --hhg-charcoal-3:  #261F38;
-  --hhg-gold:        #A855F7;
-  --hhg-gold-light:  #C084FC;
-  --hhg-gold-dark:   #7C3AED;
+  --hhg-charcoal:    #1A1A2E;
+  --hhg-charcoal-2:  #2D2B3D;
+  --hhg-charcoal-3:  #3D3A52;
+  --hhg-purple:      #A855F7;
+  --hhg-purple-dark: #7C3AED;
+  --hhg-purple-light:#C084FC;
+  --hhg-gold:        #C9A84C;
+  --hhg-gold-light:  #E2C97E;
+  --hhg-gold-dark:   #A8852D;
   --hhg-white:       #FFFFFF;
-  --hhg-white-2:     #F0EEFF;
-  --hhg-muted:       rgba(240,238,255,0.55);
+  --hhg-white-2:     #F8F7FF;
+  --hhg-white-3:     #F0EEFF;
+  --hhg-muted:       rgba(10,10,10,0.50);
 
-  /* Tailwind/shadcn tokens mapped to Midnight Purple brand */
+  /* Tailwind/shadcn tokens mapped to White Prestige brand */
   --radius: 0.5rem;
-  --background: oklch(0.07 0.015 290);
-  --foreground: oklch(0.98 0.005 290);
-  --card: oklch(0.11 0.020 290);
-  --card-foreground: oklch(0.98 0.005 290);
-  --popover: oklch(0.11 0.020 290);
-  --popover-foreground: oklch(0.98 0.005 290);
-  --primary: oklch(0.65 0.25 295);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.16 0.025 290);
-  --secondary-foreground: oklch(0.90 0.010 290);
-  --muted: oklch(0.18 0.020 290);
-  --muted-foreground: oklch(0.62 0.015 290);
-  --accent: oklch(0.65 0.25 295);
-  --accent-foreground: oklch(0.98 0 0);
+  --background: oklch(0.99 0.003 290);
+  --foreground: oklch(0.08 0.010 290);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.08 0.010 290);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.08 0.010 290);
+  --primary: oklch(0.55 0.25 295);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.96 0.008 290);
+  --secondary-foreground: oklch(0.15 0.010 290);
+  --muted: oklch(0.95 0.008 290);
+  --muted-foreground: oklch(0.45 0.015 290);
+  --accent: oklch(0.55 0.25 295);
+  --accent-foreground: oklch(0.99 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.65 0.25 295);
-  --chart-1: oklch(0.65 0.25 295);
-  --chart-2: oklch(0.58 0.22 295);
-  --chart-3: oklch(0.50 0.18 295);
-  --chart-4: oklch(0.42 0.15 295);
-  --chart-5: oklch(0.35 0.12 295);
-  --sidebar: oklch(0.11 0.020 290);
-  --sidebar-foreground: oklch(0.98 0.005 290);
-  --sidebar-primary: oklch(0.65 0.25 295);
-  --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.18 0.020 290);
-  --sidebar-accent-foreground: oklch(0.98 0.005 290);
-  --sidebar-border: oklch(1 0 0 / 12%);
-  --sidebar-ring: oklch(0.65 0.25 295);
+  --border: oklch(0.08 0.010 290 / 12%);
+  --input: oklch(0.08 0.010 290 / 10%);
+  --ring: oklch(0.55 0.25 295);
+  --chart-1: oklch(0.55 0.25 295);
+  --chart-2: oklch(0.65 0.22 295);
+  --chart-3: oklch(0.72 0.18 295);
+  --chart-4: oklch(0.78 0.15 295);
+  --chart-5: oklch(0.84 0.10 295);
+  --sidebar: oklch(0.97 0.005 290);
+  --sidebar-foreground: oklch(0.08 0.010 290);
+  --sidebar-primary: oklch(0.55 0.25 295);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.95 0.008 290);
+  --sidebar-accent-foreground: oklch(0.08 0.010 290);
+  --sidebar-border: oklch(0.08 0.010 290 / 12%);
+  --sidebar-ring: oklch(0.55 0.25 295);
 }
 
 .dark {
@@ -136,8 +141,8 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-color: #08060F;
-    color: var(--hhg-white);
+    background-color: #FFFFFF;
+    color: var(--hhg-black);
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -178,18 +183,19 @@
     }
   }
 
-  /* ─── Glass Card ─────────────────────────────────────────── */
+  /* ─── Glass Card (light) ─────────────────────────────────── */
   .glass-card {
-    background: rgba(28, 28, 28, 0.75);
-    border: 1px solid rgba(201, 168, 76, 0.15);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(168, 85, 247, 0.15);
     border-radius: 12px;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
   .glass-card:hover {
-    border-color: rgba(201, 168, 76, 0.30);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(201, 168, 76, 0.10);
+    border-color: rgba(168, 85, 247, 0.35);
+    box-shadow: 0 12px 40px rgba(168, 85, 247, 0.12), 0 0 0 1px rgba(201,168,76,0.12);
   }
 
   /* ─── Section Label ──────────────────────────────────────── */
@@ -198,7 +204,7 @@
     font-size: 0.62rem;
     letter-spacing: 0.20em;
     text-transform: uppercase;
-    color: var(--hhg-gold);
+    color: var(--hhg-purple);
     display: inline-block;
   }
 
@@ -213,22 +219,22 @@
     font-weight: 600;
     font-size: 0.9rem;
     letter-spacing: 0.04em;
-    color: var(--hhg-black);
-    background: linear-gradient(135deg, var(--hhg-gold-light), var(--hhg-gold), var(--hhg-gold-dark));
-    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.30);
+    color: #FFFFFF;
+    background: linear-gradient(135deg, var(--hhg-purple-light), var(--hhg-purple), var(--hhg-purple-dark));
+    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.30);
     border: none;
     cursor: pointer;
     transition: all 0.2s ease;
     text-decoration: none;
   }
   .btn-primary:hover {
-    box-shadow: 0 8px 32px rgba(201, 168, 76, 0.50);
+    box-shadow: 0 8px 32px rgba(168, 85, 247, 0.50);
     transform: translateY(-1px);
   }
 
   /* ─── Comparison Table ───────────────────────────────────── */
-  .check-yes { color: var(--hhg-gold); }
-  .check-no  { color: rgba(248, 245, 240, 0.25); }
+  .check-yes { color: var(--hhg-purple); }
+  .check-no  { color: rgba(10, 10, 10, 0.25); }
 
   /* ─── Ambient Orb ────────────────────────────────────────── */
   .ambient-orb {
@@ -255,11 +261,34 @@
   }
   .marquee-track:hover { animation-play-state: paused; }
 
-  /* ─── Purple Gradient Text ─────────────────────────────── */
+  /* ─── Purple + Gold Gradient Text ───────────────────────── */
+  /* Used for headline accents — purple body with gold shimmer */
   .gold-text {
-    background: linear-gradient(135deg, #C084FC, #A855F7, #7C3AED);
+    background: linear-gradient(135deg, #A855F7 0%, #7C3AED 40%, #C9A84C 70%, #E2C97E 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  /* ─── Gold Detail Text (pure gold, for small accents) ────── */
+  .gold-detail {
+    color: #C9A84C;
+  }
+
+  /* ─── Gold Underline Decoration ─────────────────────────── */
+  .gold-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .gold-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #C9A84C, #E2C97E, #C9A84C);
+    border-radius: 1px;
+    opacity: 0.75;
   }
 }

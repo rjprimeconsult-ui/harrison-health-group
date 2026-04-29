@@ -89,8 +89,8 @@ function StepBar({ step, total }: { step: number; total: number }) {
                 ? "linear-gradient(135deg, #C084FC, #A855F7)"
                 : i === step
                 ? "linear-gradient(135deg, #C084FC, #A855F7)"
-                : "rgba(255,255,255,0.08)",
-              color: i <= step ? "#08060F" : "rgba(240,238,255,0.35)",
+                : "rgba(10,10,10,0.06)",
+              color: i <= step ? "#FFFFFF" : "rgba(240,238,255,0.35)",
               boxShadow: i === step ? "0 0 16px rgba(168,85,247,0.40)" : "none",
             }}
           >
@@ -102,7 +102,7 @@ function StepBar({ step, total }: { step: number; total: number }) {
               style={{
                 background: i < step
                   ? "linear-gradient(90deg, #A855F7, rgba(168,85,247,0.3))"
-                  : "rgba(255,255,255,0.08)",
+                  : "rgba(10,10,10,0.06)",
               }}
             />
           )}
@@ -139,9 +139,9 @@ const inputStyle: React.CSSProperties = {
   width: "100%",
   padding: "0.65rem 0.9rem",
   borderRadius: 8,
-  background: "rgba(255,255,255,0.05)",
+  background: "rgba(10,10,10,0.04)",
   border: "1px solid rgba(168,85,247,0.18)",
-  color: "#FFFFFF",
+  color: "#0A0A0A",
   fontFamily: "'DM Sans', sans-serif",
   fontSize: "0.9rem",
   outline: "none",
@@ -179,11 +179,11 @@ function SelectInput({
       onFocus={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.55)")}
       onBlur={(e) => (e.target.style.borderColor = "rgba(168,85,247,0.18)")}
     >
-      <option value="" disabled style={{ background: "#12101A" }}>
+      <option value="" disabled style={{ background: "#F0EEFF" }}>
         {placeholder || "Select…"}
       </option>
       {options.map((o) => (
-        <option key={o} value={o} style={{ background: "#12101A" }}>
+        <option key={o} value={o} style={{ background: "#F0EEFF" }}>
           {o}
         </option>
       ))}
@@ -308,7 +308,7 @@ function ReviewRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex justify-between gap-4 py-2" style={{ borderBottom: "1px solid rgba(168,85,247,0.08)" }}>
       <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.68rem", color: "rgba(168,85,247,0.60)", letterSpacing: "0.08em", textTransform: "uppercase" }}>{label}</span>
-      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#FFFFFF", textAlign: "right" }}>{value}</span>
+      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#0A0A0A", textAlign: "right" }}>{value}</span>
     </div>
   );
 }
@@ -316,7 +316,7 @@ function ReviewRow({ label, value }: { label: string; value: string }) {
 function Step4Review({ data }: { data: FormData }) {
   return (
     <div className="flex flex-col gap-1">
-      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "rgba(240,238,255,0.55)", marginBottom: "1rem", lineHeight: 1.6 }}>
+      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "rgba(10,10,10,0.50)", marginBottom: "1rem", lineHeight: 1.6 }}>
         Please review your information before submitting. A licensed advisor from Harrison Health Group will contact you within 1 business day.
       </p>
       <ReviewRow label="Name" value={`${data.firstName} ${data.lastName}`} />
@@ -499,7 +499,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
             <motion.div
               className="relative w-full max-w-xl max-h-[92vh] overflow-y-auto rounded-2xl"
               style={{
-                background: "linear-gradient(145deg, #1A1A1A, #0E0B18)",
+                background: "linear-gradient(145deg, #1A1A1A, #F8F7FF)",
                 border: "1px solid rgba(168,85,247,0.20)",
                 boxShadow: "0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(168,85,247,0.08)",
               }}
@@ -515,10 +515,10 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                 className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all"
                 style={{
                   background: "rgba(255,255,255,0.06)",
-                  border: "1px solid rgba(255,255,255,0.10)",
+                  border: "1px solid rgba(10,10,10,0.08)",
                   color: "rgba(240,238,255,0.60)",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.12)")}
+                onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(10,10,10,0.09)")}
                 onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
               >
                 <X size={14} />
@@ -535,9 +535,9 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                     }}
                   >
                     {submitted ? (
-                      <Check size={18} color="#08060F" />
+                      <Check size={18} color="#FFFFFF" />
                     ) : (
-                      <CurrentIcon size={18} color="#08060F" />
+                      <CurrentIcon size={18} color="#FFFFFF" />
                     )}
                   </div>
                   <div>
@@ -546,7 +546,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         fontFamily: "'Cormorant Garamond', serif",
                         fontWeight: 700,
                         fontSize: "1.5rem",
-                        color: "#FFFFFF",
+                        color: "#0A0A0A",
                         lineHeight: 1.1,
                       }}
                     >
@@ -587,7 +587,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         fontFamily: "'Cormorant Garamond', serif",
                         fontWeight: 700,
                         fontSize: "1.8rem",
-                        color: "#FFFFFF",
+                        color: "#0A0A0A",
                         marginBottom: "0.75rem",
                       }}
                     >
@@ -604,7 +604,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       }}
                     >
                       Your quote request has been received. A licensed advisor from Harrison Health Group
-                      will contact you at <strong style={{ color: "#FFFFFF" }}>{data.phone}</strong> within
+                      will contact you at <strong style={{ color: "#0A0A0A" }}>{data.phone}</strong> within
                       1 business day.
                     </p>
                     <p
@@ -685,8 +685,8 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all"
                         style={{
                           fontFamily: "'DM Sans', sans-serif",
-                          background: step === 0 ? "transparent" : "rgba(255,255,255,0.05)",
-                          border: "1px solid rgba(255,255,255,0.08)",
+                          background: step === 0 ? "transparent" : "rgba(10,10,10,0.04)",
+                          border: "1px solid rgba(10,10,10,0.06)",
                           color: step === 0 ? "rgba(240,238,255,0.20)" : "rgba(240,238,255,0.60)",
                           cursor: step === 0 ? "not-allowed" : "pointer",
                         }}

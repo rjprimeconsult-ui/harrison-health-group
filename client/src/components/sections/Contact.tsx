@@ -46,7 +46,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
     <section
       id="contact"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#08060F" }}
+      style={{ background: "#FFFFFF" }}
     >
       {/* Ambient orbs */}
       <div
@@ -92,7 +92,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(255,255,255,0.60)",
+                color: "rgba(10,10,10,0.55)",
                 fontSize: "1.05rem",
                 maxWidth: 500,
                 margin: "0 auto",
@@ -148,7 +148,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  color: "rgba(255,255,255,0.60)",
+                  color: "rgba(10,10,10,0.55)",
                   fontSize: "1rem",
                   maxWidth: 420,
                   margin: "0 auto 2rem",
@@ -273,7 +273,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
                         fontSize: "0.75rem",
-                        color: "rgba(255,255,255,0.40)",
+                        color: "rgba(10,10,10,0.38)",
                       }}
                     >
                       {method.sub}
@@ -313,7 +313,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                         fontFamily: "'DM Sans', sans-serif",
                         fontWeight: 600,
                         fontSize: "0.85rem",
-                      color: "#FFFFFF",
+                      color: "#0A0A0A",
                       marginBottom: "0.2rem",
                     }}
                   >
@@ -323,7 +323,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.75rem",
-                      color: "rgba(240,238,255,0.40)",
+                      color: "rgba(10,10,10,0.38)",
                       }}
                     >
                       {method.sub}

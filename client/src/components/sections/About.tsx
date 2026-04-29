@@ -22,7 +22,7 @@ export default function About() {
     <section
       id="about"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#08060F" }}
+      style={{ background: "#FFFFFF" }}
     >
       {/* Ambient orb */}
       <div
@@ -47,7 +47,7 @@ export default function About() {
                 className="relative rounded-2xl overflow-hidden"
                 style={{
                   border: "1px solid rgba(168,85,247,0.18)",
-                  boxShadow: "0 32px 80px rgba(0,0,0,0.6)",
+                  boxShadow: "0 32px 80px rgba(0,0,0,0.08)",
                 }}
               >
                 <img
@@ -60,7 +60,7 @@ export default function About() {
                 <div
                   className="absolute inset-0"
                   style={{
-                    background: "linear-gradient(160deg, rgba(80,30,120,0.40) 0%, rgba(8,6,15,0.25) 40%, rgba(8,6,15,0.60) 100%)",
+                    background: "linear-gradient(160deg, rgba(168,85,247,0.15) 0%, rgba(248,247,255,0.08) 40%, rgba(248,247,255,0.25) 100%)",
                     mixBlendMode: "multiply",
                   }}
                 />
@@ -68,7 +68,7 @@ export default function About() {
                 <div
                   className="absolute inset-0"
                   style={{
-                    background: "linear-gradient(to top, rgba(8,8,14,0.60) 0%, transparent 55%)",
+                    background: "linear-gradient(to top, rgba(248,247,255,0.70) 0%, transparent 55%)",
                   }}
                 />
               </div>
@@ -98,7 +98,7 @@ export default function About() {
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: "0.82rem",
-                    color: "rgba(255,255,255,0.60)",
+                    color: "rgba(10,10,10,0.55)",
                     marginTop: 4,
                   }}
                 >
@@ -132,7 +132,7 @@ export default function About() {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontWeight: 700,
                   fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
-                  color: "#FFFFFF",
+                  color: "#0A0A0A",
                   lineHeight: 1.1,
                   marginBottom: "1.5rem",
                 }}
@@ -146,7 +146,7 @@ export default function About() {
               <div
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  color: "rgba(255,255,255,0.65)",
+                  color: "rgba(10,10,10,0.60)",
                   fontSize: "1rem",
                   lineHeight: 1.8,
                   marginBottom: "2rem",
@@ -193,7 +193,7 @@ export default function About() {
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
                         fontSize: "0.85rem",
-                        color: "rgba(255,255,255,0.70)",
+                        color: "rgba(10,10,10,0.65)",
                         fontWeight: 500,
                       }}
                     >

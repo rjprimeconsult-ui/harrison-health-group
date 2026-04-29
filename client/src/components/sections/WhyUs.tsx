@@ -56,7 +56,7 @@ export default function WhyUs({ onQuoteClick }: WhyUsProps) {
     <section
       id="why-us"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#08060F" }}
+      style={{ background: "#FFFFFF" }}
     >
       {/* Ambient orb */}
       <div
@@ -82,7 +82,7 @@ export default function WhyUs({ onQuoteClick }: WhyUsProps) {
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
-                color: "#FFFFFF",
+                color: "#0A0A0A",
                 lineHeight: 1.1,
                 marginBottom: "1rem",
               }}
@@ -93,7 +93,7 @@ export default function WhyUs({ onQuoteClick }: WhyUsProps) {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(240,238,255,0.55)",
+                color: "rgba(10,10,10,0.50)",
                 fontSize: "1.05rem",
                 maxWidth: 520,
                 margin: "0 auto",
@@ -125,7 +125,7 @@ export default function WhyUs({ onQuoteClick }: WhyUsProps) {
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 700,
                     fontSize: "1.35rem",
-                    color: "#FFFFFF",
+                    color: "#0A0A0A",
                     marginBottom: "0.75rem",
                     lineHeight: 1.2,
                   }}
@@ -135,7 +135,7 @@ export default function WhyUs({ onQuoteClick }: WhyUsProps) {
                 <p
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    color: "rgba(240,238,255,0.55)",
+                    color: "rgba(10,10,10,0.50)",
                     fontSize: "0.92rem",
                     lineHeight: 1.7,
                   }}

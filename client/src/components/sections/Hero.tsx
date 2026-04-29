@@ -38,29 +38,16 @@ export default function Hero({ onQuoteClick }: HeroProps) {
     <section
       ref={ref}
       className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ background: "#08060F" }}
+      style={{ background: "linear-gradient(135deg, #FFFFFF 0%, #F8F7FF 50%, #F0EEFF 100%)" }}
     >
-      {/* Parallax background image */}
-      <motion.div className="absolute inset-0" style={{ y: bgY }}>
-        <img
-          src={HERO_IMG}
-          alt=""
-          className="w-full h-full object-cover"
-          style={{ opacity: 0.35 }}
-        />
-        {/* Dark overlay — heavier on left for text legibility */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(to right, rgba(10,10,10,0.95) 35%, rgba(10,10,10,0.60) 100%)",
-          }}
-        />
-        {/* Bottom fade */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-40"
-          style={{ background: "linear-gradient(to top, #08060F, transparent)" }}
-        />
-      </motion.div>
+      {/* Subtle geometric background pattern */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: "radial-gradient(circle at 20% 50%, rgba(168,85,247,0.06) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(201,168,76,0.04) 0%, transparent 40%)",
+          pointerEvents: "none",
+        }}
+      />
 
       {/* Gold ambient glow */}
       <div
@@ -68,7 +55,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
         style={{
           width: 600,
           height: 600,
-          background: "radial-gradient(circle, rgba(168,85,247,0.07) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(168,85,247,0.10) 0%, transparent 70%)",
           top: "10%",
           left: "-120px",
           pointerEvents: "none",
@@ -130,7 +117,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 fontWeight: 300,
                 fontSize: "clamp(150px, 18vw, 260px)",
                 lineHeight: 0.85,
-                color: "rgba(168,85,247,0.16)",
+                color: "rgba(124,58,237,0.10)",
                 display: "block",
                 /* Push left H up by adding extra bottom margin so its baseline is higher */
                 marginBottom: "clamp(28px, 3.5vw, 55px)",
@@ -145,7 +132,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 fontWeight: 300,
                 fontSize: "clamp(110px, 14vw, 200px)",
                 lineHeight: 0.85,
-                color: "rgba(168,85,247,0.11)",
+                color: "rgba(124,58,237,0.07)",
                 display: "block",
                 marginBottom: 0,
               }}
@@ -159,10 +146,11 @@ export default function Hero({ onQuoteClick }: HeroProps) {
             style={{
               marginTop: "clamp(4px, 0.5vw, 10px)",
               width: "100%",
-              background: "rgba(28,26,20,0.78)",
-              backdropFilter: "blur(3px)",
-              WebkitBackdropFilter: "blur(3px)",
-              border: "1px solid rgba(168,85,247,0.18)",
+            background: "rgba(255,255,255,0.80)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            border: "1px solid rgba(201,168,76,0.35)",
+            boxShadow: "0 2px 12px rgba(201,168,76,0.12)",
               padding: "10px 28px",
               display: "flex",
               alignItems: "center",
@@ -176,7 +164,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 fontSize: "clamp(0.6rem, 1.1vw, 0.85rem)",
                 letterSpacing: "0.42em",
                 textTransform: "uppercase",
-                color: "rgba(168,85,247,0.70)",
+                color: "rgba(124,58,237,0.75)",
                 whiteSpace: "nowrap",
               }}
             >
@@ -245,7 +233,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 700,
               fontSize: "clamp(3rem, 7vw, 5.5rem)",
-              color: "#FFFFFF",
+              color: "#0A0A0A",
               lineHeight: 1.0,
               marginBottom: "1.5rem",
             }}
@@ -272,7 +260,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: "clamp(1rem, 2vw, 1.15rem)",
-              color: "rgba(240,238,255,0.70)",
+                color: "rgba(10,10,10,0.65)",
               lineHeight: 1.75,
               maxWidth: 520,
               marginBottom: "2.5rem",
@@ -304,9 +292,9 @@ export default function Hero({ onQuoteClick }: HeroProps) {
               className="flex items-center gap-2 px-7 py-4 rounded-md text-base font-semibold no-underline transition-all duration-300"
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                background: "rgba(168,85,247,0.08)",
+                background: "rgba(168,85,247,0.07)",
                 border: "1px solid rgba(168,85,247,0.30)",
-                color: "#FFFFFF",
+                color: "#0A0A0A",
               }}
               whileHover={{ background: "rgba(168,85,247,0.15)", borderColor: "rgba(168,85,247,0.55)", scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
@@ -338,8 +326,8 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: "0.75rem",
-                    color: "rgba(240,238,255,0.70)",
-                    fontWeight: 500,
+                color: "rgba(10,10,10,0.65)",
+                fontWeight: 500,
                   }}
                 >
                   {badge.label}
@@ -367,7 +355,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
             fontSize: "0.55rem",
             letterSpacing: "0.2em",
             textTransform: "uppercase",
-            color: "rgba(168,85,247,0.60)",
+            color: "rgba(124,58,237,0.55)",
           }}
         >
           Explore
@@ -375,7 +363,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          style={{ color: "rgba(168,85,247,0.60)" }}
+          style={{ color: "rgba(124,58,237,0.55)" }}
         >
           ↓
         </motion.div>

@@ -46,7 +46,7 @@ export default function Stats() {
   return (
     <section
       className="relative py-28 overflow-hidden"
-      style={{ background: "#08060F" }}
+      style={{ background: "#FFFFFF" }}
     >
       {/* Background image */}
       <div className="absolute inset-0">
@@ -59,7 +59,7 @@ export default function Stats() {
         <div
           className="absolute inset-0"
           style={{
-            background: "linear-gradient(to bottom, #08060F 0%, rgba(10,10,10,0.7) 50%, #08060F 100%)",
+            background: "linear-gradient(to bottom, #FFFFFF 0%, rgba(10,10,10,0.7) 50%, #FFFFFF 100%)",
           }}
         />
       </div>
@@ -73,7 +73,7 @@ export default function Stats() {
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
-                  color: "#FFFFFF",
+                  color: "#0A0A0A",
                   lineHeight: 1.1,
                 }}
               >
@@ -118,7 +118,7 @@ export default function Stats() {
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 600,
                   fontSize: "1rem",
-                  color: "#FFFFFF",
+                  color: "#0A0A0A",
                   marginBottom: "0.4rem",
                 }}
               >

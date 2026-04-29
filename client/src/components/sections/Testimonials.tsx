@@ -74,7 +74,7 @@ export default function Testimonials() {
     <section
       id="testimonials"
       className="py-28 relative overflow-hidden"
-      style={{ background: "#08060F" }}
+      style={{ background: "#FFFFFF" }}
     >
       {/* Ambient orbs */}
       <div
@@ -99,7 +99,7 @@ export default function Testimonials() {
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
-                color: "#FFFFFF",
+                color: "#0A0A0A",
                 lineHeight: 1.1,
                 marginBottom: "1rem",
               }}
@@ -112,7 +112,7 @@ export default function Testimonials() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                color: "rgba(240,238,255,0.55)",
+                color: "rgba(10,10,10,0.50)",
                 fontSize: "1rem",
                 maxWidth: 460,
                 margin: "0 auto",
@@ -171,7 +171,7 @@ export default function Testimonials() {
                         fontFamily: "'DM Sans', sans-serif",
                         fontWeight: 600,
                         fontSize: "0.9rem",
-                        color: "#FFFFFF",
+                        color: "#0A0A0A",
                       }}
                     >
                       {t.name}
@@ -180,7 +180,7 @@ export default function Testimonials() {
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
                         fontSize: "0.78rem",
-                        color: "rgba(240,238,255,0.40)",
+                        color: "rgba(10,10,10,0.38)",
                       }}
                     >
                       {t.location}

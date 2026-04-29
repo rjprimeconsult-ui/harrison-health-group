@@ -1,6 +1,6 @@
 /*
  * HARRISON HEALTH GROUP — Navbar
- * Real HH monogram logo, gold accent, charcoal glass on scroll.
+ * White Prestige design: white bg, black text, purple accents, gold border detail
  * Real phone: (954) 600-0342
  */
 
@@ -8,8 +8,6 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import { AnimatedButton } from "@/components/motion/AnimationWrappers";
-
-const LOGO_URL = "/manus-storage/hhg-logo_8b865777.jpg";
 
 const navLinks = [
   { label: "Coverage", href: "#coverage" },
@@ -43,11 +41,14 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
         style={{
           background: scrolled
-            ? "rgba(10, 10, 10, 0.95)"
-            : "rgba(10, 10, 10, 0.55)",
+            ? "rgba(255,255,255,0.97)"
+            : "rgba(255,255,255,0.85)",
           backdropFilter: "blur(16px)",
           WebkitBackdropFilter: "blur(16px)",
-          borderBottom: scrolled ? "1px solid rgba(201, 168, 76, 0.18)" : "1px solid transparent",
+          borderBottom: scrolled
+            ? "1px solid rgba(201,168,76,0.30)"
+            : "1px solid rgba(168,85,247,0.12)",
+          boxShadow: scrolled ? "0 2px 24px rgba(0,0,0,0.08)" : "none",
         }}
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -63,7 +64,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
-              {/* Monogram mark — two stacked letters in gold, no white box */}
+              {/* HH monogram — white box, purple letters, gold border */}
               <div
                 style={{
                   display: "flex",
@@ -73,9 +74,10 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
                   width: 42,
                   height: 42,
                   flexShrink: 0,
-                  background: "rgba(168,85,247,0.08)",
-                  border: "1px solid rgba(168,85,247,0.30)",
+                  background: "#FFFFFF",
+                  border: "1.5px solid #C9A84C",
                   borderRadius: 6,
+                  boxShadow: "0 2px 8px rgba(201,168,76,0.20)",
                 }}
               >
                 <span
@@ -83,7 +85,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 700,
                     fontSize: "1.35rem",
-                    color: "#A855F7",
+                    color: "#7C3AED",
                     lineHeight: 1,
                     letterSpacing: "-0.02em",
                   }}
@@ -97,7 +99,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 700,
                     fontSize: "1.1rem",
-                    color: "#FFFFFF",
+                    color: "#0A0A0A",
                     lineHeight: 1.1,
                     letterSpacing: "0.02em",
                   }}
@@ -110,7 +112,7 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
                     fontSize: "0.52rem",
                     letterSpacing: "0.22em",
                     textTransform: "uppercase",
-                    color: "#A855F7",
+                    color: "#C9A84C",
                     lineHeight: 1,
                   }}
                 >
@@ -126,9 +128,9 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
                   className="text-sm font-medium transition-colors duration-200 bg-transparent border-none"
-                  style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(240,238,255,0.70)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#A855F7")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,238,255,0.70)")}
+                  style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(10,10,10,0.65)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#7C3AED")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(10,10,10,0.65)")}
                   whileHover={{ y: -1 }}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -144,14 +146,14 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
               <motion.a
                 href="tel:+19546000342"
                 className="flex items-center gap-2 text-sm font-medium transition-colors"
-                style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(240,238,255,0.65)" }}
+                style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(10,10,10,0.60)" }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#A855F7")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,238,255,0.65)")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#7C3AED")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(10,10,10,0.60)")}
               >
-                <Phone size={14} style={{ color: "#A855F7" }} />
+                <Phone size={14} style={{ color: "#C9A84C" }} />
                 (954) 600-0342
               </motion.a>
               <AnimatedButton
@@ -164,7 +166,8 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
 
             {/* Mobile Menu Toggle */}
             <button
-              className="lg:hidden text-white/80 hover:text-white p-2 bg-transparent border-none"
+              className="lg:hidden p-2 bg-transparent border-none"
+              style={{ color: "#0A0A0A" }}
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
@@ -180,15 +183,17 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
         initial={false}
         animate={mobileOpen ? { opacity: 1, pointerEvents: "auto" } : { opacity: 0, pointerEvents: "none" }}
         transition={{ duration: 0.25 }}
-          style={{ background: "rgba(10, 10, 10, 0.98)", backdropFilter: "blur(20px)" }}
+        style={{ background: "rgba(255,255,255,0.98)", backdropFilter: "blur(20px)" }}
       >
         <div className="flex flex-col items-center justify-center h-full gap-8">
           {navLinks.map((link, i) => (
             <motion.button
               key={link.href}
               onClick={() => handleNavClick(link.href)}
-              className="text-2xl font-medium text-white/80 hover:text-white transition-colors bg-transparent border-none"
-              style={{ fontFamily: "'Cormorant Garamond', serif" }}
+              className="text-2xl font-medium transition-colors bg-transparent border-none"
+              style={{ fontFamily: "'Cormorant Garamond', serif", color: "rgba(10,10,10,0.75)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#7C3AED")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(10,10,10,0.75)")}
               initial={{ opacity: 0, y: 20 }}
               animate={mobileOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: i * 0.07 }}
@@ -205,9 +210,9 @@ export default function Navbar({ onQuoteClick }: NavbarProps) {
             <a
               href="tel:+19546000342"
               className="flex items-center gap-2 transition-colors"
-              style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(240,238,255,0.70)" }}
+              style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(10,10,10,0.65)" }}
             >
-              <Phone size={16} style={{ color: "#A855F7" }} />
+              <Phone size={16} style={{ color: "#C9A84C" }} />
               (954) 600-0342
             </a>
             <button

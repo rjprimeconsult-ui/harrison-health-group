@@ -74,7 +74,7 @@ export default function Footer() {
       {/* Main Footer */}
       <footer
         style={{
-          background: "#06040E",
+          background: "#F8F7FF",
           borderTop: "1px solid rgba(168,85,247,0.08)",
         }}
       >
@@ -90,7 +90,7 @@ export default function Footer() {
                   boxShadow: "0 0 20px rgba(168,85,247,0.25)",
                   }}
                 >
-                  <Shield size={20} color="#08060F" />
+                  <Shield size={20} color="#FFFFFF" />
                 </div>
                 <div>
                   <div
@@ -98,7 +98,7 @@ export default function Footer() {
                       fontFamily: "'Cormorant Garamond', serif",
                       fontWeight: 700,
                       fontSize: "1.1rem",
-                  color: "#FFFFFF",
+                  color: "#0A0A0A",
                   lineHeight: 1.1,
                 }}
               >
@@ -121,7 +121,7 @@ export default function Footer() {
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.85rem",
-                  color: "rgba(240,238,255,0.45)",
+                  color: "rgba(10,10,10,0.45)",
                   lineHeight: 1.7,
                   marginBottom: "1.5rem",
                 }}
@@ -132,16 +132,16 @@ export default function Footer() {
               <div className="flex flex-col gap-2">
                 <a
                   href="tel:+19546000342"
-                  className="flex items-center gap-2 text-sm text-white/50 hover:text-white/80 transition-colors no-underline"
-                  style={{ fontFamily: "'DM Sans', sans-serif" }}
+                  className="flex items-center gap-2 text-sm transition-colors no-underline"
+                  style={{ color: "rgba(10,10,10,0.55)", fontFamily: "'DM Sans', sans-serif" }}
                 >
                   <Phone size={13} style={{ color: "#A855F7" }} />
                   (954) 600-0342
                 </a>
                 <a
                   href="mailto:info@harrisonhealthgroup.com"
-                  className="flex items-center gap-2 text-sm text-white/50 hover:text-white/80 transition-colors no-underline"
-                  style={{ fontFamily: "'DM Sans', sans-serif" }}
+                  className="flex items-center gap-2 text-sm transition-colors no-underline"
+                  style={{ color: "rgba(10,10,10,0.55)", fontFamily: "'DM Sans', sans-serif" }}
                 >
                   <Mail size={13} style={{ color: "#A855F7" }} />
                   info@harrisonhealthgroup.com
@@ -169,8 +169,8 @@ export default function Footer() {
                     <li key={link}>
                       <a
                         href="#"
-                        className="text-sm text-white/45 hover:text-white/80 transition-colors no-underline"
-                        style={{ fontFamily: "'DM Sans', sans-serif" }}
+                        className="text-sm transition-colors no-underline"
+                        style={{ color: "rgba(10,10,10,0.50)", fontFamily: "'DM Sans', sans-serif" }}
                       >
                         {link}
                       </a>
@@ -190,7 +190,7 @@ export default function Footer() {
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "0.78rem",
-                color: "rgba(240,238,255,0.30)",
+                color: "rgba(10,10,10,0.35)",
               }}
             >
               © {new Date().getFullYear()} Harrison Health Group. All rights reserved.
@@ -201,8 +201,8 @@ export default function Footer() {
                 href="https://nipr.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 text-xs text-white/30 hover:text-yellow-400 transition-colors no-underline"
-                style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.1em" }}
+                className="flex items-center gap-1 text-xs transition-colors no-underline"
+                style={{ color: "rgba(10,10,10,0.35)", fontFamily: "'DM Mono', monospace", fontSize: "0.62rem", letterSpacing: "0.1em" }}
               >
                 Verify License
                 <ExternalLink size={10} />
@@ -215,7 +215,7 @@ export default function Footer() {
       {/* Compliance Footer */}
       <div
         style={{
-          background: "#04030A",
+          background: "#F8F7FF",
           borderTop: "1px solid rgba(168,85,247,0.12)",
         }}
       >
@@ -244,7 +244,7 @@ export default function Footer() {
                       fontFamily: "'DM Sans', sans-serif",
                       fontWeight: 600,
                       fontSize: "0.72rem",
-                      color: "rgba(240,238,255,0.40)",
+                      color: "rgba(10,10,10,0.40)",
                       marginBottom: "0.4rem",
                       textTransform: "uppercase",
                       letterSpacing: "0.05em",
@@ -256,7 +256,7 @@ export default function Footer() {
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.72rem",
-                      color: "rgba(240,238,255,0.22)",
+                      color: "rgba(10,10,10,0.12)",
                       lineHeight: 1.65,
                     }}
                   >
