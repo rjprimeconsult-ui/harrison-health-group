@@ -52,6 +52,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
           left-aligned headline text.
       ───────────────────────────────────────────────────────────── */}
       <motion.div
+        className="hidden md:flex"  /* desktop only — hidden on mobile */
         style={{
           position: "absolute",
           top: 0,
@@ -62,7 +63,6 @@ export default function Hero({ onQuoteClick }: HeroProps) {
           pointerEvents: "none",
           overflow: "hidden",
           zIndex: 1,
-          display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
@@ -234,6 +234,82 @@ export default function Hero({ onQuoteClick }: HeroProps) {
               Made Simple.
             </span>
           </motion.h1>
+
+          {/* Mobile-only HH watermark — shown below headline, hidden on desktop */}
+          <motion.div
+            className="flex md:hidden flex-col items-center mt-6 mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            style={{ pointerEvents: "none", userSelect: "none" }}
+          >
+            {/* HH letters */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "flex-end",
+                lineHeight: 1,
+                gap: "6px",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 300,
+                  fontSize: "clamp(80px, 22vw, 120px)",
+                  lineHeight: 0.85,
+                  color: "#0A0A0A",
+                  display: "block",
+                  marginBottom: "clamp(14px, 4vw, 24px)",
+                }}
+              >
+                H
+              </span>
+              <span
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 300,
+                  fontSize: "clamp(60px, 17vw, 92px)",
+                  lineHeight: 0.85,
+                  color: "#0A0A0A",
+                  display: "block",
+                  marginBottom: 0,
+                }}
+              >
+                H
+              </span>
+            </div>
+            {/* HARRISON HEALTH bar */}
+            <div
+              style={{
+                marginTop: "6px",
+                width: "100%",
+                background: "rgba(255,255,255,0.90)",
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
+                border: "1.5px solid rgba(10,10,10,0.55)",
+                boxShadow: "0 2px 10px rgba(0,0,0,0.08)",
+                padding: "8px 20px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 500,
+                  fontSize: "0.65rem",
+                  letterSpacing: "0.38em",
+                  textTransform: "uppercase",
+                  color: "#0A0A0A",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                Harrison Health
+              </span>
+            </div>
+          </motion.div>
 
           {/* Sub-headline */}
           <motion.p
