@@ -32,7 +32,7 @@ const teamMembers: TeamMember[] = [
     specialties: ["Individual & Family", "Group Benefits", "Supplemental Coverage"],
     phone: "+19546000342",
     photoReady: true,
-    photoUrl: "/manus-storage/shaquille_processed_7c0a1ce6.png",
+    photoUrl: "/manus-storage/shaquille_new_bbc2b30c.webp",
   },
   {
     id: 2,
@@ -42,7 +42,7 @@ const teamMembers: TeamMember[] = [
     specialties: ["Individual Plans", "Family Coverage", "Private Health Plans"],
     phone: "+19546000342",
     photoReady: true,
-    photoUrl: "/manus-storage/chevaur_processed_4c228628.png",
+    photoUrl: "/manus-storage/chevaur_new_386101c9.webp",
   },
   {
     id: 3,
@@ -52,7 +52,7 @@ const teamMembers: TeamMember[] = [
     specialties: ["Private Health Plans", "Supplemental Coverage", "Dental & Vision"],
     phone: "+19546000342",
     photoReady: true,
-    photoUrl: "/manus-storage/walter_processed_010e9ec2.png",
+    photoUrl: "/manus-storage/walter_new_f4f47bad.webp",
   },
   {
     id: 4,
@@ -133,8 +133,8 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
           <div
             className="relative flex items-center justify-center"
             style={{
-              height: 280,
-              background: "#FFFFFF",
+              height: 300,
+              background: "#2A2A2A",
               overflow: "hidden",
             }}
           >
@@ -185,13 +185,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
               </>
             )}
 
-            {/* Purple glow at bottom */}
-            <div
-              className="absolute bottom-0 left-0 right-0 h-16"
-              style={{
-                background: "linear-gradient(to top, rgba(255,255,255,0.85), transparent)",
-              }}
-            />
+            {/* No fade overlay — photos have their own natural background */}
           </div>
 
           {/* Info */}

@@ -48,32 +48,29 @@ export default function Stats() {
       className="relative py-28 overflow-hidden"
       style={{ background: "#FFFFFF" }}
     >
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <img
-          src={STATS_BG}
-          alt=""
-          className="w-full h-full object-cover"
-          style={{ opacity: 0.20 }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(to bottom, #FFFFFF 0%, rgba(10,10,10,0.7) 50%, #FFFFFF 100%)",
-          }}
-        />
-      </div>
+      {/* Solid black rectangle — sharp edges, no fade */}
+      <div
+        className="absolute"
+        style={{
+          top: "32px",
+          bottom: "32px",
+          left: "40px",
+          right: "40px",
+          background: "#0A0A0A",
+          borderRadius: "4px",
+        }}
+      />
 
       <div className="container relative z-10">
         <FadeUp>
           <div className="text-center mb-16">
-            <div className="section-label mb-4">By the Numbers</div>
+            <div className="section-label mb-4" style={{ color: "#C9A84C" }}>By the Numbers</div>
             <h2
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
-                  color: "#0A0A0A",
+                  color: "#FFFFFF",
                   lineHeight: 1.1,
                 }}
               >
@@ -118,7 +115,7 @@ export default function Stats() {
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 600,
                   fontSize: "1rem",
-                  color: "#0A0A0A",
+                  color: "#FFFFFF",
                   marginBottom: "0.4rem",
                 }}
               >
@@ -130,7 +127,7 @@ export default function Stats() {
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.8rem",
-                  color: "#0A0A0A",
+                  color: "rgba(255,255,255,0.75)",
                   lineHeight: 1.5,
                 }}
               >
