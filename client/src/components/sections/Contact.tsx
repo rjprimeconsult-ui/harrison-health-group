@@ -72,9 +72,10 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
-                color: "#ffffff",
+                color: "#0A0A0A",
                 lineHeight: 1.1,
                 marginBottom: "1rem",
+                textAlign: "center",
               }}
             >
               Your Coverage Journey{" "}
@@ -110,8 +111,8 @@ export default function Contact({ onQuoteClick }: ContactProps) {
           <div
             className="max-w-4xl mx-auto rounded-2xl p-10 md:p-14 mb-12 relative overflow-hidden"
             style={{
-              background: "linear-gradient(135deg, rgba(201,168,76,0.12), rgba(139,105,20,0.08))",
-              border: "1px solid rgba(201,168,76,0.25)",
+              background: "#0A0A0A",
+              border: "1px solid rgba(201,168,76,0.30)",
             }}
           >
             {/* Decorative corner */}
@@ -138,7 +139,10 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontWeight: 700,
                   fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
-                  color: "#ffffff",
+                  background: "linear-gradient(135deg, #E2C97E, #C9A84C)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
                   marginBottom: "1rem",
                   lineHeight: 1.1,
                 }}
@@ -148,7 +152,7 @@ export default function Contact({ onQuoteClick }: ContactProps) {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  color: "#0A0A0A",
+                  color: "rgba(255,255,255,0.80)",
                   fontSize: "1rem",
                   maxWidth: 420,
                   margin: "0 auto 2rem",
@@ -160,33 +164,41 @@ export default function Contact({ onQuoteClick }: ContactProps) {
               </p>
 
               <div className="flex flex-wrap gap-4 justify-center">
-                <AnimatedButton
-                  onClick={() => onQuoteClick ? onQuoteClick() : (window.location.href = "tel:+19546000342")}
-                  className="btn-primary text-base px-8 py-4"
+                {/* Gold phone button — unchanged */}
+                <motion.a
+                  href="tel:+19546000342"
+                  className="flex items-center gap-2 px-8 py-4 rounded-lg text-base font-semibold"
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    background: "linear-gradient(135deg, #E2C97E, #C9A84C, #A8852D)",
+                    color: "#0A0A0A",
+                    textDecoration: "none",
+                    border: "none",
+                  }}
+                  whileHover={{ scale: 1.03, boxShadow: "0 8px 28px rgba(201,168,76,0.45)" }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 22 }}
                 >
                   <Phone size={18} />
                   Call (954) 600-0342
-                </AnimatedButton>
+                </motion.a>
+                {/* Send an Email — identical style to phone button */}
                 <motion.a
                   href="mailto:info@harrisonhealthgroup.com"
-                  className="flex items-center gap-2 px-8 py-4 rounded-lg text-base font-semibold text-white transition-all duration-300"
+                  className="flex items-center gap-2 px-8 py-4 rounded-lg text-base font-semibold"
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    background: "rgba(201,168,76,0.08)",
-                    border: "1px solid rgba(201,168,76,0.25)",
+                    background: "linear-gradient(135deg, #E2C97E, #C9A84C, #A8852D)",
+                    color: "#0A0A0A",
                     textDecoration: "none",
+                    border: "none",
                   }}
-                  whileHover={{
-                    background: "rgba(201,168,76,0.15)",
-                    borderColor: "rgba(201,168,76,0.5)",
-                    scale: 1.02,
-                  }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: 1.03, boxShadow: "0 8px 28px rgba(201,168,76,0.45)" }}
+                  whileTap={{ scale: 0.97 }}
                   transition={{ type: "spring", stiffness: 400, damping: 22 }}
                 >
                   <Mail size={18} />
                   Send an Email
-                  <ArrowRight size={16} />
                 </motion.a>
               </div>
 
