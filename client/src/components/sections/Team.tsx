@@ -1,13 +1,12 @@
-/*
+/**
  * HARRISON HEALTH GROUP — Team Section
- * 3D flip cards with blank photo placeholders (headshots pending).
- * Front: placeholder + name + title. Back: bio + specialties + Book a Call CTA.
- * Design: Midnight Gradient Luxury
+ * Design: White/Black/Gold — black card info panel with gold typography
+ * Order: Shaquille, Chevaur, Raquel, Walter, Matthew
  */
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Phone, ChevronRight, Camera, Award } from "lucide-react";
+import { Phone, ChevronRight, Camera } from "lucide-react";
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/motion/AnimationWrappers";
 
 interface TeamMember {
@@ -20,6 +19,7 @@ interface TeamMember {
   phone: string;
   photoReady: boolean;
   photoUrl?: string;
+  photoBg?: string; // custom bg color per photo
 }
 
 const teamMembers: TeamMember[] = [
@@ -33,6 +33,7 @@ const teamMembers: TeamMember[] = [
     phone: "+19546000342",
     photoReady: true,
     photoUrl: "/manus-storage/shaquille_new_bbc2b30c.webp",
+    photoBg: "#2A2A2A",
   },
   {
     id: 2,
@@ -43,9 +44,21 @@ const teamMembers: TeamMember[] = [
     phone: "+19546000342",
     photoReady: true,
     photoUrl: "/manus-storage/chevaur_new_386101c9.webp",
+    photoBg: "#2A2A2A",
   },
   {
     id: 3,
+    name: "Raquel Gray",
+    title: "Licensed Health Advisor",
+    bio: "Raquel is passionate about helping individuals and families find the right coverage that fits their lifestyle and budget. She specializes in guiding clients through marketplace options and private plans with patience and expertise.",
+    specialties: ["Marketplace Plans", "Individual Coverage", "Family Health Plans"],
+    phone: "+19546000342",
+    photoReady: true,
+    photoUrl: "/manus-storage/raquel_1b64a632.webp",
+    photoBg: "#111111",
+  },
+  {
+    id: 4,
     name: "Walter Joseph",
     title: "Licensed Advisor",
     bio: "Walter is dedicated to helping individuals and families find the right private health coverage. From comprehensive PPO options to supplemental plans, he ensures every client gets the protection they need at a price they can afford.",
@@ -53,19 +66,22 @@ const teamMembers: TeamMember[] = [
     phone: "+19546000342",
     photoReady: true,
     photoUrl: "/manus-storage/walter_new_f4f47bad.webp",
+    photoBg: "#2A2A2A",
   },
   {
-    id: 4,
-    name: "Team Member",
-    title: "Group Benefits Consultant",
-    bio: "Dedicated to helping small and mid-size businesses build competitive employee benefits packages. From 2-person startups to 500-employee companies, we design plans that attract talent and control costs.",
-    specialties: ["Group Health", "Employer Benefits", "Small Business"],
+    id: 5,
+    name: "Matthew Grossman",
+    title: "Licensed Health Advisor",
+    bio: "Matthew brings deep knowledge of group and individual health plans to every client interaction. He is committed to finding cost-effective solutions for small businesses and individuals navigating their coverage options.",
+    specialties: ["Group Health", "Individual Plans", "Small Business Benefits"],
     phone: "+19546000342",
-    photoReady: false,
+    photoReady: true,
+    photoUrl: "/manus-storage/matthew_34bb264f.webp",
+    photoBg: "#2A2A2A",
   },
 ];
 
-function FlipCard({ member, index: _index }: { member: TeamMember; index?: number }) {
+function FlipCard({ member }: { member: TeamMember }) {
   const [flipped, setFlipped] = useState(false);
   const [hovered, setHovered] = useState(false);
 
@@ -87,7 +103,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
       onMouseEnter={() => { setFlipped(true); setHovered(true); }}
       onMouseLeave={() => { setFlipped(false); setHovered(false); }}
     >
-      {/* Outer glow ring — animates on hover */}
+      {/* Outer glow ring */}
       <motion.div
         style={{
           position: "absolute",
@@ -98,11 +114,12 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
         }}
         animate={{
           boxShadow: hovered
-            ? "0 0 0 2px #0A0A0A, 0 20px 48px rgba(0,0,0,0.14), 0 6px 20px rgba(201,168,76,0.18)"
-            : "0 0 0 1.5px rgba(10,10,10,0.15), 0 4px 20px rgba(0,0,0,0.08)",
+            ? "0 0 0 2px #C9A84C, 0 20px 48px rgba(0,0,0,0.18), 0 6px 20px rgba(201,168,76,0.22)"
+            : "0 0 0 1.5px rgba(201,168,76,0.25), 0 4px 20px rgba(0,0,0,0.08)",
         }}
         transition={{ duration: 0.35, ease: "easeOut" }}
       />
+
       <motion.div
         className="flip-card-inner"
         animate={{ rotateY: flipped ? 180 : 0 }}
@@ -115,7 +132,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
           height: "100%",
         }}
       >
-        {/* FRONT */}
+        {/* ── FRONT ── */}
         <div
           className="flip-card-front rounded-2xl overflow-hidden"
           style={{
@@ -123,80 +140,88 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             inset: 0,
             width: "100%",
             height: "100%",
-            background: "rgba(255,255,255,0.95)",
-            border: "1px solid rgba(201,168,76,0.15)",
+            background: "#0A0A0A",
+            border: "1px solid rgba(201,168,76,0.20)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
+            display: "flex",
+            flexDirection: "column",
           }}
         >
-          {/* Photo area */}
+          {/* Photo area — centered */}
           <div
-            className="relative flex items-center justify-center"
             style={{
-              height: 300,
-              background: "#2A2A2A",
+              height: 340,
+              background: member.photoBg ?? "#2A2A2A",
               overflow: "hidden",
+              flexShrink: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             {member.photoReady ? (
               <motion.img
                 src={member.photoUrl ?? ""}
                 alt={member.name}
-                animate={{ scale: hovered ? 1.07 : 1 }}
+                animate={{ scale: hovered ? 1.06 : 1 }}
                 transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                 style={{
                   width: "100%",
                   height: "100%",
                   objectFit: "cover",
-                  objectPosition: "top center",
+                  objectPosition: "center top",
+                  display: "block",
                 }}
               />
             ) : (
-              <>
-                {/* Silhouette placeholder — no image needed */}
-                {/* "Photo Coming Soon" overlay */}
+              <div
+                className="flex flex-col items-center justify-center w-full h-full"
+                style={{ background: "#1A1A1A" }}
+              >
                 <div
-                  className="absolute inset-0 flex flex-col items-center justify-end pb-5"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-full"
                   style={{
-                    background: "linear-gradient(to top, rgba(255,255,255,0.90) 0%, transparent 60%)",
-                  }}
-                >
-                  <div
-                    className="flex items-center gap-2 px-3 py-1.5 rounded-full"
-                    style={{
                     background: "rgba(201,168,76,0.10)",
                     border: "1px solid rgba(201,168,76,0.25)",
+                  }}
+                >
+                  <Camera size={11} style={{ color: "#C9A84C" }} />
+                  <span
+                    style={{
+                      fontFamily: "'DM Mono', monospace",
+                      fontSize: "0.6rem",
+                      letterSpacing: "0.12em",
+                      color: "rgba(201,168,76,0.80)",
+                      textTransform: "uppercase",
                     }}
                   >
-                    <Camera size={11} style={{ color: "#C9A84C" }} />
-                    <span
-                      style={{
-                        fontFamily: "'DM Mono', monospace",
-                        fontSize: "0.6rem",
-                        letterSpacing: "0.12em",
-                        color: "rgba(201,168,76,0.80)",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      Photo Coming Soon
-                    </span>
-                  </div>
+                    Photo Coming Soon
+                  </span>
                 </div>
-              </>
+              </div>
             )}
-
-            {/* No fade overlay — photos have their own natural background */}
           </div>
 
-          {/* Info */}
-          <div className="p-6">
+          {/* Info section — solid black with gold text */}
+          <div
+            style={{
+              flex: 1,
+              background: "#0A0A0A",
+              padding: "18px 20px 16px",
+              borderTop: "1px solid rgba(201,168,76,0.18)",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
             <h3
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
-                fontSize: "1.3rem",
-                color: "#0A0A0A",
-                marginBottom: "0.25rem",
+                fontSize: "1.25rem",
+                color: "#FFFFFF",
+                marginBottom: "0.2rem",
                 lineHeight: 1.2,
               }}
             >
@@ -205,10 +230,10 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "0.82rem",
+                fontSize: "0.80rem",
                 color: "#C9A84C",
                 fontWeight: 500,
-                marginBottom: "1rem",
+                marginBottom: "0.75rem",
               }}
             >
               {member.title}
@@ -216,23 +241,30 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
 
             {/* Hover hint */}
             <div className="flex items-center gap-1.5">
-              <span
+              <motion.span
+                animate={{ opacity: hovered ? 0 : 1 }}
+                transition={{ duration: 0.2 }}
                 style={{
                   fontFamily: "'DM Mono', monospace",
-                  fontSize: "0.62rem",
+                  fontSize: "0.60rem",
                   letterSpacing: "0.12em",
-                  color: "rgba(201,168,76,0.45)",
+                  color: "rgba(201,168,76,0.55)",
                   textTransform: "uppercase",
                 }}
               >
                 Hover to learn more
-              </span>
-              <ChevronRight size={11} style={{ color: "rgba(201,168,76,0.40)" }} />
+              </motion.span>
+              <motion.div
+                animate={{ x: hovered ? 4 : 0 }}
+                transition={{ type: "spring", stiffness: 400, damping: 20, repeat: Infinity, repeatType: "reverse" }}
+              >
+                <ChevronRight size={11} style={{ color: "rgba(201,168,76,0.50)" }} />
+              </motion.div>
             </div>
           </div>
         </div>
 
-        {/* BACK */}
+        {/* ── BACK ── */}
         <div
           className="flip-card-back rounded-2xl flex flex-col"
           style={{
@@ -240,8 +272,8 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             inset: 0,
             width: "100%",
             height: "100%",
-            background: "#FFFFFF",
-            border: "1px solid rgba(201,168,76,0.25)",
+            background: "#0A0A0A",
+            border: "1px solid rgba(201,168,76,0.30)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
@@ -250,7 +282,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             overflowX: "hidden",
           }}
         >
-          {/* Shimmer accent line at top of back face */}
+          {/* Shimmer accent line */}
           <div
             style={{
               position: "absolute",
@@ -258,10 +290,11 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
               left: "8%",
               right: "8%",
               height: 1,
-              background: "linear-gradient(to right, transparent, rgba(201,168,76,0.60), transparent)",
+              background: "linear-gradient(to right, transparent, rgba(201,168,76,0.70), transparent)",
               borderRadius: 1,
             }}
           />
+
           {/* Name on back */}
           <div style={{ marginBottom: "8px" }}>
             <h3
@@ -269,7 +302,7 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
                 fontSize: "1.25rem",
-                color: "#0A0A0A",
+                color: "#FFFFFF",
                 marginBottom: "2px",
                 lineHeight: 1.2,
               }}
@@ -293,18 +326,18 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
           <div
             style={{
               height: 1,
-              background: "linear-gradient(to right, rgba(201,168,76,0.35), transparent)",
+              background: "linear-gradient(to right, rgba(201,168,76,0.45), transparent)",
               marginBottom: "10px",
               flexShrink: 0,
             }}
           />
 
-          {/* Bio — full text, no clamp */}
+          {/* Bio */}
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: "0.78rem",
-              color: "#0A0A0A",
+              color: "rgba(255,255,255,0.88)",
               lineHeight: 1.6,
               marginBottom: "12px",
               flexShrink: 0,
@@ -313,14 +346,14 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
             {member.bio}
           </p>
 
-          {/* Specialties — compact inline row */}
+          {/* Specialties */}
           <div style={{ marginBottom: "12px", flexShrink: 0 }}>
             <div
               style={{
                 fontFamily: "'DM Mono', monospace",
                 fontSize: "0.55rem",
                 letterSpacing: "0.12em",
-                color: "rgba(201,168,76,0.45)",
+                color: "rgba(201,168,76,0.60)",
                 textTransform: "uppercase",
                 marginBottom: "6px",
               }}
@@ -333,8 +366,8 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
                   key={s}
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    background: "rgba(201,168,76,0.08)",
-                    border: "1px solid rgba(201,168,76,0.22)",
+                    background: "rgba(201,168,76,0.10)",
+                    border: "1px solid rgba(201,168,76,0.30)",
                     color: "#C9A84C",
                     fontSize: "0.65rem",
                     padding: "3px 9px",
@@ -351,14 +384,14 @@ function FlipCard({ member, index: _index }: { member: TeamMember; index?: numbe
           {/* CTA */}
           <motion.a
             href={`tel:${member.phone}`}
-            className="flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white"
+            className="flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold"
             style={{
               fontFamily: "'DM Sans', sans-serif",
               background: "linear-gradient(135deg, #E2C97E, #C9A84C, #A8852D)",
               color: "#0A0A0A",
               textDecoration: "none",
             }}
-            whileHover={{ scale: 1.03, boxShadow: "0 8px 24px rgba(201,168,76,0.30)" }}
+            whileHover={{ scale: 1.03, boxShadow: "0 8px 24px rgba(201,168,76,0.35)" }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 420, damping: 22 }}
           >
@@ -378,19 +411,6 @@ export default function Team() {
       className="py-28 relative overflow-hidden"
       style={{ background: "#FFFFFF" }}
     >
-      {/* Ambient orbs */}
-      <div
-        className="ambient-orb"
-        style={{
-          width: 600,
-          height: 600,
-          background: "radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%)",
-          top: "20%",
-          right: "-200px",
-          animationDelay: "-8s",
-        }}
-      />
-
       <div className="container relative z-10">
         {/* Header */}
         <FadeUp>
@@ -407,9 +427,7 @@ export default function Team() {
               }}
             >
               Meet Your{" "}
-              <span className="gold-text">
-                Dedicated Advisors
-              </span>
+              <span className="gold-text">Dedicated Advisors</span>
             </h2>
             <p
               style={{
@@ -424,15 +442,21 @@ export default function Team() {
               Licensed professionals dedicated to finding the right plan for your
               unique situation. Hover any card to learn more.
             </p>
-
           </div>
         </FadeUp>
 
-        {/* Flip Cards Grid */}
-        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {teamMembers.map((member) => (
+        {/* Flip Cards Grid — 5 agents, 3 on top row, 2 centered on bottom */}
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+          {teamMembers.slice(0, 3).map((member) => (
             <StaggerItem key={member.id}>
-              <FlipCard member={member} index={member.id} />
+              <FlipCard member={member} />
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+          {teamMembers.slice(3).map((member) => (
+            <StaggerItem key={member.id}>
+              <FlipCard member={member} />
             </StaggerItem>
           ))}
         </StaggerContainer>
