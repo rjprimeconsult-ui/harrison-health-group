@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import { ShieldCheck, Users, Award, MapPin, Phone, Mail } from "lucide-react";
 import { FadeUp, SlideInLeft, SlideInRight } from "@/components/motion/AnimationWrappers";
 
-const ABOUT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663441385223/aeUWcF9B5vWVriiiqFVf4u/hhg-about-bg-PTMYQWofTNBAP75qwr9U8h.webp";
+const ABOUT_IMG = "/manus-storage/advisor_couple_realistic_3c0d44e9.jpg";
 
 const highlights = [
   { icon: ShieldCheck, label: "Licensed in 31+ States" },
