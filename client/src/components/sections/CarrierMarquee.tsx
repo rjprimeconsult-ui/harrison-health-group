@@ -1,91 +1,88 @@
 /*
  * HARRISON HEALTH GROUP — Carrier Marquee
- * Real carriers: UHC, BCBS, Cigna, Aetna, Ambetter, Molina, Oscar
  * Design: Charcoal & Gold Luxury
+ * Real carrier logos in an infinite horizontal scroll marquee
+ * White background, full-color logos, edge fade masks, smooth CSS animation
  */
 
 const carriers = [
-  "United HealthCare",
-  "Blue Cross Blue Shield",
-  "Cigna",
-  "Aetna",
-  "Ambetter",
-  "Molina Healthcare",
-  "Oscar Health",
+  { name: "Aetna",              src: "/manus-storage/aetna_a2dfa3bb.jpg" },
+  { name: "UnitedHealthcare",   src: "/manus-storage/unitedhealthcare_0feda939.png" },
+  { name: "Humana",             src: "/manus-storage/humana_6de3058c.jpg" },
+  { name: "Cigna",              src: "/manus-storage/cigna_33656fe8.png" },
+  { name: "Blue Cross Blue Shield", src: "/manus-storage/bcbs_23f0dee6.png" },
+  { name: "Ambetter",           src: "/manus-storage/ambetter_9afc373a.png" },
+  { name: "Molina Healthcare",  src: "/manus-storage/molina_742ed3af.png" },
+  { name: "Oscar Health",       src: "/manus-storage/oscar_8a6009dd.png" },
 ];
 
-const allCarriers = [...carriers, ...carriers]; // doubled for seamless loop
+const allCarriers = [...carriers, ...carriers];
 
 export default function CarrierMarquee() {
   return (
     <section
       style={{
         background: "#FFFFFF",
-        borderTop: "1px solid rgba(201,168,76,0.10)",
-        borderBottom: "1px solid rgba(201,168,76,0.10)",
-        padding: "1.25rem 0",
+        borderTop: "1px solid rgba(201,168,76,0.12)",
+        borderBottom: "1px solid rgba(201,168,76,0.12)",
+        padding: "1.5rem 0",
         overflow: "hidden",
       }}
     >
-      {/* Label */}
-      <div className="text-center mb-3">
+      <div className="text-center mb-4">
         <span
           style={{
             fontFamily: "'DM Mono', monospace",
             fontSize: "0.55rem",
             letterSpacing: "0.22em",
             textTransform: "uppercase",
-            color: "rgba(201,168,76,0.45)",
+            color: "rgba(201,168,76,0.55)",
           }}
         >
-          Carrier Partners
+          Trusted Carrier Partners
         </span>
       </div>
 
-      {/* Marquee */}
       <div className="relative overflow-hidden">
-        {/* Left fade */}
         <div
-          className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to right, #FFFFFF, transparent)" }}
+          className="absolute left-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+          style={{ background: "linear-gradient(to right, #FFFFFF 40%, transparent)" }}
         />
-        {/* Right fade */}
         <div
-          className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to left, #FFFFFF, transparent)" }}
+          className="absolute right-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+          style={{ background: "linear-gradient(to left, #FFFFFF 40%, transparent)" }}
         />
 
-        <div className="marquee-track">
+        <div
+          className="marquee-track"
+          style={{ display: "flex", alignItems: "center", gap: 0 }}
+        >
           {allCarriers.map((carrier, i) => (
             <div
               key={i}
-              className="flex items-center gap-3 px-8"
-              style={{ whiteSpace: "nowrap" }}
+              className="flex items-center justify-center flex-shrink-0"
+              style={{ padding: "0 3rem", height: 64 }}
             >
-              {/* Gold diamond separator */}
-              {i > 0 && (
-                <span
-                  style={{
-                    color: "rgba(201,168,76,0.30)",
-                    fontSize: "0.5rem",
-                    marginRight: "-1rem",
-                  }}
-                >
-                  ◆
-                </span>
-              )}
-              <span
+              <img
+                src={carrier.src}
+                alt={carrier.name}
+                title={carrier.name}
                 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontWeight: 600,
-                  fontSize: "1.05rem",
-                  color: "#0A0A0A",
-                  letterSpacing: "0.04em",
-                  transition: "color 0.2s",
+                  height: 40,
+                  width: "auto",
+                  maxWidth: 140,
+                  objectFit: "contain",
+                  display: "block",
+                  filter: "grayscale(20%) opacity(0.85)",
+                  transition: "filter 0.3s ease",
                 }}
-              >
-                {carrier}
-              </span>
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLImageElement).style.filter = "grayscale(0%) opacity(1)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLImageElement).style.filter = "grayscale(20%) opacity(0.85)";
+                }}
+              />
             </div>
           ))}
         </div>
