@@ -12,7 +12,7 @@ import {
   ChevronLeft, Check, Loader2, AlertCircle
 } from "lucide-react";
 
-const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_KEY";
+const WEB3FORMS_ACCESS_KEY = "97a6d29a-4a4c-42e5-8644-c6f2d14a4a40";
 const SHEETS_WEBHOOK_URL   = "YOUR_GOOGLE_SHEETS_WEBHOOK";
 
 interface FormData {
@@ -277,12 +277,10 @@ async function submitLead(data: FormData): Promise<void> {
     preferred_contact: data.preferredContact, best_time: data.bestTime,
     notes: data.additionalNotes, redirect: "false",
   };
-  if (WEB3FORMS_ACCESS_KEY !== "YOUR_WEB3FORMS_KEY") {
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
-    });
-    if (!res.ok) throw new Error("Web3Forms submission failed");
-  }
+  const res = await fetch("https://api.web3forms.com/submit", {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error("Web3Forms submission failed");
   if (SHEETS_WEBHOOK_URL !== "YOUR_GOOGLE_SHEETS_WEBHOOK") {
     await fetch(SHEETS_WEBHOOK_URL, {
       method: "POST", headers: { "Content-Type": "application/json" },
