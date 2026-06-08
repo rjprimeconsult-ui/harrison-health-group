@@ -202,30 +202,6 @@ export default function Contact({ onQuoteClick }: ContactProps) {
                 </motion.a>
               </div>
 
-              {/* Form coming soon notice */}
-              <motion.div
-                className="mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full"
-                style={{
-                  background: "rgba(201,168,76,0.06)",
-                  border: "1px solid rgba(201,168,76,0.15)",
-                }}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 }}
-              >
-                <span
-                  style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: "0.62rem",
-                    letterSpacing: "0.12em",
-                    color: "rgba(226,201,126,0.65)",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Online quote form coming soon
-                </span>
-              </motion.div>
             </div>
           </div>
         </FadeUp>
