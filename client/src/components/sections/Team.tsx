@@ -1,7 +1,7 @@
 /**
  * HARRISON HEALTH GROUP — Team Section
  * Design: White/Black/Gold — black card info panel with gold typography
- * Order: Shaquille, Chevaur, Raquel, Walter, Matthew, Raziya
+ * Order: Shaquille, Chevaur, Raziya, Raquel, Walter, Matthew
  */
 
 import { useState } from "react";
@@ -49,6 +49,18 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 3,
+    name: "Raziya Beersingh",
+    title: "Senior Health Advisor",
+    bio: "Raziya is committed to helping individuals and families navigate their health insurance options with confidence. She brings warmth, expertise, and a personalized approach to every client interaction, ensuring each person finds the coverage that truly fits their needs.",
+    specialties: ["Individual Plans", "Family Coverage", "Group Health Coverage"],
+    phone: "+19546000342",
+    photoReady: true,
+    photoUrl: "/manus-storage/raziya_professional_headshot_v2_9bc49c0b.png",
+    photoBg: "#2D2D2D",
+    photoPosition: "center 15%",
+  },
+  {
+    id: 4,
     name: "Raquel Gray",
     title: "Licensed Health Advisor",
     bio: "Raquel is passionate about helping individuals and families find the right coverage that fits their lifestyle and budget. She specializes in guiding clients through marketplace options and private plans with patience and expertise.",
@@ -59,7 +71,7 @@ const teamMembers: TeamMember[] = [
     photoBg: "#111111",
   },
   {
-    id: 4,
+    id: 5,
     name: "Walter Joseph",
     title: "Licensed Advisor",
     bio: "Walter is dedicated to helping individuals and families find the right private health coverage. From comprehensive PPO options to supplemental plans, he ensures every client gets the protection they need at a price they can afford.",
@@ -70,7 +82,7 @@ const teamMembers: TeamMember[] = [
     photoBg: "#2A2A2A",
   },
   {
-    id: 5,
+    id: 6,
     name: "Matthew Grossman",
     title: "Licensed Health Advisor",
     bio: "Matthew brings deep knowledge of group and individual health plans to every client interaction. He is committed to finding cost-effective solutions for small businesses and individuals navigating their coverage options.",
@@ -79,18 +91,6 @@ const teamMembers: TeamMember[] = [
     photoReady: true,
     photoUrl: "/manus-storage/matthew_34bb264f.webp",
     photoBg: "#2A2A2A",
-  },
-  {
-    id: 6,
-    name: "Raziya Beersingh",
-    title: "Senior Health Advisor",
-    bio: "Raziya is committed to helping individuals and families navigate their health insurance options with confidence. She brings warmth, expertise, and a personalized approach to every client interaction, ensuring each person finds the coverage that truly fits their needs.",
-    specialties: ["Individual Plans", "Family Coverage", "Marketplace Options"],
-    phone: "+19546000342",
-    photoReady: true,
-    photoUrl: "/manus-storage/raziya_professional_headshot_v2_9bc49c0b.png",
-    photoBg: "#2D2D2D",
-    photoPosition: "center 15%",
   },
 ];
 
