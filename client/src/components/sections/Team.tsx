@@ -1,7 +1,7 @@
 /**
  * HARRISON HEALTH GROUP — Team Section
  * Design: White/Black/Gold — black card info panel with gold typography
- * Order: Shaquille, Chevaur, Raquel, Walter, Matthew
+ * Order: Shaquille, Chevaur, Raquel, Walter, Matthew, Raziya
  */
 
 import { useState } from "react";
@@ -78,6 +78,17 @@ const teamMembers: TeamMember[] = [
     photoReady: true,
     photoUrl: "/manus-storage/matthew_34bb264f.webp",
     photoBg: "#2A2A2A",
+  },
+  {
+    id: 6,
+    name: "Raziya Beersingh",
+    title: "Senior Health Advisor",
+    bio: "Raziya is committed to helping individuals and families navigate their health insurance options with confidence. She brings warmth, expertise, and a personalized approach to every client interaction, ensuring each person finds the coverage that truly fits their needs.",
+    specialties: ["Individual Plans", "Family Coverage", "Marketplace Options"],
+    phone: "+19546000342",
+    photoReady: true,
+    photoUrl: "/manus-storage/raziya_grey_bg_7852942e.jpg",
+    photoBg: "#2D2D2D",
   },
 ];
 
@@ -445,7 +456,7 @@ export default function Team() {
           </div>
         </FadeUp>
 
-        {/* Flip Cards Grid — 5 agents, 3 on top row, 2 centered on bottom */}
+        {/* Flip Cards Grid — 6 agents, 3 on top row, 3 on bottom row */}
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
           {teamMembers.slice(0, 3).map((member) => (
             <StaggerItem key={member.id}>
@@ -453,7 +464,7 @@ export default function Team() {
             </StaggerItem>
           ))}
         </StaggerContainer>
-        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {teamMembers.slice(3).map((member) => (
             <StaggerItem key={member.id}>
               <FlipCard member={member} />
