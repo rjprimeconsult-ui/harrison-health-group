@@ -87,7 +87,7 @@ const teamMembers: TeamMember[] = [
     specialties: ["Individual Plans", "Family Coverage", "Marketplace Options"],
     phone: "+19546000342",
     photoReady: true,
-    photoUrl: "/manus-storage/raziya_grey_bg_v2_9734ffdf.jpg",
+    photoUrl: "/manus-storage/raziya_gradient_bg_0430412d.jpg",
     photoBg: "#2D2D2D",
   },
 ];
