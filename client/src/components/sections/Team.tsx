@@ -20,6 +20,7 @@ interface TeamMember {
   photoReady: boolean;
   photoUrl?: string;
   photoBg?: string; // custom bg color per photo
+  photoPosition?: string; // custom object-position per photo
 }
 
 const teamMembers: TeamMember[] = [
@@ -89,6 +90,7 @@ const teamMembers: TeamMember[] = [
     photoReady: true,
     photoUrl: "/manus-storage/raziya_professional_headshot_v2_9bc49c0b.png",
     photoBg: "#2D2D2D",
+    photoPosition: "center 15%",
   },
 ];
 
@@ -181,7 +183,7 @@ function FlipCard({ member }: { member: TeamMember }) {
                   width: "100%",
                   height: "100%",
                   objectFit: "cover",
-                  objectPosition: "center top",
+                  objectPosition: member.photoPosition ?? "center top",
                   display: "block",
                 }}
               />
