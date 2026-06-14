@@ -16,6 +16,7 @@ import Team from "@/components/sections/Team";
 import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
 import LicensedStatesMap from "@/components/sections/LicensedStatesMap";
+import Schedule from "@/components/sections/Schedule";
 import Footer from "@/components/sections/Footer";
 import StickyCallButton from "@/components/StickyCallButton";
 import QuoteModal from "@/components/QuoteModal";
@@ -38,6 +39,7 @@ export default function Home() {
       <Team />
       <Testimonials />
       <LicensedStatesMap />
+      <Schedule />
       <Contact onQuoteClick={() => setQuoteOpen(true)} />
       <Footer />
       <StickyCallButton />
