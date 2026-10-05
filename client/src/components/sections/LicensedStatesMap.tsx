@@ -9,24 +9,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { FadeUp } from "@/components/motion/AnimationWrappers";
 import { STATE_PATHS, STATE_CENTROIDS } from "./usMapData";
+import { mappedStates } from "@shared/service-area";
 
-// States Harrison Health Group is licensed in — confirmed by client
-// Removed: AZ, ID, ND, MN, PA
-// Added: MD
-const LICENSED_STATES = new Set([
-  // Mountain / West
-  "MT", "WY", "NV", "UT", "CO", "NM",
-  // Plains / Midwest
-  "SD", "NE", "KS", "IA", "MO",
-  // Great Lakes / Ohio Valley
-  "WI", "MI", "IL", "IN", "OH", "KY", "WV",
-  // South Central
-  "OK", "TX", "AR", "LA",
-  // Southeast
-  "TN", "MS", "AL", "GA", "FL", "SC", "NC",
-  // Mid-Atlantic / South
-  "VA", "MD",
-]);
+const LICENSED_STATES = mappedStates;
 
 const STATE_NAMES: Record<string, string> = {
   AL:"Alabama", AK:"Alaska", AZ:"Arizona", AR:"Arkansas", CA:"California",
@@ -95,10 +80,10 @@ export default function LicensedStatesMap() {
               }}
             >
               Licensed in{" "}
-              <span style={{ color: "#C9A84C" }}>{licensedCount} States</span>
+              <span style={{ color: "#A8852D" }}>{licensedCount} States</span>
             </h2>
             <p style={{ color: "#0A0A0A", fontSize: "0.95rem", maxWidth: "520px", margin: "0 auto" }}>
-              Hover over any state to see if we serve your area. Purple states are where Harrison Health Group is actively licensed.
+              Gold states reflect the current site list. Confirm advisor licensing and plan availability for your state before discussing coverage.
             </p>
           </div>
         </FadeUp>
@@ -122,7 +107,7 @@ export default function LicensedStatesMap() {
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <div style={{ width: 14, height: 14, borderRadius: 3, background: "rgba(10,10,10,0.10)" }} />
-                <span style={{ color: "#0A0A0A", fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>Not Available</span>
+                <span style={{ color: "#0A0A0A", fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>Not Listed</span>
               </div>
             </div>
 
@@ -147,6 +132,9 @@ export default function LicensedStatesMap() {
                     <path
                       key={abbr}
                       d={d}
+                      tabIndex={0}
+                      role="img"
+                      aria-label={`${STATE_NAMES[abbr] ?? abbr}: ${licensed ? "shown on licensed-state map" : "not listed on map"}`}
                       fill={
                         licensed
                           ? isHovered ? "#E2C97E" : "#C9A84C"
@@ -163,6 +151,8 @@ export default function LicensedStatesMap() {
                       }}
                       onMouseEnter={(e) => handleMouseEnter(abbr, e)}
                       onMouseLeave={handleMouseLeave}
+                      onFocus={() => setTooltip({ abbr, x: 50, y: 50 })}
+                      onBlur={handleMouseLeave}
                     />
                   );
                 })}
@@ -228,7 +218,7 @@ export default function LicensedStatesMap() {
                     color: LICENSED_STATES.has(tooltip.abbr) ? "#A8852D" : "rgba(10,10,10,0.40)",
                     marginTop: "2px",
                   }}>
-                    {LICENSED_STATES.has(tooltip.abbr) ? "✓ Licensed & Serving" : "✗ Not Available"}
+                    {LICENSED_STATES.has(tooltip.abbr) ? "Shown on service-area map" : "Not listed — ask about referrals"}
                   </div>
                 </motion.div>
               )}
@@ -244,9 +234,9 @@ export default function LicensedStatesMap() {
               }}
             >
               {[
-                { value: `${licensedCount}`, label: "States Licensed" },
-                { value: "20+", label: "Carrier Partners" },
-                { value: "$0", label: "Cost to You" },
+                { value: `${licensedCount}`, label: "States on Map" },
+                { value: "Private", label: "Coverage Focus" },
+                { value: "1:1", label: "Conversation" },
               ].map((stat, i) => (
                 <div
                   key={stat.label}
@@ -260,7 +250,7 @@ export default function LicensedStatesMap() {
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 700,
                     fontSize: "2rem",
-                    color: "#C9A84C",
+                    color: "#A8852D",
                     lineHeight: 1,
                   }}>
                     {stat.value}
@@ -277,6 +267,10 @@ export default function LicensedStatesMap() {
                 </div>
               ))}
             </div>
+            <details className="mt-5 text-sm" style={{ color: "#0A0A0A" }}>
+              <summary className="cursor-pointer font-semibold">See the full state list</summary>
+              <p className="mt-3 leading-7">{Array.from(LICENSED_STATES).map((abbr) => STATE_NAMES[abbr]).join(", ")}. Confirm licensing and product availability before a specific discussion.</p>
+            </details>
           </div>
         </FadeUp>
       </div>

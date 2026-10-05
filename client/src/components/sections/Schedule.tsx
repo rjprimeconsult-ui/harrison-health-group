@@ -33,7 +33,7 @@ export default function Schedule() {
       if (window.Calendly && widgetRef.current) {
         widgetRef.current.innerHTML = "";
         window.Calendly.initInlineWidget({
-          url: `${CALENDLY_URL}?hide_gdpr_banner=1&background_color=0a0a0a&text_color=ffffff&primary_color=c9a84c`,
+          url: `${CALENDLY_URL}?background_color=0a0a0a&text_color=ffffff&primary_color=c9a84c`,
           parentElement: widgetRef.current,
         });
         initialized.current = true;
@@ -61,9 +61,9 @@ export default function Schedule() {
   }, []);
 
   const perks = [
-    { icon: Clock, label: "30-Minute Call" },
-    { icon: Video, label: "Phone or Video" },
-    { icon: ShieldCheck, label: "No Obligation" },
+    { icon: Clock, label: "Choose an Available Time" },
+    { icon: Video, label: "Details Shown by Calendly" },
+    { icon: ShieldCheck, label: "Coverage Conversation" },
   ];
 
   return (
@@ -101,7 +101,7 @@ export default function Schedule() {
                   marginBottom: "1.25rem",
                 }}
               >
-                Schedule Your Free{" "}
+                Schedule a{" "}
                 <span className="gold-text">Consultation</span>
               </h2>
               <p
@@ -114,9 +114,8 @@ export default function Schedule() {
                   maxWidth: 420,
                 }}
               >
-                Pick a time that works for you and one of our licensed advisors will
-                walk you through your options — no pressure, no cost. Just honest
-                guidance to help you find the right coverage.
+                Choose an available time for a conversation about your coverage questions.
+                Calendly displays the appointment details before you confirm.
               </p>
 
               {/* Perks */}

@@ -60,7 +60,7 @@ function AddReviewModal({ onClose }: { onClose: () => void }) {
           Add New Review
         </h3>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 admin-review-form">
           <div>
             <label className="block text-sm text-gray-400 mb-1">Client Name *</label>
             <input
@@ -334,6 +334,9 @@ export default function AdminReviews() {
 
       {/* Stats */}
       <div className="px-6 py-6">
+        <div role="alert" className="rounded-xl p-4 mb-6 text-sm leading-6" style={{ background: "#302719", color: "#FFFFFF", border: "1px solid #C9A84C" }}>
+          <strong>Preview-only review workspace.</strong> This page is not authenticated. Records are saved only in this browser; approving a review here does not publish it for other visitors. Seeded sample reviews have not been verified and are hidden from the public site. A shared secured backend and review provenance are required before production moderation.
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div className="rounded-xl p-4" style={{ background: "#1A1A1A", border: "1px solid #2A2A2A" }}>
             <div className="text-2xl font-bold text-white">{pendingReviews.length}</div>
@@ -341,7 +344,7 @@ export default function AdminReviews() {
           </div>
           <div className="rounded-xl p-4" style={{ background: "#1A1A1A", border: "1px solid #2A2A2A" }}>
             <div className="text-2xl font-bold text-white">{approvedReviews.length}</div>
-            <div className="text-xs text-green-500 font-medium">Published on Site</div>
+            <div className="text-xs text-green-500 font-medium">Approved in This Browser</div>
           </div>
           <div className="rounded-xl p-4" style={{ background: "#1A1A1A", border: "1px solid #2A2A2A" }}>
             <div className="text-2xl font-bold text-white">{rejectedReviews.length}</div>

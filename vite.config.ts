@@ -3,8 +3,12 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import fs from "node:fs";
 import path from "node:path";
+import React from "react";
+import { renderToString } from "react-dom/server";
 import { defineConfig, type Plugin, type ViteDevServer } from "vite";
 import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
+import { getPage } from "./shared/site";
+import { injectMeta } from "./shared/seo";
 
 // =============================================================================
 // Manus Debug Collector - Vite Plugin
@@ -203,7 +207,37 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
+function vitePluginCrawlablePages(): Plugin {
+  return {
+    name: "hhg-crawlable-pages",
+    transformIndexHtml(html, ctx) {
+      const pathname = new URL(ctx.path || "/", "http://localhost").pathname;
+      return injectMeta(html, pathname);
+    },
+    configureServer(server) {
+      server.middlewares.use(async (req, res, next) => {
+        if (req.method !== "GET" || !req.url) return next();
+        const url = new URL(req.url, "http://localhost");
+        const route = url.pathname;
+        if (route.startsWith("/@") || route.startsWith("/__") || route.startsWith("/src/") || route.startsWith("/node_modules/") || route.startsWith("/api/") || route.startsWith("/manus-storage/") || /\.[^/]+$/.test(route)) return next();
+        if (route.length > 1 && route.endsWith("/")) {
+          res.writeHead(308, { Location: route.slice(0, -1) + url.search }); res.end(); return;
+        }
+        try {
+          const { default: App } = await server.ssrLoadModule("/src/App.tsx");
+          const raw = fs.readFileSync(path.join(PROJECT_ROOT, "client", "index.html"), "utf8");
+          const html = await server.transformIndexHtml(route, raw);
+          const body = renderToString(React.createElement(App, { ssrPath: route }));
+          res.writeHead(getPage(route) || route === "/admin/reviews" ? 200 : 404, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store", "X-Robots-Tag": route.startsWith("/admin/") ? "noindex, nofollow" : "" });
+          res.end(html.replace('<div id="root"></div>', `<div id="root">${body}</div>`));
+        } catch (error) { next(error as Error); }
+      });
+    },
+  };
+}
+
+// Do not install the preview debug collector: it captures inquiry field values and POST bodies.
+const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginStorageProxy(), vitePluginCrawlablePages()];
 
 export default defineConfig({
   plugins,

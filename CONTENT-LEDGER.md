@@ -1,0 +1,18 @@
+# Content ledger
+
+| Area | Source / evidence | Status | Preview treatment | Production gate |
+| --- | --- | --- | --- | --- |
+| Brand, domain, email, supplied booking/review links | Owner messages | CERTAIN | Keep | None beyond usual release approval. |
+| Team order, Raziya title/photo/specialty | Owner instructions | CERTAIN | Preserve. Other five cards use neutral “Team Member,” not an unverified advisor title. | Reconfirm other biographies and licenses. |
+| Existing homepage 20+ carriers, best/lowest price, free/no-fee, 31 states, NPN, survey/24h metrics, specific plans/tax claims | Current website only (not independent evidence) | UNVERIFIED/LIKELY for 31-state headline | Replace/soften in preview; only retain 31-state map with note pending license check if retained | Owner evidence and counsel. |
+| Seeded testimonials marked “Google” | Archived legacy source and browser-local data, not proven authentic | UNVERIFIED | No seeded quotes in public JS/HTML; production admin route returns 404. Exact legacy source preserved in `internal/ReviewContext-legacy-seeds.txt`; browser data remains but `seed-` records are hidden. | Source links, consent, shared authenticated moderation backend. |
+| Site legal/compliance paragraphs | Old footer, no counsel-provenance | UNVERIFIED | Replace public summary with neutral request for approved privacy/consent copy; avoid claiming formal HIPAA notice or blanket compliance | Counsel-approved policy and data flow. |
+| New private-coverage/business copy | Original Harrison writing, general decision/process guidance | DRAFT FOR OWNER REVIEW | Preview only | Owner approves services, operational details and compliance. |
+| Original FAQ and three decision guides | Original Harrison writing, no competitor copy | DRAFT FOR OWNER REVIEW | Preview only | Owner/counsel validates contextual insurance advice. |
+| Metadata/schema | Generated from route inventory and verified/neutral public facts | DRAFT | Preview only | Owner review and deploy approval. |
+| Founder biography/person schema | No approved biography/license proof | BLOCKED | Omit individual About route and Person schema; use general team/about page | Approved bio/credential/photo permission. |
+| Careers roles/compensation | No hiring facts | BLOCKED | Neutral inquiry route, no job listing or growth promise | Owner confirms hiring facts. |
+| Inquiries from states not on existing 31-state map | Existing map is LIKELY, not independently license-verified | DRAFT FOR OWNER REVIEW | Accept general request with explicit availability/referral caveat; map says “Not Listed,” not “Not Available” | Owner verifies service/licensing and referral routing. |
+| Web3Forms receipt and preview telemetry | Key owner-supplied, delivery unknown | UNVERIFIED | Success UI requires explicit `success:true`; preview debug collector disabled to avoid logging applicant field values/POST bodies | Owner inbox activation and explicit SEND-approved test; counsel review data retention. |
+
+Nothing in this ledger itself authorizes public deployment. Record future claim evidence and approval before publishing.

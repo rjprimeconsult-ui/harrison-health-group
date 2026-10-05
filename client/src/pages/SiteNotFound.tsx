@@ -1,0 +1,3 @@
+import Navbar from "@/components/sections/Navbar";
+import Footer from "@/components/sections/Footer";
+export default function SiteNotFound() { return <div className="site-page"><Navbar /><main id="main-content" className="page-main"><div className="page-hero page-shell"><p className="page-eyebrow">404 / Not found</p><h1>Let's find the right page.</h1><p>The address you opened isn't available. Continue from the homepage or browse the coverage guides.</p><div className="page-actions"><a className="btn-primary" href="/">Return home</a><a className="page-link" href="/resources">Browse resources</a></div></div></main><Footer /></div>; }

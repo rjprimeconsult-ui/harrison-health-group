@@ -14,10 +14,9 @@ import { AnimatedButton } from "@/components/motion/AnimationWrappers";
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663441385223/aeUWcF9B5vWVriiiqFVf4u/hhg-hero-bg-wDNgKVGBxBxXJPLMSMFGEQ.webp";
 
 const trustBadges = [
-  { icon: Shield, label: "Licensed & Independent" },
-  { icon: Star, label: "20+ Carrier Partners" },
-  { icon: Users, label: "Families & Businesses" },
-  { icon: Award, label: "No-Cost Service" },
+  { icon: Shield, label: "Private Coverage Focus" },
+  { icon: Users, label: "Individuals & Families" },
+  { icon: Award, label: "Business Inquiries" },
 ];
 
 interface HeroProps { onQuoteClick?: () => void; }
@@ -68,7 +67,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
           justifyContent: "center",
           paddingTop: "80px",     /* push below navbar */
         }}
-        initial={{ opacity: 0 }}
+        initial={false}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.6, ease: "easeOut" }}
       >
@@ -163,7 +162,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
           {/* Eyebrow — NPN badge */}
           <motion.div
             className="flex items-center gap-3 mb-6"
-            initial={{ opacity: 0, x: -30 }}
+            initial={false}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
@@ -200,10 +199,10 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 fontSize: "0.62rem",
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "#C9A84C",
+                color: "#795E20",
               }}
             >
-              Harrison Health Group · NPN 20611469
+              Harrison Health Group · Private Coverage Guidance
             </span>
           </motion.div>
 
@@ -217,28 +216,28 @@ export default function Hero({ onQuoteClick }: HeroProps) {
               lineHeight: 1.0,
               marginBottom: "1.5rem",
             }}
-            initial={{ opacity: 0, y: 40 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
-            Health Insurance{" "}
+            Private Health Coverage{" "}
             <span
               style={{
-                background: "linear-gradient(135deg, #E2C97E, #C9A84C, #A8852D)",
+                background: "linear-gradient(135deg, #795E20, #A8852D, #795E20)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
                 display: "block",
               }}
             >
-              Made Simple.
+              Starts with Clarity.
             </span>
           </motion.h1>
 
           {/* Mobile-only HH watermark — shown below headline, hidden on desktop */}
           <motion.div
             className="flex md:hidden flex-col items-center mt-6 mb-6"
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
             style={{ pointerEvents: "none", userSelect: "none" }}
@@ -321,18 +320,18 @@ export default function Hero({ onQuoteClick }: HeroProps) {
               maxWidth: 520,
               marginBottom: "2.5rem",
             }}
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
           >
-            We shop 20+ top-rated carriers to find you the best health insurance
-            at the lowest cost — at no charge to you. Independent. Unbiased. Yours.
+            Explore questions about private health plans for your household or business.
+            Tell us what matters, then review the actual options and documents with an advisor.
           </motion.p>
 
           {/* CTAs */}
           <motion.div
             className="flex flex-wrap gap-4 mb-12"
-            initial={{ opacity: 0, y: 25 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
@@ -341,7 +340,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
               className="btn-primary text-base px-7 py-4"
             >
               <Shield size={17} />
-              Get Your Free Quote
+              Request a Coverage Conversation
             </AnimatedButton>
             <motion.a
               href="tel:+19546000342"
@@ -357,14 +356,14 @@ export default function Hero({ onQuoteClick }: HeroProps) {
               transition={{ type: "spring", stiffness: 400, damping: 22 }}
             >
               <Phone size={17} style={{ color: "#C9A84C" }} />
-              Speak to an Advisor
+              Speak to Our Team
             </motion.a>
           </motion.div>
 
           {/* Trust Badges */}
           <motion.div
             className="flex flex-wrap gap-3"
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.55 }}
           >

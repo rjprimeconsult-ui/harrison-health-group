@@ -1,0 +1,13 @@
+# Harrison Health Group
+
+Website: https://harrisonhealthgroup.com/
+Focus: Educational preparation for private health coverage conversations with individuals, families, independent workers, and small businesses.
+Contact: info@harrisonhealthgroup.com
+
+Guides:
+- https://harrisonhealthgroup.com/resources/private-vs-marketplace
+- https://harrisonhealthgroup.com/resources/self-employed-coverage
+- https://harrisonhealthgroup.com/resources/small-business-benefits
+- https://harrisonhealthgroup.com/faq
+
+Information is educational, not a quote, enrollment, plan-availability or licensing determination. Confirm specific terms in official documents.

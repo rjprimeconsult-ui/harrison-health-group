@@ -2,4 +2,12 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
+User-agent: AdsBot-Google
+Allow: /
+Disallow: /admin/
+
+User-agent: AdsBot-Google-Mobile
+Allow: /
+Disallow: /admin/
+
 Sitemap: https://harrisonhealthgroup.com/sitemap.xml

@@ -1,229 +1,54 @@
-/*
- * HARRISON HEALTH GROUP — Navbar
- * White Prestige design: white bg, black text, gold accents
- * Real phone: (954) 600-0342
- */
+import { useEffect, useState } from "react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import { site } from "@shared/site";
+import { emitEvent } from "@/lib/measurement";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Menu, X, Phone } from "lucide-react";
-import { AnimatedButton } from "@/components/motion/AnimationWrappers";
-
-const navLinks = [
-  { label: "Coverage", href: "#coverage" },
-  { label: "Why Us", href: "#why-us" },
-  { label: "Our Team", href: "#team" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+const primary = [
+  { label: "Home", href: "/" },
+  { label: "Coverage", href: "/#coverage" },
+  { label: "Business", href: "/business" },
+  { label: "Resources", href: "/resources" },
+  { label: "FAQ", href: "/faq" },
+];
+const company = [
+  { label: "Our Team", href: "/about" },
+  { label: "Careers", href: "/careers" },
+  { label: "Contact", href: "/contact" },
 ];
 
-interface NavbarProps { onQuoteClick?: () => void; }
-
-export default function Navbar({ onQuoteClick }: NavbarProps) {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-
+export default function Navbar({ onQuoteClick }: { onQuoteClick?: () => void }) {
+  const [open, setOpen] = useState(false);
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", fn, { passive: true });
-    return () => window.removeEventListener("scroll", fn);
+    const close = () => setOpen(false);
+    window.addEventListener("popstate", close);
+    return () => window.removeEventListener("popstate", close);
   }, []);
-
-  const handleNavClick = (href: string) => {
-    setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <>
-      <motion.nav
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
-        style={{
-          background: scrolled
-            ? "rgba(255,255,255,0.97)"
-            : "rgba(255,255,255,0.85)",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
-          borderBottom: scrolled
-            ? "1px solid rgba(201,168,76,0.30)"
-            : "1px solid rgba(201,168,76,0.12)",
-          boxShadow: scrolled ? "0 2px 24px rgba(0,0,0,0.08)" : "none",
-        }}
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <div className="container">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <motion.a
-              href="#"
-              onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-              className="flex items-center gap-4 no-underline"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            >
-              {/* HH monogram — white box, black letters, gold border */}
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: 42,
-                  height: 42,
-                  flexShrink: 0,
-                  background: "#FFFFFF",
-                  border: "2px solid #0A0A0A",
-                  borderRadius: 6,
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontWeight: 700,
-                    fontSize: "1.35rem",
-                    color: "#0A0A0A",
-                    lineHeight: 1,
-                    letterSpacing: "-0.02em",
-                  }}
-                >
-                  HH
-                </span>
-              </div>
-              <div>
-                <div
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontWeight: 700,
-                    fontSize: "1.1rem",
-                    color: "#0A0A0A",
-                    lineHeight: 1.1,
-                    letterSpacing: "0.02em",
-                  }}
-                >
-                  Harrison Health
-                </div>
-                <div
-                  style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: "0.52rem",
-                    letterSpacing: "0.22em",
-                    textTransform: "uppercase",
-                    color: "#C9A84C",
-                    lineHeight: 1,
-                  }}
-                >
-                  Group
-                </div>
-              </div>
-            </motion.a>
-
-            {/* Desktop Nav */}
-            <div className="hidden lg:flex items-center gap-8">
-              {navLinks.map((link, i) => (
-                <motion.button
-                  key={link.href}
-                  onClick={() => handleNavClick(link.href)}
-                  className="text-sm font-medium transition-colors duration-200 bg-transparent border-none"
-                  style={{ fontFamily: "'DM Sans', sans-serif", color: "#0A0A0A" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#A8852D")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "#0A0A0A")}
-                  whileHover={{ y: -1 }}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.05, duration: 0.4 }}
-                >
-                  {link.label}
-                </motion.button>
-              ))}
-            </div>
-
-            {/* CTA */}
-            <div className="hidden lg:flex items-center gap-3">
-              <motion.a
-                href="tel:+19546000342"
-                className="flex items-center gap-2 text-sm font-medium transition-colors"
-                style={{ fontFamily: "'DM Sans', sans-serif", color: "#0A0A0A" }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#A8852D")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "#0A0A0A")}
-              >
-                <Phone size={14} style={{ color: "#C9A84C" }} />
-                (954) 600-0342
-              </motion.a>
-              <AnimatedButton
-                onClick={() => onQuoteClick ? onQuoteClick() : handleNavClick("#contact")}
-                className="btn-primary text-sm"
-              >
-                Get Free Quote
-              </AnimatedButton>
-            </div>
-
-            {/* Mobile Menu Toggle */}
-            <button
-              className="lg:hidden p-2 bg-transparent border-none"
-              style={{ color: "#0A0A0A" }}
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
-          </div>
+    <header className="site-nav">
+      <a className="skip-link" href="#main-content">Skip to main content</a>
+      <nav className="container nav-inner" aria-label="Main navigation">
+        <a className="brand-lockup" href="/" aria-label="Harrison Health Group — Home" onClick={() => setOpen(false)}>
+          <img src="/favicon-192x192.png" width="42" height="42" alt="" />
+          <span className="brand-words"><strong>Harrison Health</strong><small>GROUP</small></span>
+        </a>
+        <div className="nav-desktop">
+          {primary.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}
+          <details className="nav-company">
+            <summary>Company <ChevronDown size={13} aria-hidden="true" /></summary>
+            <div className="nav-company-menu">{company.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}</div>
+          </details>
         </div>
-      </motion.nav>
-
-      {/* Mobile Menu */}
-      <motion.div
-        className="fixed inset-0 z-40 lg:hidden"
-        initial={false}
-        animate={mobileOpen ? { opacity: 1, pointerEvents: "auto" } : { opacity: 0, pointerEvents: "none" }}
-        transition={{ duration: 0.25 }}
-        style={{ background: "rgba(255,255,255,0.98)", backdropFilter: "blur(20px)" }}
-      >
-        <div className="flex flex-col items-center justify-center h-full gap-8">
-          {navLinks.map((link, i) => (
-            <motion.button
-              key={link.href}
-              onClick={() => handleNavClick(link.href)}
-              className="text-2xl font-medium transition-colors bg-transparent border-none"
-              style={{ fontFamily: "'Cormorant Garamond', serif", color: "#0A0A0A" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#A8852D")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#0A0A0A")}
-              initial={{ opacity: 0, y: 20 }}
-              animate={mobileOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ delay: i * 0.07 }}
-            >
-              {link.label}
-            </motion.button>
-          ))}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={mobileOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.4 }}
-            className="flex flex-col items-center gap-4 mt-4"
-          >
-            <a
-              href="tel:+19546000342"
-              className="flex items-center gap-2 transition-colors"
-              style={{ fontFamily: "'DM Sans', sans-serif", color: "#0A0A0A" }}
-            >
-              <Phone size={16} style={{ color: "#C9A84C" }} />
-              (954) 600-0342
-            </a>
-            <button
-              onClick={() => onQuoteClick ? onQuoteClick() : handleNavClick("#contact")}
-              className="btn-primary"
-            >
-              Get Free Quote
-            </button>
-          </motion.div>
+        <div className="nav-actions">
+          <a className="nav-phone" href={site.phoneHref} onClick={() => emitEvent("click_to_call", { surface: "nav" })}><Phone size={14} aria-hidden="true" />{site.phoneDisplay}</a>
+          {onQuoteClick ? <button className="btn-primary nav-quote" onClick={onQuoteClick}>Request a Quote</button> : <a className="btn-primary nav-quote" href="/contact">Get in Touch</a>}
         </div>
-      </motion.div>
-    </>
+        <button className="nav-menu-toggle" type="button" aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen(!open)}>{open ? <X size={26} /> : <Menu size={26} />}</button>
+      </nav>
+      <div id="mobile-navigation" className={`nav-mobile ${open ? "is-open" : ""}`} hidden={!open}>
+        {[...primary, ...company].map((link) => <a key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}</a>)}
+        <a href={site.phoneHref} onClick={() => emitEvent("click_to_call", { surface: "mobile_nav" })}>{site.phoneDisplay}</a>
+        {onQuoteClick ? <button className="btn-primary" onClick={() => { setOpen(false); onQuoteClick(); }}>Request a Quote</button> : <a className="btn-primary" href="/contact">Get in Touch</a>}
+      </div>
+    </header>
   );
 }
