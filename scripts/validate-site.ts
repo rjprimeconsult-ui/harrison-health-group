@@ -1,4 +1,5 @@
 import { access, readFile, readdir } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { join } from "node:path";
 import { indexablePages, publicPages, site } from "../shared/site";
 
@@ -37,6 +38,14 @@ if (!robots.includes("AdsBot-Google") || !robots.includes("Disallow: /admin/")) 
 const notFound = await readFile(join(root, "404.html"), "utf8");
 if (!notFound.includes("404 / Not found") || !notFound.includes('content="noindex,nofollow"')) fail.push("404 missing content or noindex");
 try { await access(join(root, "admin", "reviews", "index.html")); fail.push("unauthenticated admin HTML was emitted"); } catch { /* expected: no production admin page */ }
+const home = await readFile(join(root, "index.html"), "utf8");
+if (!home.includes('src="/google-maps-logo-white.svg"') || !home.includes('alt="Google Maps"')) fail.push("homepage missing official Google Maps attribution mark");
+const officialGoogleMark = await readFile(join(root, "google-maps-logo-white.svg"));
+if (createHash("sha256").update(officialGoogleMark).digest("hex") !== "727012e157bc115222e717325d3fb70a3cd1e6ba2407cd320e489285543503ec") fail.push("Google Maps attribution mark was modified");
+const privacy = await readFile(join(root, "privacy", "index.html"), "utf8");
+const terms = await readFile(join(root, "terms", "index.html"), "utf8");
+if (!privacy.includes("https://policies.google.com/privacy")) fail.push("privacy page missing incorporated Google Privacy Policy");
+if (!terms.includes("https://cloud.google.com/maps-platform/terms") || !terms.includes("https://cloud.google.com/maps-platform/terms/maps-service-terms")) fail.push("terms page missing incorporated Google Maps Platform terms");
 for (const asset of await readdir(join(root, "assets"))) {
   if (!asset.endsWith(".js")) continue;
   const js = await readFile(join(root, "assets", asset), "utf8");

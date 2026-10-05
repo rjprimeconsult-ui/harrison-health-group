@@ -13,6 +13,8 @@ try {
     await new Promise((resolve) => setTimeout(resolve, 150));
   }
   if (!ready) throw new Error("production server did not start");
+  const googleMark = await fetch(base + "/google-maps-logo-white.svg");
+  check(googleMark.status === 200 && (googleMark.headers.get("content-type") || "").includes("image/svg+xml"), `Google Maps attribution asset: ${googleMark.status} ${googleMark.headers.get("content-type")}`);
   for (const page of publicPages) {
     const response = await fetch(base + page.path);
     check(response.status === 200, `${page.path}: ${response.status}`);

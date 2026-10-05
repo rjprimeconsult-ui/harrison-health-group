@@ -1,6 +1,8 @@
 import { chromium } from 'playwright';
 import { mkdir } from 'node:fs/promises';
 const base = process.env.QA_URL || 'http://127.0.0.1:4100';
+const expectLiveReviews = process.env.QA_EXPECT_LIVE !== 'false';
+const expectManagedAssets = process.env.QA_EXPECT_MANAGED_ASSETS !== 'false';
 const output = '/home/ubuntu/harrison-qa';
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true, executablePath: '/usr/bin/chromium', args: ['--no-sandbox'] });
@@ -107,20 +109,68 @@ for (const viewport of [{ width: 1365, height: 900 }, { width: 390, height: 844 
   await page.getByRole('status').getByText('Request accepted').waitFor({ timeout: 5000 }).catch(() => null);
   check(await page.getByRole('status').getByText('Request accepted').isVisible(), 'provider success:true did not show success');
   check(call === 2, `mocked provider call count ${call}`);
+  await page.getByRole('button', { name: 'Close quote form' }).click();
+  check(!await page.getByRole('dialog').isVisible(), 'quote dialog did not close before review inspection');
+  await page.evaluate(() => {
+    const section = document.querySelector('#testimonials');
+    if (section) window.scrollTo(0, window.scrollY + section.getBoundingClientRect().top - 90);
+  });
+  if (expectLiveReviews) await page.locator('#testimonials .google-review-card').first().waitFor({ timeout: 18000 }).catch(() => null);
+  else await page.getByText('Live reviews are unavailable right now. You can read the current reviews on Google Maps.').waitFor({ timeout: 18000 }).catch(() => null);
+  const reviewCards = page.locator('#testimonials .google-review-card');
+  const reviewCount = await reviewCards.count();
+  if (expectLiveReviews) {
+    check(reviewCount > 0 && reviewCount <= 5, `Google Places review card count ${reviewCount}`);
+    check(await page.locator('#testimonials .google-review-author').count() === reviewCount, 'review author attribution missing');
+    check(await page.locator('#testimonials .google-review-avatar img').count() === reviewCount, 'review author avatar attribution missing');
+    const reviewSources = page.locator('#testimonials .google-review-source');
+    check(await reviewSources.count() === reviewCount, 'direct Google Maps review source link missing');
+    for (let i = 0; i < await reviewSources.count(); i++) {
+      check(/^https:\/\/(?:[a-z0-9-]+\.)*google\.com\//i.test((await reviewSources.nth(i).getAttribute('href')) || ''), `review ${i + 1} does not link to a Google-owned source`);
+    }
+    const note = page.locator('#testimonials .google-reviews-note');
+    check(await note.count() === 1 && (await note.innerText()).includes('ordered by relevance') && (await note.innerText()).includes('does not filter or reorder'), 'review ordering/filtering disclosure missing');
+  } else {
+    check(reviewCount === 0, `unauthorized production origin rendered ${reviewCount} review cards`);
+    check(await page.getByText('Live reviews are unavailable right now. You can read the current reviews on Google Maps.').isVisible(), 'Google review unavailable state missing');
+  }
+  const listingLink = page.locator('#testimonials .google-reviews-link');
+  check(await listingLink.count() === 1 && /^https:\/\/(?:[a-z0-9-]+\.)*google\.com\//i.test((await listingLink.getAttribute('href')) || ''), 'Google Maps listing link missing');
+  const googleMark = page.locator('#testimonials img[alt="Google Maps"]');
+  await googleMark.evaluate(img => img.decode().catch(() => null));
+  check(await googleMark.evaluate(img => img.naturalWidth > 0 && img.naturalHeight > 0), 'official Google Maps attribution mark not loaded');
+  check(!(await page.locator('#testimonials').innerText()).includes('seed-'), 'legacy seeded review surfaced');
+  check(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 2), `review cards overflow at ${viewport.width}`);
+  await page.screenshot({ path: `${output}/${mobile ? 'mobile' : 'desktop'}-google-reviews.png` });
   await page.goto(base + '/business');
   await page.screenshot({ path: `${output}/${mobile ? 'mobile' : 'desktop'}-business.png`, fullPage: false });
   const business = page.locator('form[aria-label="Business coverage inquiry"]');
   check(await business.locator('#lead-company_name').count() === 1 && await business.locator('#lead-team_size').count() === 1, 'business qualifier fields missing');
-  await page.goto(base + '/about');
-  const teamImages = page.locator('#team img');
-  for (let i = 0; i < await teamImages.count(); i++) {
-    await teamImages.nth(i).scrollIntoViewIfNeeded();
-    await teamImages.nth(i).evaluate(img => img.decode().catch(() => null));
+  if (expectManagedAssets) {
+    await page.goto(base + '/about');
+    const teamImages = page.locator('#team img');
+    for (let i = 0; i < await teamImages.count(); i++) {
+      await teamImages.nth(i).scrollIntoViewIfNeeded();
+      await teamImages.nth(i).evaluate(img => img.decode().catch(() => null));
+    }
+    const imageIssues = await teamImages.evaluateAll(imgs => imgs.filter(img => !img.complete || img.naturalWidth === 0).map(img => img.src));
+    check(!imageIssues.length, `broken team image(s): ${imageIssues.join(', ')}`);
   }
-  const imageIssues = await teamImages.evaluateAll(imgs => imgs.filter(img => !img.complete || img.naturalWidth === 0).map(img => img.src));
-  check(!imageIssues.length, `broken team image(s): ${imageIssues.join(', ')}`);
   await context.close();
+
+  const unavailableContext = await browser.newContext({ viewport, deviceScaleFactor: 1, isMobile: mobile, hasTouch: mobile, reducedMotion: 'reduce' });
+  const unavailablePage = await unavailableContext.newPage();
+  await unavailablePage.route('**/maps/api/js**', route => route.abort());
+  await unavailablePage.goto(base + '/', { waitUntil: 'domcontentloaded' });
+  await unavailablePage.evaluate(() => document.querySelector('#testimonials')?.scrollIntoView({ block: 'center' }));
+  const unavailable = unavailablePage.getByText('Live reviews are unavailable right now. You can read the current reviews on Google Maps.');
+  await unavailable.waitFor({ timeout: 5000 }).catch(() => null);
+  check(await unavailable.isVisible(), `Google review unavailable state missing at ${viewport.width}`);
+  const fallback = unavailablePage.locator('#testimonials .google-reviews-link');
+  check((await fallback.getAttribute('href'))?.startsWith('https://www.google.com/maps/search/?api=1&') === true, `Google review fallback is not a verified Google Maps URL at ${viewport.width}`);
+  check(await unavailablePage.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 2), `unavailable review state overflows at ${viewport.width}`);
+  await unavailableContext.close();
 }
 await browser.close();
 if (errors.length) { console.error('FAIL browser QA:\n' + errors.join('\n')); process.exit(1); }
-console.log('PASS browser QA: 10 routes × desktop/mobile, no overflow/runtime errors, mobile nav, form validation, select contrast/states, consent, mocked provider failure/success, business fields, team images.');
+console.log('PASS browser QA: 10 routes × desktop/mobile, no overflow/runtime errors, mobile nav, form validation, select contrast/states, consent, mocked provider failure/success, live/unavailable Google review states with attribution, business fields, and configured image checks.');

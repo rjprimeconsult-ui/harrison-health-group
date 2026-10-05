@@ -86,27 +86,42 @@ declare global {
   }
 }
 
-const API_KEY = import.meta.env.VITE_FRONTEND_FORGE_API_KEY;
+const buildEnv = (import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env;
+const API_KEY = buildEnv?.VITE_FRONTEND_FORGE_API_KEY;
 const FORGE_BASE_URL =
-  import.meta.env.VITE_FRONTEND_FORGE_API_URL ||
+  buildEnv?.VITE_FRONTEND_FORGE_API_URL ||
   "https://forge.butterfly-effect.dev";
 const MAPS_PROXY_URL = `${FORGE_BASE_URL}/v1/maps/proxy`;
 
-function loadMapScript() {
-  return new Promise(resolve => {
+let mapsLoader: Promise<void> | null = null;
+
+export function loadGoogleMaps(): Promise<void> {
+  if (typeof window === "undefined") return Promise.reject(new Error("Google Maps requires a browser"));
+  if (typeof window.google?.maps?.importLibrary === "function") return Promise.resolve();
+  if (!API_KEY) return Promise.reject(new Error("Managed Google Maps proxy is not configured"));
+  if (mapsLoader) return mapsLoader;
+
+  mapsLoader = new Promise<void>((resolve, reject) => {
     const script = document.createElement("script");
-    script.src = `${MAPS_PROXY_URL}/maps/api/js?key=${API_KEY}&v=weekly&libraries=marker,places,geocoding,geometry`;
+    const timer = window.setTimeout(() => fail(new Error("Google Maps script timed out")), 15000);
+    function fail(error: Error) {
+      window.clearTimeout(timer);
+      script.remove();
+      reject(error);
+    }
+    script.src = `${MAPS_PROXY_URL}/maps/api/js?key=${encodeURIComponent(API_KEY)}&v=weekly&libraries=marker,places,geocoding,geometry`;
     script.async = true;
     script.crossOrigin = "anonymous";
     script.onload = () => {
-      resolve(null);
-      script.remove(); // Clean up immediately
+      window.clearTimeout(timer);
+      script.remove();
+      if (typeof window.google?.maps?.importLibrary === "function") resolve();
+      else reject(new Error("Google Maps script did not initialize"));
     };
-    script.onerror = () => {
-      console.error("Failed to load Google Maps script");
-    };
+    script.onerror = () => fail(new Error("Failed to load Google Maps script"));
     document.head.appendChild(script);
-  });
+  }).catch((error) => { mapsLoader = null; throw error; });
+  return mapsLoader;
 }
 
 interface MapViewProps {
@@ -126,7 +141,7 @@ export function MapView({
   const map = useRef<google.maps.Map | null>(null);
 
   const init = usePersistFn(async () => {
-    await loadMapScript();
+    await loadGoogleMaps();
     if (!mapContainer.current) {
       console.error("Map container not found");
       return;
