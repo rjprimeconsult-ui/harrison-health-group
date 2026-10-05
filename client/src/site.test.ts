@@ -3,9 +3,15 @@ import { indexablePages, publicPages } from "../../shared/site";
 import { renderMeta } from "../../shared/seo";
 import { guides, faqs } from "./content/guides";
 import { validateLead, sendLead } from "./components/LeadForm";
+import { mappedStates } from "../../shared/service-area";
 
 const valid = { coverage_intent: "Individual coverage", state: "FL", zip: "33323", timeline: "", company_name: "Business", team_size: "1–4", decision_role: "", first_name: "Pat", last_name: "Example", email: "pat@example.org", phone: "9546000342", preferred_contact: "Email", consent: "yes" };
 describe("Harrison facts and routes", () => {
+  it("uses the owner-corrected 31-state map: Delaware in, New Mexico out", () => {
+    expect(mappedStates.size).toBe(31);
+    expect(mappedStates.has("DE")).toBe(true);
+    expect(mappedStates.has("NM")).toBe(false);
+  });
   it("keeps one canonical path and unique, bounded metadata per indexable route", () => {
     expect(new Set(publicPages.map((page) => page.path)).size).toBe(publicPages.length);
     expect(new Set(indexablePages.map((page) => page.title)).size).toBe(indexablePages.length);

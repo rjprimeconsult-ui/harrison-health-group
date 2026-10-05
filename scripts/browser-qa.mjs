@@ -20,6 +20,12 @@ for (const viewport of [{ width: 1365, height: 900 }, { width: 390, height: 844 
     check(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 2), `${route} horizontal overflow at ${viewport.width}`);
   }
   await page.goto(base + '/');
+  const delaware = page.locator('#licensed-states svg path[aria-label="Delaware: shown on licensed-state map"]');
+  const newMexico = page.locator('#licensed-states svg path[aria-label="New Mexico: not listed on map"]');
+  check(await delaware.count() === 1 && await delaware.getAttribute('fill') === '#C9A84C', 'Delaware not highlighted in gold');
+  check(await newMexico.count() === 1 && await newMexico.getAttribute('fill') === 'rgba(10,10,10,0.08)', 'New Mexico still highlighted on the map');
+  const stateList = await page.locator('#licensed-states details p').textContent();
+  check(stateList.includes('Delaware') && !stateList.includes('New Mexico'), 'full state list not corrected');
   await page.screenshot({ path: `${output}/${mobile ? 'mobile' : 'desktop'}-home.png`, fullPage: false });
   if (mobile) {
     check(await page.getByRole('button', { name: 'Open menu' }).isVisible(), 'mobile menu button hidden');
@@ -65,6 +71,12 @@ for (const viewport of [{ width: 1365, height: 900 }, { width: 390, height: 844 
   await page.screenshot({ path: `${output}/${mobile ? 'mobile' : 'desktop'}-form.png` });
   await page.getByRole('button', { name: 'Continue' }).click();
   check(await page.getByText('Enter a five-digit ZIP code.').isVisible(), 'validation error absent');
+  await page.locator('#lead-state').selectOption('NM');
+  await page.getByText('This state is not on our current service-area map.').waitFor({ timeout: 3000 }).catch(() => null);
+  check(await page.getByText('This state is not on our current service-area map.').isVisible(), 'New Mexico not flagged as unlisted in the form');
+  await page.locator('#lead-state').selectOption('DE');
+  await page.getByText('This state is not on our current service-area map.').waitFor({ state: 'hidden', timeout: 3000 }).catch(() => null);
+  check(!await page.getByText('This state is not on our current service-area map.').isVisible(), 'Delaware incorrectly flagged as unlisted in the form');
   await page.locator('#lead-state').selectOption('AZ');
   await page.getByText('This state is not on our current service-area map.').waitFor({ timeout: 3000 }).catch(() => null);
   check(await page.getByText('This state is not on our current service-area map.').isVisible(), 'unlisted-state inquiry caveat missing');

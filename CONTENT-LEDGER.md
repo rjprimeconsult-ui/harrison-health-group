@@ -13,6 +13,7 @@
 | Founder biography/person schema | No approved biography/license proof | BLOCKED | Omit individual About route and Person schema; use general team/about page | Approved bio/credential/photo permission. |
 | Careers roles/compensation | No hiring facts | BLOCKED | Neutral inquiry route, no job listing or growth promise | Owner confirms hiring facts. |
 | Inquiries from states not on existing 31-state map | Existing map is LIKELY, not independently license-verified | DRAFT FOR OWNER REVIEW | Accept general request with explicit availability/referral caveat; map says “Not Listed,” not “Not Available” | Owner verifies service/licensing and referral routing. |
+| Delaware/New Mexico map membership | Owner correction on 2026-10-04 | CERTAIN for this two-state correction | Delaware added, New Mexico removed; full list still contains 31 states. Shared list also controls the form’s unlisted-state warning. | Independent license verification of the full list still pending. |
 | Web3Forms receipt and preview telemetry | Key owner-supplied, delivery unknown | UNVERIFIED | Success UI requires explicit `success:true`; preview debug collector disabled to avoid logging applicant field values/POST bodies | Owner inbox activation and explicit SEND-approved test; counsel review data retention. |
 
 Nothing in this ledger itself authorizes public deployment. Record future claim evidence and approval before publishing.
