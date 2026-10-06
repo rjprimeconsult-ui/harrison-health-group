@@ -5,6 +5,7 @@ import { guides, faqs } from "./content/guides";
 import { validateLead, sendLead } from "./components/LeadForm";
 import { mappedStates } from "../../shared/service-area";
 import { HARRISON_GOOGLE_MAPS_URL, HARRISON_PLACE_ID, isHarrisonListing, safeExternalUrl, safeGoogleAvatarUrl, safeGoogleMapsUrl, toGoogleReviewSnapshot } from "./lib/google-reviews";
+import { teamMembers } from "./content/team";
 
 const valid = { coverage_intent: "Individual coverage", state: "FL", zip: "33323", timeline: "", company_name: "Business", team_size: "1–4", decision_role: "", first_name: "Pat", last_name: "Example", email: "pat@example.org", phone: "9546000342", preferred_contact: "Email", consent: "yes" };
 describe("Harrison facts and routes", () => {
@@ -33,6 +34,14 @@ describe("Harrison facts and routes", () => {
       expect(guide.related.every((slug) => guides.some((item) => item.slug === slug && slug !== guide.slug))).toBe(true);
     }
     expect(faqs.length).toBeGreaterThanOrEqual(6);
+  });
+  it("keeps the owner-confirmed advisor titles and a distinct specialty for every team member", () => {
+    expect(teamMembers).toHaveLength(6);
+    expect(teamMembers[0]).toMatchObject({ name: "Shaquille Harrison", title: "Founder and Senior Health Advisor" });
+    expect(teamMembers.slice(1).every((member) => member.title === "Licensed Health Advisor")).toBe(true);
+    expect(new Set(teamMembers.map((member) => member.specialty)).size).toBe(teamMembers.length);
+    expect(teamMembers.every((member) => member.specialty.trim().length >= 100)).toBe(true);
+    expect(teamMembers.map((member) => member.title)).not.toContain("Team Member");
   });
 });
 

@@ -146,8 +146,16 @@ for (const viewport of [{ width: 1365, height: 900 }, { width: 390, height: 844 
   await page.screenshot({ path: `${output}/${mobile ? 'mobile' : 'desktop'}-business.png`, fullPage: false });
   const business = page.locator('form[aria-label="Business coverage inquiry"]');
   check(await business.locator('#lead-company_name').count() === 1 && await business.locator('#lead-team_size').count() === 1, 'business qualifier fields missing');
+  await page.goto(base + '/about');
+  const team = page.locator('#team');
+  check(await team.getByText('Founder and Senior Health Advisor', { exact: true }).count() === 2, `founder role missing from team-card front/back at ${viewport.width}`);
+  check(await team.getByText('Licensed Health Advisor', { exact: true }).count() === 10, `licensed advisor roles missing from team-card fronts/backs at ${viewport.width}`);
+  const firstDetails = team.getByRole('button', { name: 'View details for Shaquille Harrison' });
+  await firstDetails.click();
+  check(await team.getByText('Leads clear, personalized coverage conversations for individuals, families, and business owners—bringing priorities, timing, and plan details into focus.', { exact: true }).isVisible(), `Shaquille specialty missing after flip at ${viewport.width}`);
+  check(await team.getByRole('button', { name: 'Back to photo' }).isVisible(), `team card return control missing at ${viewport.width}`);
+  await team.getByRole('button', { name: 'Back to photo' }).click();
   if (expectManagedAssets) {
-    await page.goto(base + '/about');
     const teamImages = page.locator('#team img');
     for (let i = 0; i < await teamImages.count(); i++) {
       await teamImages.nth(i).scrollIntoViewIfNeeded();

@@ -14,7 +14,7 @@
 - [ ] Manually inspect the OS-native **open** option popup on real target desktop and phone browsers; headless computed styles do not establish OS popup rendering.
 - [ ] Lead failure fallback works; analytics contains no PII/PHI; tracking consent design approved.
 - [ ] Exact active Google Ads Final URLs, mobile/asset URLs, tracking templates, and historical slugs obtained and tested with click-ID preservation.
-- [x] `pnpm verify` passed after the Google review audit fixes: 10/10 unit tests, TypeScript, production build, 12 public route checks, unmodified Google Maps logo integrity check, robots/sitemap/internal links, production HTTP 200/308/404, and bot user agents. Desktop/mobile QA verified the map/form warning plus live and forced-unavailable Google review states. Repeat on the released managed domain.
+- [x] `pnpm verify` passed after the team-role restoration: 11/11 unit tests, TypeScript, production build, 12 public route checks, unmodified Google Maps logo integrity check, robots/sitemap/internal links, production HTTP 200/308/404, and bot user agents. Desktop/mobile QA verified the restored owner-confirmed roles, founder-card specialty flip, map/form warning, plus live and forced-unavailable Google review states. Repeat on the released managed domain.
 - [ ] Save WebDev checkpoint **before** publication.
 - [ ] After approved release, verify Search Console property, submit sitemap, inspect priority URLs; do not equate submitted with indexed.
 
