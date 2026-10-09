@@ -116,9 +116,17 @@ for (const viewport of [{ width: 1365, height: 900 }, { width: 390, height: 844 
   await page.getByRole('button', { name: 'Submit request' }).click();
   await page.locator('.form-error-banner').waitFor({ timeout: 5000 }).catch(() => null);
   check(await page.locator('.form-error-banner').isVisible(), 'provider success:false did not show failure fallback');
+  const afterFailureConversions = await page.evaluate(() => Array.from(window.dataLayer || []).map(entry => Array.from(entry)).filter(entry => entry[0] === 'event' && entry[1] === 'conversion').length);
+  check(afterFailureConversions === 0, `Google Ads conversion fired before provider confirmation: ${afterFailureConversions}`);
   await page.getByRole('button', { name: 'Submit request' }).click();
   await page.getByRole('status').getByText('Request accepted').waitFor({ timeout: 5000 }).catch(() => null);
   check(await page.getByRole('status').getByText('Request accepted').isVisible(), 'provider success:true did not show success');
+  const afterSuccessConversion = await page.evaluate(() => {
+    const conversions = Array.from(window.dataLayer || []).map(entry => Array.from(entry)).filter(entry => entry[0] === 'event' && entry[1] === 'conversion' && entry[2]?.send_to === 'AW-18221337260/__DOCJGJyLocEKyVzvBD');
+    return { count: conversions.length, keys: conversions[0]?.[2] ? Object.keys(conversions[0][2]).sort() : [] };
+  });
+  check(afterSuccessConversion.count === 1, `Google Ads conversion was not fired exactly once after provider confirmation: ${afterSuccessConversion.count}`);
+  check(JSON.stringify(afterSuccessConversion.keys) === JSON.stringify(['send_to']), `Google Ads conversion payload contains unexpected data: ${JSON.stringify(afterSuccessConversion.keys)}`);
   check(call === 2, `mocked provider call count ${call}`);
   await page.getByRole('button', { name: 'Close quote form' }).click();
   check(!await page.getByRole('dialog').isVisible(), 'quote dialog did not close before review inspection');
@@ -179,6 +187,7 @@ for (const viewport of [{ width: 1365, height: 900 }, { width: 390, height: 844 
 
   const unavailableContext = await browser.newContext({ viewport, deviceScaleFactor: 1, isMobile: mobile, hasTouch: mobile, reducedMotion: 'reduce' });
   const unavailablePage = await unavailableContext.newPage();
+  await unavailablePage.route('https://www.googletagmanager.com/gtag/js?id=AW-18221337260', route => route.fulfill({ status: 200, contentType: 'application/javascript', body: '' }));
   await unavailablePage.route('**/maps/api/js**', route => route.abort());
   await unavailablePage.goto(base + '/', { waitUntil: 'domcontentloaded' });
   await unavailablePage.evaluate(() => document.querySelector('#testimonials')?.scrollIntoView({ block: 'center' }));
@@ -192,4 +201,4 @@ for (const viewport of [{ width: 1365, height: 900 }, { width: 390, height: 844 
 }
 await browser.close();
 if (errors.length) { console.error('FAIL browser QA:\n' + errors.join('\n')); process.exit(1); }
-console.log('PASS browser QA: 10 routes × desktop/mobile, no overflow/runtime errors, mobile nav, form validation, select contrast/states, consent, mocked provider failure/success, live/unavailable Google review states with attribution, business fields, and configured image checks.');
+console.log('PASS browser QA: 10 routes × desktop/mobile, no overflow/runtime errors, mobile nav, form validation, select contrast/states, consent, zero Google Ads conversions on provider failure and one exact conversion on confirmed receipt, live/unavailable Google review states with attribution, business fields, and configured image checks.');

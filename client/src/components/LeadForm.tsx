@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { site } from "@shared/site";
 import { mappedStates } from "@shared/service-area";
-import { emitEvent, getAttribution } from "@/lib/measurement";
+import { emitEvent, getAttribution, trackGoogleAdsQuoteConversion } from "@/lib/measurement";
 
 export type LeadKind = "consumer" | "business";
 type FieldName = "coverage_intent" | "state" | "zip" | "timeline" | "company_name" | "team_size" | "decision_role" | "first_name" | "last_name" | "email" | "phone" | "preferred_contact" | "consent";
@@ -99,7 +99,12 @@ export default function LeadForm({ kind = "consumer" }: { kind?: LeadKind }) {
     if (Object.keys(invalid).length) { setErrors(invalid); emitEvent("form_validation_error", { form: kind, step: 3 }); document.getElementById("lead-consent")?.focus(); return; }
     setBusy(true); setSubmissionError(false);
     emitEvent(kind === "business" ? "business_form_submitted" : "form_submitted", { form: kind });
-    try { await sendLead(data, kind); setSuccess(true); emitEvent("form_submission_success", { form: kind }); }
+    try {
+      await sendLead(data, kind);
+      trackGoogleAdsQuoteConversion();
+      setSuccess(true);
+      emitEvent("form_submission_success", { form: kind });
+    }
     catch { setSubmissionError(true); }
     finally { setBusy(false); }
   };

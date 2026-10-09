@@ -12,6 +12,24 @@ export function emitEvent(name: FunnelEvent, context: Record<string, string | nu
   window.dispatchEvent(new CustomEvent("hhg:funnel", { detail: { name, context: safe } }));
 }
 
+const GOOGLE_ADS_QUOTE_DESTINATION = "AW-18221337260/__DOCJGJyLocEKyVzvBD";
+
+declare global {
+  interface Window {
+    gtag?: (command: "event", eventName: "conversion", parameters: { send_to: string }) => void;
+  }
+}
+
+/**
+ * Fires only after Web3Forms explicitly confirms a quote request. Deliberately
+ * sends no name, contact information, location, coverage, or health data.
+ */
+export function trackGoogleAdsQuoteConversion() {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return false;
+  window.gtag("event", "conversion", { send_to: GOOGLE_ADS_QUOTE_DESTINATION });
+  return true;
+}
+
 const ATTR_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "gbraid", "wbraid"] as const;
 const SESSION_KEY = "hhg_attribution_v1";
 export type Attribution = Partial<Record<(typeof ATTR_KEYS)[number], string>> & {

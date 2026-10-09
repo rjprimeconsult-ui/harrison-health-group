@@ -8,6 +8,8 @@ const fail: string[] = [];
 const managedAssets = new Set<string>();
 const known = new Set([...publicPages.map((page) => page.path), "/admin/reviews", "/404", "/sitemap.xml", "/robots.txt", "/llms.txt", "/favicon.ico"]);
 const titleSet = new Set<string>();
+const googleAdsQuoteDestination = "AW-18221337260/__DOCJGJyLocEKyVzvBD";
+let googleAdsQuoteDestinationCount = 0;
 for (const page of publicPages) {
   const path = join(root, page.path === "/" ? "index.html" : `${page.path.slice(1)}/index.html`);
   const html = await readFile(path, "utf8");
@@ -52,8 +54,10 @@ if (!terms.includes("https://cloud.google.com/maps-platform/terms") || !terms.in
 for (const asset of await readdir(join(root, "assets"))) {
   if (!asset.endsWith(".js")) continue;
   const js = await readFile(join(root, "assets", asset), "utf8");
+  googleAdsQuoteDestinationCount += js.split(googleAdsQuoteDestination).length - 1;
   if (js.includes("Rafael helped me find a plan") || js.includes("saved my family $400/month")) fail.push(`legacy review seed leaked into ${asset}`);
 }
+if (googleAdsQuoteDestinationCount !== 1) fail.push(`expected one Google Ads quote-conversion destination, found ${googleAdsQuoteDestinationCount}`);
 if (process.env.QA_ASSET_BASE) {
   for (const asset of managedAssets) {
     const response = await fetch(process.env.QA_ASSET_BASE + asset, { method: "HEAD" });
