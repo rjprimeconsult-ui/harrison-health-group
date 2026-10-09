@@ -13,6 +13,8 @@
 - [x] Desktop + mobile browser QA passes for menu, form errors, mocked success/failure, and computed native select placeholder/closed/selected/disabled/focus/hover/checked-option states.
 - [ ] Manually inspect the OS-native **open** option popup on real target desktop and phone browsers; headless computed styles do not establish OS popup rendering.
 - [ ] Lead failure fallback works; analytics contains no PII/PHI; tracking consent design approved.
+- [x] Owner-supplied Google Ads base tag `AW-18221337260` is emitted exactly once on every prerendered page; browser QA confirms one `config` call and no Google Ads conversion event. No form fields, ZIPs, coverage selections, or medical information are forwarded by the application.
+- [ ] Owner supplies the exact Google Ads lead-conversion action/label and counsel approves cookie/advertising consent before a completed form may fire an Ads conversion event.
 - [ ] Exact active Google Ads Final URLs, mobile/asset URLs, tracking templates, and historical slugs obtained and tested with click-ID preservation.
 - [x] `pnpm verify` passed after the team-role restoration: 11/11 unit tests, TypeScript, production build, 12 public route checks, unmodified Google Maps logo integrity check, robots/sitemap/internal links, production HTTP 200/308/404, and bot user agents. Desktop/mobile QA verified the restored owner-confirmed roles, founder-card specialty flip, map/form warning, plus live and forced-unavailable Google review states. Repeat on the released managed domain.
 - [ ] Save WebDev checkpoint **before** publication.

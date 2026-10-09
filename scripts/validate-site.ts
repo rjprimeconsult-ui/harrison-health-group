@@ -17,6 +17,9 @@ for (const page of publicPages) {
   if (!html.match(/<div id="root"><[a-z]/)) fail.push(`${page.path}: no prerendered body`);
   if ((html.match(/<h1\b/g) || []).length !== 1) fail.push(`${page.path}: expected one H1`);
   if ((html.match(/rel="canonical"/g) || []).length !== 1) fail.push(`${page.path}: expected one canonical`);
+  if ((html.match(/https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=AW-18221337260/g) || []).length !== 1) fail.push(`${page.path}: expected one Google Ads base-tag script`);
+  if ((html.match(/gtag\('config', 'AW-18221337260'\)/g) || []).length !== 1) fail.push(`${page.path}: missing Google Ads base-tag configuration`);
+  if (html.includes("gtag('event', 'conversion'")) fail.push(`${page.path}: unexpected Google Ads conversion event without an owner-supplied conversion label`);
   if (!html.includes(`href="${site.origin}${page.path}"`)) fail.push(`${page.path}: wrong canonical`);
   if (!html.includes(`content="${page.indexable ? "index,follow" : "noindex,nofollow"}`)) fail.push(`${page.path}: wrong indexing`);
   for (const match of html.matchAll(/href="(\/[a-zA-Z0-9\-_/]+)"/g)) {
@@ -44,7 +47,7 @@ const officialGoogleMark = await readFile(join(root, "google-maps-logo-white.svg
 if (createHash("sha256").update(officialGoogleMark).digest("hex") !== "727012e157bc115222e717325d3fb70a3cd1e6ba2407cd320e489285543503ec") fail.push("Google Maps attribution mark was modified");
 const privacy = await readFile(join(root, "privacy", "index.html"), "utf8");
 const terms = await readFile(join(root, "terms", "index.html"), "utf8");
-if (!privacy.includes("https://policies.google.com/privacy")) fail.push("privacy page missing incorporated Google Privacy Policy");
+if (!privacy.includes("https://policies.google.com/privacy") || !privacy.includes("Google advertising measurement")) fail.push("privacy page missing Google Ads measurement disclosure");
 if (!terms.includes("https://cloud.google.com/maps-platform/terms") || !terms.includes("https://cloud.google.com/maps-platform/terms/maps-service-terms")) fail.push("terms page missing incorporated Google Maps Platform terms");
 for (const asset of await readdir(join(root, "assets"))) {
   if (!asset.endsWith(".js")) continue;

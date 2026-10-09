@@ -13,6 +13,7 @@ for (const viewport of [{ width: 1365, height: 900 }, { width: 390, height: 844 
   const mobile = viewport.width < 500;
   const context = await browser.newContext({ viewport, deviceScaleFactor: 1, isMobile: mobile, hasTouch: mobile, reducedMotion: 'reduce' });
   const page = await context.newPage();
+  await page.route('https://www.googletagmanager.com/gtag/js?id=AW-18221337260', route => route.fulfill({ status: 200, contentType: 'application/javascript', body: '' }));
   page.on('pageerror', error => errors.push(`${mobile ? 'mobile' : 'desktop'} runtime: ${error.message}`));
   for (const route of pages) {
     const response = await page.goto(base + route, { waitUntil: 'domcontentloaded' });
@@ -22,6 +23,16 @@ for (const viewport of [{ width: 1365, height: 900 }, { width: 390, height: 844 
     check(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 2), `${route} horizontal overflow at ${viewport.width}`);
   }
   await page.goto(base + '/');
+  const adsTag = page.locator('script[src="https://www.googletagmanager.com/gtag/js?id=AW-18221337260"]');
+  check(await adsTag.count() === 1, `Google Ads base tag is missing or duplicated at ${viewport.width}`);
+  const adsState = await page.evaluate(() => {
+    const records = Array.from(window.dataLayer || []).map(entry => Array.from(entry));
+    return {
+      config: records.filter(entry => entry[0] === 'config' && entry[1] === 'AW-18221337260').length,
+      conversions: records.filter(entry => entry[0] === 'event' && entry[1] === 'conversion').length,
+    };
+  });
+  check(adsState.config === 1 && adsState.conversions === 0, `Google Ads base-tag initialization is invalid at ${viewport.width}: ${JSON.stringify(adsState)}`);
   const delaware = page.locator('#licensed-states svg path[aria-label="Delaware: shown on licensed-state map"]');
   const newMexico = page.locator('#licensed-states svg path[aria-label="New Mexico: not listed on map"]');
   check(await delaware.count() === 1 && await delaware.getAttribute('fill') === '#C9A84C', 'Delaware not highlighted in gold');
