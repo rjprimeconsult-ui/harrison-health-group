@@ -5,6 +5,7 @@ import Footer from "@/components/sections/Footer";
 import Team from "@/components/sections/Team";
 import LeadForm from "@/components/LeadForm";
 import { guides, faqs, type Guide } from "@/content/guides";
+import type { LandingPage } from "@/content/landing";
 import { emitEvent } from "@/lib/measurement";
 
 function Layout({ children }: { children: React.ReactNode }) { return <div className="site-page"><Navbar /><main id="main-content" className="page-main">{children}</main><Footer /></div>; }
@@ -61,3 +62,21 @@ export function TermsPage() { return <Layout><Hero eyebrow="Terms and Conditions
   <h2>Google Maps content</h2><p>For the Google Maps and Google Places content displayed on this website, these terms incorporate the <a href="https://cloud.google.com/maps-platform/terms" target="_blank" rel="noopener noreferrer">Google Maps Platform Terms of Service</a> and the <a href="https://cloud.google.com/maps-platform/terms/maps-service-terms" target="_blank" rel="noopener noreferrer">Google Maps Platform Service Specific Terms</a>. Google-supplied ratings, reviews, author attribution, and links are shown only as returned in the visitor’s session and remain subject to Google’s applicable terms and content policies.</p>
   <h2>Contact and updates</h2><p>Information may change. If a link or page appears incorrect, contact <a href={`mailto:${site.email}`}>{site.email}</a>. We may update these terms and will change the date above when we do.</p>
 </section></Layout>; }
+
+export function AdLandingPage({ page }: { page: LandingPage }) {
+  const surface = page.path.slice(1);
+  return <Layout>
+    <section className="page-section page-dark" id="quote"><div className="page-shell grid lg:grid-cols-[1fr_1fr] gap-12 items-start">
+      <div><p className="page-eyebrow">{page.eyebrow}</p><h1 className="page-heading" style={{ fontSize: "clamp(2.4rem,4.2vw,3.7rem)", marginTop: ".8rem" }}>{page.title}</h1><p className="mt-5 text-lg leading-relaxed">{page.intro}</p>
+        <div className="page-actions"><a className="btn-primary" href={site.phoneHref} onClick={() => emitEvent("click_to_call", { surface })}>Call {site.phoneDisplay}</a><BookLink label="Prefer to pick a time?" surface={surface} /></div>
+      </div>
+      <div className="rounded-xl p-5 sm:p-8" style={{ border: "1px solid #C9A84C" }}><LeadForm kind="consumer" /></div>
+    </div></section>
+    <section className="page-section page-shell"><h2>Why people call us</h2><div className="grid sm:grid-cols-2 gap-5 mt-6">{page.benefits.map((benefit) => <div className="editorial-card" key={benefit.title}><h3>{benefit.title}</h3><p>{benefit.text}</p></div>)}</div></section>
+    <section className="page-section page-shell"><h2>{page.situationsHeading}</h2><ul className="list-disc pl-6 mt-5 space-y-2 text-lg">{page.situations.map((item) => <li key={item}>{item}</li>)}</ul></section>
+    <section className="page-section page-shell"><h2>How it works</h2><div className="page-grid">{page.steps.map((step, index) => <div className="editorial-card" key={step.title}><span className="page-eyebrow">0{index + 1}</span><h3>{step.title}</h3><p>{step.text}</p></div>)}</div></section>
+    <section className="page-section page-shell"><h2>Common questions</h2><div className="prose-content">{page.faqs.map((faq) => <details className="editorial-card mb-3" key={faq.question}><summary className="cursor-pointer text-xl font-semibold" style={{ fontFamily: "'Cormorant Garamond',serif" }}>{faq.question}</summary><p>{faq.answer}</p>{faq.link && <a href={faq.link.href}>{faq.link.label}</a>}</details>)}</div>
+      <div className="page-actions"><a className="btn-primary" href="#quote">Request a quote call</a><CallLink surface={surface} /></div></section>
+    <section className="page-section page-shell"><aside className="page-disclaimer">Plan availability, eligibility, benefits and costs vary by plan and applicant. A request on this page is not an application, a quote or a coverage decision; review the official plan documents before you apply. Harrison Health Group is a DBA of STAH Health LLC.</aside></section>
+  </Layout>;
+}

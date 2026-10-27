@@ -13,12 +13,14 @@ export interface PageMeta {
   path: string;
   title: string;
   description: string;
-  kind: "home" | "business" | "contact" | "about" | "hub" | "article" | "faq" | "careers" | "legal";
+  kind: "home" | "landing" | "business" | "contact" | "about" | "hub" | "article" | "faq" | "careers" | "legal";
   indexable: boolean;
 }
 
 export const publicPages: PageMeta[] = [
   { path: "/", title: "Private Health Coverage Guidance | Harrison Health Group", description: "Explore private health coverage with Harrison Health Group. Compare questions, prepare for a conversation, or request an individual or family consultation.", kind: "home", indexable: true },
+  { path: "/florida-health-insurance", title: "Florida Health Insurance: Private Plans Year-Round | Harrison Health Group", description: "Private health insurance for Florida individuals and families. Apply any time of year, not only in open enrollment, with a licensed advisor.", kind: "landing", indexable: true },
+  { path: "/self-employed-health-insurance-florida", title: "Health Insurance for Self-Employed Floridians | Harrison Health Group", description: "Health insurance for Florida 1099 contractors, freelancers and owners without a group plan. Apply any time of year with a licensed advisor.", kind: "landing", indexable: true },
   { path: "/business", title: "Small Business Health Coverage | Harrison Health Group", description: "Prepare for a group health benefits conversation. Explore what employers can gather before discussing coverage choices with Harrison Health Group.", kind: "business", indexable: true },
   { path: "/contact", title: "Contact and Schedule | Harrison Health Group", description: "Call, email, or schedule a conversation with Harrison Health Group about private health coverage for your household or business.", kind: "contact", indexable: true },
   { path: "/about", title: "About the Team | Harrison Health Group", description: "Meet the Harrison Health Group team and learn how to reach us for a conversation about private health coverage.", kind: "about", indexable: true },
