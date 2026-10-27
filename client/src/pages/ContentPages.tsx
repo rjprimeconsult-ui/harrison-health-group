@@ -70,7 +70,7 @@ export function AdLandingPage({ page }: { page: LandingPage }) {
       <div><p className="page-eyebrow">{page.eyebrow}</p><h1 className="page-heading" style={{ fontSize: "clamp(2.4rem,4.2vw,3.7rem)", marginTop: ".8rem" }}>{page.title}</h1><p className="mt-5 text-lg leading-relaxed">{page.intro}</p>
         <div className="page-actions"><a className="btn-primary" href={site.phoneHref} onClick={() => emitEvent("click_to_call", { surface })}>Call {site.phoneDisplay}</a><BookLink label="Prefer to pick a time?" surface={surface} /></div>
       </div>
-      <div className="rounded-xl p-5 sm:p-8" style={{ border: "1px solid #C9A84C" }}><LeadForm kind="consumer" /></div>
+      <div className="rounded-xl p-5 sm:p-8" style={{ border: "1px solid #C9A84C" }}><LeadForm kind={page.formKind ?? "consumer"} /></div>
     </div></section>
     <section className="page-section page-shell"><h2>Why people call us</h2><div className="grid sm:grid-cols-2 gap-5 mt-6">{page.benefits.map((benefit) => <div className="editorial-card" key={benefit.title}><h3>{benefit.title}</h3><p>{benefit.text}</p></div>)}</div></section>
     <section className="page-section page-shell"><h2>{page.situationsHeading}</h2><ul className="list-disc pl-6 mt-5 space-y-2 text-lg">{page.situations.map((item) => <li key={item}>{item}</li>)}</ul></section>

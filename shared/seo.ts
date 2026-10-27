@@ -14,9 +14,11 @@ export function renderMeta(path: string): string {
   };
   const url = site.origin + (page ? page.path : path);
   const organization = {
-    "@type": "Organization",
+    "@type": "InsuranceAgency",
     "@id": `${site.origin}/#organization`,
     name: site.name,
+    legalName: "STAH Health LLC",
+    address: { "@type": "PostalAddress", streetAddress: "1550 Sawgrass Corporate Pkwy, Ste 300", addressLocality: "Sunrise", addressRegion: "FL", postalCode: "33323", addressCountry: "US" },
     url: site.origin,
     email: site.email,
     telephone: "+1-954-429-5138",
