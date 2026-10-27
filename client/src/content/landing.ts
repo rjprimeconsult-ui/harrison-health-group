@@ -2,6 +2,8 @@
 // Claims follow BRAND-FACTS.md: no prices, savings, statistics, carrier names or counts, guarantees or "free".
 // "Apply any time of year" is owner-stated (2026-10-27) for the private plans the team offers.
 // Each state below is on the shared licensed-states map (shared/service-area.ts).
+// County pages: owner-requested 2026-10-27 (Broward, Miami-Dade, Palm Beach). Sunrise is in Broward County.
+// Spanish page: owner-stated 2026-10-27 that a team member (Erick) speaks Spanish with clients.
 
 export interface LandingPage {
   path: string;
@@ -14,7 +16,20 @@ export interface LandingPage {
   steps: { title: string; text: string }[];
   faqs: { question: string; answer: string; link?: { href: string; label: string } }[];
   formKind?: "consumer" | "business";
+  lang?: "es";
+  ui?: Partial<LandingUi>;
 }
+
+export interface LandingUi {
+  why: string; how: string; faq: string; call: string; book: string; requestCall: string;
+  formNote?: string; disclaimer: string;
+}
+
+export const englishUi: LandingUi = {
+  why: "Why people call us", how: "How it works", faq: "Common questions", call: "Call",
+  book: "Prefer to pick a time?", requestCall: "Request a quote call",
+  disclaimer: "Plan availability, eligibility, benefits and costs vary by plan and applicant. A request on this page is not an application, a quote or a coverage decision; review the official plan documents before you apply. Harrison Health Group is a DBA of STAH Health LLC.",
+};
 
 interface State {
   name: string;      // Florida
@@ -125,6 +140,120 @@ function selfEmployedPage(s: State): LandingPage {
 
 const florida = states[0];
 
+interface County {
+  name: string;          // Broward County
+  slug: string;          // broward-county
+  cities: string;        // Fort Lauderdale, Hollywood, ...
+  local: { title: string; text: string };
+  situation: string;
+}
+
+const counties: County[] = [
+  {
+    name: "Broward County", slug: "broward-county",
+    cities: "Fort Lauderdale, Hollywood, Pembroke Pines, Coral Springs, Miramar, Sunrise, Plantation and Davie",
+    local: { title: "Right here in Broward", text: "Our team works from Sunrise, in Broward County, and helps households across the county compare their options." },
+    situation: "Commuting between Broward and Miami-Dade or Palm Beach for work",
+  },
+  {
+    name: "Miami-Dade County", slug: "miami-dade",
+    cities: "Miami, Hialeah, Miami Gardens, Homestead, Kendall, Doral, Miami Beach and North Miami",
+    local: { title: "A South Florida team", text: "Our team works from Sunrise in neighboring Broward County and helps Miami-Dade households by phone." },
+    situation: "Working for themselves in Miami-Dade's small business and gig economy",
+  },
+  {
+    name: "Palm Beach County", slug: "palm-beach-county",
+    cities: "West Palm Beach, Boca Raton, Boynton Beach, Delray Beach, Wellington, Jupiter and Lake Worth Beach",
+    local: { title: "A South Florida team", text: "Our team works from Sunrise in neighboring Broward County and helps Palm Beach County households by phone." },
+    situation: "Retiring early or leaving a job before Medicare age",
+  },
+];
+
+function countyPage(c: County): LandingPage {
+  return {
+    path: `/${c.slug}-health-insurance`,
+    eyebrow: `${c.name} health insurance`,
+    title: `Private Health Insurance in ${c.name}`,
+    intro: `Looking for health insurance in ${c.cities}? The private plans we work with are not limited to open enrollment: you can apply any time of year. Tell us who needs coverage in ${c.name}, and a licensed advisor will walk you through the options available to you.`,
+    benefits: [
+      c.local,
+      { title: "Apply any time of year", text: "No waiting for open enrollment or a qualifying life event to start the private plans we help with." },
+      { title: "Keep your doctors in view", text: `Bring the names of your doctors and the ${c.name} hospitals you use, and check how each option fits before you choose.` },
+      { title: "A licensed advisor, not a website", text: "Talk through your prescriptions and monthly budget with a licensed member of our team." },
+    ],
+    situationsHeading: `We often help ${c.name} residents who are`,
+    situations: [
+      "Paying more than they want to for their current plan",
+      "Losing job-based coverage or facing COBRA",
+      "Self-employed, 1099 or between jobs",
+      c.situation,
+      "Past the open enrollment deadline",
+    ],
+    steps: steps("what matters most to your household"),
+    faqs: [
+      {
+        question: `Can I get health insurance in ${c.name} outside open enrollment?`,
+        answer: "Yes, for the private plans we work with: you can apply any time of year. Marketplace plans follow their own enrollment periods. If a Marketplace plan looks like a better fit for you, we can point you to the right place to start.",
+      },
+      {
+        question: "Will my doctors be in network?",
+        answer: "Networks differ from plan to plan. Share the doctors and hospitals you want to keep, and check them against each plan's provider directory with your advisor before you apply.",
+      },
+      {
+        question: "I'm self-employed. Is there a page for me?",
+        answer: "Yes. Our self-employed page covers 1099 contractors, freelancers and owners without a group plan.",
+        link: { href: "/self-employed-health-insurance-florida", label: "See health insurance for the self-employed" },
+      },
+      readyFaq,
+    ],
+  };
+}
+
+const spanishPage: LandingPage = {
+  path: "/seguro-medico-florida",
+  lang: "es",
+  eyebrow: "Seguro médico en Florida",
+  title: "Seguro médico privado para familias e individuos en Florida",
+  intro: "¿Busca seguro médico en Florida? Los planes privados con los que trabajamos no dependen del período de inscripción abierta: puede solicitarlos en cualquier momento del año. En nuestro equipo hay un asesor que habla español y que le explicará las opciones disponibles para usted.",
+  benefits: [
+    { title: "Atención en español", text: "Llámenos y pida hablar en español. Le comunicamos con el asesor de nuestro equipo que habla español." },
+    { title: "Solicite en cualquier momento del año", text: "No tiene que esperar la inscripción abierta ni un evento de vida calificado para los planes privados con los que trabajamos." },
+    { title: "Un asesor, no una página web", text: "Hable de sus médicos, sus recetas y su presupuesto mensual con un miembro de nuestro equipo." },
+    { title: "Con base en el sur de Florida", text: "Nuestro equipo trabaja desde Sunrise, Florida, y ayuda a hogares de Florida a comparar sus opciones." },
+  ],
+  situationsHeading: "Con frecuencia ayudamos a personas que",
+  situations: [
+    "Pagan más de lo que quisieran por su plan actual",
+    "Pierden la cobertura de su empleo o recibieron un aviso de COBRA",
+    "Trabajan por cuenta propia, con 1099 o están entre empleos",
+    "Compran seguro médico por primera vez",
+    "Ya pasaron la fecha límite de la inscripción abierta",
+  ],
+  steps: [
+    { title: "Díganos quién necesita cobertura", text: "Llámenos o envíe el formulario breve. Solo pedimos datos básicos de contacto, nunca su historial médico." },
+    { title: "Hable con un asesor", text: "Repasamos sus médicos, sus recetas, su presupuesto y lo que más le importa a su familia." },
+    { title: "Revise y decida", text: "Compare los documentos de los planes disponibles para usted y presente la solicitud solo si alguno le conviene." },
+  ],
+  faqs: [
+    { question: "¿Puedo hablar con alguien en español?", answer: "Sí. Llame al (954) 429-5138 y pida hablar en español. Si envía el formulario, le indicaremos a nuestro asesor que usted prefiere español." },
+    {
+      question: "¿Puedo obtener seguro médico fuera de la inscripción abierta?",
+      answer: "Sí, para los planes privados con los que trabajamos: puede solicitarlos en cualquier momento del año. Los planes del Mercado de Seguros (Marketplace) tienen sus propios períodos de inscripción. Si un plan del Mercado le conviene más, le indicamos dónde empezar.",
+    },
+    {
+      question: "¿Cuánto cuesta el seguro médico en Florida?",
+      answer: "Depende de quién necesita cobertura, sus edades, dónde vive, el plan que elija y las respuestas de la solicitud. Un asesor puede darle cifras reales para su hogar después de una conversación breve.",
+    },
+    { question: "¿Qué debo tener a mano?", answer: "Las edades y el código postal de todas las personas que necesitan cobertura, los médicos o recetas que quiere mantener y un rango de presupuesto mensual." },
+  ],
+  ui: {
+    why: "Por qué nos llaman", how: "Cómo funciona", faq: "Preguntas frecuentes", call: "Llame al",
+    book: "¿Prefiere elegir un horario?", requestCall: "Pida que le llamemos",
+    formNote: "El formulario está en inglés. Si lo prefiere, llámenos y pida hablar en español.",
+    disclaimer: "La disponibilidad, la elegibilidad, los beneficios y los costos varían según el plan y el solicitante. Una solicitud en esta página no es una aplicación, una cotización ni una decisión de cobertura; revise los documentos oficiales del plan antes de presentar una solicitud. Harrison Health Group es un nombre comercial (DBA) de STAH Health LLC.",
+  },
+};
+
 const cobraPage: LandingPage = {
   path: "/cobra-alternative-florida",
   eyebrow: "COBRA and job loss",
@@ -185,4 +314,7 @@ const smallBusinessPage: LandingPage = {
   formKind: "business",
 };
 
-export const landingPages: LandingPage[] = [...states.flatMap((s) => [individualPage(s), selfEmployedPage(s)]), cobraPage, smallBusinessPage];
+export const landingPages: LandingPage[] = [
+  ...states.flatMap((s) => [individualPage(s), selfEmployedPage(s)]),
+  cobraPage, smallBusinessPage, ...counties.map(countyPage), spanishPage,
+];
