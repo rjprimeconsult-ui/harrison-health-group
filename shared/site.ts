@@ -28,8 +28,8 @@ export const publicPages: PageMeta[] = [
   { path: "/resources/small-business-benefits", title: "A Small Employer's Health Benefits Checklist | Harrison Health Group", description: "An employer-friendly guide to preparing team details, renewal timing, decision criteria, and questions before a group benefits discussion.", kind: "article", indexable: true },
   { path: "/faq", title: "Health Coverage Questions | Harrison Health Group", description: "Answers to common questions about preparing for a coverage conversation, business inquiries, scheduling, and sharing personal information.", kind: "faq", indexable: true },
   { path: "/careers", title: "Careers and Future Interest | Harrison Health Group", description: "Interested in future opportunities with Harrison Health Group? Learn how to get in touch; no specific openings are advertised here.", kind: "careers", indexable: true },
-  { path: "/privacy", title: "Privacy Information | Harrison Health Group", description: "Information about contact requests and third-party form and scheduling services. Formal privacy policy is pending owner and counsel review.", kind: "legal", indexable: false },
-  { path: "/terms", title: "Website Use Information | Harrison Health Group", description: "General site-use information. Formal terms and regulatory disclosures are pending owner and counsel approval.", kind: "legal", indexable: false },
+  { path: "/privacy", title: "Privacy Policy | Harrison Health Group", description: "Privacy Policy for Harrison Health Group (STAH Health LLC): what we collect, how we use it, text message (SMS) privacy, and how to contact us.", kind: "legal", indexable: false },
+  { path: "/terms", title: "Terms and Conditions | Harrison Health Group", description: "Website use terms and SMS terms for Harrison Health Group Lead Alerts, operated by STAH Health LLC.", kind: "legal", indexable: false },
 ];
 
 export const indexablePages = publicPages.filter((page) => page.indexable);
