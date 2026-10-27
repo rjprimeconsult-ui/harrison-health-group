@@ -19,7 +19,7 @@ export function renderMeta(path: string): string {
     name: site.name,
     url: site.origin,
     email: site.email,
-    telephone: "+1-954-600-0342",
+    telephone: "+1-954-429-5138",
     logo: `${site.origin}/favicon-192x192.png`,
   };
   const webpage = {

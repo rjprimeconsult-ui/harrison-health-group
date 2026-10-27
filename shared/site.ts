@@ -1,8 +1,8 @@
 export const site = {
   name: "Harrison Health Group",
   origin: "https://harrisonhealthgroup.com",
-  phoneDisplay: "(954) 600-0342",
-  phoneHref: "tel:+19546000342",
+  phoneDisplay: "(954) 429-5138",
+  phoneHref: "tel:+19544295138",
   email: "info@harrisonhealthgroup.com",
   bookingUrl: "https://calendly.com/harrisonhealthgroup/consultation",
   reviewUrl: "https://share.google/bSs51zOJBQF8q6ygR",

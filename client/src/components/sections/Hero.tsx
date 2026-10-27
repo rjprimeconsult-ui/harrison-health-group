@@ -343,7 +343,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
               Request a Coverage Conversation
             </AnimatedButton>
             <motion.a
-              href="tel:+19546000342"
+              href="tel:+19544295138"
               className="flex items-center gap-2 px-7 py-4 rounded-md text-base font-semibold no-underline transition-all duration-300"
               style={{
                 fontFamily: "'DM Sans', sans-serif",
