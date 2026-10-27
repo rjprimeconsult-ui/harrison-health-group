@@ -7,7 +7,7 @@ Updated: 2026-10-04. This is an **implementation evidence record**, not an asser
 | Public name: Harrison Health Group | CERTAIN | Existing domain, site, and prior owner instructions. |
 | Preferred website: `https://harrisonhealthgroup.com` | CERTAIN | Owner provided domain; current live homepage resolves. |
 | Public email: `info@harrisonhealthgroup.com` | CERTAIN | Owner explicitly said it is live. |
-| Public phone: `(954) 600-0342` | LIKELY | Existing site prominently uses it; owner requested phone CTA styling. Independently reconfirm before a paid launch. |
+| Public phone: `(954) 429-5138` | CERTAIN (owner-stated) | Owner decided on 2026-10-27 that ads and the website use the Twilio line (954) 429-5138, which rings the Gotham agent rotation and records calls (previously `(954) 600-0342`). The Google Business Profile listing may still show the old number; the review widget verifies the listing separately. |
 | Booking URL: `https://calendly.com/harrisonhealthgroup/consultation` | CERTAIN | Owner-supplied URL. Appointment duration/modality is unverified. |
 | Google review/share URL and verified Places listing | CERTAIN | Owner supplied `https://share.google/bSs51zOJBQF8q6ygR`. The managed Google Places integration verified Place ID `ChIJhzfl-t8J2YgRtQtGVKrF4mg` against the exact business name, Sawgrass Corporate Parkway address, site URL, and phone. |
 | Service focus: private health coverage; individual/family and group inquiries | CERTAIN/LIKELY | Owner context says private plans are primary and ACA referrals may occur; group health coverage requested for Raziya. Product availability by state/carrier remains unverified. |
