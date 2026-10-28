@@ -223,6 +223,31 @@ export const guides: Guide[] = [
 
 export const faqs: { question: string; answer: string }[] = [
   {
+    question: "Can I get health insurance outside open enrollment?",
+    answer:
+      "Yes, for the private plans we work with: you can apply any time of year, not only during open enrollment. Marketplace plans follow their own enrollment periods, so if a Marketplace plan looks like a better fit, we can point you to the right place to start."
+  },
+  {
+    question: "What is the difference between private and Marketplace health plans?",
+    answer:
+      "They are different routes to coverage, with different enrollment rules, costs and benefits. The private-versus-Marketplace guide in our Resources section walks through what to compare side by side."
+  },
+  {
+    question: "How much is health insurance for a self-employed person?",
+    answer:
+      "It depends on who needs coverage, their ages, where you live, the plan you choose and the answers on the application. A licensed advisor can go over real numbers for your household after a short conversation."
+  },
+  {
+    question: "Can I switch from COBRA to a private plan?",
+    answer:
+      "You can apply for the private plans we work with any time of year, including while you are on COBRA. Compare both before you decide, and check your COBRA notice for its deadlines."
+  },
+  {
+    question: "Which states do you help with?",
+    answer:
+      "Our team is based in Sunrise, Florida, and serves the states shown on our map. If your state is not listed, ask, and we will tell you whether we can help or point you somewhere that can."
+  },
+  {
     question: "What information should I gather before discussing health coverage?",
     answer:
       "Bring the household or employee situation you are trying to solve, expected care needs you are comfortable sharing, current policy documents, and a list of questions. Official plan materials are the place to confirm terms."

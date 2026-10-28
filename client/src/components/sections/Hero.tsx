@@ -202,7 +202,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 color: "#795E20",
               }}
             >
-              Harrison Health Group · Private Coverage Guidance
+              Harrison Health Group · Private Health Insurance
             </span>
           </motion.div>
 
@@ -211,7 +211,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 700,
-              fontSize: "clamp(3rem, 7vw, 5.5rem)",
+              fontSize: "clamp(2.7rem, 6vw, 4.7rem)",
               color: "#0A0A0A",
               lineHeight: 1.0,
               marginBottom: "1.5rem",
@@ -220,7 +220,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
-            Private Health Coverage{" "}
+            Private Health Insurance in Florida{" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #795E20, #A8852D, #795E20)",
@@ -343,7 +343,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
               Request a Coverage Conversation
             </AnimatedButton>
             <motion.a
-              href="tel:+19546000342"
+              href="tel:+19544295138"
               className="flex items-center gap-2 px-7 py-4 rounded-md text-base font-semibold no-underline transition-all duration-300"
               style={{
                 fontFamily: "'DM Sans', sans-serif",
