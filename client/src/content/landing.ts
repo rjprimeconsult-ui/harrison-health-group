@@ -3,6 +3,7 @@
 // "Apply any time of year" is owner-stated (2026-10-27) for the private plans the team offers.
 // Each state below is on the shared licensed-states map (shared/service-area.ts).
 // County pages: owner-requested 2026-10-27 (Broward, Miami-Dade, Palm Beach). Sunrise is in Broward County.
+// COBRA and small business pages for Texas and Georgia: owner-requested 2026-10-29 (same wording as Florida).
 // Spanish page: owner-stated 2026-10-27 that a team member (Erick) speaks Spanish with clients.
 
 export interface LandingPage {
@@ -138,7 +139,6 @@ function selfEmployedPage(s: State): LandingPage {
   };
 }
 
-const florida = states[0];
 
 interface County {
   name: string;          // Broward County
@@ -254,8 +254,9 @@ const spanishPage: LandingPage = {
   },
 };
 
-const cobraPage: LandingPage = {
-  path: "/cobra-alternative-florida",
+function cobraPage(s: State): LandingPage {
+  return {
+  path: `/cobra-alternative-${s.slug}`,
   eyebrow: "COBRA and job loss",
   title: "Lost Job-Based Coverage? Compare Your Options to COBRA",
   intro: "Leaving a job, or holding a COBRA notice? COBRA lets you keep your employer's plan, but you usually pay the full cost yourself. Before you decide, compare it with private plans you can apply for any time of year. A licensed advisor will walk you through both.",
@@ -263,7 +264,7 @@ const cobraPage: LandingPage = {
     { title: "Apply any time of year", text: "Start a private plan we help with when your job coverage ends, not months later at open enrollment." },
     { title: "Compare before you choose", text: "Bring your COBRA notice and we will look at it next to the private options available to you." },
     { title: "Keep your doctors in view", text: "Check how your doctors and prescriptions fit each option before you make a switch." },
-    florida.local,
+    s.local,
   ],
   situationsHeading: "We often help people who are",
   situations: [
@@ -281,16 +282,18 @@ const cobraPage: LandingPage = {
     { question: "Where can I learn more first?", answer: "Our guide comparing private and Marketplace coverage explains what to compare side by side.", link: { href: "/resources/private-vs-marketplace", label: "Read the comparison guide" } },
   ],
 };
+}
 
-const smallBusinessPage: LandingPage = {
-  path: "/small-business-health-insurance-florida",
+function smallBusinessPage(s: State): LandingPage {
+  return {
+  path: `/small-business-health-insurance-${s.slug}`,
   eyebrow: "Small business health insurance",
-  title: "Health Benefits for Florida Small Businesses",
+  title: `Health Benefits for ${s.name} Small Businesses`,
   intro: "Thinking about offering health coverage to your team, or reviewing the plan you have? Start with your team size, timeline and goals, and a licensed advisor will walk you through the options for your business.",
   benefits: [
     { title: "One conversation for your team", text: "Tell us about your team once, and we will go over the options that fit your business." },
     { title: "Built around your budget", text: "Talk through what you want to contribute and what matters most to your employees." },
-    florida.local,
+    s.local,
     { title: "Plain answers before you decide", text: "Review the actual plan documents before you commit, so you know what you are offering." },
   ],
   situationsHeading: "This page is for owners who are",
@@ -308,13 +311,14 @@ const smallBusinessPage: LandingPage = {
   ],
   faqs: [
     { question: "What should I have ready?", answer: "Your approximate team size, ZIP code, your current plan and renewal date if you have one, and a budget range per employee." },
-    { question: "I work for myself with no employees. Is this page for me?", answer: "Individual plans are usually the better fit when it is just you, or you and your family.", link: { href: "/self-employed-health-insurance-florida", label: "See health insurance for the self-employed" } },
+    { question: "I work for myself with no employees. Is this page for me?", answer: "Individual plans are usually the better fit when it is just you, or you and your family.", link: { href: `/self-employed-health-insurance-${s.slug}`, label: "See health insurance for the self-employed" } },
     { question: "Where can I learn more first?", answer: "Our small employer checklist covers what to gather before a benefits conversation.", link: { href: "/resources/small-business-benefits", label: "Read the small business checklist" } },
   ],
   formKind: "business",
 };
+}
 
 export const landingPages: LandingPage[] = [
   ...states.flatMap((s) => [individualPage(s), selfEmployedPage(s)]),
-  cobraPage, smallBusinessPage, ...counties.map(countyPage), spanishPage,
+  ...states.flatMap((s) => [cobraPage(s), smallBusinessPage(s)]), ...counties.map(countyPage), spanishPage,
 ];
