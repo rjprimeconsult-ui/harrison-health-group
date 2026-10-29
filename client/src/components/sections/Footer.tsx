@@ -5,7 +5,7 @@ import { emitEvent } from "@/lib/measurement";
 const groups = [
   { title: "Explore", links: [["Home", "/"], ["Private coverage", "/#coverage"], ["Business coverage", "/business"], ["Contact", "/contact"]] },
   { title: "Learn", links: [["Resources", "/resources"], ["Coverage questions", "/faq"], ["Our team", "/about"], ["Careers", "/careers"]] },
-  { title: "Site", links: [["Privacy Policy", "/privacy"], ["Terms & SMS Terms", "/terms"], ["Sitemap", "/sitemap.xml"]] },
+  { title: "Site", links: [["Privacy Policy", "/privacy"], ["Terms & SMS Terms", "/terms"], ["Site map", "/site-map"]] },
 ] as const;
 
 export default function Footer() {

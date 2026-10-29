@@ -5,6 +5,7 @@ import Footer from "@/components/sections/Footer";
 import Team from "@/components/sections/Team";
 import LeadForm from "@/components/LeadForm";
 import { guides, faqs, type Guide } from "@/content/guides";
+import { publicPages } from "@shared/site";
 import { englishUi, type LandingPage } from "@/content/landing";
 import { emitEvent } from "@/lib/measurement";
 
@@ -80,4 +81,27 @@ export function AdLandingPage({ page }: { page: LandingPage }) {
       <div className="page-actions"><a className="btn-primary" href="#quote">{ui.requestCall}</a><a className="page-link" href={site.phoneHref} onClick={() => emitEvent("click_to_call", { surface })}>{ui.call} {site.phoneDisplay}</a></div></section>
     <section className="page-section page-shell"><aside className="page-disclaimer">{ui.disclaimer}</aside></section>
   </div>  </Layout>;
+}
+
+// Human-friendly site map (owner request 2026-10-29). /sitemap.xml stays for search engines.
+const SITE_MAP_GROUPS: { title: string; match: (path: string) => boolean }[] = [
+  { title: "Individuals and families", match: (p) => /^\/(florida|texas|georgia)-health-insurance$/.test(p) },
+  { title: "Self-employed and 1099", match: (p) => p.startsWith("/self-employed-health-insurance-") },
+  { title: "COBRA and job loss", match: (p) => p.startsWith("/cobra-alternative-") },
+  { title: "Small business", match: (p) => p === "/business" || p.startsWith("/small-business-health-insurance-") },
+  { title: "South Florida counties", match: (p) => /-(county|dade)-health-insurance$/.test(p) },
+  { title: "En español", match: (p) => p.startsWith("/seguro-medico-") },
+  { title: "Guides", match: (p) => p.startsWith("/resources") },
+  { title: "About us", match: (p) => ["/", "/about", "/contact", "/faq", "/careers", "/privacy", "/terms"].includes(p) },
+];
+export function SiteMapPage() {
+  const label = (title: string) => title.split(" | ")[0];
+  return <Layout>
+    <Hero eyebrow="Site map" title="Find your way around." description="Every page on our website, grouped by what you are looking for. Not sure where to start? Call us and we will point you in the right direction." />
+    <section className="page-section page-shell"><div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">{SITE_MAP_GROUPS.map((group) => {
+      const pages = publicPages.filter((page) => page.path !== "/site-map" && group.match(page.path));
+      return pages.length ? <div className="editorial-card" key={group.title}><h2 className="text-2xl">{group.title}</h2><ul className="mt-4 space-y-2">{pages.map((page) => <li key={page.path}><a className="underline underline-offset-4" href={page.path}>{page.path === "/" ? "Home" : label(page.title)}</a></li>)}</ul></div> : null;
+    })}</div>
+    <div className="page-actions"><CallLink surface="site_map" /><BookLink surface="site_map" /></div></section>
+  </Layout>;
 }
