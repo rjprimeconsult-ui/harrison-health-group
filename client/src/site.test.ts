@@ -36,9 +36,10 @@ describe("Harrison facts and routes", () => {
     expect(faqs.length).toBeGreaterThanOrEqual(6);
   });
   it("keeps the owner-confirmed advisor titles and a distinct specialty for every team member", () => {
-    expect(teamMembers).toHaveLength(6);
+    expect(teamMembers).toHaveLength(9);   // owner added Kevin, Erick and Jermaine 2026-10-29
     expect(teamMembers[0]).toMatchObject({ name: "Shaquille Harrison", title: "Founder and Senior Health Advisor" });
-    expect(teamMembers.slice(1).every((member) => member.title === "Licensed Health Advisor")).toBe(true);
+    expect(teamMembers.slice(1, 8).every((member) => member.title === "Licensed Health Advisor")).toBe(true);
+    expect(teamMembers[8]).toMatchObject({ name: "Jermaine Robinson", title: "Chief Operations Officer and Executive Assistant" });
     expect(new Set(teamMembers.map((member) => member.specialty)).size).toBe(teamMembers.length);
     expect(teamMembers.every((member) => member.specialty.trim().length >= 100)).toBe(true);
     expect(teamMembers.map((member) => member.title)).not.toContain("Team Member");

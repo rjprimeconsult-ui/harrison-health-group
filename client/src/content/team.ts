@@ -6,7 +6,7 @@ export interface TeamMember {
   specialty: string;
 }
 
-/** Owner-authorized public team presentation, updated 2026-10-06. */
+/** Owner-authorized public team presentation, updated 2026-10-06; Kevin, Erick and Jermaine added 2026-10-29. */
 export const teamMembers: TeamMember[] = [
   {
     name: "Shaquille Harrison",
@@ -49,5 +49,26 @@ export const teamMembers: TeamMember[] = [
     image: "/manus-storage/matthew_34bb264f.webp",
     position: "center top",
     specialty: "Helps individuals and business owners prepare confident questions about coverage fit, timing, and the plan details they want to understand.",
+  },
+  {
+    name: "Kevin Perkins",
+    title: "Licensed Health Advisor",
+    image: "/team/kevin-perkins.webp",
+    position: "center 20%",
+    specialty: "Helps individuals and families compare their coverage options side by side, from the doctors they want to keep to a monthly budget that works.",
+  },
+  {
+    name: "Erick Rojas",
+    title: "Licensed Health Advisor",
+    image: "/team/erick-rojas.webp",
+    position: "center 20%",
+    specialty: "Guides individuals and families through their coverage questions in English or Spanish, so every detail is clear before a decision is made.",
+  },
+  {
+    name: "Jermaine Robinson",
+    title: "Chief Operations Officer and Executive Assistant",
+    image: "/team/jermaine-robinson.webp",
+    position: "center 15%",
+    specialty: "Keeps the team running day to day, coordinating schedules and follow-ups so every client request reaches the right advisor.",
   },
 ];
