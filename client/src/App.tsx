@@ -7,7 +7,7 @@ import { ReviewProvider } from "@/contexts/ReviewContext";
 import Home from "@/pages/Home";
 import AdminReviews from "@/pages/AdminReviews";
 import NotFound from "@/pages/SiteNotFound";
-import { AdLandingPage, AboutPage, BusinessPage, CareersPage, ContactPage, FAQPage, GuidePage, PrivacyPage, ResourcesPage, TermsPage } from "@/pages/ContentPages";
+import { AdLandingPage, AboutPage, BusinessPage, CareersPage, ContactPage, FAQPage, GuidePage, PrivacyPage, ResourcesPage, SiteMapPage, TermsPage } from "@/pages/ContentPages";
 import { guides } from "@/content/guides";
 import { landingPages } from "@/content/landing";
 
@@ -21,6 +21,7 @@ function SiteRoutes() { return <Switch>
   {landingPages.map((page) => <Route key={page.path} path={page.path}>{() => <AdLandingPage page={page} />}</Route>)}
   <Route path="/faq" component={FAQPage} />
   <Route path="/careers" component={CareersPage} />
+  <Route path="/site-map" component={SiteMapPage} />
   <Route path="/privacy" component={PrivacyPage} />
   <Route path="/terms" component={TermsPage} />
   <Route path="/admin/reviews" component={AdminReviews} />
