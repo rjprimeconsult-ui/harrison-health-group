@@ -22,7 +22,7 @@ for (const viewport of [{ width: 1365, height: 900 }, { width: 390, height: 844 
     check(await page.locator('h1').count() === 1, `${route} missing or multiple H1`);
     check(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 2), `${route} horizontal overflow at ${viewport.width}`);
   }
-  await page.goto(base + '/');
+  await page.goto(base + '/?gclid=qa-gclid&utm_source=google&utm_campaign=qa-campaign');
   const adsTag = page.locator('script[src="https://www.googletagmanager.com/gtag/js?id=AW-18221337260"]');
   check(await adsTag.count() === 1, `Google Ads base tag is missing or duplicated at ${viewport.width}`);
   const adsState = await page.evaluate(() => {
@@ -107,20 +107,34 @@ for (const viewport of [{ width: 1365, height: 900 }, { width: 390, height: 844 
   await page.locator('#lead-consent').check();
   check(await page.locator('#lead-consent').isChecked(), 'checkbox not checked');
   let call = 0;
+  let dashboardCalls = 0;
   await page.route('https://api.web3forms.com/submit', async route => {
     call++;
     const data = JSON.parse(route.request().postData());
     check(data.consent_text_version && data.email === 'pat@example.org', 'lead contract missing consent/contact');
     await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ success: call > 1 }) });
   });
+  await page.route('https://leads.harrisonhealthgroup.com/webhooks/web-form', async route => {
+    dashboardCalls++;
+    const data = JSON.parse(route.request().postData());
+    check(data.first_name === 'Pat' && data.last_name === 'Example' && data.email === 'pat@example.org', 'dashboard lead is missing contact fields');
+    check(data.state === 'FL' && data.zip === '33323' && data.coverage_intent === 'Individual coverage', 'dashboard lead is missing routing fields');
+    check(data.gclid === 'qa-gclid' && data.utm_source === 'google' && data.utm_campaign === 'qa-campaign', 'dashboard lead is missing paid-attribution fields');
+    check(data.consent === true && data.consent_text === 'I request that Harrison Health Group contact me by my selected method about this inquiry. I have read the privacy information and site-use information.', 'dashboard lead is missing consent proof');
+    check(data.page_url === new URL(base).origin + '/', `dashboard lead source page URL is unsafe or incorrect: ${data.page_url}`);
+    check(!('access_key' in data) && !('subject' in data) && !('from_name' in data), 'dashboard lead leaked Web3Forms-only fields');
+    await route.abort('failed');
+  });
   await page.getByRole('button', { name: 'Submit request' }).click();
   await page.locator('.form-error-banner').waitFor({ timeout: 5000 }).catch(() => null);
   check(await page.locator('.form-error-banner').isVisible(), 'provider success:false did not show failure fallback');
+  check(dashboardCalls === 0, `dashboard was contacted before Web3Forms confirmation: ${dashboardCalls}`);
   const afterFailureConversions = await page.evaluate(() => Array.from(window.dataLayer || []).map(entry => Array.from(entry)).filter(entry => entry[0] === 'event' && entry[1] === 'conversion').length);
   check(afterFailureConversions === 0, `Google Ads conversion fired before provider confirmation: ${afterFailureConversions}`);
   await page.getByRole('button', { name: 'Submit request' }).click();
   await page.getByRole('status').getByText('Request accepted').waitFor({ timeout: 5000 }).catch(() => null);
   check(await page.getByRole('status').getByText('Request accepted').isVisible(), 'provider success:true did not show success');
+  await page.waitForTimeout(100);
   const afterSuccessConversion = await page.evaluate(() => {
     const conversions = Array.from(window.dataLayer || []).map(entry => Array.from(entry)).filter(entry => entry[0] === 'event' && entry[1] === 'conversion' && entry[2]?.send_to === 'AW-18221337260/__DOCJGJyLocEKyVzvBD');
     return { count: conversions.length, keys: conversions[0]?.[2] ? Object.keys(conversions[0][2]).sort() : [] };
@@ -128,6 +142,7 @@ for (const viewport of [{ width: 1365, height: 900 }, { width: 390, height: 844 
   check(afterSuccessConversion.count === 1, `Google Ads conversion was not fired exactly once after provider confirmation: ${afterSuccessConversion.count}`);
   check(JSON.stringify(afterSuccessConversion.keys) === JSON.stringify(['send_to']), `Google Ads conversion payload contains unexpected data: ${JSON.stringify(afterSuccessConversion.keys)}`);
   check(call === 2, `mocked provider call count ${call}`);
+  check(dashboardCalls === 1, `dashboard handoff was not sent exactly once after Web3Forms confirmation: ${dashboardCalls}`);
   await page.getByRole('button', { name: 'Close quote form' }).click();
   check(!await page.getByRole('dialog').isVisible(), 'quote dialog did not close before review inspection');
   await page.evaluate(() => {
@@ -201,4 +216,4 @@ for (const viewport of [{ width: 1365, height: 900 }, { width: 390, height: 844 
 }
 await browser.close();
 if (errors.length) { console.error('FAIL browser QA:\n' + errors.join('\n')); process.exit(1); }
-console.log('PASS browser QA: 10 routes × desktop/mobile, no overflow/runtime errors, mobile nav, form validation, select contrast/states, consent, zero Google Ads conversions on provider failure and one exact conversion on confirmed receipt, live/unavailable Google review states with attribution, business fields, and configured image checks.');
+console.log('PASS browser QA: 10 routes × desktop/mobile, no overflow/runtime errors, mobile nav, form validation, select contrast/states, consent, zero dashboard/Google Ads conversion events on provider failure, one exact dashboard handoff and Google Ads conversion after confirmed receipt, dashboard failure tolerance, live/unavailable Google review states with attribution, business fields, and configured image checks.');

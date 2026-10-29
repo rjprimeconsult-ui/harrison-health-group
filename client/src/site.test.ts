@@ -69,6 +69,25 @@ describe("lead validation and provider acknowledgements", () => {
     await expect(sendLead(valid, "business")).resolves.toEqual({ success: true });
     vi.unstubAllGlobals();
   });
+  it("routes one sanitized, consent-backed dashboard copy only after explicit provider confirmation", async () => {
+    const mock = vi.fn()
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ success: true }) })
+      .mockRejectedValueOnce(new Error("dashboard unavailable"));
+    vi.stubGlobal("fetch", mock);
+    vi.stubGlobal("window", { location: { origin: "https://harrisonhealthgroup.com", pathname: "/florida-health-insurance", href: "https://harrisonhealthgroup.com/florida-health-insurance?email=unsafe@example.com#gclid" } });
+    await expect(sendLead(valid, "business")).resolves.toEqual({ success: true });
+    expect(mock).toHaveBeenCalledTimes(2);
+    const [dashboardUrl, dashboardRequest] = mock.mock.calls[1];
+    const dashboardPayload = JSON.parse(dashboardRequest.body);
+    expect(dashboardUrl).toBe("https://leads.harrisonhealthgroup.com/webhooks/web-form");
+    expect(dashboardRequest).toMatchObject({ method: "POST", keepalive: true, headers: { "Content-Type": "application/json" } });
+    expect(dashboardPayload).toMatchObject({ first_name: "Pat", last_name: "Example", lead_type: "business", consent: true, consent_text: "I request that Harrison Health Group contact me by my selected method about this inquiry. I have read the privacy information and site-use information.", page_url: "https://harrisonhealthgroup.com/florida-health-insurance" });
+    expect(dashboardPayload).not.toHaveProperty("access_key");
+    expect(dashboardPayload).not.toHaveProperty("subject");
+    expect(dashboardPayload).not.toHaveProperty("from_name");
+    expect(dashboardPayload.page_url).not.toContain("unsafe@example.com");
+    vi.unstubAllGlobals();
+  });
 });
 
 describe("live Google review identity and attribution", () => {

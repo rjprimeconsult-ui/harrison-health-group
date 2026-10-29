@@ -12,6 +12,8 @@ const initial: Lead = {
 };
 const states = "AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY".split(" ");
 export const consentVersion = "contact-request-v1-2026-10-04";
+const dashboardWebhook = "https://leads.harrisonhealthgroup.com/webhooks/web-form";
+const consentText = "I request that Harrison Health Group contact me by my selected method about this inquiry. I have read the privacy information and site-use information.";
 
 export function validateLead(data: Lead, kind: LeadKind, step: number): Partial<Record<FieldName, string>> {
   const errors: Partial<Record<FieldName, string>> = {};
@@ -51,6 +53,20 @@ export async function sendLead(data: Lead, kind: LeadKind) {
   });
   const result = await response.json().catch(() => null) as { success?: boolean } | null;
   if (!response.ok || result?.success !== true) throw new Error("Lead provider did not confirm acceptance");
+  const dashboardLead = Object.fromEntries(Object.entries(payload).filter(([key]) => !["access_key", "subject", "from_name"].includes(key)));
+  const pageUrl = typeof window === "undefined" ? "" : `${window.location.origin}${window.location.pathname}`;
+  // The dashboard is an operational routing copy, not the form success gate. Web3Forms remains the email backup.
+  void fetch(dashboardWebhook, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    keepalive: true,
+    body: JSON.stringify({
+      ...dashboardLead,
+      consent: data.consent === "yes",
+      consent_text: consentText,
+      page_url: pageUrl,
+    }),
+  }).catch(() => { /* routing failure must not turn a confirmed quote request into a visitor-facing error */ });
   return result;
 }
 
