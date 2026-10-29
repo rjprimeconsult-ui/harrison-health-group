@@ -5,6 +5,7 @@
 // County pages: owner-requested 2026-10-27 (Broward, Miami-Dade, Palm Beach). Sunrise is in Broward County.
 // COBRA and small business pages for Texas and Georgia: owner-requested 2026-10-29 (same wording as Florida).
 // Spanish page: owner-stated 2026-10-27 that a team member (Erick) speaks Spanish with clients.
+// Spanish pages for Texas and Georgia: owner-requested 2026-10-29; owner stated Erick is licensed in all states served.
 
 export interface LandingPage {
   path: string;
@@ -37,20 +38,24 @@ interface State {
   slug: string;      // florida
   people: string;    // Floridians
   local: { title: string; text: string };
+  esLocal: { title: string; text: string };   // the same line in Spanish
 }
 
 const states: State[] = [
   {
     name: "Florida", slug: "florida", people: "Floridians",
     local: { title: "Based in South Florida", text: "Our team works from Sunrise, Florida, and helps Florida households compare their options." },
+    esLocal: { title: "Con base en el sur de Florida", text: "Nuestro equipo trabaja desde Sunrise, Florida, y ayuda a hogares de Florida a comparar sus opciones." },
   },
   {
     name: "Texas", slug: "texas", people: "Texans",
     local: { title: "Help by phone across Texas", text: "Texas is one of the states our team serves. We work by phone, so there is no office to visit." },
+    esLocal: { title: "Ayuda por teléfono en todo Texas", text: "Texas es uno de los estados donde trabaja nuestro equipo. Atendemos por teléfono, así que no tiene que visitar una oficina." },
   },
   {
     name: "Georgia", slug: "georgia", people: "Georgians",
     local: { title: "Help by phone across Georgia", text: "Georgia is one of the states our team serves. We work by phone, so there is no office to visit." },
+    esLocal: { title: "Ayuda por teléfono en todo Georgia", text: "Georgia es uno de los estados donde trabaja nuestro equipo. Atendemos por teléfono, así que no tiene que visitar una oficina." },
   },
 ];
 
@@ -209,17 +214,18 @@ function countyPage(c: County): LandingPage {
   };
 }
 
-const spanishPage: LandingPage = {
-  path: "/seguro-medico-florida",
+function spanishPage(s: State): LandingPage {
+  return {
+  path: `/seguro-medico-${s.slug}`,
   lang: "es",
-  eyebrow: "Seguro médico en Florida",
-  title: "Seguro médico privado para familias e individuos en Florida",
-  intro: "¿Busca seguro médico en Florida? Los planes privados con los que trabajamos no dependen del período de inscripción abierta: puede solicitarlos en cualquier momento del año. En nuestro equipo hay un asesor que habla español y que le explicará las opciones disponibles para usted.",
+  eyebrow: `Seguro médico en ${s.name}`,
+  title: `Seguro médico privado para familias e individuos en ${s.name}`,
+  intro: `¿Busca seguro médico en ${s.name}? Los planes privados con los que trabajamos no dependen del período de inscripción abierta: puede solicitarlos en cualquier momento del año. En nuestro equipo hay un asesor que habla español y que le explicará las opciones disponibles para usted.`,
   benefits: [
     { title: "Atención en español", text: "Llámenos y pida hablar en español. Le comunicamos con el asesor de nuestro equipo que habla español." },
     { title: "Solicite en cualquier momento del año", text: "No tiene que esperar la inscripción abierta ni un evento de vida calificado para los planes privados con los que trabajamos." },
     { title: "Un asesor, no una página web", text: "Hable de sus médicos, sus recetas y su presupuesto mensual con un miembro de nuestro equipo." },
-    { title: "Con base en el sur de Florida", text: "Nuestro equipo trabaja desde Sunrise, Florida, y ayuda a hogares de Florida a comparar sus opciones." },
+    s.esLocal,
   ],
   situationsHeading: "Con frecuencia ayudamos a personas que",
   situations: [
@@ -241,7 +247,7 @@ const spanishPage: LandingPage = {
       answer: "Sí, para los planes privados con los que trabajamos: puede solicitarlos en cualquier momento del año. Los planes del Mercado de Seguros (Marketplace) tienen sus propios períodos de inscripción. Si un plan del Mercado le conviene más, le indicamos dónde empezar.",
     },
     {
-      question: "¿Cuánto cuesta el seguro médico en Florida?",
+      question: `¿Cuánto cuesta el seguro médico en ${s.name}?`,
       answer: "Depende de quién necesita cobertura, sus edades, dónde vive, el plan que elija y las respuestas de la solicitud. Un asesor puede darle cifras reales para su hogar después de una conversación breve.",
     },
     { question: "¿Qué debo tener a mano?", answer: "Las edades y el código postal de todas las personas que necesitan cobertura, los médicos o recetas que quiere mantener y un rango de presupuesto mensual." },
@@ -253,6 +259,7 @@ const spanishPage: LandingPage = {
     disclaimer: "La disponibilidad, la elegibilidad, los beneficios y los costos varían según el plan y el solicitante. Una solicitud en esta página no es una aplicación, una cotización ni una decisión de cobertura; revise los documentos oficiales del plan antes de presentar una solicitud. Harrison Health Group es un nombre comercial (DBA) de STAH Health LLC.",
   },
 };
+}
 
 function cobraPage(s: State): LandingPage {
   return {
@@ -320,5 +327,5 @@ function smallBusinessPage(s: State): LandingPage {
 
 export const landingPages: LandingPage[] = [
   ...states.flatMap((s) => [individualPage(s), selfEmployedPage(s)]),
-  ...states.flatMap((s) => [cobraPage(s), smallBusinessPage(s)]), ...counties.map(countyPage), spanishPage,
+  ...states.flatMap((s) => [cobraPage(s), smallBusinessPage(s)]), ...counties.map(countyPage), ...states.map(spanishPage),
 ];
