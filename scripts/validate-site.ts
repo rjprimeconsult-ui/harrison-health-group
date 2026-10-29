@@ -9,6 +9,8 @@ const managedAssets = new Set<string>();
 const known = new Set([...publicPages.map((page) => page.path), "/admin/reviews", "/404", "/sitemap.xml", "/robots.txt", "/llms.txt", "/favicon.ico"]);
 const titleSet = new Set<string>();
 const googleAdsQuoteDestination = "AW-18221337260/__DOCJGJyLocEKyVzvBD";
+const googleAdsWebsiteCallDestination = "AW-18221337260/uUw9CKaJtK4dEKyVzvBD";
+const googleAdsWebsiteCallNumber = "(954) 429-5138";
 let googleAdsQuoteDestinationCount = 0;
 for (const page of publicPages) {
   const path = join(root, page.path === "/" ? "index.html" : `${page.path.slice(1)}/index.html`);
@@ -21,6 +23,8 @@ for (const page of publicPages) {
   if ((html.match(/rel="canonical"/g) || []).length !== 1) fail.push(`${page.path}: expected one canonical`);
   if ((html.match(/https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=AW-18221337260/g) || []).length !== 1) fail.push(`${page.path}: expected one Google Ads base-tag script`);
   if ((html.match(/gtag\('config', 'AW-18221337260'\)/g) || []).length !== 1) fail.push(`${page.path}: missing Google Ads base-tag configuration`);
+  if ((html.match(new RegExp(`gtag\\('config', '${googleAdsWebsiteCallDestination.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}'`, "g")) || []).length !== 1) fail.push(`${page.path}: missing or duplicated Google Ads website-call configuration`);
+  if (!html.includes(`'phone_conversion_number': '${googleAdsWebsiteCallNumber}'`)) fail.push(`${page.path}: website-call tracking number does not match the public phone`);
   if (html.includes("gtag('event', 'conversion'")) fail.push(`${page.path}: unexpected Google Ads conversion event without an owner-supplied conversion label`);
   if (!html.includes(`href="${site.origin}${page.path}"`)) fail.push(`${page.path}: wrong canonical`);
   if (!html.includes(`content="${page.indexable ? "index,follow" : "noindex,nofollow"}`)) fail.push(`${page.path}: wrong indexing`);

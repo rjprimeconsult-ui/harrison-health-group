@@ -29,10 +29,11 @@ for (const viewport of [{ width: 1365, height: 900 }, { width: 390, height: 844 
     const records = Array.from(window.dataLayer || []).map(entry => Array.from(entry));
     return {
       config: records.filter(entry => entry[0] === 'config' && entry[1] === 'AW-18221337260').length,
+      websiteCallConfigs: records.filter(entry => entry[0] === 'config' && entry[1] === 'AW-18221337260/uUw9CKaJtK4dEKyVzvBD' && entry[2]?.phone_conversion_number === '(954) 429-5138').length,
       conversions: records.filter(entry => entry[0] === 'event' && entry[1] === 'conversion').length,
     };
   });
-  check(adsState.config === 1 && adsState.conversions === 0, `Google Ads base-tag initialization is invalid at ${viewport.width}: ${JSON.stringify(adsState)}`);
+  check(adsState.config === 1 && adsState.websiteCallConfigs === 1 && adsState.conversions === 0, `Google Ads tag initialization is invalid at ${viewport.width}: ${JSON.stringify(adsState)}`);
   const delaware = page.locator('#licensed-states svg path[aria-label="Delaware: shown on licensed-state map"]');
   const newMexico = page.locator('#licensed-states svg path[aria-label="New Mexico: not listed on map"]');
   check(await delaware.count() === 1 && await delaware.getAttribute('fill') === '#C9A84C', 'Delaware not highlighted in gold');
@@ -216,4 +217,4 @@ for (const viewport of [{ width: 1365, height: 900 }, { width: 390, height: 844 
 }
 await browser.close();
 if (errors.length) { console.error('FAIL browser QA:\n' + errors.join('\n')); process.exit(1); }
-console.log('PASS browser QA: 10 routes × desktop/mobile, no overflow/runtime errors, mobile nav, form validation, select contrast/states, consent, zero dashboard/Google Ads conversion events on provider failure, one exact dashboard handoff and Google Ads conversion after confirmed receipt, dashboard failure tolerance, live/unavailable Google review states with attribution, business fields, and configured image checks.');
+console.log('PASS browser QA: 10 routes × desktop/mobile, no overflow/runtime errors, mobile nav, form validation, select contrast/states, consent, one exact website-call configuration with the displayed number, zero dashboard/Google Ads conversion events on provider failure, one exact dashboard handoff and Google Ads conversion after confirmed receipt, dashboard failure tolerance, live/unavailable Google review states with attribution, business fields, and configured image checks.');
