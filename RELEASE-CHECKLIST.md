@@ -8,7 +8,7 @@
 - [x] Legacy seed examples archived outside the public bundle; production review-admin route returns HTTP 404/noindex. Existing browser-local records preserved.
 - [ ] Counsel signed off privacy, terms, consent, TCPA/DNC, insurance licensing and health/PII handling.
 - [ ] Web3Forms key activated and inbox delivery tested by owner or with explicit SEND approval. After confirmed Web3Forms receipt, verify the client-authorized dashboard routing copy appears in the dashboard Inbox and agent rotation; dashboard failure must not suppress the visitor-facing success state.
-- [x] All built routes return distinct raw HTML, title, H1, canonical, schema, links and status in a local production server; repeat on public domain after approved release.
+- [x] The synchronized GitHub main revision builds 31 public routes with distinct raw HTML, title, H1, canonical, schema, links, and status in a local production server. The generated search sitemap contains 28 indexable URLs; repeat on the public domain after release.
 - [x] Built robots/sitemap and AdsBot/Googlebot/Android responses verified; no admin page is emitted. Actual search indexing remains unverified.
 - [x] Desktop + mobile browser QA passes for menu, form errors, mocked success/failure, and computed native select placeholder/closed/selected/disabled/focus/hover/checked-option states.
 - [ ] Manually inspect the OS-native **open** option popup on real target desktop and phone browsers; headless computed styles do not establish OS popup rendering.
@@ -18,7 +18,7 @@
 - [x] Client supplied the exact `AW-18221337260/uUw9CKaJtK4dEKyVzvBD` Calls from website label on 2026-10-29. The global Google configuration uses the exact displayed number `(954) 429-5138`, and build/browser QA protects both values without transmitting tag traffic.
 - [ ] After publish, verify Google forwarding-number replacement on the released domain using the client-provided `#google-wcc-debug` method or an eligible live Ads visit. Confirm calls still reach `(954) 429-5138`; browser configuration tests cannot emulate Google’s external forwarding-number decision.
 - [ ] Exact active Google Ads Final URLs, mobile/asset URLs, tracking templates, and historical slugs obtained and tested with click-ID preservation.
-- [x] `pnpm verify` passed after the team-role restoration: 11/11 unit tests, TypeScript, production build, 12 public route checks, unmodified Google Maps logo integrity check, robots/sitemap/internal links, production HTTP 200/308/404, and bot user agents. Desktop/mobile QA verified the restored owner-confirmed roles, founder-card specialty flip, map/form warning, plus live and forced-unavailable Google review states. Repeat on the released managed domain.
+- [x] `pnpm verify` passed after the 2026-10-29 PM GitHub synchronization: 12/12 unit tests, TypeScript, 31-route production build, generated 28-URL sitemap, unmodified Google Maps logo integrity check, robots/sitemap/internal links, production HTTP 200/308/404, and bot user agents. Desktop/mobile release smoke checks verified the six new pages, homepage title, exact website-call configuration, noindex visitor site map/footer link, and nine-card roster with decoded photos. Repeat on the released managed domain.
 - [ ] Save WebDev checkpoint **before** publication.
 - [ ] After approved release, verify Search Console property, submit sitemap, inspect priority URLs; do not equate submitted with indexed.
 
