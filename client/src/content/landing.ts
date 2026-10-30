@@ -6,6 +6,9 @@
 // COBRA and small business pages for Texas and Georgia: owner-requested 2026-10-29 (same wording as Florida).
 // Spanish page: owner-stated 2026-10-27 that a team member (Erick) speaks Spanish with clients.
 // Spanish pages for Texas and Georgia: owner-requested 2026-10-29; owner stated Erick is licensed in all states served.
+// Client focus wording (individual, self-employed and county pages): owner-requested 2026-10-30. Owner stated the
+// private plans are health-underwritten and suit healthy, higher-income individuals and families, including those
+// who earn too much to qualify for much marketplace help. No subsidy amounts, income limits or eligibility promises.
 
 export interface LandingPage {
   path: string;
@@ -65,6 +68,11 @@ const steps = (extra: string) => [
   { title: "Review and decide", text: "Compare the plan documents for the options available to you and apply only if one fits." },
 ];
 
+const fitFaq = {
+  question: "Who are these plans a good fit for?",
+  answer: "The private plans we work with ask health questions on the application, so they generally suit healthy individuals and families, often professionals and business owners who earn too much for much marketplace help. If a Marketplace plan looks like a better fit for you, we will tell you.",
+};
+
 const readyFaq = {
   question: "What should I have ready?",
   answer: "The ages and ZIP code of everyone who needs coverage, any doctors or prescriptions you want to keep, and a monthly budget range.",
@@ -75,23 +83,24 @@ function individualPage(s: State): LandingPage {
     path: `/${s.slug}-health-insurance`,
     eyebrow: `${s.name} health insurance`,
     title: `Private Health Insurance for ${s.name} Families and Individuals`,
-    intro: `Looking for health insurance in ${s.name}? The private plans we work with are not limited to open enrollment: you can apply any time of year. Tell us who needs coverage, and a licensed advisor will walk you through the options available to you.`,
+    intro: `Earn too much to qualify for much marketplace help? The private plans we work with ask health questions on the application, so they generally suit healthy individuals and families in ${s.name}, and you can apply any time of year. Tell us who needs coverage, and a licensed advisor will walk you through the options available to you.`,
     benefits: [
+      { title: "For households above the subsidy range", text: "If your household earns too much for much marketplace help, compare private plans suited to healthy individuals and families." },
       { title: "Apply any time of year", text: "No waiting for open enrollment or a qualifying life event to start the private plans we help with." },
-      { title: "A licensed advisor, not a website", text: "Talk through your doctors, prescriptions and monthly budget with a licensed member of our team." },
       s.local,
       { title: "Plain answers before you decide", text: "Review the actual plan documents with your advisor before you apply, so you know what you are choosing." },
     ],
     situationsHeading: "We often help people who are",
     situations: [
-      "Paying more than they want to for their current plan",
-      "Losing job-based coverage or facing COBRA",
-      "Self-employed, 1099 or between jobs",
-      "Buying health insurance for the first time",
+      "Earning too much for much marketplace help",
+      "Healthy and buying coverage for their family",
+      "Professionals, consultants or owners buying their own plan",
+      "Leaving job-based coverage or facing COBRA",
       "Past the open enrollment deadline",
     ],
     steps: steps("what matters most to your household"),
     faqs: [
+      fitFaq,
       {
         question: `Can I get health insurance in ${s.name} outside open enrollment?`,
         answer: "Yes, for the private plans we work with: you can apply any time of year. Marketplace plans follow their own enrollment periods. If a Marketplace plan looks like a better fit for you, we can point you to the right place to start.",
@@ -115,17 +124,17 @@ function selfEmployedPage(s: State): LandingPage {
     path: `/self-employed-health-insurance-${s.slug}`,
     eyebrow: "Self-employed health insurance",
     title: `Health Insurance for Self-Employed ${s.people}`,
-    intro: "Freelancer, 1099 contractor, gig worker or owner without a group plan? The private plans we work with let you apply any time of year, with no waiting for open enrollment. A licensed advisor will help you weigh the monthly cost against what you would pay when you need care.",
+    intro: "Consultant, independent professional, 1099 contractor or owner without a group plan? The private plans we work with generally suit healthy individuals and families who earn too much for much marketplace help, and you can apply any time of year. A licensed advisor will walk you through the options available to you.",
     benefits: [
       { title: "Apply any time of year", text: "Start when your work changes, not when the calendar says so, for the private plans we help with." },
       { title: "Coverage in your own name", text: "An individual or family plan is yours, so it is not tied to a single client or employer." },
-      { title: "Built around your budget", text: "We talk through a monthly amount that works with income that changes from month to month." },
+      { title: "For earners above the subsidy range", text: "If your income is too high for much marketplace help, compare private plans in your own name." },
       s.local,
     ],
     situationsHeading: "This page is for you if you are",
     situations: [
+      "A consultant or independent professional",
       "A 1099 contractor or freelancer",
-      "Driving or delivering for an app",
       "A business owner with no employees",
       "Leaving a W-2 job to work for yourself",
       "Covering a spouse or children on your own plan",
@@ -134,6 +143,7 @@ function selfEmployedPage(s: State): LandingPage {
     faqs: [
       { question: "Can I get coverage outside open enrollment?", answer: "Yes, for the private plans we work with: you can apply any time of year." },
       { question: "Can I cover my family on the same plan?", answer: "You can ask about coverage for your spouse and children in the same conversation." },
+      fitFaq,
       readyFaq,
       {
         question: "Where can I learn more first?",
@@ -164,7 +174,7 @@ const counties: County[] = [
     name: "Miami-Dade County", slug: "miami-dade",
     cities: "Miami, Hialeah, Miami Gardens, Homestead, Kendall, Doral, Miami Beach and North Miami",
     local: { title: "A South Florida team", text: "Our team works from Sunrise in neighboring Broward County and helps Miami-Dade households by phone." },
-    situation: "Working for themselves in Miami-Dade's small business and gig economy",
+    situation: "Running their own business or practice in Miami-Dade",
   },
   {
     name: "Palm Beach County", slug: "palm-beach-county",
@@ -179,7 +189,7 @@ function countyPage(c: County): LandingPage {
     path: `/${c.slug}-health-insurance`,
     eyebrow: `${c.name} health insurance`,
     title: `Private Health Insurance in ${c.name}`,
-    intro: `Looking for health insurance in ${c.cities}? The private plans we work with are not limited to open enrollment: you can apply any time of year. Tell us who needs coverage in ${c.name}, and a licensed advisor will walk you through the options available to you.`,
+    intro: `Looking for health insurance in ${c.cities}? The private plans we work with generally suit healthy individuals and families who earn too much for much marketplace help, and you can apply any time of year. Tell us who needs coverage in ${c.name}, and a licensed advisor will walk you through the options available to you.`,
     benefits: [
       c.local,
       { title: "Apply any time of year", text: "No waiting for open enrollment or a qualifying life event to start the private plans we help with." },
@@ -188,9 +198,9 @@ function countyPage(c: County): LandingPage {
     ],
     situationsHeading: `We often help ${c.name} residents who are`,
     situations: [
-      "Paying more than they want to for their current plan",
-      "Losing job-based coverage or facing COBRA",
-      "Self-employed, 1099 or between jobs",
+      "Earning too much for much marketplace help",
+      "Professionals, consultants or owners buying their own plan",
+      "Leaving job-based coverage or facing COBRA",
       c.situation,
       "Past the open enrollment deadline",
     ],
@@ -206,7 +216,7 @@ function countyPage(c: County): LandingPage {
       },
       {
         question: "I'm self-employed. Is there a page for me?",
-        answer: "Yes. Our self-employed page covers 1099 contractors, freelancers and owners without a group plan.",
+        answer: "Yes. Our self-employed page covers consultants, 1099 contractors and owners without a group plan.",
         link: { href: "/self-employed-health-insurance-florida", label: "See health insurance for the self-employed" },
       },
       readyFaq,
