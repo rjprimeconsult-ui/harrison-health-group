@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { site } from "@shared/site";
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
@@ -7,11 +7,49 @@ import LeadForm from "@/components/LeadForm";
 import { guides, faqs, type Guide } from "@/content/guides";
 import { publicPages } from "@shared/site";
 import { englishUi, type LandingPage } from "@/content/landing";
-import { emitEvent } from "@/lib/measurement";
+import { emitEvent, getAttribution } from "@/lib/measurement";
+
+// Calendly link tagged with where the visitor booked from, so bookings show their source in Calendly
+// (owner request 2026-11-02). Only the page name and "google_ads"/"website" go to Calendly, never contact details.
+export function bookingHref(surface: string, fromAd = false): string {
+  const url = new URL(site.bookingUrl);
+  url.searchParams.set("utm_source", fromAd ? "google_ads" : "website");
+  url.searchParams.set("utm_medium", "website");
+  url.searchParams.set("utm_campaign", surface || "site");
+  return url.toString();
+}
+function cameFromAd(): boolean {
+  try { const a = getAttribution(); return Boolean(a.gclid || a.gbraid || a.wbraid); } catch { return false; }
+}
 
 function Layout({ children }: { children: React.ReactNode }) { return <div className="site-page"><Navbar /><main id="main-content" className="page-main">{children}</main><Footer /></div>; }
 function Hero({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) { return <header className="page-hero page-shell"><p className="page-eyebrow">{eyebrow}</p><h1>{title}</h1><p>{description}</p></header>; }
-function BookLink({ label = "Schedule a conversation", surface }: { label?: string; surface: string }) { return <a className="btn-primary" href={site.bookingUrl} target="_blank" rel="noopener noreferrer" onClick={() => emitEvent("booking_click", { surface })}>{label}</a>; }
+function BookLink({ label = "Schedule a conversation", surface, className = "btn-primary" }: { label?: string; surface: string; className?: string }) { return <a className={className} href={bookingHref(surface)} target="_blank" rel="noopener noreferrer" onClick={(e) => { e.currentTarget.href = bookingHref(surface, cameFromAd()); emitEvent("booking_click", { surface }); }}>{label}</a>; }
+
+// Phones only: a bar pinned to the bottom of ad landing pages with Call and Request a quote call (owner request
+// 2026-11-02; most ad clicks come from phones and the form sits below the first screen). It appears after the
+// visitor scrolls past the top buttons and hides while the form itself is on screen so it never covers it.
+function MobileQuoteBar({ surface, callLabel, quoteLabel }: { surface: string; callLabel: string; quoteLabel: string }) {
+  const [scrolled, setScrolled] = useState(false);
+  const [formVisible, setFormVisible] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 450);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    const form = document.getElementById("quote-form");
+    const observer = form && "IntersectionObserver" in window
+      ? new IntersectionObserver(([entry]) => setFormVisible(entry.isIntersecting), { threshold: 0.15 })
+      : null;
+    if (form && observer) observer.observe(form);
+    return () => { window.removeEventListener("scroll", onScroll); observer?.disconnect(); };
+  }, []);
+  const show = scrolled && !formVisible;
+  return <div className="lg:hidden fixed inset-x-0 bottom-0 z-50 flex gap-3 px-4 pt-3" aria-hidden={!show}
+    style={{ paddingBottom: "max(.75rem, env(safe-area-inset-bottom))", background: "rgba(10,10,10,.96)", borderTop: "1px solid #C9A84C", transform: show ? "translateY(0)" : "translateY(110%)", transition: "transform .25s ease" }}>
+    <a className="page-link flex-1" style={{ color: "#FFFFFF", padding: ".7rem .5rem", fontSize: ".85rem", lineHeight: 1.2, textAlign: "center", minWidth: 0 }} href={site.phoneHref} tabIndex={show ? 0 : -1} onClick={() => emitEvent("click_to_call", { surface: `${surface}-mobile-bar` })}><span>{callLabel} <span style={{ whiteSpace: "nowrap" }}>{site.phoneDisplay}</span></span></a>
+    <a className="btn-primary flex-1 justify-center" style={{ padding: ".7rem .5rem", fontSize: ".85rem", lineHeight: 1.2, letterSpacing: ".02em", textAlign: "center", minWidth: 0 }} href="#quote-form" tabIndex={show ? 0 : -1}>{quoteLabel}</a>
+  </div>;
+}
 function CallLink({ surface }: { surface: string }) { return <a className="page-link" href={site.phoneHref} onClick={() => emitEvent("click_to_call", { surface })}>Call {site.phoneDisplay}</a>; }
 function Boundary() { return <aside className="page-disclaimer">Educational information only—not a quote, application, coverage determination, or legal, medical, tax, or financial advice. Check current official policy documents, availability in your state, and advisor licensing before making a decision.</aside>; }
 
@@ -69,10 +107,10 @@ export function AdLandingPage({ page }: { page: LandingPage }) {
   const ui = { ...englishUi, ...page.ui };
   return <Layout><div lang={page.lang}>
     <section className="page-section page-dark" id="quote"><div className="page-shell grid lg:grid-cols-[1fr_1fr] gap-12 items-start">
-      <div><p className="page-eyebrow">{page.eyebrow}</p><h1 className="page-heading" style={{ fontSize: "clamp(2.4rem,4.2vw,3.7rem)", marginTop: ".8rem" }}>{page.title}</h1><p className="mt-5 text-lg leading-relaxed">{page.intro}</p>
-        <div className="page-actions"><a className="btn-primary" href={site.phoneHref} onClick={() => emitEvent("click_to_call", { surface })}>{ui.call} {site.phoneDisplay}</a><BookLink label={ui.book} surface={surface} /></div>
+      <div className="flex flex-col lg:block"><p className="page-eyebrow">{page.eyebrow}</p><h1 className="page-heading" style={{ fontSize: "clamp(2.4rem,4.2vw,3.7rem)", marginTop: ".8rem" }}>{page.title}</h1><p className="mt-5 text-lg leading-relaxed order-last lg:order-none">{page.intro}</p>
+        <div className="page-actions"><a className="btn-primary lg:hidden" href="#quote-form">{ui.requestCall}</a><a className="btn-primary" href={site.phoneHref} onClick={() => emitEvent("click_to_call", { surface })}>{ui.call} {site.phoneDisplay}</a><BookLink label={ui.book} surface={surface} className="page-link" /></div>
       </div>
-      <div className="rounded-xl p-5 sm:p-8" style={{ border: "1px solid #C9A84C" }}>{ui.formNote && <p className="text-sm leading-6 mb-4">{ui.formNote}</p>}<div lang="en"><LeadForm kind={page.formKind ?? "consumer"} /></div></div>
+      <div id="quote-form" className="rounded-xl p-5 sm:p-8" style={{ border: "1px solid #C9A84C", scrollMarginTop: "88px" }}>{ui.formNote && <p className="text-sm leading-6 mb-4">{ui.formNote}</p>}<div lang="en"><LeadForm kind={page.formKind ?? "consumer"} /></div></div>
     </div></section>
     <section className="page-section page-shell"><h2>{ui.why}</h2><div className="grid sm:grid-cols-2 gap-5 mt-6">{page.benefits.map((benefit) => <div className="editorial-card" key={benefit.title}><h3>{benefit.title}</h3><p>{benefit.text}</p></div>)}</div></section>
     <section className="page-section page-shell"><h2>{page.situationsHeading}</h2><ul className="list-disc pl-6 mt-5 space-y-2 text-lg">{page.situations.map((item) => <li key={item}>{item}</li>)}</ul></section>
@@ -80,6 +118,8 @@ export function AdLandingPage({ page }: { page: LandingPage }) {
     <section className="page-section page-shell"><h2>{ui.faq}</h2><div className="prose-content">{page.faqs.map((faq) => <details className="editorial-card mb-3" key={faq.question}><summary className="cursor-pointer text-xl font-semibold" style={{ fontFamily: "'Cormorant Garamond',serif" }}>{faq.question}</summary><p>{faq.answer}</p>{faq.link && <a href={faq.link.href}>{faq.link.label}</a>}</details>)}</div>
       <div className="page-actions"><a className="btn-primary" href="#quote">{ui.requestCall}</a><a className="page-link" href={site.phoneHref} onClick={() => emitEvent("click_to_call", { surface })}>{ui.call} {site.phoneDisplay}</a></div></section>
     <section className="page-section page-shell"><aside className="page-disclaimer">{ui.disclaimer}</aside></section>
+    <div className="lg:hidden" style={{ height: 76 }} aria-hidden="true" />
+    <MobileQuoteBar surface={surface} callLabel={ui.call} quoteLabel={ui.requestCall} />
   </div>  </Layout>;
 }
 
