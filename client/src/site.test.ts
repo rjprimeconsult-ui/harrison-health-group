@@ -132,3 +132,29 @@ describe("live Google review identity and attribution", () => {
     expect(toGoogleReviewSnapshot(place).reviews).toEqual([]);
   });
 });
+
+describe("anonymous visitor counts", () => {
+  const setup = (hostname: string, search = "") => {
+    const beacons: { url: string; body: Blob }[] = [];
+    vi.stubGlobal("window", { location: { hostname, pathname: "/florida-health-insurance", search, origin: `https://${hostname}` }, matchMedia: () => ({ matches: true }) });
+    vi.stubGlobal("navigator", { webdriver: false, sendBeacon: (url: string, body: Blob) => { beacons.push({ url, body }); return true; } });
+    vi.stubGlobal("sessionStorage", { getItem: () => null, setItem: () => {} });
+    vi.stubGlobal("document", { referrer: "" });
+    return beacons;
+  };
+  it("sends only the page, event, step, ad flag and device type to the dashboard, and only from the live site", async () => {
+    const { sendSiteEvent } = await import("./lib/site-analytics");
+    const beacons = setup("harrisonhealthgroup.com", "?gclid=abc&email=pat@example.org");
+    sendSiteEvent("form_step_complete", 1);
+    expect(beacons).toHaveLength(1);
+    expect(beacons[0].url).toBe("https://leads.harrisonhealthgroup.com/webhooks/site-event");
+    const sent = JSON.parse(await beacons[0].body.text());
+    expect(sent).toEqual({ e: "form_step_complete", p: "/florida-health-insurance", s: 1, ad: true, d: "mobile" });
+    expect(JSON.stringify(sent)).not.toContain("pat@example.org");
+
+    const preview = setup("preview.manus.space");
+    sendSiteEvent("page_view");
+    expect(preview).toHaveLength(0);
+    vi.unstubAllGlobals();
+  });
+});
