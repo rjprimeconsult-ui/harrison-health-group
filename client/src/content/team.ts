@@ -18,7 +18,7 @@ export const teamMembers: TeamMember[] = [
   {
     name: "Chevaur Harrison",
     title: "Licensed Health Advisor",
-    image: "/manus-storage/chevaur_new_386101c9.webp",
+    image: "/team/chevaur-harrison.webp",   // new headshot supplied by the owner 2026-11-04
     position: "center top",
     specialty: "Helps households and entrepreneurs organize the practical questions behind coverage choices, from provider preferences to the next decision point.",
   },
