@@ -10,6 +10,7 @@ export interface Guide {
   checklist: string[];
   faqs: { question: string; answer: string }[];
   related: string[];
+  updated?: string;
 }
 
 export const guides: Guide[] = [
@@ -79,7 +80,7 @@ export const guides: Guide[] = [
           "A directory is a useful starting point, but it should not be your only check. Review the plan’s current materials and confirm details relevant to the care you expect to receive. Keep in mind that plan and provider arrangements can change."
       }
     ],
-    related: ["self-employed-coverage", "small-business-benefits"]
+    related: ["off-exchange-health-insurance", "self-employed-coverage", "small-business-benefits"]
   },
   {
     slug: "self-employed-coverage",
@@ -148,7 +149,7 @@ export const guides: Guide[] = [
           "Ask what route is being discussed, who can assist with it, and where to find the current official information. If a referral route is appropriate, make sure you understand the handoff and retain copies of information you provide."
       }
     ],
-    related: ["private-vs-marketplace", "small-business-benefits"]
+    related: ["off-exchange-health-insurance", "private-vs-marketplace", "small-business-benefits"]
   },
   {
     slug: "small-business-benefits",
@@ -218,10 +219,116 @@ export const guides: Guide[] = [
       }
     ],
     related: ["private-vs-marketplace", "self-employed-coverage"]
+  },
+  {
+    slug: "off-exchange-health-insurance",
+    title: "Health Insurance Outside the Marketplace: How Off-Exchange Private Plans Work",
+    description:
+      "What off-exchange private health insurance is, when you can apply, how it differs from Marketplace coverage, and how to get started.",
+    kicker: "Off-exchange coverage guide",
+    updated: "November 4, 2026",
+    intro:
+      "Off-exchange health insurance is coverage you buy directly through an insurer or a licensed agent instead of through the government Marketplace. People look for it for different reasons: they missed open enrollment, they earn too much for much Marketplace help, they want a different style of plan, or they simply want a person to walk them through the choices. This guide explains what private, non-Marketplace coverage is, when you can apply, what to compare, and how to get started with Harrison Health Group. It is general information, not advice about a specific plan, so confirm every detail in the actual plan documents before you decide.",
+    sections: [
+      {
+        heading: "What private health insurance outside the Marketplace means",
+        body: [
+          "The Marketplace is the government website where people compare and enroll in plans and apply for help with the cost. Off-exchange, or non-Marketplace, coverage is sold outside that website. You apply with the insurer, usually with help from a licensed agent, and the plan's own documents set out the benefits, costs and rules.",
+          "Neither route is automatically better. They are different doors, and each one fits some households better than others. The useful question is not which label sounds better but which option fits the people you need to cover, the care you expect to use and the way you prefer to pay for it."
+        ]
+      },
+      {
+        heading: "When you can apply",
+        body: [
+          "Marketplace plans follow set enrollment periods. Outside open enrollment, you usually need a qualifying life event, such as losing other coverage or having a baby, to enroll in a Marketplace plan.",
+          "The private plans our team works with accept applications any time of year, not only during open enrollment. That matters if you are between jobs, leaving COBRA, starting a business, moving to a new state the team serves, or simply realized your current coverage is not working for you. Each plan still has its own application steps and start dates, so ask what applies before you count on a particular date."
+        ]
+      },
+      {
+        heading: "Health questions and who these plans tend to suit",
+        body: [
+          "The private plans our team offers ask health questions on the application. The insurer uses the answers to decide whether it can offer coverage and on what terms, so no one can promise approval in advance. Answer every question honestly and completely; an application is not the place to guess.",
+          "Because of that process, these plans generally suit healthy individuals and families. They are often a good match for professionals, consultants, business owners and families who earn too much for much Marketplace help and want to look at their options. If a Marketplace plan looks like a better fit for your situation, a good advisor will say so and point you to the right place to start."
+        ]
+      },
+      {
+        heading: "What to compare before you choose",
+        body: [
+          "Look at the whole cost pattern, not only the monthly payment. Write down the deductible, what you pay for visits and prescriptions, any coinsurance, and the most you could pay in a year. Then picture an ordinary year and a difficult one, and ask how each option would handle both.",
+          "Check how you get care: which doctors and hospitals take the plan, how prescriptions work, whether referrals are needed, and what happens when you are away from home. Read what the plan does and does not cover, and keep a list of anything you want explained. Savings offered through the Marketplace apply only to Marketplace plans, so if those savings matter to your budget, compare a Marketplace option side by side."
+        ]
+      },
+      {
+        heading: "What affects the cost of private health insurance",
+        body: [
+          "There is no single price for private health insurance. The cost depends on who is covered and their ages, where you live, the plan design you choose, and the answers on the application. Any figure you see before those details are known is an estimate at best.",
+          "The practical way to find out is to gather the basics for your household and talk them through with a licensed advisor, who can show you real options for your situation. Be wary of any offer that promises a specific price or approval before anyone has looked at your details."
+        ]
+      },
+      {
+        heading: "How to get private health insurance with Harrison Health Group",
+        body: [
+          "Start by requesting a quote call, calling the team, or booking a time to talk. A licensed advisor will ask who needs coverage, where you live, your timing and what matters most to you, then walk you through the plans that may fit and the questions on the application.",
+          "Take your time to read the plan documents before you apply. If you decide to go ahead, your advisor helps you complete the application, and the insurer reviews it and tells you its decision. Keep copies of the application, the decision letter and your policy documents together so you can find them later."
+        ]
+      }
+    ],
+    checklist: [
+      "List everyone who needs coverage, their ages and your state and ZIP code.",
+      "Note when you need coverage to start and any coverage that is ending.",
+      "Write down the doctors, hospitals and prescriptions you want to keep.",
+      "Decide whether a lower monthly payment or more predictable costs matters more to you.",
+      "Compare the deductible, visit and prescription costs and the yearly maximum for each option.",
+      "If Marketplace savings matter to your budget, compare a Marketplace plan side by side.",
+      "Read the plan documents and ask about anything you do not understand before applying."
+    ],
+    faqs: [
+      {
+        question: "Can I buy private health insurance any time of year?",
+        answer:
+          "For the private plans our team works with, yes: you can apply any time of year, not only during open enrollment. Marketplace plans follow their own enrollment periods. Each plan has its own application steps and start dates, so ask what applies to you."
+      },
+      {
+        question: "Is off-exchange coverage the same as private health insurance?",
+        answer:
+          "In everyday use, yes. Both phrases describe coverage bought outside the government Marketplace, directly through an insurer or a licensed agent. The plan's own documents set the benefits, costs and rules."
+      },
+      {
+        question: "Will I be approved?",
+        answer:
+          "No one can promise that in advance. The private plans our team offers ask health questions on the application, and the insurer makes the decision based on your answers. An advisor can explain the process and the questions before you apply."
+      }
+    ],
+    related: ["private-vs-marketplace", "self-employed-coverage"]
   }
 ];
 
 export const faqs: { question: string; answer: string }[] = [
+  {
+    question: "What is private health insurance?",
+    answer:
+      "Private health insurance is coverage you buy directly through an insurer or a licensed agent, outside the government Marketplace. It is sometimes called off-exchange or non-Marketplace coverage. Our off-exchange guide in Resources explains how it works."
+  },
+  {
+    question: "How do I get private health insurance?",
+    answer:
+      "Request a quote call, call us or book a time to talk. A licensed advisor asks who needs coverage, where you live and your timing, walks you through the plans that may fit, and helps with the application if you decide to go ahead. The insurer then reviews the application and makes its decision."
+  },
+  {
+    question: "Can I buy private health insurance any time?",
+    answer:
+      "For the private plans we work with, yes: you can apply any time of year, including outside open enrollment and without a qualifying life event. Each plan has its own application steps and start dates."
+  },
+  {
+    question: "How much does private health insurance cost?",
+    answer:
+      "There is no single price. It depends on who is covered and their ages, where you live, the plan you choose and the answers on the application. A licensed advisor can show you real options after a short conversation; be wary of any price quoted before anyone knows those details."
+  },
+  {
+    question: "Do the private plans ask health questions?",
+    answer:
+      "Yes. The private plans our team offers ask health questions on the application, and the insurer decides based on the answers, so no one can promise approval in advance. They generally suit healthy individuals and families."
+  },
   {
     question: "Can I get health insurance outside open enrollment?",
     answer:

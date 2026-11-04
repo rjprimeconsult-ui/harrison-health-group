@@ -2,7 +2,10 @@ import { ExternalLink, Mail, Phone } from "lucide-react";
 import { site } from "@shared/site";
 import { emitEvent } from "@/lib/measurement";
 
+// "Coverage" links the ad landing pages from every page so search engines can find them (owner request 2026-11-04,
+// Semrush site audit: these pages were reachable only from the sitemap file).
 const groups = [
+  { title: "Coverage", links: [["Florida health insurance", "/florida-health-insurance"], ["Self-employed & 1099", "/self-employed-health-insurance-florida"], ["COBRA alternatives", "/cobra-alternative-florida"], ["Small business", "/small-business-health-insurance-florida"], ["Fort Lauderdale & Broward", "/broward-county-health-insurance"], ["Miami & Miami-Dade", "/miami-dade-health-insurance"], ["Boca Raton & Palm Beach", "/palm-beach-county-health-insurance"], ["Texas health insurance", "/texas-health-insurance"], ["Georgia health insurance", "/georgia-health-insurance"], ["Seguro médico en español", "/seguro-medico-florida"]] },
   { title: "Explore", links: [["Home", "/"], ["Private coverage", "/#coverage"], ["Business coverage", "/business"], ["Contact", "/contact"]] },
   { title: "Learn", links: [["Resources", "/resources"], ["Coverage questions", "/faq"], ["Our team", "/about"], ["Careers", "/careers"]] },
   { title: "Site", links: [["Privacy Policy", "/privacy"], ["Terms & SMS Terms", "/terms"], ["Site map", "/site-map"]] },
@@ -11,7 +14,7 @@ const groups = [
 export default function Footer() {
   return <footer style={{ background: "#FFFFFF", borderTop: "1px solid rgba(201,168,76,.35)", color: "#0A0A0A" }}>
     <div className="container py-14">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_repeat(3,1fr)] gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(4,1fr)] gap-10">
         <div><a href="/" className="brand-lockup mb-5"><img src="/favicon-192x192.png" width="42" height="42" alt="" /><span className="brand-words"><strong>Harrison Health</strong><small>GROUP</small></span></a><p className="text-sm leading-7 max-w-xs">A conversation about private health coverage begins with your situation and the questions that matter to you.</p><a href={site.phoneHref} className="flex items-center gap-2 mt-5 text-sm" onClick={() => emitEvent("click_to_call", { surface: "footer" })}><Phone size={15} />{site.phoneDisplay}</a><a href={`mailto:${site.email}`} className="flex items-center gap-2 mt-3 text-sm"><Mail size={15} />{site.email}</a></div>
         {groups.map((group) => <div key={group.title}><h2 className="page-eyebrow">{group.title}</h2><ul className="space-y-3">{group.links.map(([label, href]) => <li key={href}><a href={href} className="text-sm no-underline hover:underline" style={{ color: "#0A0A0A" }}>{label}</a></li>)}</ul></div>)}
       </div>
