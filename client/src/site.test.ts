@@ -26,8 +26,9 @@ describe("Harrison facts and routes", () => {
       expect(html).not.toMatch(/AggregateRating|SearchAction|FAQPage|openingHoursSpecification|priceRange|20\+|lowest cost|93%/);
     }
   });
-  it("has three substantive original guides with linked related slugs", () => {
-    expect(guides.map((guide) => guide.slug)).toEqual(["private-vs-marketplace", "self-employed-coverage", "small-business-benefits"]);
+  it("has four substantive original guides with linked related slugs", () => {
+    // Fourth guide (off-exchange) added 2026-11-04 at the owner's request, from the Semrush keyword review.
+    expect(guides.map((guide) => guide.slug)).toEqual(["private-vs-marketplace", "self-employed-coverage", "small-business-benefits", "off-exchange-health-insurance"]);
     for (const guide of guides) {
       const text = [guide.intro, ...guide.sections.flatMap((section) => section.body), ...guide.checklist, ...guide.faqs.map(({ question, answer }) => `${question} ${answer}`)].join(" ");
       expect(text.trim().split(/\s+/).length).toBeGreaterThanOrEqual(800);
