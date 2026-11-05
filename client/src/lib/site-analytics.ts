@@ -17,6 +17,14 @@ const FORWARDED = new Set<SiteEvent>([
   "form_submission_success", "click_to_call", "booking_click",
 ]);
 
+const BUSINESS_ALIASES: Record<string, SiteEvent> = { business_form_view: "form_view", business_form_submitted: "form_submitted" };
+
+/** The event name the dashboard counts for a funnel event, or null when it isn't counted. */
+export function forwardedName(name: string): SiteEvent | null {
+  const mapped = (BUSINESS_ALIASES[name] ?? name) as SiteEvent;
+  return FORWARDED.has(mapped) ? mapped : null;
+}
+
 function deviceType(): "mobile" | "tablet" | "desktop" {
   if (window.matchMedia?.("(max-width: 767px)").matches) return "mobile";
   if (window.matchMedia?.("(max-width: 1023px)").matches) return "tablet";
@@ -48,7 +56,11 @@ export function startSiteAnalytics(): void {
   sendSiteEvent("page_view");
   window.addEventListener("hhg:funnel", (event) => {
     const detail = (event as CustomEvent<{ name: SiteEvent; context?: Record<string, unknown> }>).detail;
-    if (detail && FORWARDED.has(detail.name)) sendSiteEvent(detail.name, Number(detail.context?.step) || 0);
+    if (!detail) return;
+    // The business version of the quote form names two events differently; count them like the consumer form
+    // (fixed 2026-11-05: the small-business pages showed quote-button taps but never "saw form").
+    const name = forwardedName(detail.name);
+    if (name) sendSiteEvent(name, Number(detail.context?.step) || 0);
   });
   // Count page changes inside the site (links handled without a full page load).
   const onRouteChange = () => {
