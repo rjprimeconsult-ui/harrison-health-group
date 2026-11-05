@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { indexablePages, publicPages } from "../../shared/site";
+import { indexablePages, moreStates, publicPages, stateSlug } from "../../shared/site";
 import { renderMeta } from "../../shared/seo";
 import { guides, faqs } from "./content/guides";
 import { validateLead, sendLead } from "./components/LeadForm";
@@ -13,6 +13,14 @@ describe("Harrison facts and routes", () => {
     expect(mappedStates.size).toBe(31);
     expect(mappedStates.has("DE")).toBe(true);
     expect(mappedStates.has("NM")).toBe(false);
+    // Every state on the map has its own page (owner request 2026-11-05).
+    const paths = new Set(publicPages.map((page) => page.path));
+    const names: Record<string, string> = { FL: "Florida", TX: "Texas", GA: "Georgia", ...Object.fromEntries(moreStates.map((s) => [s.abbr, s.name])) };
+    for (const abbr of mappedStates) {
+      expect(names[abbr], abbr).toBeTruthy();
+      expect(paths.has(`/${stateSlug(names[abbr])}-health-insurance`), abbr).toBe(true);
+    }
+    expect(moreStates.length).toBe(28);
   });
   it("keeps one canonical path and unique, bounded metadata per indexable route", () => {
     expect(new Set(publicPages.map((page) => page.path)).size).toBe(publicPages.length);

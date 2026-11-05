@@ -17,6 +17,48 @@ export interface PageMeta {
   indexable: boolean;
 }
 
+// Main state pages for the rest of the licensed-states map (shared/service-area.ts), owner-requested 2026-11-05:
+// one "<state>-health-insurance" page per state, same format as the Texas and Georgia pages.
+export const moreStates: { abbr: string; name: string; people: string }[] = [
+  { abbr: "MT", name: "Montana", people: "Montanans" },
+  { abbr: "WY", name: "Wyoming", people: "Wyomingites" },
+  { abbr: "NV", name: "Nevada", people: "Nevadans" },
+  { abbr: "UT", name: "Utah", people: "Utahns" },
+  { abbr: "CO", name: "Colorado", people: "Coloradans" },
+  { abbr: "SD", name: "South Dakota", people: "South Dakotans" },
+  { abbr: "NE", name: "Nebraska", people: "Nebraskans" },
+  { abbr: "KS", name: "Kansas", people: "Kansans" },
+  { abbr: "IA", name: "Iowa", people: "Iowans" },
+  { abbr: "MO", name: "Missouri", people: "Missourians" },
+  { abbr: "WI", name: "Wisconsin", people: "Wisconsinites" },
+  { abbr: "MI", name: "Michigan", people: "Michiganders" },
+  { abbr: "IL", name: "Illinois", people: "Illinoisans" },
+  { abbr: "IN", name: "Indiana", people: "Hoosiers" },
+  { abbr: "OH", name: "Ohio", people: "Ohioans" },
+  { abbr: "KY", name: "Kentucky", people: "Kentuckians" },
+  { abbr: "WV", name: "West Virginia", people: "West Virginians" },
+  { abbr: "OK", name: "Oklahoma", people: "Oklahomans" },
+  { abbr: "AR", name: "Arkansas", people: "Arkansans" },
+  { abbr: "LA", name: "Louisiana", people: "Louisianans" },
+  { abbr: "TN", name: "Tennessee", people: "Tennesseans" },
+  { abbr: "MS", name: "Mississippi", people: "Mississippians" },
+  { abbr: "AL", name: "Alabama", people: "Alabamians" },
+  { abbr: "SC", name: "South Carolina", people: "South Carolinians" },
+  { abbr: "NC", name: "North Carolina", people: "North Carolinians" },
+  { abbr: "VA", name: "Virginia", people: "Virginians" },
+  { abbr: "MD", name: "Maryland", people: "Marylanders" },
+  { abbr: "DE", name: "Delaware", people: "Delawareans" },
+];
+export const stateSlug = (name: string) => name.toLowerCase().replace(/\s+/g, "-");
+
+const moreStatePages: PageMeta[] = moreStates.map((s) => ({
+  path: `/${stateSlug(s.name)}-health-insurance`,
+  title: `${s.name} Health Insurance: Private Plans Year-Round | Harrison Health Group`,
+  description: `Private health insurance for ${s.name} individuals and families. Apply any time of year, not only in open enrollment, with a licensed advisor.`,
+  kind: "landing",
+  indexable: true,
+}));
+
 export const publicPages: PageMeta[] = [
   { path: "/", title: "Health Insurance in Florida, Texas & Georgia | Harrison Health Group", description: "Private health insurance for families, self-employed people and small businesses in Florida, Texas and Georgia. Apply any time of year with a licensed advisor.", kind: "home", indexable: true },
   { path: "/florida-health-insurance", title: "Private & Individual Health Insurance in Florida | Harrison Health Group", description: "Private and individual health insurance for Florida families. Apply any time of year, not only in open enrollment, with a licensed advisor.", kind: "landing", indexable: true },
@@ -37,6 +79,7 @@ export const publicPages: PageMeta[] = [
   { path: "/seguro-medico-florida", title: "Seguro médico privado en Florida | Harrison Health Group", description: "Seguro médico privado para familias e individuos en Florida. Solicítelo en cualquier momento del año y hable con un asesor en español.", kind: "landing", indexable: true },
   { path: "/seguro-medico-texas", title: "Seguro médico privado en Texas | Harrison Health Group", description: "Seguro médico privado para familias e individuos en Texas. Solicítelo en cualquier momento del año y hable con un asesor en español.", kind: "landing", indexable: true },
   { path: "/seguro-medico-georgia", title: "Seguro médico privado en Georgia | Harrison Health Group", description: "Seguro médico privado para familias e individuos en Georgia. Solicítelo en cualquier momento del año y hable con un asesor en español.", kind: "landing", indexable: true },
+  ...moreStatePages,
   { path: "/business", title: "Small Business Health Coverage | Harrison Health Group", description: "Prepare for a group health benefits conversation. Explore what employers can gather before discussing coverage choices with Harrison Health Group.", kind: "business", indexable: true },
   { path: "/contact", title: "Contact and Schedule | Harrison Health Group", description: "Call, email, or schedule a conversation with Harrison Health Group about private health coverage for your household or business.", kind: "contact", indexable: true },
   { path: "/about", title: "About the Team | Harrison Health Group", description: "Meet the Harrison Health Group team and learn how to reach us for a conversation about private health coverage.", kind: "about", indexable: true },

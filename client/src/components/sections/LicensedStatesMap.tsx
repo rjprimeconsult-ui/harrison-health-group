@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { FadeUp } from "@/components/motion/AnimationWrappers";
 import { STATE_PATHS, STATE_CENTROIDS } from "./usMapData";
 import { mappedStates } from "@shared/service-area";
+import { stateSlug } from "@shared/site";
 
 const LICENSED_STATES = mappedStates;
 
@@ -269,7 +270,8 @@ export default function LicensedStatesMap() {
             </div>
             <details className="mt-5 text-sm" style={{ color: "#0A0A0A" }}>
               <summary className="cursor-pointer font-semibold">See the full state list</summary>
-              <p className="mt-3 leading-7">{Array.from(LICENSED_STATES).map((abbr) => STATE_NAMES[abbr]).join(", ")}. Confirm licensing and product availability before a specific discussion.</p>
+              {/* Each state links to its own page (owner request 2026-11-05). */}
+              <p className="mt-3 leading-7">{Array.from(LICENSED_STATES).map((abbr, i) => <span key={abbr}>{i ? ", " : ""}<a className="underline underline-offset-2" href={`/${stateSlug(STATE_NAMES[abbr])}-health-insurance`}>{STATE_NAMES[abbr]}</a></span>)}. Confirm licensing and product availability before a specific discussion.</p>
             </details>
           </div>
         </FadeUp>

@@ -6,9 +6,13 @@
 // COBRA and small business pages for Texas and Georgia: owner-requested 2026-10-29 (same wording as Florida).
 // Spanish page: owner-stated 2026-10-27 that a team member (Erick) speaks Spanish with clients.
 // Spanish pages for Texas and Georgia: owner-requested 2026-10-29; owner stated Erick is licensed in all states served.
+// Main pages for the other 28 states on the map: owner-requested 2026-11-05, one page per state in the Texas format
+// (owner chose one page per state over all five page types, to avoid near-duplicate "doorway" pages).
 // Client focus wording (individual, self-employed and county pages): owner-requested 2026-10-30. Owner stated the
 // private plans are health-underwritten and suit healthy, higher-income individuals and families, including those
 // who earn too much to qualify for much marketplace help. No subsidy amounts, income limits or eligibility promises.
+
+import { moreStates, stateSlug } from "@shared/site";
 
 export interface LandingPage {
   path: string;
@@ -62,6 +66,14 @@ const states: State[] = [
   },
 ];
 
+type StateBasics = Pick<State, "name" | "slug" | "people" | "local">;
+
+// Same local line as Texas and Georgia: the team helps by phone, with no office in the state.
+const phoneStates: StateBasics[] = moreStates.map((s) => ({
+  name: s.name, slug: stateSlug(s.name), people: s.people,
+  local: { title: `Help by phone across ${s.name}`, text: `${s.name} is one of the states our team serves. We work by phone, so there is no office to visit.` },
+}));
+
 const steps = (extra: string) => [
   { title: "Tell us who needs coverage", text: "Send the short form or call us. Share only basic contact details, never medical history." },
   { title: "Talk with a licensed advisor", text: `We go over your doctors, prescriptions, budget and ${extra}.` },
@@ -78,7 +90,7 @@ const readyFaq = {
   answer: "The ages and ZIP code of everyone who needs coverage, any doctors or prescriptions you want to keep, and a monthly budget range.",
 };
 
-function individualPage(s: State): LandingPage {
+function individualPage(s: StateBasics): LandingPage {
   return {
     path: `/${s.slug}-health-insurance`,
     eyebrow: `${s.name} health insurance`,
@@ -338,4 +350,5 @@ function smallBusinessPage(s: State): LandingPage {
 export const landingPages: LandingPage[] = [
   ...states.flatMap((s) => [individualPage(s), selfEmployedPage(s)]),
   ...states.flatMap((s) => [cobraPage(s), smallBusinessPage(s)]), ...counties.map(countyPage), ...states.map(spanishPage),
+  ...phoneStates.map(individualPage),
 ];
