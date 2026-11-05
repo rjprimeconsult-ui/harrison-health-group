@@ -153,6 +153,13 @@ describe("anonymous visitor counts", () => {
     expect(sent).toEqual({ e: "form_step_complete", p: "/florida-health-insurance", s: 1, ad: true, d: "mobile" });
     expect(JSON.stringify(sent)).not.toContain("pat@example.org");
 
+    // The business version of the form is counted like the consumer form (2026-11-05).
+    const { forwardedName } = await import("./lib/site-analytics");
+    expect(forwardedName("business_form_view")).toBe("form_view");
+    expect(forwardedName("business_form_submitted")).toBe("form_submitted");
+    expect(forwardedName("form_start")).toBe("form_start");
+    expect(forwardedName("resource_guide_view")).toBeNull();
+
     const preview = setup("preview.manus.space");
     sendSiteEvent("page_view");
     expect(preview).toHaveLength(0);
