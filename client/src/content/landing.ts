@@ -28,11 +28,14 @@ export interface LandingPage {
 export interface LandingUi {
   why: string; how: string; faq: string; call: string; book: string; requestCall: string;
   formNote?: string; disclaimer: string;
+  hours?: string;   // shown under the call button; empty string hides it
 }
 
 export const englishUi: LandingUi = {
   why: "Why people call us", how: "How it works", faq: "Common questions", call: "Call",
   book: "Prefer to pick a time?", requestCall: "Request a quote call",
+  // Owner-stated 2026-11-05: agents answer 6 AM to midnight, 7 days a week (BRAND-FACTS.md).
+  hours: "Licensed advisors answer calls 6 AM to midnight ET, 7 days a week.",
   disclaimer: "Plan availability, eligibility, benefits and costs vary by plan and applicant. A request on this page is not an application, a quote or a coverage decision; review the official plan documents before you apply. Harrison Health Group is a DBA of STAH Health LLC.",
 };
 
@@ -266,6 +269,8 @@ function spanishPage(s: State): LandingPage {
     why: "Por qué nos llaman", how: "Cómo funciona", faq: "Preguntas frecuentes", call: "Llame al",
     book: "¿Prefiere elegir un horario?", requestCall: "Pida que le llamemos",
     formNote: "El formulario está en inglés. Si lo prefiere, llámenos y pida hablar en español.",
+    hours: "",   // Spanish-speaking hours not confirmed
+
     disclaimer: "La disponibilidad, la elegibilidad, los beneficios y los costos varían según el plan y el solicitante. Una solicitud en esta página no es una aplicación, una cotización ni una decisión de cobertura; revise los documentos oficiales del plan antes de presentar una solicitud. Harrison Health Group es un nombre comercial (DBA) de STAH Health LLC.",
   },
 };
