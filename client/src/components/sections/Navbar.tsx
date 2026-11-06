@@ -40,14 +40,14 @@ export default function Navbar({ onQuoteClick }: { onQuoteClick?: () => void }) 
         </div>
         <div className="nav-actions">
           <a className="nav-phone" href={site.phoneHref} onClick={() => emitEvent("click_to_call", { surface: "nav" })}><Phone size={14} aria-hidden="true" />{site.phoneDisplay}</a>
-          {onQuoteClick ? <button className="btn-primary nav-quote" onClick={onQuoteClick}>Request a Quote</button> : <a className="btn-primary nav-quote" href="/contact">Get in Touch</a>}
+          {onQuoteClick ? <button className="btn-primary nav-quote" onClick={onQuoteClick}>Request a Quote Call</button> : <a className="btn-primary nav-quote" href="/contact">Get in Touch</a>}
         </div>
         <button className="nav-menu-toggle" type="button" aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen(!open)}>{open ? <X size={26} /> : <Menu size={26} />}</button>
       </nav>
       <div id="mobile-navigation" className={`nav-mobile ${open ? "is-open" : ""}`} hidden={!open}>
         {[...primary, ...company].map((link) => <a key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}</a>)}
         <a href={site.phoneHref} onClick={() => emitEvent("click_to_call", { surface: "mobile_nav" })}>{site.phoneDisplay}</a>
-        {onQuoteClick ? <button className="btn-primary" onClick={() => { setOpen(false); onQuoteClick(); }}>Request a Quote</button> : <a className="btn-primary" href="/contact">Get in Touch</a>}
+        {onQuoteClick ? <button className="btn-primary" onClick={() => { setOpen(false); onQuoteClick(); }}>Request a Quote Call</button> : <a className="btn-primary" href="/contact">Get in Touch</a>}
       </div>
     </header>
   );
