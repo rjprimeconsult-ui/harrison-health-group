@@ -299,7 +299,94 @@ export const guides: Guide[] = [
           "No one can promise that in advance. The private plans our team offers ask health questions on the application, and the insurer makes the decision based on your answers. An advisor can explain the process and the questions before you apply."
       }
     ],
-    related: ["private-vs-marketplace", "self-employed-coverage"]
+    related: ["compare-private-health-insurance-companies", "private-vs-marketplace", "self-employed-coverage"]
+  },
+  {
+    slug: "compare-private-health-insurance-companies",
+    title: "How to Compare Private Health Insurance Companies",
+    description:
+      "A plain checklist for comparing private health insurance companies and the people who sell their plans: licensing, plan documents, networks, health questions and service.",
+    kicker: "Comparison guide",
+    updated: "November 6, 2026",
+    intro:
+      "Searching for private health insurance companies turns up a confusing mix: insurers, agencies, government exchanges and websites that collect your details and pass them to whoever buys them. This guide explains who is who, what to check before you share information, and how to compare plans from different companies side by side. It does not rank companies or name a winner, because the right fit depends on your household, your doctors and your budget. Use it as a checklist, and confirm every detail in the actual plan documents before you decide.",
+    sections: [
+      {
+        heading: "Know who you are talking to",
+        body: [
+          "An insurance company, or insurer, writes the policy, pays claims and sets the rules in the plan documents. An agency or agent helps you understand and apply for plans; a licensed agent must hold a license in your state. The government Marketplace is a website where you compare and enroll in Marketplace plans and apply for help with the cost.",
+          "Some websites that appear in search results are neither. They collect your name and phone number and may share them with several agents or companies, which is why some people get many calls after filling in one form. Before you share contact details, check who runs the site, read how they use your information, and look for a real business name, address and phone number."
+        ]
+      },
+      {
+        heading: "Check the license first",
+        body: [
+          "Every state has an insurance department that licenses agents and agencies and regulates insurers that sell there. Most let you look up an agent's license online by name. It takes a few minutes and tells you whether the person you are speaking with is allowed to sell health insurance in your state.",
+          "Ask the agent which states they are licensed in and which insurers they work with. A good agent answers plainly and does not pressure you to decide on the first call."
+        ]
+      },
+      {
+        heading: "Compare the plans, not the advertising",
+        body: [
+          "Ads and comparison sites often lead with a low monthly figure. That number rarely tells the whole story, because it may assume a particular age, health status, deductible or plan design that does not match yours. The plan documents are what count: the summary of benefits, the policy or certificate, and the list of exclusions and limits.",
+          "Line up each option with the same questions. What is the deductible? What do you pay for a doctor visit, a specialist, a prescription and a hospital stay? Is there a yearly maximum you could pay? What is not covered at all? Write the answers in one place so you are comparing like with like."
+        ]
+      },
+      {
+        heading: "Check doctors, hospitals and prescriptions",
+        body: [
+          "Two plans that look alike on paper can work very differently if your doctors are in one network and not the other. Before you choose, search each plan's provider directory for the doctors and hospitals you want to keep, and check how your regular prescriptions are covered.",
+          "If you travel or have family in another state, ask how coverage works away from home. If a doctor matters to you, it is worth calling the office to confirm which plans they currently accept."
+        ]
+      },
+      {
+        heading: "Understand the health questions",
+        body: [
+          "Many private plans ask health questions on the application. The insurer uses the answers to decide whether it can offer coverage and on what terms, so no one can promise approval in advance. Answer every question honestly and completely, and ask how the plan treats conditions you had before applying.",
+          "Because of that process, these plans generally suit healthy individuals and families. If a Marketplace plan looks like a better fit for your situation, a good agent will tell you so and point you to the right place to start."
+        ]
+      },
+      {
+        heading: "Look at service and the fine print",
+        body: [
+          "Ask how claims are filed and how quickly questions are answered, and what happens if a claim is denied. Find out how the policy renews, whether the terms can change at renewal, and how you can cancel. Your state insurance department can also tell you how to file a complaint about an insurer or agent if something goes wrong.",
+          "Finally, pay attention to how you are treated before you buy. Clear answers, written documents you can read at your own pace, and no pressure to decide on the spot are good signs. Promises that sound too good, such as guaranteed approval or a price quoted before anyone knows your details, are reasons to slow down."
+        ]
+      }
+    ],
+    checklist: [
+      "Confirm who runs the website or call: insurer, licensed agency, the Marketplace or a lead site.",
+      "Look up the agent's license with your state insurance department.",
+      "Get the summary of benefits and the policy documents for every plan you are considering.",
+      "Compare the deductible, visit and prescription costs, the yearly maximum and the exclusions side by side.",
+      "Check that your doctors, hospitals and prescriptions are covered.",
+      "Ask how health questions and conditions you had before applying are handled.",
+      "Ask how claims, renewals, cancellations and complaints work.",
+      "Take your time: decide only when you have read the documents."
+    ],
+    faqs: [
+      {
+        question: "Is a private health insurance company the same as an agency?",
+        answer:
+          "No. The insurance company writes the policy and pays claims. An agency or licensed agent helps you compare plans and apply, and works with one or more insurers."
+      },
+      {
+        question: "Why did I get so many calls after filling in one form online?",
+        answer:
+          "Some websites share or sell the details you enter with several agents or companies. Before you fill in a form, check who runs the site and how it uses your information."
+      },
+      {
+        question: "How can I check an agent's license?",
+        answer:
+          "Your state insurance department licenses agents, and most states offer an online lookup by name. You can also ask the agent which states they are licensed in."
+      },
+      {
+        question: "Can Harrison Health Group help me compare?",
+        answer:
+          "Yes. A licensed advisor can walk you through the private plans our team works with and the questions in this guide. Request a quote call or call us, and take your time to read the plan documents before you decide."
+      }
+    ],
+    related: ["off-exchange-health-insurance", "private-vs-marketplace"]
   }
 ];
 
