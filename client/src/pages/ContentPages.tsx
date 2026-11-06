@@ -5,7 +5,7 @@ import Footer from "@/components/sections/Footer";
 import Team from "@/components/sections/Team";
 import LeadForm from "@/components/LeadForm";
 import { guides, faqs, type Guide } from "@/content/guides";
-import { publicPages } from "@shared/site";
+import { moreStates, publicPages, stateSlug } from "@shared/site";
 import { englishUi, type LandingPage } from "@/content/landing";
 import { emitEvent, getAttribution } from "@/lib/measurement";
 import { sendSiteEvent } from "@/lib/site-analytics";
@@ -69,7 +69,7 @@ export function AboutPage() { return <Layout><Hero eyebrow="About Harrison Healt
 
 export function ResourcesPage() { return <Layout><Hero eyebrow="Decision guides" title="Know what to ask before you choose." description="Practical, original preparation guides for households, independent workers, and small employers. Use them to organize questions, then confirm details in current policy documents." /><section className="page-section page-shell"><div className="page-grid">{guides.map((guide, index) => <article className="editorial-card" key={guide.slug}><p className="page-eyebrow">0{index + 1} / {guide.kicker}</p><h2 className="!text-3xl">{guide.title}</h2><p>{guide.description}</p><a href={`/resources/${guide.slug}`} onClick={() => emitEvent("resource_cta_click", { surface: "hub", route: guide.slug })}>Read guide →</a></article>)}</div></section>
   <section className="page-section page-shell"><h2>Health insurance by state and situation</h2><p className="mt-3 max-w-3xl">Ready to look at plans? These pages explain how we help in Florida, Texas and Georgia, whether you need coverage for your family, you are self-employed or on a 1099, you are leaving COBRA, or you run a small business. You can request a quote call from any of them.</p>
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">{SITE_MAP_GROUPS.filter((group) => !["Guides", "About us"].includes(group.title)).map((group) => { const pages = publicPages.filter((page) => page.kind === "landing" && group.match(page.path)); return pages.length ? <div className="editorial-card" key={group.title}><h3 className="text-2xl">{group.title}</h3><ul className="mt-4 space-y-2">{pages.map((page) => <li key={page.path}><a className="underline underline-offset-4" href={page.path}>{page.title.split(" | ")[0]}</a></li>)}</ul></div> : null; })}</div>
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">{SITE_MAP_GROUPS.filter((group) => !["Guides", "About us"].includes(group.title)).map((group) => { const more = group.title === "More states we serve"; const pages = publicPages.filter((page) => page.kind === "landing" && group.match(page.path)).map((page) => ({ path: page.path, label: more ? page.title.split(" Health Insurance")[0] : page.title.split(" | ")[0] })).sort((x, y) => more ? x.label.localeCompare(y.label) : 0); return pages.length ? <div className="editorial-card" key={group.title}><h3 className="text-2xl">{group.title}</h3><ul className={more ? "mt-4 grid grid-cols-2 gap-x-4 gap-y-2" : "mt-4 space-y-2"}>{pages.map((page) => <li key={page.path}><a className="underline underline-offset-4" href={page.path}>{page.label}</a></li>)}</ul></div> : null; })}</div>
     <div className="mt-10"><Boundary /></div></section></Layout>; }
 
 export function GuidePage({ guide }: { guide: Guide }) {
@@ -134,8 +134,10 @@ export function AdLandingPage({ page }: { page: LandingPage }) {
 }
 
 // Human-friendly site map (owner request 2026-10-29). /sitemap.xml stays for search engines.
+const MORE_STATE_PATHS = new Set(moreStates.map((s) => `/${stateSlug(s.name)}-health-insurance`));
 const SITE_MAP_GROUPS: { title: string; match: (path: string) => boolean }[] = [
   { title: "Individuals and families", match: (p) => /^\/(florida|texas|georgia)-health-insurance$/.test(p) },
+  { title: "More states we serve", match: (p) => MORE_STATE_PATHS.has(p) },
   { title: "Self-employed and 1099", match: (p) => p.startsWith("/self-employed-health-insurance-") },
   { title: "COBRA and job loss", match: (p) => p.startsWith("/cobra-alternative-") },
   { title: "Small business", match: (p) => p === "/business" || p.startsWith("/small-business-health-insurance-") },
