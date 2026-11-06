@@ -14,9 +14,9 @@ import { AnimatedButton } from "@/components/motion/AnimationWrappers";
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663441385223/aeUWcF9B5vWVriiiqFVf4u/hhg-hero-bg-wDNgKVGBxBxXJPLMSMFGEQ.webp";
 
 const trustBadges = [
-  { icon: Shield, label: "Private Coverage Focus" },
-  { icon: Users, label: "Individuals & Families" },
-  { icon: Award, label: "Business Inquiries" },
+  { icon: Shield, label: "Apply Any Time of Year" },
+  { icon: Users, label: "Healthy Families & Professionals" },
+  { icon: Award, label: "Licensed Advisors" },
 ];
 
 interface HeroProps { onQuoteClick?: () => void; }
@@ -230,7 +230,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
                 display: "block",
               }}
             >
-              Starts with Clarity.
+              for Healthy Families.
             </span>
           </motion.h1>
 
@@ -324,8 +324,8 @@ export default function Hero({ onQuoteClick }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
           >
-            Explore questions about private health plans for your household or business.
-            Tell us what matters, then review the actual options and documents with an advisor.
+            Earn too much for much marketplace help? A licensed advisor will walk you through private plans
+            for healthy individuals, families and professionals, and you can apply any time of year.
           </motion.p>
 
           {/* CTAs */}
@@ -340,7 +340,7 @@ export default function Hero({ onQuoteClick }: HeroProps) {
               className="btn-primary text-base px-7 py-4"
             >
               <Shield size={17} />
-              Request a Coverage Conversation
+              Request a Quote Call
             </AnimatedButton>
             <motion.a
               href="tel:+19544295138"
