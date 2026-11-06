@@ -47,8 +47,8 @@ function MobileQuoteBar({ surface, callLabel, quoteLabel }: { surface: string; c
   const show = scrolled && !formVisible;
   return <div className="lg:hidden fixed inset-x-0 bottom-0 z-50 flex gap-3 px-4 pt-3" aria-hidden={!show}
     style={{ paddingBottom: "max(.75rem, env(safe-area-inset-bottom))", background: "rgba(10,10,10,.96)", borderTop: "1px solid #C9A84C", transform: show ? "translateY(0)" : "translateY(110%)", transition: "transform .25s ease" }}>
-    <a className="page-link flex-1" style={{ color: "#FFFFFF", padding: ".7rem .5rem", fontSize: ".85rem", lineHeight: 1.2, textAlign: "center", minWidth: 0 }} href={site.phoneHref} tabIndex={show ? 0 : -1} onClick={() => emitEvent("click_to_call", { surface: `${surface}-mobile-bar` })}><span>{callLabel} <span style={{ whiteSpace: "nowrap" }}>{site.phoneDisplay}</span></span></a>
-    <a className="btn-primary flex-1 justify-center" style={{ padding: ".7rem .5rem", fontSize: ".85rem", lineHeight: 1.2, letterSpacing: ".02em", textAlign: "center", minWidth: 0 }} href="#quote-form" tabIndex={show ? 0 : -1} onClick={() => sendSiteEvent("quote_cta_click", 2)}>{quoteLabel}</a>
+    <a className="page-link flex-1" style={{ color: "#FFFFFF", padding: ".7rem .5rem", fontSize: ".85rem", lineHeight: 1.2, textAlign: "center", minWidth: 0 }} href="#quote-form" tabIndex={show ? 0 : -1} onClick={() => sendSiteEvent("quote_cta_click", 2)}>{quoteLabel}</a>
+    <a className="btn-primary flex-1 justify-center" style={{ padding: ".7rem .5rem", fontSize: ".85rem", lineHeight: 1.2, letterSpacing: ".02em", textAlign: "center", minWidth: 0 }} href={site.phoneHref} tabIndex={show ? 0 : -1} onClick={() => emitEvent("click_to_call", { surface: `${surface}-mobile-bar` })}><span>{callLabel} <span style={{ whiteSpace: "nowrap" }}>{site.phoneDisplay}</span></span></a>
   </div>;
 }
 function CallLink({ surface }: { surface: string }) { return <a className="page-link" href={site.phoneHref} onClick={() => emitEvent("click_to_call", { surface })}>Call {site.phoneDisplay}</a>; }
@@ -116,7 +116,9 @@ export function AdLandingPage({ page }: { page: LandingPage }) {
   return <Layout><div lang={page.lang}>
     <section className="page-section page-dark" id="quote"><div className="page-shell grid lg:grid-cols-[1fr_1fr] gap-12 items-start">
       <div className="flex flex-col lg:block"><p className="page-eyebrow">{page.eyebrow}</p><h1 className="page-heading" style={{ fontSize: "clamp(2.4rem,4.2vw,3.7rem)", marginTop: ".8rem" }}>{page.title}</h1><p className="mt-5 text-lg leading-relaxed order-last lg:order-none">{page.intro}</p>
-        <div className="page-actions"><a className="btn-primary lg:hidden" href="#quote-form" onClick={() => sendSiteEvent("quote_cta_click", 1)}>{ui.requestCall}</a><a className="btn-primary" href={site.phoneHref} onClick={() => emitEvent("click_to_call", { surface })}>{ui.call} {site.phoneDisplay}</a><BookLink label={ui.book} surface={surface} className="page-link" /></div>
+        {/* Call first (owner request 2026-11-06): phone visitors rarely finish the form, and calls convert. */}
+        <div className="page-actions"><a className="btn-primary" href={site.phoneHref} onClick={() => emitEvent("click_to_call", { surface })}>{ui.call} {site.phoneDisplay}</a><a className="page-link lg:hidden" href="#quote-form" onClick={() => sendSiteEvent("quote_cta_click", 1)}>{ui.requestCall}</a><BookLink label={ui.book} surface={surface} className="page-link" /></div>
+        {ui.hours && <p className="mt-3 text-sm" style={{ color: "#C9A84C" }}>{ui.hours}</p>}
       </div>
       <div id="quote-form" className="rounded-xl p-5 sm:p-8" style={{ border: "1px solid #C9A84C", scrollMarginTop: "88px" }}>{ui.formNote && <p className="text-sm leading-6 mb-4">{ui.formNote}</p>}<div lang="en"><LeadForm kind={page.formKind ?? "consumer"} /></div></div>
     </div></section>
