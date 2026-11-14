@@ -18,7 +18,7 @@ export default function QuoteModal({ isOpen, onClose }: { isOpen: boolean; onClo
   }, [isOpen, onClose]);
   const trapFocus = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key !== "Tab" || !dialogRef.current) return;
-    const focusable = Array.from(dialogRef.current.querySelectorAll<HTMLElement>('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled])')).filter((element) => element.offsetParent !== null);
+    const focusable = Array.from(dialogRef.current.querySelectorAll<HTMLElement>('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled])')).filter((element) => element.offsetParent !== null && !element.matches(":disabled"));
     if (!focusable.length) return;
     const first = focusable[0], last = focusable[focusable.length - 1];
     if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
@@ -29,7 +29,7 @@ export default function QuoteModal({ isOpen, onClose }: { isOpen: boolean; onClo
     <div className="absolute inset-0" style={{ background: "rgba(0,0,0,.88)" }} onClick={onClose} aria-hidden="true" />
     <div ref={dialogRef} onKeyDown={trapFocus} className="relative w-full max-w-2xl max-h-[94dvh] overflow-y-auto rounded-xl form-dark" style={{ background: "#0A0A0A", color: "#FFFFFF", border: "1px solid #C9A84C", boxShadow: "0 28px 75px rgba(0,0,0,.5)" }} role="dialog" aria-modal="true" aria-label="Request private health coverage guidance">
       <div className="p-5 sm:p-8">
-        <div className="flex items-start justify-between gap-3 mb-5"><div><span className="page-eyebrow">Harrison Health Group</span><h2 className="text-3xl sm:text-4xl" style={{ fontFamily: "'Cormorant Garamond',serif" }}>Request a coverage conversation</h2><p className="text-sm mt-2" style={{ color: "#D7D7D7" }}>Share the basics so our team can follow up about your request.</p></div><button ref={closeRef} type="button" onClick={onClose} aria-label="Close quote form" className="inline-flex shrink-0 items-center justify-center w-11 h-11 rounded-full" style={{ border: "1px solid #C9A84C", color: "#FFFFFF" }}><X size={20} /></button></div>
+        <div className="flex items-start justify-between gap-3 mb-4"><div><span className="page-eyebrow">Harrison Health Group</span><h2 className="text-3xl sm:text-4xl" style={{ fontFamily: "'Cormorant Garamond',serif" }}>Request a quote call</h2></div><button ref={closeRef} type="button" onClick={onClose} aria-label="Close quote form" className="inline-flex shrink-0 items-center justify-center w-11 h-11 rounded-full" style={{ border: "1px solid #C9A84C", color: "#FFFFFF" }}><X size={20} /></button></div>
         <LeadForm kind="consumer" />
       </div>
     </div>

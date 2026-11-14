@@ -2,10 +2,12 @@ import { describe, expect, it, vi } from "vitest";
 import { indexablePages, moreStates, publicPages, stateSlug } from "../../shared/site";
 import { renderMeta } from "../../shared/seo";
 import { guides, faqs } from "./content/guides";
-import { validateLead, sendLead } from "./components/LeadForm";
+import { validateLead, sendLead, normalizePhone, splitContactName, stateForLandingPath } from "./components/LeadForm";
 import { mappedStates } from "../../shared/service-area";
 import { HARRISON_GOOGLE_MAPS_URL, HARRISON_PLACE_ID, isHarrisonListing, safeExternalUrl, safeGoogleAvatarUrl, safeGoogleMapsUrl, toGoogleReviewSnapshot } from "./lib/google-reviews";
 import { teamMembers } from "./content/team";
+import { formatPhoneInput, stateForZip } from "./lib/zip-state";
+import zipData from "./content/zip-state-data.json";
 
 const valid = { coverage_intent: "Individual coverage", state: "FL", zip: "33323", timeline: "", company_name: "Business", team_size: "1–4", decision_role: "", first_name: "Pat", last_name: "Example", email: "pat@example.org", phone: "9546000342", preferred_contact: "Email", consent: "yes" };
 describe("Harrison facts and routes", () => {
@@ -57,10 +59,79 @@ describe("Harrison facts and routes", () => {
 
 describe("lead validation and provider acknowledgements", () => {
   it("rejects missing routing fields, malformed contacts, and unchecked consent", () => {
-    expect(Object.keys(validateLead({ ...valid, zip: "3", state: "XX" }, "consumer", 0))).toEqual(["state", "zip"]);
-    expect(Object.keys(validateLead({ ...valid, company_name: "", team_size: "" }, "business", 0))).toEqual(["company_name", "team_size"]);
-    expect(Object.keys(validateLead({ ...valid, email: "bad", phone: "123" }, "consumer", 1))).toEqual(["email", "phone"]);
-    expect(validateLead({ ...valid, consent: "" }, "consumer", 2).consent).toBeTruthy();
+    expect(Object.keys(validateLead({ ...valid, zip: "3", state: "XX" }))).toEqual(["state", "zip"]);
+    expect(validateLead({ ...valid, first_name: "" }).first_name).toBeTruthy();
+    expect(validateLead({ ...valid, phone: "123" }).phone).toBeTruthy();
+    expect(validateLead({ ...valid, phone: "abc9546000342" }).phone).toBeTruthy();
+    expect(validateLead({ ...valid, consent: "" }).consent).toBeTruthy();
+    expect(validateLead({ ...valid, first_name: "x".repeat(121) }).first_name).toBeTruthy();
+  });
+  it("accepts the owner-approved Step 1 with no email, coverage, timeline or business details", () => {
+    const minimal = { ...valid, last_name: "", email: "", coverage_intent: "", timeline: "", company_name: "", team_size: "", decision_role: "", preferred_contact: "Phone call" };
+    expect(validateLead(minimal)).toEqual({});
+    expect(normalizePhone("+1 (954) 600-0342")).toBe("9546000342");
+    expect(validateLead({ ...minimal, phone: "+1 (954) 600-0342" })).toEqual({});
+    expect(splitContactName("  Pat  Jordan Example  ")).toEqual({ first_name: "Pat", last_name: "Jordan Example" });
+    expect(splitContactName("Pat")).toEqual({ first_name: "Pat", last_name: "" });
+  });
+  it("does not let optional email, last name, coverage or contact preference block the phone-call request", () => {
+    expect(validateLead({ ...valid, last_name: "", email: "", preferred_contact: "", coverage_intent: "", timeline: "", company_name: "", team_size: "" })).toEqual({});
+    // The email is not collected in this short form; even a stale optional value must not gate a valid phone callback.
+    expect(validateLead({ ...valid, email: "stale-incomplete-email", phone: "+1 (754) 276-7544" })).toEqual({});
+    expect(validateLead({ ...valid, phone: "754\u2011276\u20117544" })).toEqual({});
+    expect(validateLead({ ...valid, phone: "123456789012" }).phone).toBeTruthy();
+  });
+  it("formats phone input as typed without discarding unsupported excess digits", () => {
+    expect(formatPhoneInput("754")).toBe("754");
+    expect(formatPhoneInput("7542")).toBe("(754) 2");
+    expect(formatPhoneInput("7542767544")).toBe("(754) 276-7544");
+    expect(formatPhoneInput("+1 (754) 276-7544")).toBe("(754) 276-7544");
+    expect(normalizePhone(formatPhoneInput("123456789012"))).toBe("123456789012");
+    const excessiveCountryDigits = formatPhoneInput("+1 19546000342");
+    expect(excessiveCountryDigits).toBe("(195) 460-00342");
+    expect(formatPhoneInput(excessiveCountryDigits)).toBe(excessiveCountryDigits);
+    expect(normalizePhone(excessiveCountryDigits)).toBe("19546000342");
+    expect(validateLead({ ...valid, phone: excessiveCountryDigits }).phone).toBeTruthy();
+  });
+  it("uses postal-state ZIP records rather than approximate prefixes, facility states or a landing-page guess", () => {
+    expect(stateForZip("33323")).toBe("FL");
+    expect(stateForZip("00501")).toBe("NY");
+    expect(stateForZip("06390")).toBe("NY"); // Not CT despite its 063 prefix.
+    expect(stateForZip("02914")).toBe("RI"); // Not the preferred USPS facility's MA state.
+    expect(stateForZip("19964")).toBe("DE"); // Not the postal facility's MD state.
+    expect(stateForZip("75001")).toBe("TX");
+    expect(stateForZip("19701")).toBe("DE");
+    expect(stateForZip("87101")).toBe("NM");
+    expect(stateForZip("20001")).toBe("DC");
+    expect(stateForZip("00601")).toBe("PR");
+    expect(stateForZip("20020")).toBe("DC");
+    for (const zip of ["", "3332", "00000", "99999", "ABCDE", "33323-0000"]) expect(stateForZip(zip)).toBe("");
+  });
+  it("keeps every postal-state lookup range ordered, disjoint, and consistent with the source ZIP count", () => {
+    let count = 0, previousEnd = -1;
+    for (const [first, last, state] of zipData.ranges) {
+      expect(typeof first).toBe("number"); expect(typeof last).toBe("number");
+      expect(Number(first)).toBeGreaterThan(previousEnd);
+      expect(Number(last)).toBeGreaterThanOrEqual(Number(first));
+      expect(stateForZip(String(first).padStart(5, "0"))).toBe(state);
+      expect(stateForZip(String(last).padStart(5, "0"))).toBe(state);
+      count += Number(last) - Number(first) + 1;
+      previousEnd = Number(last);
+    }
+    expect(count).toBe(zipData.zipCount);
+    expect(zipData.source).toBe("https://www.geonames.org/postal-codes/postal-codes-us.html");
+    expect(zipData.sourceLicense).toBe("https://creativecommons.org/licenses/by/4.0/");
+  });
+  it("prefills only registered state, county, Spanish, self-employed and business landing pages", () => {
+    for (const page of publicPages.filter((page) => page.kind === "landing")) {
+      expect(mappedStates.has(stateForLandingPath(page.path)), page.path).toBe(true);
+    }
+    expect(stateForLandingPath("/broward-county-health-insurance")).toBe("FL");
+    expect(stateForLandingPath("/seguro-medico-texas")).toBe("TX");
+    expect(stateForLandingPath("/north-carolina-health-insurance?gclid=test#quote-form")).toBe("NC");
+    expect(stateForLandingPath("/small-business-health-insurance-georgia/")).toBe("GA");
+    expect(stateForLandingPath("/unknown-florida")).toBe("");
+    expect(stateForLandingPath("/contact")).toBe("");
   });
   it("never treats HTTP 200 with success:false as a confirmed lead", async () => {
     const mock = vi.fn().mockResolvedValue({ ok: true, json: async () => ({ success: false }) });
@@ -96,6 +167,20 @@ describe("lead validation and provider acknowledgements", () => {
     expect(dashboardPayload).not.toHaveProperty("subject");
     expect(dashboardPayload).not.toHaveProperty("from_name");
     expect(dashboardPayload.page_url).not.toContain("unsafe@example.com");
+    vi.unstubAllGlobals();
+  });
+  it("sends the minimal Step 1 schema once and isolates a dashboard 422 from confirmed Web3Forms receipt", async () => {
+    const mock = vi.fn()
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ success: true }) })
+      .mockResolvedValueOnce({ ok: false, status: 422, json: async () => ({ ok: false }) });
+    vi.stubGlobal("fetch", mock);
+    const minimal = { ...valid, email: "", coverage_intent: "", company_name: "", team_size: "", phone: "+1 (954) 600-0342", preferred_contact: "Phone call" };
+    await expect(sendLead(minimal, "business")).resolves.toEqual({ success: true });
+    expect(mock).toHaveBeenCalledTimes(2);
+    const payload = JSON.parse(mock.mock.calls[1][1].body);
+    expect(payload).toMatchObject({ lead_type: "business", phone: "9546000342", email: "", company_name: "", team_size: "", coverage_intent: "", consent: true });
+    expect(payload).not.toHaveProperty("update_token");
+    expect(mock.mock.calls.map(([url]) => url)).toEqual(["https://api.web3forms.com/submit", "https://leads.harrisonhealthgroup.com/webhooks/web-form"]);
     vi.unstubAllGlobals();
   });
 });
