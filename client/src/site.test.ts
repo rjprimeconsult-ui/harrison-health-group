@@ -9,7 +9,7 @@ import { teamMembers } from "./content/team";
 import { formatPhoneInput, stateForZip } from "./lib/zip-state";
 import zipData from "./content/zip-state-data.json";
 
-const valid = { coverage_intent: "Individual coverage", state: "FL", zip: "33323", timeline: "", company_name: "Business", team_size: "1–4", decision_role: "", first_name: "Pat", last_name: "Example", email: "pat@example.org", phone: "9546000342", preferred_contact: "Email", consent: "yes" };
+const valid = { name: "Pat Jordan Example", phone: "2025550101", email: "Pat.Example+qa@example.org", zip: "33323", age: "35", state: "FL", consent: "yes" };
 describe("Harrison facts and routes", () => {
   it("uses the owner-corrected 31-state map: Delaware in, New Mexico out", () => {
     expect(mappedStates.size).toBe(31);
@@ -59,27 +59,44 @@ describe("Harrison facts and routes", () => {
 
 describe("lead validation and provider acknowledgements", () => {
   it("rejects missing routing fields, malformed contacts, and unchecked consent", () => {
-    expect(Object.keys(validateLead({ ...valid, zip: "3", state: "XX" }))).toEqual(["state", "zip"]);
-    expect(validateLead({ ...valid, first_name: "" }).first_name).toBeTruthy();
+    expect(Object.keys(validateLead({ ...valid, zip: "3", state: "XX" }))).toEqual(["zip", "state"]);
+    expect(validateLead({ ...valid, name: "" }).name).toBeTruthy();
     expect(validateLead({ ...valid, phone: "123" }).phone).toBeTruthy();
     expect(validateLead({ ...valid, phone: "abc9546000342" }).phone).toBeTruthy();
     expect(validateLead({ ...valid, consent: "" }).consent).toBeTruthy();
-    expect(validateLead({ ...valid, first_name: "x".repeat(121) }).first_name).toBeTruthy();
+    expect(validateLead({ ...valid, name: "x".repeat(121) }).name).toBeTruthy();
   });
-  it("accepts the owner-approved Step 1 with no email, coverage, timeline or business details", () => {
-    const minimal = { ...valid, last_name: "", email: "", coverage_intent: "", timeline: "", company_name: "", team_size: "", decision_role: "", preferred_contact: "Phone call" };
-    expect(validateLead(minimal)).toEqual({});
+  it("requires all five owner-requested fields and consent on the same step", () => {
+    for (const field of ["name", "phone", "email", "zip", "age"] as const) {
+      expect(validateLead({ ...valid, [field]: "" })[field], field).toBeTruthy();
+    }
+    expect(Object.keys(validateLead({ ...valid, name: "", phone: "", email: "", zip: "", age: "", consent: "" }))).toEqual(["name", "phone", "email", "zip", "age", "consent"]);
+    expect(validateLead(valid)).toEqual({});
+  });
+  it("accepts full names without forcing a split and preserves supported +1 phone input", () => {
+    expect(validateLead({ ...valid, name: "  María-José de la Cruz  " })).toEqual({});
+    expect(validateLead({ ...valid, name: "Cher" })).toEqual({});
     expect(normalizePhone("+1 (954) 600-0342")).toBe("9546000342");
-    expect(validateLead({ ...minimal, phone: "+1 (954) 600-0342" })).toEqual({});
+    expect(validateLead({ ...valid, phone: "+1 (954) 600-0342" })).toEqual({});
     expect(splitContactName("  Pat  Jordan Example  ")).toEqual({ first_name: "Pat", last_name: "Jordan Example" });
     expect(splitContactName("Pat")).toEqual({ first_name: "Pat", last_name: "" });
   });
-  it("does not let optional email, last name, coverage or contact preference block the phone-call request", () => {
-    expect(validateLead({ ...valid, last_name: "", email: "", preferred_contact: "", coverage_intent: "", timeline: "", company_name: "", team_size: "" })).toEqual({});
-    // The email is not collected in this short form; even a stale optional value must not gate a valid phone callback.
-    expect(validateLead({ ...valid, email: "stale-incomplete-email", phone: "+1 (754) 276-7544" })).toEqual({});
+  it("validates required email while accepting plus addressing, case and surrounding autofill whitespace", () => {
+    for (const email of ["Pat.Example+qa@example.org", "maria@example.co.uk", "  Pat@example.org  ", "josé@exämple.org", "o'brien@example.org"]) {
+      expect(validateLead({ ...valid, email })).toEqual({});
+    }
+    for (const email of ["", "stale-incomplete-email", "a@@example.org", "a b@example.org", "a@example", "a@example.org\nnot-email", "x".repeat(255) + "@example.org", "a@example..org", "a@example.org.", "a@exa/mple.org", "a@-example.org", "a@example-.org", ".a@example.org", "a..b@example.org"]) {
+      expect(validateLead({ ...valid, email }).email, email).toBeTruthy();
+    }
+    expect(validateLead({ ...valid, phone: "+1 (754) 276-7544" })).toEqual({});
     expect(validateLead({ ...valid, phone: "754\u2011276\u20117544" })).toEqual({});
     expect(validateLead({ ...valid, phone: "123456789012" }).phone).toBeTruthy();
+  });
+  it("requires a whole-year age while accepting zero and rejecting decimals, negatives and out-of-range values", () => {
+    for (const age of ["0", "1", "18", "35", "120", " 35 "]) expect(validateLead({ ...valid, age })).toEqual({});
+    for (const age of ["", " ", "-1", "121", "35.5", "1e2", "Infinity", "NaN", "35 years"]) {
+      expect(validateLead({ ...valid, age }).age, age).toBeTruthy();
+    }
   });
   it("formats phone input as typed without discarding unsupported excess digits", () => {
     expect(formatPhoneInput("754")).toBe("754");
@@ -162,25 +179,59 @@ describe("lead validation and provider acknowledgements", () => {
     const dashboardPayload = JSON.parse(dashboardRequest.body);
     expect(dashboardUrl).toBe("https://leads.harrisonhealthgroup.com/webhooks/web-form");
     expect(dashboardRequest).toMatchObject({ method: "POST", keepalive: true, headers: { "Content-Type": "application/json" } });
-    expect(dashboardPayload).toMatchObject({ first_name: "Pat", last_name: "Example", lead_type: "business", consent: true, consent_text: "I request that Harrison Health Group contact me by my selected method about this inquiry. I have read the privacy information and site-use information.", page_url: "https://harrisonhealthgroup.com/florida-health-insurance" });
+    expect(dashboardPayload).toMatchObject({ name: "Pat Jordan Example", age: 35, email: "Pat.Example+qa@example.org", phone: "2025550101", zip: "33323", state: "FL", lead_type: "business", consent: true, consent_text: "I request that Harrison Health Group contact me by my selected method about this inquiry. I have read the privacy information and site-use information.", page_url: "https://harrisonhealthgroup.com/florida-health-insurance" });
+    expect(typeof dashboardPayload.age).toBe("number");
+    for (const removed of ["first_name", "last_name", "coverage_intent", "timeline", "company_name", "team_size", "decision_role", "preferred_contact"]) expect(dashboardPayload).not.toHaveProperty(removed);
     expect(dashboardPayload).not.toHaveProperty("access_key");
     expect(dashboardPayload).not.toHaveProperty("subject");
     expect(dashboardPayload).not.toHaveProperty("from_name");
     expect(dashboardPayload.page_url).not.toContain("unsafe@example.com");
     vi.unstubAllGlobals();
   });
-  it("sends the minimal Step 1 schema once and isolates a dashboard 422 from confirmed Web3Forms receipt", async () => {
+  it("sends the five-field schema once and isolates a dashboard 422 from confirmed Web3Forms receipt", async () => {
     const mock = vi.fn()
       .mockResolvedValueOnce({ ok: true, json: async () => ({ success: true }) })
       .mockResolvedValueOnce({ ok: false, status: 422, json: async () => ({ ok: false }) });
     vi.stubGlobal("fetch", mock);
-    const minimal = { ...valid, email: "", coverage_intent: "", company_name: "", team_size: "", phone: "+1 (954) 600-0342", preferred_contact: "Phone call" };
-    await expect(sendLead(minimal, "business")).resolves.toEqual({ success: true });
+    await expect(sendLead({ ...valid, phone: "+1 (954) 600-0342" }, "business")).resolves.toEqual({ success: true });
     expect(mock).toHaveBeenCalledTimes(2);
     const payload = JSON.parse(mock.mock.calls[1][1].body);
-    expect(payload).toMatchObject({ lead_type: "business", phone: "9546000342", email: "", company_name: "", team_size: "", coverage_intent: "", consent: true });
+    expect(payload).toMatchObject({ name: "Pat Jordan Example", age: 35, lead_type: "business", phone: "9546000342", email: "Pat.Example+qa@example.org", consent: true });
     expect(payload).not.toHaveProperty("update_token");
     expect(mock.mock.calls.map(([url]) => url)).toEqual(["https://api.web3forms.com/submit", "https://leads.harrisonhealthgroup.com/webhooks/web-form"]);
+    vi.unstubAllGlobals();
+  });
+  it("preserves full-name/email trimming and numeric zero age in both destinations without leaked legacy fields", async () => {
+    const mock = vi.fn().mockResolvedValue({ ok: true, json: async () => ({ success: true }) });
+    vi.stubGlobal("fetch", mock);
+    const stale = { ...valid, name: "  Pat Jordan Example  ", email: " Pat.Example+qa@example.org ", age: "0", first_name: "STALE", last_name: "STALE", coverage_intent: "STALE" };
+    await expect(sendLead(stale, "consumer")).resolves.toEqual({ success: true });
+    expect(mock).toHaveBeenCalledTimes(2);
+    for (const [, request] of mock.mock.calls) {
+      const payload = JSON.parse(request.body);
+      expect(payload).toMatchObject({ name: "Pat Jordan Example", email: "Pat.Example+qa@example.org", age: 0 });
+      for (const key of ["first_name", "last_name", "coverage_intent", "dob", "income"]) expect(payload).not.toHaveProperty(key);
+    }
+    vi.unstubAllGlobals();
+  });
+  it("allowlists cached attribution so it cannot overwrite validated identity, age, consent or provider routing", async () => {
+    const mock = vi.fn().mockResolvedValue({ ok: true, json: async () => ({ success: true }) });
+    vi.stubGlobal("fetch", mock);
+    vi.stubGlobal("window", { location: { origin: "https://harrisonhealthgroup.com", pathname: "/florida-health-insurance", search: "?utm_source=google&gclid=qa-click" } });
+    vi.stubGlobal("sessionStorage", { getItem: () => JSON.stringify({ name: "STALE", phone: "STALE", email: "STALE", age: "not-an-integer", consent: false, consent_text: "STALE", first_name: "LEGACY", last_name: "LEGACY", coverage_intent: "LEGACY", access_key: "STALE", subject: "STALE", from_name: "STALE", page_url: "https://evil.example/", lead_type: "STALE", consent_text_version: "STALE", consent_at_client_utc: "STALE", utm_medium: "cpc", utm_campaign: "required-fields", utm_term: "private health", utm_content: "headline", gbriad: "TYPO", gbraid: "valid-gbraid", wbraid: "valid-wbraid", session_id: "fixed-qa-session" }), setItem: vi.fn() });
+    vi.stubGlobal("document", { referrer: "" });
+    await expect(sendLead(valid, "consumer")).resolves.toEqual({ success: true });
+    expect(mock).toHaveBeenCalledTimes(2);
+    const provider = JSON.parse(mock.mock.calls[0][1].body);
+    const dashboard = JSON.parse(mock.mock.calls[1][1].body);
+    for (const payload of [provider, dashboard]) {
+      expect(payload).toMatchObject({ name: valid.name, phone: valid.phone, email: valid.email, age: 35, lead_type: "consumer", consent_text_version: "contact-request-v1-2026-10-04", gclid: "qa-click", utm_source: "google", utm_medium: "cpc", utm_campaign: "required-fields", utm_term: "private health", utm_content: "headline", gbraid: "valid-gbraid", wbraid: "valid-wbraid", session_id: "fixed-qa-session" });
+      expect(payload.consent_at_client_utc).not.toBe("STALE");
+      for (const key of ["first_name", "last_name", "coverage_intent", "gbriad"]) expect(payload).not.toHaveProperty(key);
+    }
+    expect(provider).toMatchObject({ access_key: "97a6d29a-4a4c-42e5-8644-c6f2d14a4a40", subject: "Harrison Health Group website consumer request", from_name: "Harrison Health Group Website" });
+    expect(dashboard).toMatchObject({ consent: true, consent_text: "I request that Harrison Health Group contact me by my selected method about this inquiry. I have read the privacy information and site-use information.", page_url: "https://harrisonhealthgroup.com/florida-health-insurance" });
+    for (const key of ["access_key", "subject", "from_name"]) expect(dashboard).not.toHaveProperty(key);
     vi.unstubAllGlobals();
   });
 });
