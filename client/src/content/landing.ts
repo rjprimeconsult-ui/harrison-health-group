@@ -11,6 +11,10 @@
 // Client focus wording (individual, self-employed and county pages): owner-requested 2026-10-30. Owner stated the
 // private plans are health-underwritten and suit healthy, higher-income individuals and families, including those
 // who earn too much to qualify for much marketplace help. No subsidy amounts, income limits or eligibility promises.
+// SEO pages (owner-requested 2026-11-25, from the OpenSEO keyword-gap review): new /aca-alternatives-florida page;
+// county pages lead with their main city (Fort Lauderdale, Miami, Boca Raton) instead of a separate Fort Lauderdale
+// page, so the Broward page that already carries "Fort Lauderdale" in its search title is not split in two; more
+// FAQs on the self-employed and COBRA pages. No new facts: general Marketplace rules and BRAND-FACTS.md only.
 
 import { moreStates, stateSlug } from "@shared/site";
 
@@ -152,13 +156,24 @@ function selfEmployedPage(s: State): LandingPage {
       "A 1099 contractor or freelancer",
       "A business owner with no employees",
       "Leaving a W-2 job to work for yourself",
+      "Earning too much for much marketplace help",
       "Covering a spouse or children on your own plan",
     ],
     steps: steps("how your income moves through the year"),
     faqs: [
       { question: "Can I get coverage outside open enrollment?", answer: "Yes, for the private plans we work with: you can apply any time of year." },
+      {
+        question: "What health insurance options do 1099 contractors and freelancers have?",
+        answer: "The usual routes are a Marketplace plan, a spouse's job-based plan, COBRA from a past job, or a private individual or family plan in your own name, like the ones we work with. An advisor can go over which of these are open to you.",
+      },
+      { question: "Do I need employees or a group to buy a plan?", answer: "No. When it is just you, or you and your family, you buy an individual or family plan in your own name. If you have employees, our small business page covers group options." },
       { question: "Can I cover my family on the same plan?", answer: "You can ask about coverage for your spouse and children in the same conversation." },
       fitFaq,
+      {
+        question: "How is a private plan different from a Marketplace plan?",
+        answer: "They follow different rules: private plans can ask health questions, have their own benefits and networks, and are not eligible for Marketplace savings. Our guide explains what to compare side by side.",
+        link: { href: "/resources/private-vs-marketplace", label: "Read the comparison guide" },
+      },
       readyFaq,
       {
         question: "Where can I learn more first?",
@@ -171,6 +186,7 @@ function selfEmployedPage(s: State): LandingPage {
 
 
 interface County {
+  city: string;          // Fort Lauderdale (main city, leads the headline)
   name: string;          // Broward County
   slug: string;          // broward-county
   cities: string;        // Fort Lauderdale, Hollywood, ...
@@ -180,19 +196,19 @@ interface County {
 
 const counties: County[] = [
   {
-    name: "Broward County", slug: "broward-county",
+    city: "Fort Lauderdale", name: "Broward County", slug: "broward-county",
     cities: "Fort Lauderdale, Hollywood, Pembroke Pines, Coral Springs, Miramar, Sunrise, Plantation and Davie",
     local: { title: "Right here in Broward", text: "Our team works from Sunrise, in Broward County, and helps households across the county compare their options." },
     situation: "Commuting between Broward and Miami-Dade or Palm Beach for work",
   },
   {
-    name: "Miami-Dade County", slug: "miami-dade",
+    city: "Miami", name: "Miami-Dade County", slug: "miami-dade",
     cities: "Miami, Hialeah, Miami Gardens, Homestead, Kendall, Doral, Miami Beach and North Miami",
     local: { title: "A South Florida team", text: "Our team works from Sunrise in neighboring Broward County and helps Miami-Dade households by phone." },
     situation: "Running their own business or practice in Miami-Dade",
   },
   {
-    name: "Palm Beach County", slug: "palm-beach-county",
+    city: "Boca Raton", name: "Palm Beach County", slug: "palm-beach-county",
     cities: "West Palm Beach, Boca Raton, Boynton Beach, Delray Beach, Wellington, Jupiter and Lake Worth Beach",
     local: { title: "A South Florida team", text: "Our team works from Sunrise in neighboring Broward County and helps Palm Beach County households by phone." },
     situation: "Retiring early or leaving a job before Medicare age",
@@ -202,8 +218,8 @@ const counties: County[] = [
 function countyPage(c: County): LandingPage {
   return {
     path: `/${c.slug}-health-insurance`,
-    eyebrow: `${c.name} health insurance`,
-    title: `Private Health Insurance in ${c.name}`,
+    eyebrow: `${c.city} health insurance`,
+    title: `Private Health Insurance in ${c.city} and ${c.name}`,
     intro: `Looking for health insurance in ${c.cities}? The private plans we work with generally suit healthy individuals and families who earn too much for much marketplace help, and you can apply any time of year. Tell us who needs coverage in ${c.name}, and a licensed advisor will walk you through the options available to you.`,
     benefits: [
       c.local,
@@ -224,6 +240,10 @@ function countyPage(c: County): LandingPage {
       {
         question: `Can I get health insurance in ${c.name} outside open enrollment?`,
         answer: "Yes, for the private plans we work with: you can apply any time of year. Marketplace plans follow their own enrollment periods. If a Marketplace plan looks like a better fit for you, we can point you to the right place to start.",
+      },
+      {
+        question: `Where is your office? Are you near ${c.city}?`,
+        answer: "Our office is at 1550 Sawgrass Corporate Pkwy, Ste 300, in Sunrise, Broward County. We help clients by phone, and you can also pick a time to talk on our booking page.",
       },
       {
         question: "Will my doctors be in network?",
@@ -304,13 +324,17 @@ function cobraPage(s: State): LandingPage {
   situations: [
     "Holding a COBRA election notice",
     "Laid off or leaving a job",
+    "Retiring early, before Medicare age",
     "Losing coverage when a spouse's job ends",
     "Coming off a parent's plan",
     "Starting their own business after a W-2 job",
   ],
   steps: steps("the dates on your COBRA notice"),
   faqs: [
+    { question: "What are the alternatives to COBRA?", answer: "The usual alternatives are a Marketplace plan (losing job-based coverage usually opens a special enrollment period), joining a spouse's job-based plan, or a private individual or family plan, like the ones we work with, which you can apply for any time of year." },
+    { question: "Should I choose COBRA or a private plan?", answer: "It depends on your health, your doctors, your budget and how long you need coverage. COBRA keeps the plan and network you have now. The private plans we work with ask health questions on the application, so they generally suit healthy individuals and families. An advisor can compare both with you." },
     { question: "Can I switch from COBRA to a private plan?", answer: "You can apply for the private plans we work with any time of year, including while you are on COBRA." },
+    { question: "How do I avoid a gap in coverage?", answer: "Talk with us before your job-based coverage ends. Check the date it ends and your COBRA election deadline, then compare start dates for each option so you can choose with time to spare." },
     { question: "How long do I have to decide on COBRA?", answer: "Your COBRA notice lists your election deadline. Check it first, and talk with us well before it passes so you can compare both options." },
     { question: "What should I have ready?", answer: "Your COBRA notice, the ages and ZIP code of everyone who needs coverage, any doctors or prescriptions you want to keep, and a monthly budget range." },
     { question: "Where can I learn more first?", answer: "Our guide comparing private and Marketplace coverage explains what to compare side by side.", link: { href: "/resources/private-vs-marketplace", label: "Read the comparison guide" } },
@@ -352,7 +376,51 @@ function smallBusinessPage(s: State): LandingPage {
 };
 }
 
+const acaAlternativesFlorida: LandingPage = {
+  path: "/aca-alternatives-florida",
+  eyebrow: "ACA / Obamacare alternatives",
+  title: "Alternatives to ACA (Obamacare) Plans in Florida",
+  intro: "Earn too much for much help on the ACA Marketplace, and want another option? The private plans we work with are sold outside the Marketplace, ask health questions on the application, and generally suit healthy individuals and families in Florida. You can apply any time of year. A licensed advisor will walk you through how they compare with a Marketplace plan.",
+  benefits: [
+    { title: "An option outside the Marketplace", text: "Private plans are not tied to the Marketplace's enrollment periods, so you can apply for the ones we work with any time of year." },
+    { title: "For households above the subsidy range", text: "Marketplace savings apply only to Marketplace plans. If your household earns too much for much of that help, compare private options too." },
+    { title: "An honest side-by-side", text: "We explain how a private plan differs from a Marketplace plan in benefits, networks and rules, and we tell you if the Marketplace looks like the better fit." },
+    states[0].local,
+  ],
+  situationsHeading: "We often help Floridians who are",
+  situations: [
+    "Earning too much for much Marketplace help",
+    "Healthy and buying coverage for their family",
+    "Self-employed, consultants or business owners",
+    "Past the open enrollment deadline",
+    "Leaving job-based coverage or facing COBRA",
+  ],
+  steps: steps("how a private plan compares with a Marketplace plan for you"),
+  faqs: [
+    {
+      question: "What is an alternative to an ACA (Obamacare) plan?",
+      answer: "Here it means a private health plan bought outside the ACA Marketplace. The private plans we work with ask health questions on the application, so approval is not automatic, and their benefits and rules can differ from Marketplace plans. Read the plan documents before you apply.",
+    },
+    {
+      question: "Are these ACA or Obamacare plans?",
+      answer: "No. They are private plans sold outside the Marketplace. Marketplace savings (premium tax credits) apply only to Marketplace plans, so they do not lower the cost of a private plan.",
+    },
+    {
+      question: "Can I apply outside open enrollment?",
+      answer: "Yes, for the private plans we work with: you can apply any time of year. Marketplace plans follow their own enrollment periods.",
+    },
+    fitFaq,
+    {
+      question: "Where can I learn more first?",
+      answer: "Our guide to off-exchange plans explains what a private plan outside the Marketplace is and what to check before you apply.",
+      link: { href: "/resources/off-exchange-health-insurance", label: "Read the off-exchange guide" },
+    },
+    readyFaq,
+  ],
+};
+
 export const landingPages: LandingPage[] = [
+  acaAlternativesFlorida,
   ...states.flatMap((s) => [individualPage(s), selfEmployedPage(s)]),
   ...states.flatMap((s) => [cobraPage(s), smallBusinessPage(s)]), ...counties.map(countyPage), ...states.map(spanishPage),
   ...phoneStates.map(individualPage),

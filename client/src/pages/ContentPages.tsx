@@ -136,7 +136,7 @@ export function AdLandingPage({ page }: { page: LandingPage }) {
 // Human-friendly site map (owner request 2026-10-29). /sitemap.xml stays for search engines.
 const MORE_STATE_PATHS = new Set(moreStates.map((s) => `/${stateSlug(s.name)}-health-insurance`));
 const SITE_MAP_GROUPS: { title: string; match: (path: string) => boolean }[] = [
-  { title: "Individuals and families", match: (p) => /^\/(florida|texas|georgia)-health-insurance$/.test(p) },
+  { title: "Individuals and families", match: (p) => /^\/(florida|texas|georgia)-health-insurance$/.test(p) || p === "/aca-alternatives-florida" },
   { title: "More states we serve", match: (p) => MORE_STATE_PATHS.has(p) },
   { title: "Self-employed and 1099", match: (p) => p.startsWith("/self-employed-health-insurance-") },
   { title: "COBRA and job loss", match: (p) => p.startsWith("/cobra-alternative-") },

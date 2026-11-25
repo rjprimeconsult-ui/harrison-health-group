@@ -14,6 +14,7 @@ Guides:
 
 State pages:
 - https://harrisonhealthgroup.com/florida-health-insurance
+- https://harrisonhealthgroup.com/aca-alternatives-florida
 - https://harrisonhealthgroup.com/texas-health-insurance
 - https://harrisonhealthgroup.com/georgia-health-insurance
 - https://harrisonhealthgroup.com/montana-health-insurance
